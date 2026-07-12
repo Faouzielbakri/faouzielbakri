@@ -5,7 +5,7 @@ export const site: Site = SiteSchema.parse({
   headline: "I build AI products people actually use.",
   positioning: "AI Engineer & Full-Stack Developer",
   summary:
-    "AI-focused full-stack engineer with 5+ years building and shipping production web products end-to-end. I specialize in LLM-powered applications — multi-agent pipelines, RAG, and tool-calling agents — on a modern Next.js / TypeScript stack. I work the whole lifecycle: architecture → build → deploy → iterate.",
+    "AI-focused full-stack engineer with 6+ years building and shipping production web products end-to-end. I specialize in LLM-powered applications — multi-agent pipelines, RAG, and tool-calling agents — on a modern Next.js / TypeScript stack. I work the whole lifecycle: architecture → build → deploy → iterate.",
   location: "Agadir, Morocco — working worldwide",
   email: "faouzielbakri@gmail.com",
   links: {
@@ -30,12 +30,12 @@ export const site: Site = SiteSchema.parse({
   proof: [
     {
       label: "Years shipping production software",
-      value: "5+",
+      value: "6+",
       source: "Career",
     },
     {
       label: "Search impressions / 28 days — FASL",
-      value: "~37K",
+      value: "58.4K",
       source: "Google Search Console",
     },
     {
@@ -103,7 +103,7 @@ export const site: Site = SiteSchema.parse({
       points: [
         "RTL-first interfaces — FASL, RESO Khdma, and Annid Law all run in Arabic",
         "i18n architecture with next-intl across four languages",
-        "SEO that performs: ~37K impressions/28 days on FASL with zero ad spend",
+        "SEO that performs: 58.4K impressions/28 days on FASL with zero ad spend",
         "Zero-to-launch experience: payments, fulfilment, analytics, real customers",
       ],
       visual: "/media/pillar-multilingual.avif",

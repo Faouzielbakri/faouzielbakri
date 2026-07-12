@@ -62,6 +62,21 @@ export const metadata: Metadata = {
   },
   description:
     "AI-focused full-stack engineer building LLM-powered products end-to-end — multi-agent pipelines, RAG, Next.js, TypeScript, Postgres. Based in Agadir, Morocco, working worldwide.",
+  keywords: [
+    "AI engineer",
+    "full-stack developer",
+    "LLM agents",
+    "multi-agent pipelines",
+    "RAG",
+    "Next.js developer",
+    "TypeScript",
+    "Morocco",
+    "Arabic RTL products",
+    "freelance AI engineer",
+  ],
+  authors: [{ name: "Faouzi El Bakri", url: SITE_URL }],
+  creator: "Faouzi El Bakri",
+  category: "technology",
   openGraph: {
     type: "website",
     siteName: "Faouzi El Bakri",

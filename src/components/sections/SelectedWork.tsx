@@ -23,6 +23,15 @@ export function SelectedWork({ projects, extras }: { projects: Project[]; extras
     offset: ["start start", "end end"],
   });
 
+  // The rail label earns its place over panel 01, then gets out of the way so
+  // every later world owns the full frame. Function-based transform on purpose:
+  // a range-based one gets compiled to a native ScrollTimeline animation whose
+  // progress doesn't match this section-target offset, freezing the fade.
+  const n = projects.length;
+  const headingOpacity = useTransform(scrollYProgress, (v) =>
+    Math.max(0, 1 - v / (0.55 / n)),
+  );
+
   if (reduced) {
     return (
       <section id="work" ref={spyRef} aria-label="Selected work">
@@ -36,8 +45,6 @@ export function SelectedWork({ projects, extras }: { projects: Project[]; extras
     );
   }
 
-  const n = projects.length;
-
   return (
     <section
       id="work"
@@ -50,7 +57,7 @@ export function SelectedWork({ projects, extras }: { projects: Project[]; extras
       style={{ height: `${(n + 1) * 100}vh` }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        <SectionHeading total={n} />
+        <SectionHeading total={n} opacity={headingOpacity} />
         {projects.map((project, i) => (
           <StackedPanel
             key={project.slug}
@@ -67,15 +74,24 @@ export function SelectedWork({ projects, extras }: { projects: Project[]; extras
   );
 }
 
-function SectionHeading({ total }: { total: number }) {
+function SectionHeading({
+  total,
+  opacity,
+}: {
+  total: number;
+  opacity?: MotionValue<number>;
+}) {
   // blend-difference keeps the label legible over both light and dark worlds
   return (
-    <div className="rail pointer-events-none absolute inset-x-0 top-0 z-30 flex h-20 items-end justify-between mix-blend-difference">
+    <motion.div
+      className="rail pointer-events-none absolute inset-x-0 top-0 z-30 flex h-20 items-end justify-between mix-blend-difference"
+      style={opacity ? { opacity } : undefined}
+    >
       <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">
         Selected work
       </p>
       <p className="font-mono text-xs text-white/70">01 — {String(total).padStart(2, "0")}</p>
-    </div>
+    </motion.div>
   );
 }
 

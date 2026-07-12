@@ -14,6 +14,8 @@ import {
   motion,
   useInView,
   useMotionValue,
+  useMotionValueEvent,
+  useScroll,
   useSpring,
   useTransform,
 } from "motion/react";
@@ -291,8 +293,10 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
   const spyRef = useSectionSpy<HTMLElement>("about");
   const frameRef = useRef<HTMLDivElement | null>(null);
 
-  /** Seam position as % of width, spring-smoothed toward the cursor */
-  const seamTarget = useMotionValue(50);
+  /** Seam position as % of width, spring-smoothed toward the cursor.
+   * Rests at 38% so the builder portrait's face is fully visible by default. */
+  const SEAM_REST = 38;
+  const seamTarget = useMotionValue(SEAM_REST);
   const seam = useSpring(seamTarget, { stiffness: 70, damping: 20 });
   const clip = useTransform(seam, (v) => `inset(0 0 0 ${v}%)`);
   const seamLeft = useTransform(seam, (v) => `${v}%`);
@@ -304,14 +308,38 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
     seamTarget.set(Math.min(82, Math.max(18, pct)));
   }
 
+  /* Mobile seam: scroll walks it 25% → 75% while the frame crosses the
+   * viewport; a finger on the handle takes over, release hands it back. */
+  const mobileFrameRef = useRef<HTMLDivElement | null>(null);
+  const mobileDragging = useRef(false);
+  const mSeamTarget = useMotionValue(SEAM_REST);
+  const mSeam = useSpring(mSeamTarget, { stiffness: 70, damping: 20 });
+  const mClip = useTransform(mSeam, (v) => `inset(0 0 0 ${v}%)`);
+  const mSeamLeft = useTransform(mSeam, (v) => `${v}%`);
+  const { scrollYProgress: mobileScroll } = useScroll({
+    target: mobileFrameRef,
+    offset: ["start 85%", "end 15%"],
+  });
+  useMotionValueEvent(mobileScroll, "change", (v) => {
+    if (reduced || mobileDragging.current) return;
+    mSeamTarget.set(25 + v * 50);
+  });
+
+  function seamFromTouch(clientX: number) {
+    const rect = mobileFrameRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const pct = ((clientX - rect.left) / rect.width) * 100;
+    mSeamTarget.set(Math.min(85, Math.max(15, pct)));
+  }
+
   const teacherFacts = [
     "Computer Science teacher — Ministry of National Education, Agadir",
-    "200+ students a year since 2021",
+    "≈500 students a year since 2021 — 2,000+ taught so far",
     "M.Sc. Big Data & AI — thesis at 96.96% mAP50 (YOLO + PSO)",
   ];
   const builderFacts = [
     "Co-founder of FASL · founder of Magical Hekaya · founding engineer of Belmo",
-    "5+ years shipping — freelance platforms with real users and real money",
+    "6+ years shipping — freelance platforms with real users and real money",
     `Works in ${site.languages.length} languages — Arabic & Darija native, RTL-first`,
   ];
 
@@ -333,7 +361,7 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
           viewport={{ once: true, margin: "-10% 0px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
         >
-          AI-focused full-stack engineer — 5+ years shipping production web
+          AI-focused full-stack engineer — 6+ years shipping production web
           products end-to-end, specializing in LLM-powered applications on a
           Next.js / TypeScript stack.
         </motion.p>
@@ -345,7 +373,7 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
         <div
           ref={frameRef}
           onMouseMove={onMouseMove}
-          onMouseLeave={() => !reduced && seamTarget.set(50)}
+          onMouseLeave={() => !reduced && seamTarget.set(SEAM_REST)}
           className="relative h-[70vh] cursor-col-resize overflow-hidden rounded-2xl border border-line"
         >
           {/* Teacher — base layer */}
@@ -356,15 +384,15 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <SideContent
               kicker="By day"
-              stat="200+"
-              statLabel="students a year, Ministry of National Education"
+              stat="2000+"
+              statLabel="students taught, Ministry of National Education"
               title="the teacher"
               facts={teacherFacts}
             />
           </div>
 
           {/* Builder — clipped layer */}
-          <motion.div className="absolute inset-0" style={reduced ? { clipPath: "inset(0 0 0 50%)" } : { clipPath: clip }}>
+          <motion.div className="absolute inset-0" style={reduced ? { clipPath: "inset(0 0 0 38%)" } : { clipPath: clip }}>
             {builderSrc && (
               <Image src={builderSrc} alt="" fill sizes="90vw" className="object-cover" />
             )}
@@ -373,8 +401,8 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
               <div className="w-full max-w-xl">
                 <SideContent
                   kicker="By night"
-                  stat="6"
-                  statLabel="products live in production, three of them my own"
+                  stat="16"
+                  statLabel="products live in production, four of them my own"
                   title="the builder"
                   facts={builderFacts}
                   align="end"
@@ -387,7 +415,7 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
           <motion.div
             aria-hidden
             className="absolute inset-y-0 z-10 w-px bg-white/70"
-            style={reduced ? { left: "50%" } : { left: seamLeft }}
+            style={reduced ? { left: "38%" } : { left: seamLeft }}
           >
             <span className="absolute left-1/2 top-1/2 flex size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-black/40 font-mono text-[10px] text-white backdrop-blur">
               ⇄
@@ -399,39 +427,114 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
         </p>
       </div>
 
-      {/* Mobile: stacked cards */}
-      <div className="rail mt-10 space-y-6 lg:hidden">
-        {[
-          {
-            src: teacherSrc,
-            kicker: "By day",
-            stat: "200+",
-            statLabel: "students a year, Ministry of National Education",
-            title: "the teacher",
-            facts: teacherFacts,
-          },
-          {
-            src: builderSrc,
-            kicker: "By night",
-            stat: "6",
-            statLabel: "products live in production, three of them my own",
-            title: "the builder",
-            facts: builderFacts,
-          },
-        ].map((side) => (
-          <div key={side.kicker} className="relative h-[52vh] overflow-hidden rounded-2xl border border-line">
-            {side.src && <Image src={side.src} alt="" fill sizes="90vw" className="object-cover" />}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
-            <SideContent
-              kicker={side.kicker}
-              stat={side.stat}
-              statLabel={side.statLabel}
-              title={side.title}
-              facts={side.facts}
-            />
+      {/* Mobile: the same seam — scroll sweeps it, the handle overrides it.
+          Reduced motion keeps the plain stacked cards. */}
+      {reduced ? (
+        <div className="rail mt-10 space-y-6 lg:hidden">
+          {[
+            {
+              src: teacherSrc,
+              kicker: "By day",
+              stat: "2000+",
+              statLabel: "students taught, Ministry of National Education",
+              title: "the teacher",
+              facts: teacherFacts,
+            },
+            {
+              src: builderSrc,
+              kicker: "By night",
+              stat: "16",
+              statLabel: "products live in production, four of them my own",
+              title: "the builder",
+              facts: builderFacts,
+            },
+          ].map((side) => (
+            <div key={side.kicker} className="relative h-[52vh] overflow-hidden rounded-2xl border border-line">
+              {side.src && <Image src={side.src} alt="" fill sizes="90vw" className="object-cover" />}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+              <SideContent
+                kicker={side.kicker}
+                stat={side.stat}
+                statLabel={side.statLabel}
+                title={side.title}
+                facts={side.facts}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="rail mt-10 lg:hidden">
+          <div
+            ref={mobileFrameRef}
+            className="relative h-[62vh] overflow-hidden rounded-2xl border border-line"
+          >
+            {/* Teacher — base layer */}
+            <div className="absolute inset-0">
+              {teacherSrc && (
+                <Image src={teacherSrc} alt="" fill sizes="100vw" className="object-cover" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <SideContent
+                kicker="By day"
+                stat="2000+"
+                statLabel="students taught, Ministry of National Education"
+                title="the teacher"
+                facts={teacherFacts}
+              />
+            </div>
+
+            {/* Builder — clipped layer */}
+            <motion.div className="absolute inset-0" style={{ clipPath: mClip }}>
+              {builderSrc && (
+                <Image src={builderSrc} alt="" fill sizes="100vw" className="object-cover" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+              <div className="flex h-full justify-end">
+                <div className="w-full max-w-xl">
+                  <SideContent
+                    kicker="By night"
+                    stat="16"
+                    statLabel="products live in production, four of them my own"
+                    title="the builder"
+                    facts={builderFacts}
+                    align="end"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Seam line + draggable handle */}
+            <motion.div
+              aria-hidden
+              className="absolute inset-y-0 z-10 w-px bg-white/70"
+              style={{ left: mSeamLeft }}
+            >
+              <span
+                className="absolute left-1/2 top-1/2 flex size-11 -translate-x-1/2 -translate-y-1/2 touch-none items-center justify-center rounded-full border border-white/40 bg-black/40 font-mono text-xs text-white backdrop-blur"
+                onPointerDown={(e) => {
+                  mobileDragging.current = true;
+                  e.currentTarget.setPointerCapture(e.pointerId);
+                }}
+                onPointerMove={(e) => {
+                  if (mobileDragging.current) seamFromTouch(e.clientX);
+                }}
+                onPointerUp={(e) => {
+                  mobileDragging.current = false;
+                  e.currentTarget.releasePointerCapture(e.pointerId);
+                }}
+                onPointerCancel={() => {
+                  mobileDragging.current = false;
+                }}
+              >
+                ⇄
+              </span>
+            </motion.div>
           </div>
-        ))}
-      </div>
+          <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+            Drag the handle — or just scroll
+          </p>
+        </div>
+      )}
 
       {/* The records — achievements count up, education files in */}
       <div className="rail mt-16 grid gap-x-16 gap-y-12 lg:grid-cols-[7fr_5fr]">
@@ -443,9 +546,9 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
           <div className="mt-6 grid grid-cols-2 gap-x-10 gap-y-8">
             {[
               { to: 96.96, decimals: 2, suffix: "%", label: "mAP50 — M.Sc thesis, solar-defect detection (YOLO + PSO)" },
-              { to: 200, suffix: "+", label: "students a year taught for the Ministry of National Education" },
-              { to: 6, suffix: "", label: "products live in production — three of them my own" },
-              { to: 5, suffix: "+", label: "years shipping software with real users and real money" },
+              { to: 2000, suffix: "+", label: "students taught for the Ministry of National Education — ≈500 a year" },
+              { to: 16, suffix: "", label: "products live in production — four of them my own" },
+              { to: 6, suffix: "+", label: "years shipping software with real users and real money" },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}

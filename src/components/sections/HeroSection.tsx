@@ -24,18 +24,20 @@ type HeroSectionProps = {
   posterSrc?: string;
 };
 
-/* ── The build script the "agent" executes ───────────────────────────────
- * Each line advances `stage`, and every hero element is gated on a stage:
- *   1 masthead · 2 name · 3 film · 4 statement/toggle · 5 done (dock)
+/* ── The build script the agent executes ─────────────────────────────────
+ * Not a portfolio masthead: the visitor lands inside the agent's workspace
+ * while it assembles the scene. Each line advances `stage`, and every
+ * element of the canvas is gated on a stage:
+ *   1 system bar + manifest · 2 name · 3 film · 4 statement/toggle · 5 done
  */
 const FINAL_STAGE = 5;
 const SESSION_KEY = "feb-hero-built";
 
 const SCRIPT: { text: string; stage: number; pause: number }[] = [
-  { text: "▸ reading cv — 5+ yrs · next.js · llm agents ✓", stage: 1, pause: 520 },
-  { text: "▸ writing name…", stage: 2, pause: 950 },
-  { text: "▸ generating film — gemini omni ✓ (2.0 MB)", stage: 3, pause: 780 },
-  { text: "▸ hydrating proof — fasl.ma ~37K impressions ✓", stage: 4, pause: 620 },
+  { text: "▸ boot workspace — agadir · online ✓", stage: 1, pause: 520 },
+  { text: "▸ printing name…", stage: 2, pause: 950 },
+  { text: "▸ rendering film — gemini omni ✓ (2.0 MB)", stage: 3, pause: 780 },
+  { text: "▸ hydrating proof — fasl.ma 58.4K impressions ✓", stage: 4, pause: 620 },
 ];
 
 const BOOT_CMD = "$ agent run build-hero";
@@ -77,7 +79,7 @@ function MaskedLine({
             animate={show ? "visible" : "hidden"}
             variants={charVariants}
           >
-            {char === " " ? " " : char}
+            {char === " " ? " " : char}
           </motion.span>
         </span>
       ))}
@@ -85,7 +87,7 @@ function MaskedLine({
   );
 }
 
-/* ── Staged block: mounts its content when `show` flips ──────────────── */
+/* ── Staged block ─────────────────────────────────────────────────────── */
 
 function Staged({
   show,
@@ -113,9 +115,9 @@ function Staged({
   );
 }
 
-/* ── Terminal card ───────────────────────────────────────────────────── */
+/* ── Console dock — bottom-left pane, IDE style ──────────────────────── */
 
-function Terminal({
+function ConsoleDock({
   typedCmd,
   lines,
   onSkip,
@@ -126,22 +128,17 @@ function Terminal({
 }) {
   return (
     <motion.div
-      key="terminal"
-      initial={{ opacity: 0, y: 20, scale: 0.97 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -10, scale: 0.96, transition: { duration: 0.45, ease: easeOut } }}
-      transition={{ duration: 0.6, ease: easeOut }}
-      className="absolute left-1/2 top-[38%] z-30 w-[min(92vw,34rem)] -translate-x-1/2 -translate-y-1/2"
+      key="console"
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 8, transition: { duration: 0.4, ease: easeOut } }}
+      transition={{ duration: 0.5, ease: easeOut }}
+      className="w-full max-w-md"
     >
-      <div className="overflow-hidden rounded-xl border border-line bg-surface/90 shadow-[0_32px_80px_-32px_rgba(20,18,16,0.35)] backdrop-blur-md">
-        <div className="flex items-center justify-between border-b border-line px-4 py-2.5">
-          <span className="flex items-center gap-1.5">
-            <span className="size-2.5 rounded-full bg-line" />
-            <span className="size-2.5 rounded-full bg-line" />
-            <span className="size-2.5 rounded-full bg-accent/60" />
-          </span>
+      <div className="overflow-hidden rounded-lg border border-ink/15 bg-surface/85 shadow-[0_24px_60px_-28px_rgba(20,18,16,0.4)] backdrop-blur-md">
+        <div className="flex items-center justify-between border-b border-ink/10 px-3.5 py-1.5">
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
-            faouzi@agadir — agent
+            console — faouzi@agadir
           </span>
           <button
             type="button"
@@ -151,10 +148,10 @@ function Terminal({
             skip ↦
           </button>
         </div>
-        <div className="px-5 py-4 font-mono text-[13px] leading-7 text-ink-soft">
+        <div className="px-4 py-3 font-mono text-xs leading-6 text-ink-soft">
           <p className="text-ink">
             {typedCmd}
-            <span className="ml-0.5 inline-block h-[1em] w-[7px] translate-y-[2px] animate-pulse bg-accent" />
+            <span className="ml-0.5 inline-block h-[1em] w-[6px] translate-y-[2px] animate-pulse bg-accent" />
           </p>
           {lines.map((line) => (
             <motion.p
@@ -170,6 +167,30 @@ function Terminal({
         </div>
       </div>
     </motion.div>
+  );
+}
+
+/* ── Build manifest — the system readout on the right edge ───────────── */
+
+function ManifestRow({
+  label,
+  value,
+  show,
+  instant,
+}: {
+  label: string;
+  value: string;
+  show: boolean;
+  instant: boolean;
+}) {
+  return (
+    <Staged show={show} instant={instant} className="flex items-baseline gap-2">
+      <span className="text-muted">{label}</span>
+      <span aria-hidden className="flex-1 border-b border-dotted border-ink/20" />
+      <span className="text-ink">
+        {value} <span className="text-accent-deep">✓</span>
+      </span>
+    </Staged>
   );
 }
 
@@ -211,7 +232,6 @@ export function HeroSection({
         : [...SCRIPT.map((s) => s.text), `✓ hero deployed in ${seconds ?? "3.2"}s`],
     );
     setStage(FINAL_STAGE);
-    // Let the ✓ line land, then dissolve the terminal.
     timers.current.push(
       window.setTimeout(() => {
         setRunning(false);
@@ -265,7 +285,10 @@ export function HeroSection({
     );
   }, [finish]);
 
-  /* Decide before first paint: run the theater, or restore the built hero. */
+  /* Decide before first paint: run the theater, or restore the built hero.
+   * Setting state here is deliberate — the choice must land before paint so
+   * returning visitors never see a flash of the unbuilt hero. */
+  /* eslint-disable react-hooks/set-state-in-effect */
   useLayoutEffect(() => {
     let alreadyBuilt = false;
     try {
@@ -281,6 +304,7 @@ export function HeroSection({
     return clearTimers;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduced]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   /* Scrolling away mid-theater completes the build instantly. */
   useEffect(() => {
@@ -305,14 +329,14 @@ export function HeroSection({
   });
   const typeY = useTransform(scrollYProgress, [0, 1], ["0%", "-24%"]);
   const typeOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
-  const filmScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const filmScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
 
   /* Mouse parallax: name and film drift on opposite vectors */
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const nameX = useSpring(useTransform(mx, [-1, 1], [-7, 7]), { stiffness: 60, damping: 18 });
-  const filmX = useSpring(useTransform(mx, [-1, 1], [12, -12]), { stiffness: 60, damping: 18 });
-  const filmY = useSpring(useTransform(my, [-1, 1], [9, -9]), { stiffness: 60, damping: 18 });
+  const filmX = useSpring(useTransform(mx, [-1, 1], [10, -10]), { stiffness: 60, damping: 18 });
+  const filmY = useSpring(useTransform(my, [-1, 1], [7, -7]), { stiffness: 60, damping: 18 });
 
   function onMouseMove(e: React.MouseEvent<HTMLElement>) {
     if (reduced) return;
@@ -324,6 +348,7 @@ export function HeroSection({
   const [first, ...rest] = name.split(" ");
   const lineTwo = rest.join(" ");
   const showTheater = running && !reduced;
+  const deployed = stage >= FINAL_STAGE && !running;
 
   return (
     <section
@@ -335,37 +360,81 @@ export function HeroSection({
       onMouseMove={onMouseMove}
       className="relative flex min-h-screen flex-col overflow-hidden pt-16"
     >
+      {/* ── The film — full-bleed canvas the whole scene lives on ────── */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-0"
+        style={instant ? undefined : { scale: filmScale, x: filmX, y: filmY }}
+        initial={instant ? false : { opacity: 0 }}
+        animate={stage >= 3 ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1.4, ease: easeOut }}
+      >
+        <div className="grain absolute inset-[-2%]">
+          <AmbientVideo
+            src={videoSrc}
+            poster={posterSrc}
+            alt="Generated film — ink wireframes assembling into a finished product"
+            className="h-full w-full"
+          />
+        </div>
+        {/* Legibility scrims: the canvas fades into the page at its edges */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-bg/90 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-bg/95 via-bg/50 to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-[38%] bg-gradient-to-r from-bg/70 to-transparent" />
+      </motion.div>
 
-      {/* Masthead meta row — stage 1 */}
+      {/* ── Viewfinder chrome — instrument frame, not a masthead ─────── */}
+      <div aria-hidden className="pointer-events-none absolute inset-3 z-20 sm:inset-5">
+        <div className="absolute inset-0 rounded-sm border border-ink/10" />
+        {/* Corner ticks */}
+        {[
+          "left-0 top-0 border-l-2 border-t-2",
+          "right-0 top-0 border-r-2 border-t-2",
+          "bottom-0 left-0 border-b-2 border-l-2",
+          "bottom-0 right-0 border-b-2 border-r-2",
+        ].map((pos) => (
+          <span key={pos} className={`absolute size-4 border-ink/40 ${pos}`} />
+        ))}
+      </div>
+
+      {/* Right-edge caption — rotated, like a film canister label */}
+      <Staged
+        show={stage >= 3}
+        instant={instant}
+        className="pointer-events-none absolute right-7 top-1/2 z-20 hidden -translate-y-1/2 lg:block"
+      >
+        <p
+          className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted"
+          style={{ writingMode: "vertical-rl" }}
+        >
+          Film rendered by the build agent — Gemini Omni
+        </p>
+      </Staged>
+
+      {/* ── System bar — stage 1 ─────────────────────────────────────── */}
       <Staged show={stage >= 1} instant={instant} className="rail relative z-10 w-full">
-        <div className="rule mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 pt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-          <span>Portfolio — 2026</span>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 rounded-full border border-ink/10 bg-surface/60 px-5 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted backdrop-blur-sm sm:text-[11px]">
           <span className="inline-flex items-center gap-2 text-ink">
             <span className="relative flex size-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
               <span className="relative inline-flex size-2 rounded-full bg-accent" />
             </span>
-            Available for work
+            sys online — available for work
           </span>
+          <span className="hidden sm:inline">{positioning}</span>
           <span>
-            Agadir, Morocco — <LocalTime />
+            Agadir · <LocalTime /> · 30.42°N 9.60°W
           </span>
-        </div>
-        <div className="rule mt-3 pt-3">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-            {positioning} · {microline}
-          </p>
         </div>
       </Staged>
 
-      {/* Composition: colossal name printed in ink over the film */}
+      {/* ── The name — printed in ink onto the film ──────────────────── */}
       <div className="rail relative z-10 flex w-full flex-1 flex-col justify-center">
-        {/* The name — stage 2, ink printed onto the film */}
         <motion.h1
           aria-label={name}
           className="font-display relative z-10 font-bold uppercase leading-[0.85] tracking-[-0.03em]"
           style={{
-            fontSize: "clamp(3.75rem, 11vw, 11.5rem)",
+            fontSize: "clamp(3.5rem, 10.5vw, 11rem)",
             mixBlendMode: "multiply",
             ...(instant ? {} : { y: typeY, opacity: typeOpacity, x: nameX }),
           }}
@@ -376,63 +445,87 @@ export function HeroSection({
             show={stage >= 2}
             instant={instant}
             offset={first.length}
-            className="lg:pl-[14vw]"
+            className="lg:pl-[10vw]"
           />
         </motion.h1>
+        <Staged show={stage >= 2} instant={instant} delay={0.3} className="mt-4">
+          <p className="max-w-md font-mono text-[11px] uppercase leading-relaxed tracking-[0.18em] text-muted">
+            {microline}
+          </p>
+        </Staged>
 
-        {/* The film — a cinema band beneath the name; ink prints onto its top edge */}
-        <motion.div
-          className="relative -mt-[3vw]"
-          style={instant ? undefined : { scale: filmScale, x: filmX, y: filmY }}
-          initial={instant ? false : { clipPath: "inset(0 0 100% 0)", opacity: 0 }}
-          animate={
-            stage >= 3
-              ? { clipPath: "inset(0 0 0% 0)", opacity: 1 }
-              : { clipPath: "inset(0 0 100% 0)", opacity: 0 }
-          }
-          transition={{ duration: 1.1, ease: easeOut }}
-        >
-          <div className="grain relative h-[30vh] overflow-hidden rounded-2xl sm:h-[34vh]">
-            <AmbientVideo
-              src={videoSrc}
-              poster={posterSrc}
-              alt="Generated film — ink wireframes assembling into a finished product"
-              className="h-full w-full"
-            />
-          </div>
-        </motion.div>
-
-        {/* The theater */}
-        <AnimatePresence>
-          {showTheater && <Terminal typedCmd={typedCmd} lines={lines} onSkip={skip} />}
-        </AnimatePresence>
+        {/* Build manifest — system readout, right side */}
+        <div className="pointer-events-none absolute bottom-4 right-[var(--gutter)] z-10 hidden w-60 flex-col gap-2 font-mono text-[11px] lg:flex">
+          <p className="mb-1 border-b border-ink/15 pb-2 text-[10px] uppercase tracking-[0.25em] text-muted">
+            build manifest
+          </p>
+          <ManifestRow label="cv" value="6+ yrs" show={stage >= 1} instant={instant} />
+          <ManifestRow label="name" value="printed" show={stage >= 2} instant={instant} />
+          <ManifestRow label="film" value="gemini omni" show={stage >= 3} instant={instant} />
+          <ManifestRow label="proof" value="58.4K reach" show={stage >= 4} instant={instant} />
+          <Staged show={deployed} instant={instant} className="flex items-baseline gap-2">
+            <span className="text-muted">status</span>
+            <span aria-hidden className="flex-1 border-b border-dotted border-ink/20" />
+            <span className="text-accent-deep">deployed {buildSeconds}s</span>
+          </Staged>
+        </div>
       </div>
 
-      {/* Base row: statement + intent — stage 4 */}
-      <div className="rail relative z-10 w-full pb-5">
-        <Staged show={stage >= 3} instant={instant} className="flex justify-end pb-2">
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
-            Film generated by the build agent — Gemini Omni
-          </p>
-        </Staged>
-        <Staged
-          show={stage >= 4}
-          instant={instant}
-          className="rule flex flex-col gap-6 pt-5 sm:flex-row sm:items-end sm:justify-between"
-        >
-          <p className="max-w-md leading-snug text-ink-soft" style={{ fontSize: "var(--text-lead)" }}>
-            {headline}
-            <span className="text-muted"> Shipped from Agadir, used worldwide.</span>
-          </p>
-          <IntentToggle />
-        </Staged>
-        <Staged show={stage >= 5} instant={instant} className="mt-5 flex items-center justify-center gap-6">
+      {/* ── Base: console dock + statement + intent ──────────────────── */}
+      <div className="rail relative z-10 w-full pb-6">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          {/* Console dock: theater while running, status line once idle */}
+          <div className="min-h-10 flex-1">
+            <AnimatePresence mode="wait">
+              {showTheater ? (
+                <ConsoleDock typedCmd={typedCmd} lines={lines} onSkip={skip} />
+              ) : (
+                <motion.div
+                  key="idle"
+                  initial={instant ? false : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: easeOut }}
+                  className="inline-flex items-center gap-3 rounded-full border border-ink/10 bg-surface/60 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted backdrop-blur-sm"
+                >
+                  <span className="size-1.5 rounded-full bg-accent" />
+                  agent idle — hero deployed in {buildSeconds}s
+                  {!reduced && (
+                    <button
+                      type="button"
+                      onClick={replay}
+                      className="text-muted underline decoration-dotted underline-offset-4 transition-colors hover:text-accent"
+                    >
+                      ↺ replay
+                    </button>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <Staged
+            show={stage >= 4}
+            instant={instant}
+            className="flex flex-col items-start gap-5 sm:items-end"
+          >
+            <p
+              className="max-w-md leading-snug text-ink-soft sm:text-right"
+              style={{ fontSize: "var(--text-lead)" }}
+            >
+              {headline}
+              <span className="text-muted"> Shipped from Agadir, used worldwide.</span>
+            </p>
+            <IntentToggle />
+          </Staged>
+        </div>
+
+        <Staged show={deployed} instant={instant} className="mt-6 flex justify-center">
           <a
             href="#work"
             className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-ink"
           >
             <span className="h-px w-10 bg-line" aria-hidden />
-            Scroll to explore
+            Enter the work
             <motion.span
               aria-hidden
               animate={instant ? undefined : { y: [0, 5, 0] }}
@@ -442,15 +535,6 @@ export function HeroSection({
             </motion.span>
             <span className="h-px w-10 bg-line" aria-hidden />
           </a>
-          {!reduced && stage >= FINAL_STAGE && !running && (
-            <button
-              type="button"
-              onClick={replay}
-              className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent"
-            >
-              ✓ deployed in {buildSeconds}s · ↺ replay
-            </button>
-          )}
         </Staged>
       </div>
     </section>

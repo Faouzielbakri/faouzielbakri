@@ -28,7 +28,12 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     metrics: [
       {
         label: "Search impressions in 28 days",
-        value: "~37K",
+        value: "58.4K",
+        source: "Google Search Console",
+      },
+      {
+        label: "Search impressions in 3 months · avg position 6.2",
+        value: "95.3K",
         source: "Google Search Console",
       },
     ],
@@ -43,7 +48,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
       ],
       outcome: [
         "Live in production at fasl.ma with lawyers reaching out inbound.",
-        "~37K organic search impressions in 28 days (Google Search Console) with zero ad spend.",
+        "58.4K organic search impressions and 1.45K clicks in the last 28 days — 95.3K impressions over 3 months at average position 6.2 (Google Search Console), zero ad spend.",
       ],
       architecture: [
         {
@@ -94,6 +99,11 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
         value: "Real revenue",
         source: "Live product sales",
       },
+      {
+        label: "Search impressions in 3 months",
+        value: "44K",
+        source: "Google Search Console",
+      },
     ],
     caseStudy: {
       problem:
@@ -106,6 +116,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
       ],
       outcome: [
         "Live consumer product at magicalhekaya.com with real paying customers.",
+        "44K organic search impressions in 3 months — 16.9K in the last 28 days (Google Search Console).",
         "Full pipeline owned end-to-end: generation, payments, rendering, fulfilment.",
       ],
     },
@@ -241,6 +252,11 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
         value: "belmo.ma",
         source: "Production",
       },
+      {
+        label: "Search CTR in 28 days, and climbing",
+        value: "3%",
+        source: "Google Search Console",
+      },
     ],
     caseStudy: {
       problem:
@@ -252,6 +268,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
       ],
       outcome: [
         "Live store at belmo.ma taking real orders.",
+        "Early organic traction: 2.3K search impressions in the last 28 days at a 3% CTR (Google Search Console).",
         "One engineer owns everything: product, storefront, ops tooling, and the server it runs on.",
       ],
     },

@@ -12,17 +12,64 @@ import { site } from "@/content/site";
 import { mediaOrUndefined, withExistingMedia } from "@/lib/media";
 import { SITE_URL } from "@/lib/site-url";
 
-const personJsonLd = {
+/**
+ * One connected graph instead of a lone Person node: Person ↔ WebSite ↔
+ * ProfilePage, plus the featured case studies as an ItemList — so search
+ * engines see the work, not just the name.
+ */
+const personId = `${SITE_URL}/#person`;
+const homeJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: site.name,
-  jobTitle: site.positioning,
-  email: `mailto:${site.email}`,
-  url: SITE_URL,
-  sameAs: [site.links.github, site.links.linkedin],
-  address: { "@type": "PostalAddress", addressLocality: "Agadir", addressCountry: "MA" },
-  alumniOf: site.education.map((e) => ({ "@type": "CollegeOrUniversity", name: e.school })),
-  knowsLanguage: ["ar", "fr", "en"],
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: site.name,
+      jobTitle: site.positioning,
+      description: site.summary,
+      email: `mailto:${site.email}`,
+      url: SITE_URL,
+      sameAs: [site.links.github, site.links.linkedin],
+      address: { "@type": "PostalAddress", addressLocality: "Agadir", addressCountry: "MA" },
+      alumniOf: site.education.map((e) => ({ "@type": "CollegeOrUniversity", name: e.school })),
+      knowsLanguage: ["ar", "fr", "en"],
+      knowsAbout: [
+        "AI Engineering",
+        "LLM agents",
+        "Retrieval-Augmented Generation",
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Multilingual RTL products",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: site.name,
+      publisher: { "@id": personId },
+      inLanguage: "en",
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE_URL}/#profilepage`,
+      url: SITE_URL,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      mainEntity: { "@id": personId },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${SITE_URL}/#work-list`,
+      name: "Selected work",
+      itemListElement: caseStudies.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${SITE_URL}/work/${p.slug}`,
+        name: p.name,
+      })),
+    },
+  ],
 };
 
 export default function Home() {
@@ -40,7 +87,7 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
       <Nav />
       <main className="flex-1">

@@ -40,13 +40,15 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
         </p>
       </div>
 
+      {/* Mobile: a sticky deck — each sheet slides up and pins over the last.
+          From sm up this is the untouched editorial contact-sheet grid. */}
       <Reveal
         group
         as="ul"
-        className="rail mt-14 grid gap-x-12 gap-y-16 sm:grid-cols-2"
+        className="rail mt-14 max-sm:space-y-10 sm:grid sm:grid-cols-2 sm:gap-x-12 sm:gap-y-16"
       >
         {projects.map((project, i) => (
-          <RevealItem key={project.slug}>
+          <RevealItem key={project.slug} className="max-sm:sticky max-sm:top-20">
             <IndexEntry project={project} index={i} offset={i % 2 === 1} />
           </RevealItem>
         ))}
@@ -69,7 +71,7 @@ function IndexEntry({
 
   const entry = (
     <article
-      className={`group ${offset ? "sm:mt-10" : ""}`}
+      className={`group max-sm:rounded-2xl max-sm:border max-sm:border-line max-sm:bg-bg max-sm:p-5 max-sm:shadow-[0_-18px_44px_-24px_rgba(20,18,16,0.4)] ${offset ? "sm:mt-10" : ""}`}
       style={{ "--acc": project.accent } as CSSProperties}
     >
       {/* Ledger line */}
@@ -100,7 +102,7 @@ function IndexEntry({
           />
         </div>
         {phone && (
-          <div className="pointer-events-none absolute -bottom-7 right-4 z-10 w-[23%] max-w-[7rem] translate-y-3 rotate-[5deg] scale-95 opacity-0 shadow-[0_24px_48px_-16px_rgba(20,18,16,0.45)] transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100">
+          <div className="pointer-events-none absolute -bottom-7 right-4 z-10 w-[23%] max-w-[7rem] translate-y-3 rotate-[5deg] scale-95 opacity-0 shadow-[0_24px_48px_-16px_rgba(20,18,16,0.45)] transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 max-sm:translate-y-0 max-sm:scale-100 max-sm:opacity-100">
             <DeviceFrame
               src={phone}
               alt=""
@@ -128,7 +130,7 @@ function IndexEntry({
           {project.stack.slice(0, 4).join(" · ")}
         </span>
         {href && (
-          <span className="ml-auto font-mono text-xs text-muted transition-colors duration-300 group-hover:text-[var(--acc)]">
+          <span className="ml-auto font-mono text-xs text-muted transition-colors duration-300 group-hover:text-[var(--acc)] max-sm:text-[var(--acc)]">
             visit ↗
           </span>
         )}
