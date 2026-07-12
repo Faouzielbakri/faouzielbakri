@@ -1,26 +1,113 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Light editorial-cinematic palette */
+  --color-bg: #faf7f2;
+  --color-surface: #ffffff;
+  --color-ink: #141210;
+  --color-ink-soft: #2b2823;
+  --color-muted: #6e6a63;
+  --color-line: #e7e1d8;
+  --color-accent: #e8590c;
+  --color-accent-deep: #b83d05;
+  --color-saffron: #e8a30c;
+
+  /* Fonts (wired to next/font variables in layout.tsx) */
+  --font-display: var(--font-space-grotesk);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Fluid type scale */
+  --text-hero: clamp(3rem, 9vw, 8rem);
+  --text-display: clamp(2.25rem, 6vw, 5rem);
+  --text-title: clamp(1.5rem, 3vw, 2.5rem);
+  --text-lead: clamp(1.125rem, 1.6vw, 1.375rem);
+
+  /* Section rhythm */
+  --rail: 1280px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Editorial display headings */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+/* Content rail */
+.rail {
+  max-width: var(--rail);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Hairline rules between editorial sections */
+.rule {
+  border-top: 1px solid var(--color-line);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Form fields */
+.field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  padding: 0.875rem 1rem;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+  transition: border-color 0.2s;
+}
+
+.field::placeholder {
+  color: var(--color-muted);
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* Proof-strip marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 36s linear infinite;
 }

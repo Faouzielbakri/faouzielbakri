@@ -1,0 +1,104 @@
+{
+  "styleGuide": "Bright airy cinematic abstract scene, warm off-white and soft cream tones (#FAF7F2), terracotta (#E8590C) and saffron (#E8A30C) light accents, subtle Moroccan geometric undertones, soft volumetric daylight, gentle film grain, minimalist with generous negative space, high-end editorial tech aesthetic, no text, no words, no letters, no people, no logos.",
+  "assets": [
+    {
+      "type": "video",
+      "id": "hero-ambient",
+      "model": "gemini-omni-flash-preview",
+      "prompt": "A single unbroken continuous macro shot, static camera: drops of terracotta and saffron ink blooming very slowly in cream-colored water, the ink tendrils curling and weaving into a faint eight-point Moroccan star geometry before softly dissolving back into warm cream, volumetric daylight from above, subtle film grain, high-end minimalist editorial aesthetic, hypnotic seamless loop, slow constant motion. No people, no text, no logos, no dialogue, no music, no sound.",
+      "aspectRatio": "16:9",
+      "durationSeconds": 8,
+      "output": "public/media/hero-ambient.mp4"
+    },
+    {
+      "type": "poster-from-video",
+      "id": "hero-poster",
+      "source": "hero-ambient",
+      "output": "public/media/hero-poster.avif"
+    },
+    {
+      "type": "image",
+      "id": "about-texture",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Perfectly flat, seamless background texture filling the entire frame edge to edge: handmade cotton paper surface with a faint embossed Moroccan zellige geometric relief pattern, barely-visible warm cream-on-cream, extremely low contrast, absolutely no objects, no scene, no room, no walls, no shadows of objects, no depth of field — only the flat paper surface itself. 21:9 aspect ratio.",
+      "aspectRatio": "21:9",
+      "output": "public/media/about-texture.avif"
+    },
+    {
+      "type": "image",
+      "id": "thesis-visual",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Elegant abstract data-visualization artwork: an aerial grid of solar panels rendered as minimalist dark rectangles on warm cream paper, a thermal heat-map gradient of saffron and terracotta glowing on a few of the panels, thin precise linework, scientific yet warm, generous negative space. 21:9 aspect ratio.",
+      "aspectRatio": "21:9",
+      "output": "public/media/thesis-visual.avif"
+    },
+    {
+      "type": "image",
+      "id": "pillar-ai",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Abstract representation of a multi-agent AI pipeline: three softly glowing warm orbs connected by flowing threads of terracotta light, floating over a cream background, soft depth of field, elegant minimalism. 3:4 aspect ratio.",
+      "aspectRatio": "3:4",
+      "output": "public/media/pillar-ai.avif"
+    },
+    {
+      "type": "image",
+      "id": "pillar-fullstack",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Abstract architectural composition: translucent warm-toned glass planes stacked in clean precise layers, terracotta and saffron light refracting through them, cream background, minimal geometry. 3:4 aspect ratio.",
+      "aspectRatio": "3:4",
+      "output": "public/media/pillar-fullstack.avif"
+    },
+    {
+      "type": "image",
+      "id": "pillar-multilingual",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Abstract flowing ribbons inspired by the motion of calligraphy, weaving both left-to-right and right-to-left across a warm cream background, terracotta and saffron silk gradients, graceful intersecting curves, no actual letters and no readable text of any kind. 3:4 aspect ratio.",
+      "aspectRatio": "3:4",
+      "output": "public/media/pillar-multilingual.avif"
+    },
+    {
+      "type": "image",
+      "id": "world-fasl",
+      "model": "gemini-3.1-flash-image",
+      "standalone": true,
+      "prompt": "Cinematic wide interior of a grand Moroccan hall of justice at dusk: deep emerald green walls carved with zellige eight-point star patterns, tall arched windows casting warm golden volumetric light, an ornate brass balance scale on a dark carved-wood desk beside stacked ivory legal manuscripts sealed with wax, rich moody shadows, prestigious and solemn atmosphere, photorealistic, high detail. Composition keeps the left half of the frame darker and calmer for text overlay. No text, no words, no people. 16:9 aspect ratio.",
+      "aspectRatio": "16:9",
+      "output": "public/media/world-fasl.avif"
+    },
+    {
+      "type": "image",
+      "id": "world-hekaya",
+      "model": "gemini-3.1-flash-image",
+      "standalone": true,
+      "prompt": "Dreamlike cinematic night scene for a children's storybook brand: a giant open storybook floating above soft moonlit clouds, glowing golden sparks and tiny illustrated stars rising from its pages like fireflies, deep violet-indigo starry sky with a warm crescent moon, soft magical volumetric light, whimsical and tender, painterly-photoreal blend, high detail. Composition keeps the left half of the frame darker and calmer for text overlay. No text, no words, no people. 16:9 aspect ratio.",
+      "aspectRatio": "16:9",
+      "output": "public/media/world-hekaya.avif"
+    },
+    {
+      "type": "image",
+      "id": "world-reso",
+      "model": "gemini-3.1-flash-image",
+      "standalone": true,
+      "prompt": "Warm cinematic scene inside a Moroccan artisan carpentry workshop at golden hour: a wooden workbench with hand tools and wood shavings, sawdust particles floating in sunbeams, a smartphone propped on the bench glowing softly with green chat-bubble light, shallow depth of field, hopeful and human atmosphere, photorealistic, subtle green color grade. Composition keeps the left half of the frame calmer and softly lit for text overlay. No readable text, no people, no faces, no hands. 16:9 aspect ratio.",
+      "aspectRatio": "16:9",
+      "output": "public/media/world-reso.avif"
+    },
+    {
+      "type": "image",
+      "id": "world-webtrade",
+      "model": "gemini-3.1-flash-image",
+      "standalone": true,
+      "prompt": "Cinematic dark financial-technology scene: luminous holographic candlestick charts in emerald green and coral red floating above a black glass trading desk, soft bokeh of distant data lights in night blue, sleek minimal high-tech atmosphere, volumetric glow, photorealistic 3D render feel, high contrast. Composition keeps the left half of the frame darker and emptier for text overlay. No text, no numbers, no words, no people. 16:9 aspect ratio.",
+      "aspectRatio": "16:9",
+      "output": "public/media/world-webtrade.avif"
+    },
+    {
+      "type": "image",
+      "id": "og-default",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Cinematic editorial banner background: a wide warm cream canvas with soft volumetric golden light entering from the top right, a subtle Moroccan geometric line pattern fading into the lower left corner, terracotta and saffron accents, completely empty center-left area reserved for typography overlay. 16:9 aspect ratio.",
+      "aspectRatio": "16:9",
+      "output": "public/og/default.png"
+    }
+  ]
+}

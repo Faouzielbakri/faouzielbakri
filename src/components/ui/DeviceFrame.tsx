@@ -1,0 +1,71 @@
+import Image from "next/image";
+
+type DeviceFrameProps = {
+  src?: string;
+  alt: string;
+  accent: string;
+  kind?: "desktop" | "mobile";
+  monogram?: string;
+  priority?: boolean;
+  sizes?: string;
+};
+
+/**
+ * Browser/phone-style frame around a project screenshot. Renders an
+ * accent-tinted monogram placeholder when the capture doesn't exist yet.
+ */
+export function DeviceFrame({
+  src,
+  alt,
+  accent,
+  kind = "desktop",
+  monogram,
+  priority,
+  sizes,
+}: DeviceFrameProps) {
+  const isDesktop = kind === "desktop";
+  const aspect = isDesktop ? "aspect-[16/10]" : "aspect-[9/19]";
+  const radius = isDesktop ? "rounded-xl" : "rounded-[2rem]";
+
+  return (
+    <figure
+      className={`relative overflow-hidden border border-line bg-surface shadow-[0_24px_60px_-24px_rgba(20,18,16,0.25)] ${radius}`}
+    >
+      {isDesktop && (
+        <div className="flex items-center gap-1.5 border-b border-line bg-bg px-4 py-2.5">
+          <span className="size-2.5 rounded-full bg-line" />
+          <span className="size-2.5 rounded-full bg-line" />
+          <span className="size-2.5 rounded-full bg-line" />
+        </div>
+      )}
+      <div className={`relative ${aspect}`}>
+        {src ? (
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes={sizes ?? (isDesktop ? "(min-width: 1024px) 55vw, 90vw" : "20vw")}
+            priority={priority}
+            className="object-cover object-top"
+          />
+        ) : (
+          <div
+            role="img"
+            aria-label={alt}
+            className="flex h-full w-full items-center justify-center"
+            style={{
+              background: `linear-gradient(135deg, ${accent}14 0%, ${accent}33 100%)`,
+            }}
+          >
+            <span
+              className="font-display text-6xl font-bold opacity-40"
+              style={{ color: accent }}
+            >
+              {monogram ?? alt.charAt(0).toUpperCase()}
+            </span>
+          </div>
+        )}
+      </div>
+    </figure>
+  );
+}
