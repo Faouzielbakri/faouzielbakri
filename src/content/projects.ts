@@ -413,7 +413,10 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     role: "Freelance Engineer",
     accent: "#e8590c",
     stack: ["Next.js", "TypeScript", "Prisma", "Clerk", "i18n (EN/FR)", "ISR"],
-    screenshots: { desktop: [], mobile: [] },
+    screenshots: {
+      desktop: ["/projects/afaizcar/home-desktop.avif"],
+      mobile: ["/projects/afaizcar/home-mobile.avif"],
+    },
     alt: "Afaiz Car — car rental platform with fleet and booking management",
   },
   {
@@ -427,7 +430,9 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     stack: ["Next.js", "React", "Framer Motion", "Embla carousel"],
     screenshots: {
       desktop: ["/projects/bluenote/home-desktop.avif"],
-      mobile: ["/projects/bluenote/home-mobile.avif"],
+      // The client site has no mobile breakpoints — the phone capture shows
+      // a broken layout, so we only ever present desktop.
+      mobile: [],
     },
     alt: "Blue Note — bar and restaurant marketing site",
   },

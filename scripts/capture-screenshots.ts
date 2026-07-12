@@ -29,6 +29,10 @@ type LocalTarget = {
   cmd: string[];
   port: number;
   pages: PageTarget[];
+  /** Extra env for the dev server (overrides the project's .env). */
+  env?: Record<string, string>;
+  /** Runs in the browser before any page script (playwright addInitScript). */
+  initScript?: string;
 };
 
 const LIVE_TARGETS: LiveTarget[] = [
@@ -48,30 +52,52 @@ const LIVE_TARGETS: LiveTarget[] = [
     pages: [{ name: "home", path: "/" }],
   },
   // Our own redesigned mock heroes (src/app/mock/*) — portfolio dev server
-  // must be running on :4400.
+  // must be running on :4400. The mock path MUST live in pages[].path, not
+  // the base url: new URL("/", base) drops the base's path entirely (this
+  // silently captured the portfolio homepage for every mock).
   {
     slug: "reso-khdma",
-    url: "http://localhost:4400/mock/reso-khdma",
-    pages: [{ name: "home", path: "/" }],
+    url: "http://localhost:4400",
+    pages: [{ name: "home", path: "/mock/reso-khdma" }],
   },
   {
     slug: "maroc-fournisseurs",
-    url: "http://localhost:4400/mock/maroc-fournisseurs",
-    pages: [{ name: "home", path: "/" }],
+    url: "http://localhost:4400",
+    pages: [{ name: "home", path: "/mock/maroc-fournisseurs" }],
   },
   {
     slug: "universeo",
-    url: "http://localhost:4400/mock/universeo",
-    pages: [{ name: "home", path: "/" }],
+    url: "http://localhost:4400",
+    pages: [{ name: "home", path: "/mock/universeo" }],
   },
   {
     slug: "tagi",
-    url: "http://localhost:4400/mock/tagi",
-    pages: [{ name: "home", path: "/" }],
+    url: "http://localhost:4400",
+    pages: [{ name: "home", path: "/mock/tagi" }],
   },
 ];
 
 const WORK_DIR = path.resolve(process.cwd(), "..");
+
+/**
+ * Promote Clerk's keyless temp keys (.clerk/.tmp/keyless.json) to real env
+ * keys. In keyless mode Clerk's client JS bounces the page through
+ * /clerk-sync-keyless, which locale middleware turns into a 404 — with the
+ * keys set explicitly, no bounce happens and the page captures cleanly.
+ */
+function clerkKeylessEnv(dir: string): Record<string, string> {
+  try {
+    const raw = JSON.parse(
+      fs.readFileSync(path.join(dir, ".clerk", ".tmp", "keyless.json"), "utf8"),
+    );
+    return {
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: raw.publishableKey,
+      CLERK_SECRET_KEY: raw.secretKey,
+    };
+  } catch {
+    return {};
+  }
+}
 
 const LOCAL_TARGETS: LocalTarget[] = [
   {
@@ -87,6 +113,14 @@ const LOCAL_TARGETS: LocalTarget[] = [
     cmd: ["pnpm", "dev", "--port", "4318"],
     port: 4318,
     pages: [{ name: "home", path: "/" }],
+    // Two payment gates guard this site (unpaid client). SITE_ACTIVE=false
+    // in its .env triggers a server-side suspension page, and a client-side
+    // PaymentGate fetches suspension flags from the live DB after hydration.
+    // Force the server gate open via env and satisfy the client gate by
+    // pre-seeding its sessionStorage cache — never touch the live DB.
+    env: { SITE_ACTIVE: "true" },
+    initScript: `sessionStorage.setItem("payment_gate_settings", JSON.stringify({
+      data: { paid: true, suspended: false, deadline: null }, cachedAt: Date.now() }))`,
   },
   {
     slug: "magic-hands-lms",
@@ -102,6 +136,13 @@ const LOCAL_TARGETS: LocalTarget[] = [
     port: 4319,
     // Locale-prefixed app — root is a 404
     pages: [{ name: "home", path: "/en" }],
+    env: clerkKeylessEnv(path.join(WORK_DIR, "afaizcar")),
+    // Hide Clerk's dev-mode "Configure your application" toast (#clerk-components).
+    initScript: `document.addEventListener("DOMContentLoaded", () => {
+      const s = document.createElement("style");
+      s.textContent = "#clerk-components{display:none!important}";
+      document.head.appendChild(s);
+    });`,
   },
   {
     slug: "bluenote",
@@ -185,6 +226,7 @@ async function capturePages(
   slug: string,
   baseUrl: string,
   pages: PageTarget[],
+  initScript?: string,
 ) {
   for (const [viewportName, viewport] of Object.entries(VIEWPORTS)) {
     let context: BrowserContext | null = null;
@@ -197,6 +239,13 @@ async function capturePages(
           ? "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
           : undefined,
       });
+      // Next.js dev-tools overlay (<nextjs-portal>) must never end up in a capture.
+      await context.addInitScript(`document.addEventListener("DOMContentLoaded", () => {
+        const s = document.createElement("style");
+        s.textContent = "nextjs-portal{display:none!important}";
+        document.head.appendChild(s);
+      });`);
+      if (initScript) await context.addInitScript(initScript);
       const page = await context.newPage();
       for (const target of pages) {
         const fold = outPath(slug, target.name, viewportName, false);
@@ -245,31 +294,63 @@ function waitForPort(port: number, timeoutMs: number): Promise<void> {
   });
 }
 
-async function captureLocal(browser: Browser, target: LocalTarget) {
+type RunningTarget = { target: LocalTarget; child: ChildProcess };
+
+function bootLocal(target: LocalTarget): RunningTarget | null {
   if (!fs.existsSync(target.dir)) {
     console.warn(`  ✗ ${target.slug}: directory not found (${target.dir})`);
-    return;
+    return null;
   }
-  console.log(`\n▸ ${target.slug} (local — ${target.dir})`);
-  let child: ChildProcess | null = null;
+  const child = spawn(target.cmd[0], target.cmd.slice(1), {
+    cwd: target.dir,
+    stdio: "ignore",
+    detached: true,
+    env: { ...process.env, ...target.env },
+  });
+  return { target, child };
+}
+
+function killLocal({ child }: RunningTarget) {
+  if (!child.pid) return;
   try {
-    child = spawn(target.cmd[0], target.cmd.slice(1), {
-      cwd: target.dir,
-      stdio: "ignore",
-      detached: true,
-    });
-    await waitForPort(target.port, 90_000);
-    await capturePages(browser, target.slug, `http://localhost:${target.port}`, target.pages);
-  } catch (err) {
-    console.warn(`  ✗ ${target.slug}: ${(err as Error).message}`);
-  } finally {
-    if (child?.pid) {
+    process.kill(-child.pid, "SIGTERM");
+  } catch {
+    child.kill("SIGTERM");
+  }
+}
+
+/**
+ * Boot every local dev server at once (each has its own port — boot time
+ * dominates the run), wait for all ports in parallel, capture each, then
+ * tear everything down.
+ */
+async function captureLocalAll(browser: Browser, targets: LocalTarget[]) {
+  const running = targets.map(bootLocal).filter((r): r is RunningTarget => r !== null);
+  try {
+    const ready = await Promise.allSettled(
+      running.map((r) => waitForPort(r.target.port, 180_000)),
+    );
+    for (const [i, { target }] of running.entries()) {
+      console.log(`\n▸ ${target.slug} (local — ${target.dir})`);
+      const state = ready[i];
+      if (state.status === "rejected") {
+        console.warn(`  ✗ ${target.slug}: ${(state.reason as Error).message ?? state.reason}`);
+        continue;
+      }
       try {
-        process.kill(-child.pid, "SIGTERM");
-      } catch {
-        child.kill("SIGTERM");
+        await capturePages(
+          browser,
+          target.slug,
+          `http://localhost:${target.port}`,
+          target.pages,
+          target.initScript,
+        );
+      } catch (err) {
+        console.warn(`  ✗ ${target.slug}: ${(err as Error).message}`);
       }
     }
+  } finally {
+    running.forEach(killLocal);
   }
 }
 
@@ -289,9 +370,7 @@ async function main() {
       }
     }
     if (!liveOnly) {
-      for (const target of local) {
-        await captureLocal(browser, target);
-      }
+      await captureLocalAll(browser, local);
     }
   } finally {
     await browser.close();
