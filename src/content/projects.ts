@@ -223,7 +223,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     name: "Belmo",
     tagline: "Arabic-first K-beauty e-commerce for Morocco — COD, 24–48h delivery, self-hosted.",
     tier: "case-study",
-    role: "Founder & Engineer",
+    role: "Founding Engineer",
     url: "https://belmo.ma",
     accent: "#d6748f",
     stack: [
@@ -339,6 +339,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
       "B2B marketplace connecting ~500 Moroccan providers with buyers — sub-second Algolia search, real-time negotiation chat.",
     tier: "card",
     role: "Freelance Engineer",
+    url: "https://www.marocfournisseurs.com",
     accent: "#c2255c",
     stack: ["Next.js", "TypeScript", "Algolia", "Prisma", "WebSockets"],
     metrics: [

@@ -310,7 +310,7 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
     "M.Sc. Big Data & AI — thesis at 96.96% mAP50 (YOLO + PSO)",
   ];
   const builderFacts = [
-    "Co-founder of FASL · founder of Magical Hekaya & Belmo",
+    "Co-founder of FASL · founder of Magical Hekaya · founding engineer of Belmo",
     "5+ years shipping — freelance platforms with real users and real money",
     `Works in ${site.languages.length} languages — Arabic & Darija native, RTL-first`,
   ];

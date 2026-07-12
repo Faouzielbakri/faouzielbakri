@@ -152,6 +152,22 @@ function BriefCard() {
         </div>
       </div>
 
+      {/* Floating coverage chip */}
+      <div
+        className="absolute -bottom-6 -left-8 rotate-[-4deg] rounded-xl border bg-white px-3.5 py-2.5 shadow-xl"
+        style={{ borderColor: "rgba(26,21,35,0.08)" }}
+      >
+        <p className="text-[9px] font-bold uppercase tracking-wider" style={{ color: "rgba(26,21,35,0.45)" }}>
+          Coverage score
+        </p>
+        <p className="text-xl font-extrabold" style={{ color: VIOLET }}>
+          92%
+          <span className="ml-1 text-[10px] font-semibold" style={{ color: "rgba(26,21,35,0.45)" }}>
+            vs top 3
+          </span>
+        </p>
+      </div>
+
       {/* Floating grounding badge */}
       <div
         className="absolute -right-6 -top-5 flex items-center gap-2 rounded-full border bg-white px-3.5 py-2 shadow-xl"
@@ -172,14 +188,32 @@ export default function UniverseoMockPage() {
   return (
     <div
       lang="en"
-      className={`${grotesk.className} min-h-screen`}
+      className={`${grotesk.className} relative min-h-screen overflow-hidden`}
       style={{
         background: "linear-gradient(170deg, #ffffff 0%, #f6f3ff 60%, #efe9ff 100%)",
         color: INK,
       }}
     >
+      {/* Atmosphere */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 14% 10%, rgba(112,72,232,0.1), transparent 30%), radial-gradient(circle at 88% 74%, rgba(77,171,247,0.12), transparent 34%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.55]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(95,61,196,0.07) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+
       {/* Nav */}
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <header className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <div className="flex items-center gap-2.5">
           <span
             className="flex size-9 items-center justify-center rounded-xl text-white"
@@ -204,7 +238,7 @@ export default function UniverseoMockPage() {
       </header>
 
       {/* Hero */}
-      <main className="mx-auto grid max-w-6xl items-center gap-16 px-6 pb-20 pt-10 lg:grid-cols-[6fr_5fr]">
+      <main className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 pb-12 pt-8 lg:grid-cols-[6fr_5fr]">
         <div>
           <p
             className="mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold"
@@ -268,6 +302,27 @@ export default function UniverseoMockPage() {
           <BriefCard />
         </div>
       </main>
+
+      {/* How it works strip */}
+      <section className={`${inter.className} relative mx-auto max-w-6xl px-6 pb-14`}>
+        <div className="grid gap-6 border-t pt-8 sm:grid-cols-3" style={{ borderColor: "rgba(26,21,35,0.1)" }}>
+          {[
+            ["01", "Drop a keyword", "Universeo pulls the live page-one results for it"],
+            ["02", "The SERP gets read", "Outlines, questions, and gaps extracted from real competitors"],
+            ["03", "Your brief is ready", "Structured, scored for coverage, exportable to Docs & CMS"],
+          ].map(([n, title, sub]) => (
+            <div key={n} className="flex gap-4">
+              <span className={`${grotesk.className} text-2xl font-bold`} style={{ color: VIOLET }}>
+                {n}
+              </span>
+              <div>
+                <p className="font-semibold">{title}</p>
+                <p className="mt-1 text-sm leading-relaxed opacity-60">{sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

@@ -192,6 +192,14 @@ function SearchPanel() {
           </div>
         </div>
       </div>
+
+      {/* Floating quote pill */}
+      <div
+        className="absolute -right-6 -top-5 rotate-3 rounded-full px-4 py-2 text-[11px] font-bold text-white shadow-xl"
+        style={{ background: MAROON }}
+      >
+        Devis demandé ✓
+      </div>
     </div>
   );
 }
@@ -202,14 +210,32 @@ export default function MarocFournisseursMockPage() {
   return (
     <div
       lang="fr"
-      className={`${jakarta.className} min-h-screen`}
+      className={`${jakarta.className} relative min-h-screen overflow-hidden`}
       style={{
         background: "linear-gradient(165deg, #fdf8f3 0%, #fbeee6 55%, #f7e3d8 100%)",
         color: INK,
       }}
     >
+      {/* Atmosphere */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 12% 8%, rgba(194,37,92,0.09), transparent 30%), radial-gradient(circle at 90% 70%, rgba(240,140,0,0.1), transparent 34%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.5]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(166,30,77,0.06) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+
       {/* Nav */}
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <header className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <div className="flex items-center gap-2.5">
           <span
             className="flex size-9 items-center justify-center rounded-xl text-lg font-black text-white"
@@ -236,7 +262,7 @@ export default function MarocFournisseursMockPage() {
       </header>
 
       {/* Hero */}
-      <main className="mx-auto grid max-w-6xl items-center gap-16 px-6 pb-20 pt-10 lg:grid-cols-[6fr_5fr]">
+      <main className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 pb-12 pt-8 lg:grid-cols-[6fr_5fr]">
         <div>
           <p
             className="mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold"
@@ -270,7 +296,21 @@ export default function MarocFournisseursMockPage() {
               Devenir fournisseur
             </span>
           </div>
-          <div className="mt-9">
+          <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-t pt-6" style={{ borderColor: "rgba(61,21,34,0.1)" }}>
+            {[
+              ["500+", "fournisseurs vérifiés"],
+              ["0,3 s", "recherche instantanée"],
+              ["7", "catégories couvertes"],
+            ].map(([v, l]) => (
+              <div key={l}>
+                <p className="text-2xl font-extrabold" style={{ color: MAROON }}>
+                  {v}
+                </p>
+                <p className="text-xs font-semibold opacity-55">{l}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-7">
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider opacity-45">
               Catégories populaires
             </p>
@@ -300,6 +340,27 @@ export default function MarocFournisseursMockPage() {
           <SearchPanel />
         </div>
       </main>
+
+      {/* How it works strip */}
+      <section className="relative mx-auto max-w-6xl px-6 pb-14">
+        <div className="grid gap-6 border-t pt-8 sm:grid-cols-3" style={{ borderColor: "rgba(61,21,34,0.1)" }}>
+          {[
+            ["01", "Cherchez", "Recherche instantanée parmi 500+ fournisseurs vérifiés"],
+            ["02", "Comparez", "Profils, avis clients et certifications au même endroit"],
+            ["03", "Négociez en direct", "Chat temps réel avec le fournisseur — devis en minutes"],
+          ].map(([n, title, sub]) => (
+            <div key={n} className="flex gap-4">
+              <span className="text-2xl font-extrabold" style={{ color: CRIMSON }}>
+                {n}
+              </span>
+              <div>
+                <p className="font-bold">{title}</p>
+                <p className="mt-1 text-sm leading-relaxed opacity-60">{sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
