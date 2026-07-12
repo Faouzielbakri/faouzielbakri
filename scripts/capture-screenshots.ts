@@ -96,6 +96,21 @@ const LOCAL_TARGETS: LocalTarget[] = [
     pages: [{ name: "home", path: "/" }],
   },
   {
+    slug: "afaizcar",
+    dir: path.join(WORK_DIR, "afaizcar"),
+    cmd: ["pnpm", "dev", "--port", "4319"],
+    port: 4319,
+    // Locale-prefixed app — root is a 404
+    pages: [{ name: "home", path: "/en" }],
+  },
+  {
+    slug: "bluenote",
+    dir: path.join(WORK_DIR, "bluenote"),
+    cmd: ["pnpm", "dev", "--port", "4320"],
+    port: 4320,
+    pages: [{ name: "home", path: "/" }],
+  },
+  {
     slug: "lakta",
     dir: path.join(WORK_DIR, "lakta"),
     cmd: ["pnpm", "dev", "--port", "4312"],

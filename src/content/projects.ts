@@ -405,6 +405,33 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     alt: "CvShifter — AI-powered CV tailoring for specific job descriptions",
   },
   {
+    slug: "afaizcar",
+    name: "Afaiz Car",
+    tagline:
+      "Bilingual car-rental platform for a Moroccan agency — fleet, locations, bookings, and an admin back office.",
+    tier: "card",
+    role: "Freelance Engineer",
+    accent: "#e8590c",
+    stack: ["Next.js", "TypeScript", "Prisma", "Clerk", "i18n (EN/FR)", "ISR"],
+    screenshots: { desktop: [], mobile: [] },
+    alt: "Afaiz Car — car rental platform with fleet and booking management",
+  },
+  {
+    slug: "bluenote",
+    name: "Blue Note",
+    tagline:
+      "Marketing site for a bar & restaurant — menus, ambiance, and reservations with an editorial feel.",
+    tier: "card",
+    role: "Freelance Engineer",
+    accent: "#1864ab",
+    stack: ["Next.js", "React", "Framer Motion", "Embla carousel"],
+    screenshots: {
+      desktop: ["/projects/bluenote/home-desktop.avif"],
+      mobile: ["/projects/bluenote/home-mobile.avif"],
+    },
+    alt: "Blue Note — bar and restaurant marketing site",
+  },
+  {
     slug: "tagi",
     name: "TAGi",
     tagline:
