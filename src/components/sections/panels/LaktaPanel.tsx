@@ -30,17 +30,21 @@ function AdPhone({ src, poster, delay }: { src: string; poster?: string; delay: 
 
   return (
     <figure className="overflow-hidden rounded-[1.6rem] border-4 border-black/70 bg-black shadow-2xl">
-      <video
-        ref={ref}
-        muted
-        loop
-        playsInline
-        preload="none"
-        poster={poster}
-        className="aspect-[9/16] w-full object-cover"
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+      {/* Real phone proportions; the 9:16 ad letterboxes inside like it
+          would on an actual screen. */}
+      <div className="flex aspect-[390/844] items-center">
+        <video
+          ref={ref}
+          muted
+          loop
+          playsInline
+          preload="none"
+          poster={poster}
+          className="aspect-[9/16] w-full object-cover"
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      </div>
     </figure>
   );
 }

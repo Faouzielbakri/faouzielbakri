@@ -24,7 +24,9 @@ export function DeviceFrame({
   sizes,
 }: DeviceFrameProps) {
   const isDesktop = kind === "desktop";
-  const aspect = isDesktop ? "aspect-[16/10]" : "aspect-[9/19]";
+  // Mobile matches the 390×844 capture viewport (~iPhone screen ratio) so
+  // the frame keeps real phone proportions and never crops the shot.
+  const aspect = isDesktop ? "aspect-[16/10]" : "aspect-[390/844]";
   const radius = isDesktop ? "rounded-xl" : "rounded-[2rem]";
 
   return (
