@@ -112,7 +112,9 @@ export function CapabilitiesSection() {
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="relative mt-8 overflow-hidden rounded-2xl border border-line bg-surface"
           >
-            <div className="flex items-stretch">
+            {/* min-h pinned to the tallest layer's content so switching
+                layers never resizes the section */}
+            <div className="flex min-h-[19.5rem] items-stretch">
               <div className="min-w-0 flex-1 p-6">
                 <p className="flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
                   <span

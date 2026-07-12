@@ -468,7 +468,16 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
   },
 ]);
 
-export const caseStudies = projects.filter((p) => p.tier === "case-study");
+/** Homepage featured order — deliberate, not file order. */
+const FEATURED_ORDER = ["fasl", "magical-hekaya", "belmo", "lakta", "reso-khdma", "webtrade"];
+const featuredRank = (slug: string) => {
+  const i = FEATURED_ORDER.indexOf(slug);
+  return i === -1 ? FEATURED_ORDER.length : i;
+};
+
+export const caseStudies = projects
+  .filter((p) => p.tier === "case-study")
+  .sort((a, b) => featuredRank(a.slug) - featuredRank(b.slug));
 export const cards = projects.filter((p) => p.tier === "card");
 
 export function getProject(slug: string): Project | undefined {
