@@ -29,10 +29,10 @@ function AdPhone({ src, poster, delay }: { src: string; poster?: string; delay: 
   }, [reduced, delay]);
 
   return (
-    <figure className="overflow-hidden rounded-[1.6rem] border-4 border-black/70 bg-black shadow-2xl">
-      {/* Real phone proportions; the 9:16 ad letterboxes inside like it
-          would on an actual screen. */}
-      <div className="flex aspect-[390/844] items-center">
+    <figure className="overflow-hidden rounded-[1.1rem] border-4 border-black/70 bg-black shadow-2xl">
+      {/* Real phone proportions; the ad covers the whole screen (cropped
+          rather than letterboxed) like a full-screen reel. */}
+      <div className="relative aspect-[390/844]">
         <video
           ref={ref}
           muted
@@ -40,10 +40,14 @@ function AdPhone({ src, poster, delay }: { src: string; poster?: string; delay: 
           playsInline
           preload="none"
           poster={poster}
-          className="aspect-[9/16] w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
         >
           <source src={src} type="video/mp4" />
         </video>
+        <span
+          aria-hidden
+          className="absolute left-1/2 top-[2.1%] z-10 h-[2.6%] w-[30%] -translate-x-1/2 rounded-full bg-black"
+        />
       </div>
     </figure>
   );

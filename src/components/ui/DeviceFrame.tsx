@@ -27,7 +27,7 @@ export function DeviceFrame({
   // Mobile matches the 390×844 capture viewport (~iPhone screen ratio) so
   // the frame keeps real phone proportions and never crops the shot.
   const aspect = isDesktop ? "aspect-[16/10]" : "aspect-[390/844]";
-  const radius = isDesktop ? "rounded-xl" : "rounded-[2rem]";
+  const radius = isDesktop ? "rounded-xl" : "rounded-[1.25rem]";
 
   return (
     <figure
@@ -41,6 +41,12 @@ export function DeviceFrame({
         </div>
       )}
       <div className={`relative ${aspect}`}>
+        {!isDesktop && (
+          <span
+            aria-hidden
+            className="absolute left-1/2 top-[2.1%] z-10 h-[2.6%] w-[30%] -translate-x-1/2 rounded-full bg-black/90"
+          />
+        )}
         {src ? (
           <Image
             src={src}

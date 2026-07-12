@@ -93,6 +93,82 @@ function KineticLine({
   );
 }
 
+/* ------------------------------------------------------------------- */
+/* The whole lifecycle, drawn instead of said: an accent line runs      */
+/* through the four stages, each rising in turn; iterate loops back.    */
+/* ------------------------------------------------------------------- */
+
+const STAGES = [
+  { n: "01", label: "Architecture", note: "system & schema design" },
+  { n: "02", label: "Build", note: "Next.js · TS · LLM pipelines" },
+  { n: "03", label: "Deploy", note: "Vercel or self-hosted" },
+  { n: "04", label: "Iterate", note: "evals · analytics · feedback" },
+];
+
+function LifecycleRail({ reduced }: { reduced: boolean }) {
+  return (
+    <motion.div
+      className="mt-8 max-w-3xl"
+      initial={reduced ? false : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-10% 0px" }}
+      transition={{ staggerChildren: 0.16, delayChildren: 0.2 }}
+    >
+      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
+        The whole lifecycle
+      </p>
+      <div className="relative mt-4">
+        {/* base rail + accent line drawing across */}
+        <span aria-hidden className="absolute left-0 right-0 top-[5px] h-px bg-line" />
+        <motion.span
+          aria-hidden
+          className="absolute left-0 top-[5px] h-px w-full origin-left bg-accent"
+          variants={{
+            hidden: { scaleX: 0 },
+            visible: {
+              scaleX: 1,
+              transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] },
+            },
+          }}
+        />
+        <div className="relative grid grid-cols-2 gap-y-6 sm:grid-cols-4">
+          {STAGES.map((stage, i) => (
+            <motion.div
+              key={stage.n}
+              className="pr-4"
+              variants={{
+                hidden: { opacity: 0, y: 18 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+                },
+              }}
+            >
+              <span
+                aria-hidden
+                className="block size-[11px] rounded-full border-2 border-accent bg-bg"
+              />
+              <p className="mt-3 font-mono text-[10px] text-muted">{stage.n}</p>
+              <p className="font-display mt-0.5 font-bold leading-tight">
+                {stage.label}
+                {i === STAGES.length - 1 && (
+                  <span aria-hidden className="ml-1.5 text-accent">
+                    ↺
+                  </span>
+                )}
+              </p>
+              <p className="mt-1 font-mono text-[11px] leading-relaxed text-muted">
+                {stage.note}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 /* --------------------------------------------------- */
 /* Count-up numeral for the records (achievements) grid */
 /* --------------------------------------------------- */
@@ -251,14 +327,17 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
           <KineticLine words="By night I build what they'll study." accent="build" delay={0.25} />
         </h2>
         <motion.p
-          className="mt-4 max-w-xl leading-relaxed text-muted"
+          className="mt-5 max-w-xl leading-relaxed text-muted"
           initial={reduced ? false : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10% 0px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
         >
-          {site.summary}
+          AI-focused full-stack engineer — 5+ years shipping production web
+          products end-to-end, specializing in LLM-powered applications on a
+          Next.js / TypeScript stack.
         </motion.p>
+        <LifecycleRail reduced={reduced} />
       </div>
 
       {/* The seam — desktop interactive */}
