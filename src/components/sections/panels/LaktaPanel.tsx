@@ -81,11 +81,13 @@ export function LaktaPanel(props: PanelProps) {
         </div>
 
         {videos.length > 0 ? (
-          <div className="hidden items-center justify-center gap-6 lg:flex">
-            {videos.slice(0, 2).map((v, i) => (
+          <div className="hidden items-center justify-center gap-4 lg:flex">
+            {videos.slice(0, 3).map((v, i) => (
               <div
                 key={v.src}
-                className={`w-[42%] max-w-[240px] ${i === 1 ? "translate-y-10" : "-translate-y-4"}`}
+                className={`w-[30%] max-w-[200px] ${
+                  i === 1 ? "translate-y-8" : i === 2 ? "-translate-y-6" : "-translate-y-2"
+                }`}
               >
                 <AdPhone src={v.src} poster={v.poster} delay={i * 400} />
               </div>
