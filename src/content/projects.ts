@@ -281,14 +281,44 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
   },
   {
     slug: "magic-hands",
-    name: "Magic Hands",
+    name: "Magic Hands · Immersion",
     tagline:
-      "A complete LMS for a French massage academy — courses, payments, anti-cheat — serving ~500 students.",
+      "Conversion landing for the academy's 7-day in-person massage immersion — become a professional masseur and live off the craft.",
     tier: "card",
     role: "Freelance Engineer",
     url: "https://magichands.fr",
     accent: "#9c36b5",
-    stack: ["Next.js", "React", "Stripe", "PostgreSQL", "Framer Motion"],
+    stack: ["Next.js", "React", "Prisma", "Meta Pixel", "Framer Motion"],
+    screenshots: {
+      desktop: ["/projects/magic-hands/home-desktop.avif"],
+      mobile: ["/projects/magic-hands/home-mobile.avif"],
+    },
+    alt: "Magic Hands Immersion — landing page for a 7-day professional massage formation",
+  },
+  {
+    slug: "magic-hands-feminin",
+    name: "Magic Hands · Féminin Sacré",
+    tagline:
+      "Landing for the certifying Massage Féminin Sacré formation — a 7-day in-person immersion for women practitioners, 1,500+ certified across 20+ countries.",
+    tier: "card",
+    role: "Freelance Engineer",
+    accent: "#7048e8",
+    stack: ["React", "Vite", "Express", "Stripe + Klarna", "Meta CAPI"],
+    screenshots: {
+      desktop: ["/projects/magic-hands-feminin/home-desktop.avif"],
+      mobile: ["/projects/magic-hands-feminin/home-mobile.avif"],
+    },
+    alt: "Magic Hands Féminin Sacré — landing page for a certifying feminine massage formation",
+  },
+  {
+    slug: "magic-hands-lms",
+    name: "Magic Hands LMS",
+    tagline:
+      "The academy's real e-learning platform — courses, video lessons, quizzes, instructor dashboard, and Stripe/PayPal enrollment for ~500 students.",
+    tier: "card",
+    role: "Freelance Engineer",
+    accent: "#d9480f",
+    stack: ["Laravel 12", "PostgreSQL", "Next.js 15", "TypeScript", "Stripe + PayPal", "Bunny Stream"],
     metrics: [
       {
         label: "Students",
@@ -297,25 +327,10 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
       },
     ],
     screenshots: {
-      desktop: ["/projects/magic-hands/home-desktop.avif"],
-      mobile: ["/projects/magic-hands/home-mobile.avif"],
-    },
-    alt: "Magic Hands — learning platform for a French massage training academy",
-  },
-  {
-    slug: "magic-hands-lms",
-    name: "Magic Hands Academy",
-    tagline:
-      "The school behind the landing page — course platform with payments and anti-cheat for the massage academy's online cohorts.",
-    tier: "card",
-    role: "Freelance Engineer",
-    accent: "#7048e8",
-    stack: ["React", "Vite", "Express", "Stripe + Klarna", "Meta CAPI"],
-    screenshots: {
       desktop: ["/projects/magic-hands-lms/home-desktop.avif"],
       mobile: ["/projects/magic-hands-lms/home-mobile.avif"],
     },
-    alt: "Magic Hands Academy — online course platform for massage training",
+    alt: "Magic Hands LMS — massage training e-learning platform with courses and instructor dashboard",
   },
   {
     slug: "maroc-fournisseurs",

@@ -46,7 +46,7 @@ function AdPhone({ src, poster, delay }: { src: string; poster?: string; delay: 
         </video>
         <span
           aria-hidden
-          className="absolute left-1/2 top-[2.1%] z-10 h-[2.6%] w-[30%] -translate-x-1/2 rounded-full bg-black"
+          className="absolute left-1/2 top-0 z-10 h-[3.1%] w-[38%] -translate-x-1/2 rounded-b-[0.55rem] bg-black"
         />
       </div>
     </figure>

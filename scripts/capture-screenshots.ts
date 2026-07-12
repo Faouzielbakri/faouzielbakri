@@ -40,6 +40,15 @@ const LIVE_TARGETS: LiveTarget[] = [
   {
     slug: "magical-hekaya",
     url: "https://magicalhekaya.com",
+    // ?variant=control forces the original ("best") landing past the A/B
+    // middleware and its sticky lp_ab cookie.
+    pages: [{ name: "home", path: "/?variant=control" }],
+  },
+  {
+    slug: "magic-hands-lms",
+    // Real LMS (Laravel 12 API + Next.js web). Prod URL is only up on
+    // demand — expect this target to fail when the client VPS is off.
+    url: "https://mh.unikvps.space",
     pages: [{ name: "home", path: "/" }],
   },
   // annid-law and magic-hands are captured from LOCAL dev servers (the live
@@ -123,7 +132,9 @@ const LOCAL_TARGETS: LocalTarget[] = [
       data: { paid: true, suspended: false, deadline: null }, cachedAt: Date.now() }))`,
   },
   {
-    slug: "magic-hands-lms",
+    // Landing page for the "féminin sacré" in-person formation (the real
+    // LMS is the magic-hands-lms LIVE target above).
+    slug: "magic-hands-feminin",
     dir: path.join(WORK_DIR, "Magic-Hands-Formation-feminine-"),
     cmd: ["node", "server/server.js"],
     // Off port 3000 — anything already squatting there (a stale next dev)
@@ -275,6 +286,10 @@ async function capturePages(
         }
         // Let fonts, lazy images, and entrance animations settle.
         await page.waitForTimeout(2_500);
+        // Some landings auto-scroll on load (e.g. Hekaya's control variant
+        // lands on its second section) — the fold shot is always the hero.
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.waitForTimeout(800);
         await savePng(await page.screenshot({ type: "png" }), fold);
         await savePng(await page.screenshot({ type: "png", fullPage: true }), full);
       }
