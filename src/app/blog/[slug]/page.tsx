@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
-import { Markdown } from "@/lib/markdown";
+import { extractHeadings, Markdown } from "@/lib/markdown";
 import { getAllPosts, getPost } from "@/lib/blog";
 import { getProject } from "@/content/projects";
 import { site } from "@/content/site";
@@ -46,6 +46,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
     .map((s) => getProject(s))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
   const others = getAllPosts().filter((p) => p.slug !== post.slug);
+  const headings = extractHeadings(post.body);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -103,8 +104,39 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
             </div>
           </header>
 
-          <div className="mt-4 max-w-3xl text-[16.5px]">
-            <Markdown source={post.body} />
+          <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,48rem)_1fr] lg:gap-14">
+            <div className="max-w-3xl text-[16.5px]">
+              <Markdown source={post.body} />
+            </div>
+
+            {/* Fahras — sticky table of contents, desktop only */}
+            {headings.length > 1 && (
+              <nav
+                aria-label="Table of contents"
+                className="hidden lg:block"
+              >
+                <div className="sticky top-28 border-l border-line pl-6">
+                  <p className="flex items-baseline gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted">
+                    <span aria-hidden className="font-display text-sm normal-case tracking-normal text-accent">
+                      فهرس
+                    </span>
+                    Contents
+                  </p>
+                  <ul className="mt-4 space-y-2.5">
+                    {headings.map((h) => (
+                      <li key={h.id}>
+                        <a
+                          href={`#${h.id}`}
+                          className="block text-[13px] leading-snug text-muted transition-colors hover:text-accent"
+                        >
+                          {h.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </nav>
+            )}
           </div>
 
           {/* The receipts — the production systems the post draws on */}

@@ -7,6 +7,28 @@ import Link from "next/link";
  * `code`, [link](href). No raw HTML passthrough — content is first-party only.
  */
 
+export function headingId(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+/** H2 headings of a post — feeds the fahras (table of contents). */
+export function extractHeadings(source: string): { id: string; text: string }[] {
+  const headings: { id: string; text: string }[] = [];
+  let inFence = false;
+  for (const line of source.split("\n")) {
+    if (line.startsWith("```")) inFence = !inFence;
+    if (!inFence && line.startsWith("## ")) {
+      const text = line.slice(3).trim();
+      headings.push({ id: headingId(text), text });
+    }
+  }
+  return headings;
+}
+
 function renderInline(text: string, keyBase: string): ReactNode[] {
   const out: ReactNode[] = [];
   // Tokenize links first, then bold, then inline code.
@@ -90,9 +112,14 @@ export function Markdown({ source }: { source: string }) {
       continue;
     }
     if (line.startsWith("## ")) {
+      const text = line.slice(3);
       blocks.push(
-        <h2 key={key++} className="font-display mt-14 mb-4 text-2xl font-bold leading-snug sm:text-3xl">
-          {renderInline(line.slice(3), `h2-${key}`)}
+        <h2
+          key={key++}
+          id={headingId(text)}
+          className="font-display mt-14 mb-4 scroll-mt-24 text-2xl font-bold leading-snug sm:text-3xl"
+        >
+          {renderInline(text, `h2-${key}`)}
         </h2>,
       );
       i++;

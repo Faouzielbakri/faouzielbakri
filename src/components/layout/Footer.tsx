@@ -17,6 +17,16 @@ export function Footer() {
         </div>
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           <li>
+            <a className="text-ink-soft hover:text-accent" href="/hire">
+              Hire me
+            </a>
+          </li>
+          <li>
+            <a className="text-ink-soft hover:text-accent" href="/blog">
+              Blog
+            </a>
+          </li>
+          <li>
             <a className="text-ink-soft hover:text-accent" href={`mailto:${site.email}`}>
               {site.email}
             </a>
