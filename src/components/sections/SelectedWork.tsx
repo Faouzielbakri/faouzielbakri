@@ -4,13 +4,16 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import type { Project } from "@/content/schema";
 import { CaseStudyPanel } from "./CaseStudyPanel";
+import type { PanelProps } from "./panels/shared";
 import { useReducedMotionSafe, useSectionSpy } from "@/lib/hooks";
+
+type Extras = PanelProps["extras"];
 
 /**
  * The centerpiece: a sticky stack where each Tier-1 project panel scrolls
  * over the previous one. Reduced motion → plain stacked sections.
  */
-export function SelectedWork({ projects }: { projects: Project[] }) {
+export function SelectedWork({ projects, extras }: { projects: Project[]; extras?: Extras }) {
   const reduced = useReducedMotionSafe();
   const containerRef = useRef<HTMLElement | null>(null);
   const spyRef = useSectionSpy<HTMLElement>("work");
@@ -23,10 +26,10 @@ export function SelectedWork({ projects }: { projects: Project[] }) {
   if (reduced) {
     return (
       <section id="work" ref={spyRef} aria-label="Selected work">
-        <SectionHeading />
+        <SectionHeading total={projects.length} />
         {projects.map((project, i) => (
           <div key={project.slug} className="min-h-screen">
-            <CaseStudyPanel project={project} index={i} total={projects.length} />
+            <CaseStudyPanel project={project} index={i} total={projects.length} extras={extras} />
           </div>
         ))}
       </section>
@@ -47,7 +50,7 @@ export function SelectedWork({ projects }: { projects: Project[] }) {
       style={{ height: `${(n + 1) * 100}vh` }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        <SectionHeading />
+        <SectionHeading total={n} />
         {projects.map((project, i) => (
           <StackedPanel
             key={project.slug}
@@ -55,6 +58,7 @@ export function SelectedWork({ projects }: { projects: Project[] }) {
             index={i}
             total={n}
             progress={scrollYProgress}
+            extras={extras}
           />
         ))}
         <ProgressRail progress={scrollYProgress} total={n} />
@@ -63,14 +67,14 @@ export function SelectedWork({ projects }: { projects: Project[] }) {
   );
 }
 
-function SectionHeading() {
+function SectionHeading({ total }: { total: number }) {
   // blend-difference keeps the label legible over both light and dark worlds
   return (
     <div className="rail pointer-events-none absolute inset-x-0 top-0 z-30 flex h-20 items-end justify-between mix-blend-difference">
       <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">
         Selected work
       </p>
-      <p className="font-mono text-xs text-white/70">01 — 04</p>
+      <p className="font-mono text-xs text-white/70">01 — {String(total).padStart(2, "0")}</p>
     </div>
   );
 }
@@ -80,7 +84,9 @@ function StackedPanel({
   index,
   total,
   progress,
+  extras,
 }: {
+  extras?: Extras;
   project: Project;
   index: number;
   total: number;
@@ -102,7 +108,7 @@ function StackedPanel({
 
   return (
     <motion.div className="absolute inset-0" style={{ y, scale, zIndex: index + 1 }}>
-      <CaseStudyPanel project={project} index={index} total={total} />
+      <CaseStudyPanel project={project} index={index} total={total} extras={extras} />
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-bg"

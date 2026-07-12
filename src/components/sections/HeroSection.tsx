@@ -335,39 +335,6 @@ export function HeroSection({
       onMouseMove={onMouseMove}
       className="relative flex min-h-screen flex-col overflow-hidden pt-16"
     >
-      {/* The film — full-bleed canvas, flooded in at stage 3 */}
-      <motion.div
-        className="absolute inset-0"
-        style={instant ? undefined : { scale: filmScale }}
-        initial={instant ? false : { clipPath: "inset(0 0 100% 0)", opacity: 0 }}
-        animate={
-          stage >= 3
-            ? { clipPath: "inset(0 0 0% 0)", opacity: 1 }
-            : { clipPath: "inset(0 0 100% 0)", opacity: 0 }
-        }
-        transition={{ duration: 1.2, ease: easeOut }}
-      >
-        <motion.div
-          className="absolute inset-[-3%]"
-          style={instant ? undefined : { x: filmX, y: filmY }}
-        >
-          <AmbientVideo
-            src={videoSrc}
-            poster={posterSrc}
-            alt="Generated film — terracotta ink blooming into Moroccan geometry"
-            className="h-full w-full"
-          />
-        </motion.div>
-        {/* Editorial veils keep masthead and base row on cream */}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, var(--color-bg) 0%, rgba(250,247,242,0.65) 12%, rgba(250,247,242,0) 34%, rgba(250,247,242,0) 62%, rgba(250,247,242,0.75) 86%, var(--color-bg) 100%)",
-          }}
-        />
-      </motion.div>
 
       {/* Masthead meta row — stage 1 */}
       <Staged show={stage >= 1} instant={instant} className="rail relative z-10 w-full">
@@ -412,6 +379,28 @@ export function HeroSection({
             className="lg:pl-[14vw]"
           />
         </motion.h1>
+
+        {/* The film — a cinema band beneath the name; ink prints onto its top edge */}
+        <motion.div
+          className="relative -mt-[3vw]"
+          style={instant ? undefined : { scale: filmScale, x: filmX, y: filmY }}
+          initial={instant ? false : { clipPath: "inset(0 0 100% 0)", opacity: 0 }}
+          animate={
+            stage >= 3
+              ? { clipPath: "inset(0 0 0% 0)", opacity: 1 }
+              : { clipPath: "inset(0 0 100% 0)", opacity: 0 }
+          }
+          transition={{ duration: 1.1, ease: easeOut }}
+        >
+          <div className="grain relative h-[30vh] overflow-hidden rounded-2xl sm:h-[34vh]">
+            <AmbientVideo
+              src={videoSrc}
+              poster={posterSrc}
+              alt="Generated film — ink wireframes assembling into a finished product"
+              className="h-full w-full"
+            />
+          </div>
+        </motion.div>
 
         {/* The theater */}
         <AnimatePresence>

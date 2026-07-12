@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import {
+  Amiri,
+  Fraunces,
+  Geist,
+  Geist_Mono,
+  Playfair_Display,
+  Space_Grotesk,
+  Tajawal,
+} from "next/font/google";
 import { SITE_URL } from "@/lib/site-url";
 import "./globals.css";
 
@@ -17,6 +25,33 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+/* World fonts — each featured project speaks its own typography */
+const amiri = Amiri({
+  variable: "--font-amiri",
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  weight: ["400", "600", "900"],
+  style: ["normal", "italic"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["500", "700", "900"],
+  style: ["normal", "italic"],
+});
+
+const tajawal = Tajawal({
+  variable: "--font-tajawal",
+  subsets: ["arabic"],
+  weight: ["400", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -51,7 +86,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${geistSans.variable} ${geistMono.variable} ${amiri.variable} ${fraunces.variable} ${playfair.variable} ${tajawal.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

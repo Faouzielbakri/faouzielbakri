@@ -28,9 +28,13 @@ const personJsonLd = {
 export default function Home() {
   const featured = caseStudies.map(withExistingMedia);
   const more = cards.map(withExistingMedia);
-  const pillarVisuals = Object.fromEntries(
-    site.capabilities.map((cap) => [cap.id, mediaOrUndefined(cap.visual)]),
-  );
+  // Lakta's generated ad videos, pulled from its pipeline (present after extraction)
+  const laktaVideos = [1, 2, 3]
+    .map((n) => ({
+      src: `/projects/lakta/ad-${n}.mp4`,
+      poster: mediaOrUndefined(`/projects/lakta/ad-${n}-poster.avif`),
+    }))
+    .filter((v) => mediaOrUndefined(v.src));
 
   return (
     <>
@@ -49,14 +53,14 @@ export default function Home() {
           posterSrc={mediaOrUndefined("/media/hero-poster.avif")}
         />
         <ProofStrip proof={site.proof} />
-        <SelectedWork projects={featured} />
+        <SelectedWork projects={featured} extras={{ laktaVideos }} />
         <WorkGrid projects={more} />
         <AboutSection
           site={site}
-          textureSrc={mediaOrUndefined("/media/about-texture.avif")}
-          thesisSrc={mediaOrUndefined("/media/thesis-visual.avif")}
+          teacherSrc={mediaOrUndefined("/media/about-teacher.avif")}
+          builderSrc={mediaOrUndefined("/media/about-builder.avif")}
         />
-        <CapabilitiesSection capabilities={site.capabilities} visuals={pillarVisuals} />
+        <CapabilitiesSection />
         <ContactSection email={site.email} />
       </main>
       <Footer />

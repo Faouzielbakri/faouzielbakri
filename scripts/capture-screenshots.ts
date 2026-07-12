@@ -38,27 +38,35 @@ const LIVE_TARGETS: LiveTarget[] = [
     url: "https://magicalhekaya.com",
     pages: [{ name: "home", path: "/" }],
   },
-  {
-    slug: "annid-law",
-    url: "https://annidlawoffice.com",
-    pages: [{ name: "home", path: "/" }],
-  },
-  {
-    slug: "magic-hands",
-    url: "https://magichands.fr",
-    pages: [{ name: "home", path: "/" }],
-  },
+  // annid-law and magic-hands are captured from LOCAL dev servers (the live
+  // deployments aren't ours to represent) — see LOCAL_TARGETS.
+  { slug: "belmo", url: "https://belmo.ma", pages: [{ name: "home", path: "/" }] },
   // Live but unlinked on the portfolio — URL stays out of site data on purpose.
   {
     slug: "webtrade",
     url: "https://probasemarket.live",
     pages: [{ name: "home", path: "/" }],
   },
-  // Our own redesigned RESO hero (src/app/mock/reso-khdma) — portfolio dev
-  // server must be running on :4400.
+  // Our own redesigned mock heroes (src/app/mock/*) — portfolio dev server
+  // must be running on :4400.
   {
     slug: "reso-khdma",
     url: "http://localhost:4400/mock/reso-khdma",
+    pages: [{ name: "home", path: "/" }],
+  },
+  {
+    slug: "maroc-fournisseurs",
+    url: "http://localhost:4400/mock/maroc-fournisseurs",
+    pages: [{ name: "home", path: "/" }],
+  },
+  {
+    slug: "universeo",
+    url: "http://localhost:4400/mock/universeo",
+    pages: [{ name: "home", path: "/" }],
+  },
+  {
+    slug: "tagi",
+    url: "http://localhost:4400/mock/tagi",
     pages: [{ name: "home", path: "/" }],
   },
 ];
@@ -66,6 +74,27 @@ const LIVE_TARGETS: LiveTarget[] = [
 const WORK_DIR = path.resolve(process.cwd(), "..");
 
 const LOCAL_TARGETS: LocalTarget[] = [
+  {
+    slug: "annid-law",
+    dir: path.join(WORK_DIR, "annid-law"),
+    cmd: ["pnpm", "dev", "--port", "4317"],
+    port: 4317,
+    pages: [{ name: "home", path: "/" }],
+  },
+  {
+    slug: "magic-hands",
+    dir: path.join(WORK_DIR, "magic-hands-landing"),
+    cmd: ["pnpm", "dev", "--port", "4318"],
+    port: 4318,
+    pages: [{ name: "home", path: "/" }],
+  },
+  {
+    slug: "magic-hands-lms",
+    dir: path.join(WORK_DIR, "Magic-Hands-Formation-feminine-"),
+    cmd: ["node", "server/server.js"],
+    port: 3000,
+    pages: [{ name: "home", path: "/" }],
+  },
   {
     slug: "lakta",
     dir: path.join(WORK_DIR, "lakta"),
@@ -163,7 +192,12 @@ async function capturePages(
         }
         const url = new URL(target.path, baseUrl).toString();
         console.log(`  ${url} @ ${viewportName}`);
-        await page.goto(url, { waitUntil: "networkidle", timeout: 45_000 });
+        try {
+          await page.goto(url, { waitUntil: "networkidle", timeout: 45_000 });
+        } catch {
+          // Sites with long-lived connections never go network-idle.
+          await page.goto(url, { waitUntil: "load", timeout: 45_000 });
+        }
         // Let fonts, lazy images, and entrance animations settle.
         await page.waitForTimeout(2_500);
         await savePng(await page.screenshot({ type: "png" }), fold);

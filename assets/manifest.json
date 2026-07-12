@@ -5,7 +5,7 @@
       "type": "video",
       "id": "hero-ambient",
       "model": "gemini-omni-flash-preview",
-      "prompt": "A single unbroken continuous macro shot, static camera: drops of terracotta and saffron ink blooming very slowly in cream-colored water, the ink tendrils curling and weaving into a faint eight-point Moroccan star geometry before softly dissolving back into warm cream, volumetric daylight from above, subtle film grain, high-end minimalist editorial aesthetic, hypnotic seamless loop, slow constant motion. No people, no text, no logos, no dialogue, no music, no sound.",
+      "prompt": "A single continuous cinematic shot over a warm cream drafting table, camera slowly gliding forward: thin terracotta ink lines draw themselves into wireframe rectangles and interface blueprints on paper, then the wireframes lift slightly off the page and fill with soft glowing panels — becoming a finished, elegant product interface hovering in warm light, tiny saffron light particles drifting. The unfinished sketch is on the left, the finished glowing product on the right. Warm off-white palette with terracotta and saffron accents, soft volumetric daylight, subtle film grain, high-end minimalist editorial aesthetic, slow constant motion, seamless loop. No readable text, no words, no people, no hands, no logos, no dialogue, no music.",
       "aspectRatio": "16:9",
       "durationSeconds": 8,
       "output": "public/media/hero-ambient.mp4"
@@ -91,6 +91,82 @@
       "prompt": "Cinematic dark financial-technology scene: luminous holographic candlestick charts in emerald green and coral red floating above a black glass trading desk, soft bokeh of distant data lights in night blue, sleek minimal high-tech atmosphere, volumetric glow, photorealistic 3D render feel, high contrast. Composition keeps the left half of the frame darker and emptier for text overlay. No text, no numbers, no words, no people. 16:9 aspect ratio.",
       "aspectRatio": "16:9",
       "output": "public/media/world-webtrade.avif"
+    },
+    {
+      "type": "image",
+      "id": "layer-interface",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Abstract composition of translucent glassy interface panels and soft rounded rectangles floating in layers, warm light passing through. 3:2 aspect ratio.",
+      "aspectRatio": "3:2",
+      "output": "public/media/layer-interface.avif"
+    },
+    {
+      "type": "image",
+      "id": "layer-agents",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Abstract composition of three warm glowing orbs connected by fine threads of light, weaving between them like a pipeline. 3:2 aspect ratio.",
+      "aspectRatio": "3:2",
+      "output": "public/media/layer-agents.avif"
+    },
+    {
+      "type": "image",
+      "id": "layer-api",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Abstract composition of flowing parallel streams of light particles moving fast through elegant curved channels, suggesting realtime data in motion. 3:2 aspect ratio.",
+      "aspectRatio": "3:2",
+      "output": "public/media/layer-api.avif"
+    },
+    {
+      "type": "image",
+      "id": "layer-data",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Abstract composition of neatly stacked crystalline slabs like a serene archive, thin light seams between layers, precise and calm. 3:2 aspect ratio.",
+      "aspectRatio": "3:2",
+      "output": "public/media/layer-data.avif"
+    },
+    {
+      "type": "image",
+      "id": "layer-infra",
+      "model": "gemini-3.1-flash-image",
+      "prompt": "Abstract composition of a solid warm bedrock foundation with fine geometric struts holding up soft floating shapes above it, grounded and dependable. 3:2 aspect ratio.",
+      "aspectRatio": "3:2",
+      "output": "public/media/layer-infra.avif"
+    },
+    {
+      "type": "image",
+      "id": "about-teacher",
+      "model": "gemini-3.1-flash-image",
+      "standalone": true,
+      "prompt": "Warm cinematic photograph of an empty Moroccan classroom at golden hour: a green chalkboard covered in faint unreadable chalk diagrams suggesting simple code and geometry, worn wooden desks in neat rows, dusty volumetric light beams through tall windows, terracotta wall accents, nostalgic and dignified atmosphere, photorealistic. No people, no readable text or letters. 3:4 aspect ratio.",
+      "aspectRatio": "3:4",
+      "output": "public/media/about-teacher.avif"
+    },
+    {
+      "type": "image",
+      "id": "about-builder",
+      "model": "gemini-3.1-flash-image",
+      "standalone": true,
+      "prompt": "Cinematic night scene of a solo builder's desk in Agadir: a laptop glowing with colorful blurred interface panels, a second monitor with soft unreadable charts, a glass of Moroccan mint tea, warm desk lamp, window behind showing a deep-blue Atlantic dusk with faint city lights, terracotta and amber accents, focused and quietly heroic mood, photorealistic. No people, no readable text or letters. 3:4 aspect ratio.",
+      "aspectRatio": "3:4",
+      "output": "public/media/about-builder.avif"
+    },
+    {
+      "type": "image",
+      "id": "world-belmo",
+      "model": "gemini-3.1-flash-image",
+      "standalone": true,
+      "prompt": "Cinematic beauty-editorial still life: elegant Korean skincare bottles and cream jars in soft blush pink and pearl tones arranged on rippled rose-tinted silk, gentle studio light with soft shadows, floating flower petals, dreamy shallow depth of field, luxurious and clean K-beauty aesthetic, photorealistic. Composition keeps the left half of the frame calmer and emptier for text overlay. No text, no labels, no words, no people. 16:9 aspect ratio.",
+      "aspectRatio": "16:9",
+      "output": "public/media/world-belmo.avif"
+    },
+    {
+      "type": "image",
+      "id": "world-lakta",
+      "model": "gemini-3.1-flash-image",
+      "standalone": true,
+      "prompt": "Cinematic dark video-editing studio scene: a glowing editing timeline hologram with colorful video clip thumbnails floating above a dark desk, warm orange and magenta neon accents, soft bokeh studio lights in the background, a director's clapperboard silhouette, sleek creative-studio atmosphere, photorealistic render. Composition keeps the left half of the frame darker and emptier for text overlay. No readable text, no words, no people. 16:9 aspect ratio.",
+      "aspectRatio": "16:9",
+      "output": "public/media/world-lakta.avif"
     },
     {
       "type": "image",

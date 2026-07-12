@@ -157,6 +157,34 @@ export const WORLDS: Record<string, World> = {
   },
 };
 
+WORLDS.belmo = {
+  image: "/media/world-belmo.avif",
+  fallbackBg: "linear-gradient(165deg, #fdf1f4, #f6dde4)",
+  scrim:
+    "linear-gradient(100deg, rgba(252,240,243,0.94) 0%, rgba(252,240,243,0.75) 40%, rgba(252,240,243,0.3) 65%, rgba(252,240,243,0.05) 100%)",
+  fg: "#4a1d2b",
+  body: "rgba(74,29,43,0.85)",
+  muted: "rgba(74,29,43,0.55)",
+  chip: { bg: "rgba(183,77,104,0.08)", fg: "#8a3a50", border: "rgba(183,77,104,0.3)" },
+  cta: { bg: "#b74d68", fg: "#fff6f8" },
+  link: "#b74d68",
+  Accent: NoAccent,
+};
+
+WORLDS.lakta = {
+  image: "/media/world-lakta.avif",
+  fallbackBg: "linear-gradient(170deg, #1c1210, #120b14)",
+  scrim:
+    "linear-gradient(100deg, rgba(16,9,12,0.93) 0%, rgba(16,9,12,0.72) 40%, rgba(16,9,12,0.3) 65%, rgba(16,9,12,0.08) 100%)",
+  fg: "#fdeee2",
+  body: "rgba(253,238,226,0.88)",
+  muted: "rgba(253,238,226,0.55)",
+  chip: { bg: "rgba(255,138,61,0.1)", fg: "#ffc9a3", border: "rgba(255,138,61,0.35)" },
+  cta: { bg: "#ff8a3d", fg: "#1c0f08" },
+  link: "#ffab70",
+  Accent: NoAccent,
+};
+
 /** Fallback world matching the site's light editorial base. */
 export const DEFAULT_WORLD: World = {
   fallbackBg: "var(--color-bg)",

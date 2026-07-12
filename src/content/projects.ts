@@ -218,6 +218,50 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     alt: "WebTrade — real-time trading platform with live candlestick charts",
   },
 
+  {
+    slug: "belmo",
+    name: "Belmo",
+    tagline: "Arabic-first K-beauty e-commerce for Morocco — COD, 24–48h delivery, self-hosted.",
+    tier: "case-study",
+    role: "Founder & Engineer",
+    url: "https://belmo.ma",
+    accent: "#d6748f",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Clerk",
+      "AWS S3",
+      "Hetzner + Dokploy",
+    ],
+    metrics: [
+      {
+        label: "Live store, orders fulfilled in Morocco",
+        value: "belmo.ma",
+        source: "Production",
+      },
+    ],
+    caseStudy: {
+      problem:
+        "Korean skincare is booming in Morocco, but buying it means sketchy resellers, no Arabic experience, and no cash-on-delivery — the payment method most Moroccan shoppers actually trust.",
+      approach: [
+        "Built a full Arabic-first RTL storefront with catalog, cart, and checkout tuned for how Moroccans buy: cash on delivery, 24–48h delivery, 7-day returns.",
+        "Admin dashboard with drag-and-drop merchandising, inventory, and order management.",
+        "Self-hosted the whole stack on a Hetzner server with Dokploy — owning infra costs instead of renting them.",
+      ],
+      outcome: [
+        "Live store at belmo.ma taking real orders.",
+        "One engineer owns everything: product, storefront, ops tooling, and the server it runs on.",
+      ],
+    },
+    screenshots: {
+      desktop: ["/projects/belmo/home-desktop.avif"],
+      mobile: ["/projects/belmo/home-mobile.avif"],
+    },
+    alt: "Belmo — Arabic K-beauty e-commerce storefront",
+  },
+
   // ── Tier 2: cards ───────────────────────────────────────────────────────
   {
     slug: "annid-law",
@@ -259,6 +303,21 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     alt: "Magic Hands — learning platform for a French massage training academy",
   },
   {
+    slug: "magic-hands-lms",
+    name: "Magic Hands Academy",
+    tagline:
+      "The school behind the landing page — course platform with payments and anti-cheat for the massage academy's online cohorts.",
+    tier: "card",
+    role: "Freelance Engineer",
+    accent: "#7048e8",
+    stack: ["React", "Vite", "Express", "Stripe + Klarna", "Meta CAPI"],
+    screenshots: {
+      desktop: ["/projects/magic-hands-lms/home-desktop.avif"],
+      mobile: ["/projects/magic-hands-lms/home-mobile.avif"],
+    },
+    alt: "Magic Hands Academy — online course platform for massage training",
+  },
+  {
     slug: "maroc-fournisseurs",
     name: "Maroc Fournisseurs",
     tagline:
@@ -274,18 +333,41 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
         source: "Platform data",
       },
     ],
-    screenshots: { desktop: [], mobile: [] },
+    screenshots: {
+      desktop: ["/projects/maroc-fournisseurs/home-desktop.avif"],
+      mobile: ["/projects/maroc-fournisseurs/home-mobile.avif"],
+    },
     alt: "Maroc Fournisseurs — B2B marketplace for Moroccan suppliers",
   },
   {
     slug: "lakta",
     name: "Lakta",
     tagline:
-      "Generates Moroccan Darija video ads and Instagram carousels from a brand kit — FFmpeg in the browser, background job pipelines.",
-    tier: "card",
+      "Feed it a brand kit — it produces finished Darija video ads and Instagram carousels.",
+    tier: "case-study",
     role: "Founder / Builder",
     accent: "#e8590c",
     stack: ["Next.js 16", "Gemini", "FFmpeg (wasm)", "Inngest", "AWS S3", "PostgreSQL"],
+    metrics: [
+      {
+        label: "From brand kit to rendered video ad",
+        value: "One pipeline",
+        source: "Gemini scripts → FFmpeg render",
+      },
+    ],
+    caseStudy: {
+      problem:
+        "Moroccan SMEs advertise where their customers are — Instagram and TikTok, in Darija — but producing a single decent video ad means agencies, studios, and budgets they don't have.",
+      approach: [
+        "A brand kit (logo, colors, product shots) is all the input: Gemini writes the Darija script and scene plan.",
+        "FFmpeg running in WebAssembly renders the final video ad right in the pipeline — text overlays, cuts, and music timed to the script.",
+        "Inngest job pipelines keep long renders reliable, resumable, and observable.",
+        "Same pipeline emits Instagram carousels for the posts between video campaigns.",
+      ],
+      outcome: [
+        "Finished, publishable Darija video ads generated end-to-end — the videos on this page came out of the pipeline itself.",
+      ],
+    },
     screenshots: {
       desktop: ["/projects/lakta/home-desktop.avif"],
       mobile: ["/projects/lakta/home-mobile.avif"],
@@ -301,7 +383,10 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     role: "Founder / Builder",
     accent: "#5f3dc4",
     stack: ["Next.js 16", "Gemini", "Scraping pipeline", "Prisma", "Background workers"],
-    screenshots: { desktop: [], mobile: [] },
+    screenshots: {
+      desktop: ["/projects/universeo/home-desktop.avif"],
+      mobile: ["/projects/universeo/home-mobile.avif"],
+    },
     alt: "Universeo — SERP-grounded SEO content brief generator",
   },
   {
@@ -328,7 +413,10 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     role: "Lead Developer",
     accent: "#3b5bdb",
     stack: ["React Native", "NFC", "Next.js", "Dashboard", "RBAC"],
-    screenshots: { desktop: [], mobile: [] },
+    screenshots: {
+      desktop: ["/projects/tagi/home-desktop.avif"],
+      mobile: ["/projects/tagi/home-mobile.avif"],
+    },
     alt: "TAGi — NFC contact-sharing app with admin dashboard",
   },
 ]);
