@@ -1,176 +1,152 @@
 "use client";
 
 /**
- * More Work — an editorial index, not a card grid. Each project is a huge
- * typographic row; hovering a row summons a floating preview that trails
- * the cursor. Mobile gets compact rows with inline thumbnails.
+ * More Work — the index as an editorial contact sheet. Every entry lays its
+ * screenshot on the table up front (no hover needed), with the full
+ * description and the project's accent as a tinted mat behind the frame.
+ * Hover lifts the sheet, colors the name, and pops the phone capture in.
  */
-import Image from "next/image";
-import { useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
-import type { Project } from "@/content/schema";
+import type { CSSProperties } from "react";
+import { DeviceFrame } from "@/components/ui/DeviceFrame";
 import { Reveal, RevealItem } from "@/components/ui/Reveal";
-import { useReducedMotionSafe, useSectionSpy } from "@/lib/hooks";
+import type { Project } from "@/content/schema";
+import { useSectionSpy } from "@/lib/hooks";
 
 export function WorkGrid({ projects }: { projects: Project[] }) {
-  const reduced = useReducedMotionSafe();
   const spyRef = useSectionSpy<HTMLElement>("more-work");
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const [hovered, setHovered] = useState<Project | null>(null);
-
-  /* Preview follows the cursor with a lazy spring */
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const px = useSpring(mx, { stiffness: 120, damping: 22 });
-  const py = useSpring(my, { stiffness: 120, damping: 22 });
-
-  function onMouseMove(e: React.MouseEvent<HTMLElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mx.set(e.clientX - rect.left);
-    my.set(e.clientY - rect.top);
-  }
 
   return (
     <section
       id="more-work"
-      ref={(el) => {
-        sectionRef.current = el;
-        spyRef.current = el;
-      }}
-      onMouseMove={onMouseMove}
+      ref={spyRef}
       aria-label="More work"
-      className="rule relative z-10 overflow-hidden bg-bg py-24"
+      className="rule relative z-10 bg-bg py-24"
     >
-      <div className="rail">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-          The index
+      <div className="rail flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            The index
+          </p>
+          <h2
+            className="font-display mt-3 max-w-2xl font-bold leading-tight"
+            style={{ fontSize: "var(--text-title)" }}
+          >
+            Everything else that shipped.
+          </h2>
+        </div>
+        <p className="font-mono text-xs text-muted">
+          {String(projects.length).padStart(2, "0")} projects — client work,
+          own products, concept rebuilds
         </p>
-        <h2
-          className="font-display mt-3 max-w-2xl font-bold leading-tight"
-          style={{ fontSize: "var(--text-title)" }}
-        >
-          Everything else that shipped.
-        </h2>
       </div>
 
-      <Reveal group className="rail mt-12" as="ul">
+      <Reveal
+        group
+        as="ul"
+        className="rail mt-14 grid gap-x-12 gap-y-16 sm:grid-cols-2"
+      >
         {projects.map((project, i) => (
           <RevealItem key={project.slug}>
-            <IndexRow
-              project={project}
-              index={i}
-              hovered={hovered?.slug === project.slug}
-              anyHovered={hovered !== null}
-              onEnter={() => setHovered(project)}
-              onLeave={() => setHovered(null)}
-            />
+            <IndexEntry project={project} index={i} offset={i % 2 === 1} />
           </RevealItem>
         ))}
       </Reveal>
-
-      {/* Floating preview (desktop pointer only) */}
-      {!reduced && (
-        <AnimatePresence>
-          {hovered && hovered.screenshots.desktop[0] && (
-            <motion.div
-              key={hovered.slug}
-              initial={{ opacity: 0, scale: 0.92, rotate: -2 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-              className="pointer-events-none absolute left-0 top-0 z-20 hidden w-[26rem] overflow-hidden rounded-xl border border-line shadow-[0_32px_64px_-24px_rgba(20,18,16,0.4)] lg:block"
-              style={{ x: px, y: py, translateX: "4%", translateY: "-110%" }}
-            >
-              <div className="relative aspect-[16/10] bg-surface">
-                <Image
-                  src={hovered.screenshots.desktop[0]}
-                  alt=""
-                  fill
-                  sizes="416px"
-                  className="object-cover object-top"
-                />
-                <span
-                  className="absolute bottom-3 left-3 rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white"
-                  style={{ background: hovered.accent }}
-                >
-                  {hovered.role}
-                </span>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      )}
     </section>
   );
 }
 
-function IndexRow({
+function IndexEntry({
   project,
   index,
-  hovered,
-  anyHovered,
-  onEnter,
-  onLeave,
+  offset,
 }: {
   project: Project;
   index: number;
-  hovered: boolean;
-  anyHovered: boolean;
-  onEnter: () => void;
-  onLeave: () => void;
+  offset: boolean;
 }) {
-  const dimmed = anyHovered && !hovered;
+  const phone = project.screenshots.mobile[0];
   const href = project.url;
 
-  const row = (
-    <div
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      className="group grid grid-cols-[3rem_1fr_auto] items-baseline gap-4 border-t border-line py-6 transition-all duration-300 sm:grid-cols-[4rem_1fr_minmax(0,18rem)_auto]"
-      style={{ opacity: dimmed ? 0.35 : 1 }}
+  const entry = (
+    <article
+      className={`group ${offset ? "sm:mt-10" : ""}`}
+      style={{ "--acc": project.accent } as CSSProperties}
     >
-      <span className="font-mono text-xs text-muted">
-        {String(index + 1).padStart(2, "0")}
-      </span>
+      {/* Ledger line */}
+      <div className="flex items-baseline justify-between gap-4 border-t border-line pt-3">
+        <span className="font-mono text-xs text-muted">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <span className="truncate font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+          {project.role}
+        </span>
+      </div>
+
+      {/* The sheet: accent mat + browser frame + phone pop-in */}
+      <div className="relative mt-5">
+        <span
+          aria-hidden
+          className="absolute -inset-x-2 -bottom-3 top-3 rounded-2xl opacity-[0.07] transition-opacity duration-500 group-hover:opacity-[0.18]"
+          style={{ background: "var(--acc)" }}
+        />
+        <div className="relative transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
+          <DeviceFrame
+            src={project.screenshots.desktop[0]}
+            alt={project.alt}
+            accent={project.accent}
+            kind="desktop"
+            monogram={project.name.charAt(0)}
+            sizes="(min-width: 640px) 45vw, 90vw"
+          />
+        </div>
+        {phone && (
+          <div className="pointer-events-none absolute -bottom-7 right-4 z-10 w-[23%] max-w-[7rem] translate-y-3 rotate-[5deg] scale-95 opacity-0 shadow-[0_24px_48px_-16px_rgba(20,18,16,0.45)] transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100">
+            <DeviceFrame
+              src={phone}
+              alt=""
+              accent={project.accent}
+              kind="mobile"
+              sizes="8rem"
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Name + full description — always readable, never truncated */}
       <h3
-        className="font-display font-bold leading-none transition-transform duration-300 group-hover:translate-x-3"
-        style={{
-          fontSize: "clamp(1.75rem, 4vw, 3.25rem)",
-          color: hovered ? project.accent : "var(--color-ink)",
-          transition: "color 0.3s, transform 0.3s",
-        }}
+        className="font-display mt-8 font-bold leading-none transition-colors duration-300 group-hover:text-[var(--acc)]"
+        style={{ fontSize: "clamp(1.6rem, 2.6vw, 2.4rem)" }}
       >
         {project.name}
       </h3>
-      <p className="hidden truncate text-sm leading-snug text-muted sm:block">
+      <p className="mt-3 max-w-prose text-[15px] leading-relaxed text-muted">
         {project.tagline}
       </p>
-      <span className="font-mono text-xs text-muted transition-colors group-hover:text-ink">
-        {href ? "visit ↗" : "→"}
-      </span>
 
-      {/* Mobile thumbnail */}
-      {project.screenshots.desktop[0] && (
-        <div className="col-span-3 mt-3 sm:hidden">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-line">
-            <Image
-              src={project.screenshots.desktop[0]}
-              alt={project.alt}
-              fill
-              sizes="90vw"
-              className="object-cover object-top"
-            />
-          </div>
-        </div>
-      )}
-    </div>
+      <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span className="font-mono text-[11px] text-muted">
+          {project.stack.slice(0, 4).join(" · ")}
+        </span>
+        {href && (
+          <span className="ml-auto font-mono text-xs text-muted transition-colors duration-300 group-hover:text-[var(--acc)]">
+            visit ↗
+          </span>
+        )}
+      </div>
+    </article>
   );
 
   return href ? (
-    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} — visit live site`}>
-      {row}
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${project.name} — visit live site`}
+      className="block"
+    >
+      {entry}
     </a>
   ) : (
-    <div aria-label={project.name}>{row}</div>
+    <div aria-label={project.name}>{entry}</div>
   );
 }

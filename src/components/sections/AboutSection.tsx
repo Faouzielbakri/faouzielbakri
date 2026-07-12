@@ -8,10 +8,129 @@
  * small screens).
  */
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import type { Site } from "@/content/schema";
 import { useReducedMotionSafe, useSectionSpy } from "@/lib/hooks";
+
+/* ------------------------------------------------------------------ */
+/* Kinetic text: words rise out of a clip mask, one line after another */
+/* ------------------------------------------------------------------ */
+
+const accentWordStyle: React.CSSProperties = {
+  fontFamily: "var(--font-fraunces)",
+  fontStyle: "italic",
+  fontWeight: 500,
+  color: "var(--color-accent)",
+  letterSpacing: "0",
+};
+
+function KineticLine({
+  words,
+  accent,
+  delay = 0,
+}: {
+  words: string;
+  /** word (exact match) set in italic Fraunces + accent color */
+  accent?: string;
+  delay?: number;
+}) {
+  const reduced = useReducedMotionSafe();
+  const parts = words.split(" ");
+
+  if (reduced) {
+    return (
+      <span className="block">
+        {parts.map((word, i) => (
+          <span key={`${word}-${i}`} style={word === accent ? accentWordStyle : undefined}>
+            {word}
+            {i < parts.length - 1 && " "}
+          </span>
+        ))}
+      </span>
+    );
+  }
+
+  return (
+    // whileInView must live on the (unclipped) line — a word that starts
+    // fully clipped by its mask never intersects, so it would never fire.
+    <motion.span
+      className="block"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-10% 0px" }}
+      transition={{ staggerChildren: 0.055, delayChildren: delay }}
+    >
+      {parts.map((word, i) => (
+        <span
+          key={`${word}-${i}`}
+          className="inline-block overflow-hidden pb-[0.08em] align-bottom"
+        >
+          <motion.span
+            className="inline-block will-change-transform"
+            variants={{
+              hidden: { y: "115%" },
+              visible: {
+                y: 0,
+                transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+              },
+            }}
+            style={word === accent ? accentWordStyle : undefined}
+          >
+            {word}
+          </motion.span>
+          {i < parts.length - 1 && <span>&nbsp;</span>}
+        </span>
+      ))}
+    </motion.span>
+  );
+}
+
+/* --------------------------------------------------- */
+/* Count-up numeral for the records (achievements) grid */
+/* --------------------------------------------------- */
+
+function CountUp({
+  to,
+  decimals = 0,
+  suffix = "",
+  duration = 1.8,
+}: {
+  to: number;
+  decimals?: number;
+  suffix?: string;
+  duration?: number;
+}) {
+  const reduced = useReducedMotionSafe();
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const value = useMotionValue(0);
+  const [text, setText] = useState((0).toFixed(decimals));
+
+  useEffect(() => {
+    if (!inView || reduced) return;
+    const controls = animate(value, to, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setText(v.toFixed(decimals)),
+    });
+    return () => controls.stop();
+  }, [inView, reduced, to, decimals, duration, value]);
+
+  return (
+    <span ref={ref}>
+      {reduced ? to.toFixed(decimals) : text}
+      {suffix}
+    </span>
+  );
+}
 
 type AboutSectionProps = {
   site: Site;
@@ -128,13 +247,18 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
           className="font-display mt-3 max-w-3xl font-bold leading-tight"
           style={{ fontSize: "var(--text-title)" }}
         >
-          By day I teach Morocco&apos;s next engineers.
-          <br />
-          By night I build what they&apos;ll study.
+          <KineticLine words="By day I teach Morocco's next engineers." accent="teach" />
+          <KineticLine words="By night I build what they'll study." accent="build" delay={0.25} />
         </h2>
-        <p className="mt-4 max-w-xl leading-relaxed text-muted">
+        <motion.p
+          className="mt-4 max-w-xl leading-relaxed text-muted"
+          initial={reduced ? false : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
+        >
           {site.summary}
-        </p>
+        </motion.p>
       </div>
 
       {/* The seam — desktop interactive */}
@@ -230,20 +354,97 @@ export function AboutSection({ site, teacherSrc, builderSrc }: AboutSectionProps
         ))}
       </div>
 
-      {/* Credentials strip */}
-      <div className="rail mt-12 grid gap-6 border-t border-line pt-8 sm:grid-cols-3">
-        {site.education.map((edu) => (
-          <div key={edu.degree}>
-            <p className="font-medium">{edu.degree}</p>
-            <p className="mt-1 text-sm text-muted">
-              {edu.school} · {edu.years}
-            </p>
-            {edu.note && <p className="mt-1 text-sm leading-relaxed text-ink-soft">{edu.note}</p>}
-          </div>
-        ))}
+      {/* The records — achievements count up, education files in */}
+      <div className="rail mt-16 grid gap-x-16 gap-y-12 lg:grid-cols-[7fr_5fr]">
+        {/* Achievements */}
         <div>
-          <p className="font-medium">Languages</p>
-          <p className="mt-1 text-sm text-muted">{site.languages.join(" · ")}</p>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            The record
+          </p>
+          <div className="mt-6 grid grid-cols-2 gap-x-10 gap-y-8">
+            {[
+              { to: 96.96, decimals: 2, suffix: "%", label: "mAP50 — M.Sc thesis, solar-defect detection (YOLO + PSO)" },
+              { to: 200, suffix: "+", label: "students a year taught for the Ministry of National Education" },
+              { to: 6, suffix: "", label: "products live in production — three of them my own" },
+              { to: 5, suffix: "+", label: "years shipping software with real users and real money" },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={reduced ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10% 0px" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
+              >
+                <p
+                  className="font-display font-bold leading-none text-ink"
+                  style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)" }}
+                >
+                  <CountUp to={stat.to} decimals={stat.decimals ?? 0} suffix={stat.suffix} />
+                </p>
+                <p className="mt-2 max-w-[16rem] text-[13px] leading-relaxed text-muted">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Education */}
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            The papers
+          </p>
+          <ul className="mt-6 space-y-7">
+            {site.education.map((edu, i) => (
+              <motion.li
+                key={edu.degree}
+                className="relative pl-6"
+                initial={reduced ? false : { opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-10% 0px" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 + i * 0.12 }}
+              >
+                <motion.span
+                  aria-hidden
+                  className="absolute left-0 top-1 h-[calc(100%-0.25rem)] w-[3px] rounded-full bg-accent origin-top"
+                  initial={reduced ? false : { scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true, margin: "-10% 0px" }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.3 + i * 0.12 }}
+                />
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+                  {edu.years}
+                </p>
+                <p className="mt-1 font-display font-bold leading-snug">{edu.degree}</p>
+                <p className="text-sm text-muted">{edu.school}</p>
+                {edu.note && (
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">{edu.note}</p>
+                )}
+              </motion.li>
+            ))}
+            <motion.li
+              className="relative pl-6"
+              initial={reduced ? false : { opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+            >
+              <motion.span
+                aria-hidden
+                className="absolute left-0 top-1 h-[calc(100%-0.25rem)] w-[3px] rounded-full bg-saffron origin-top"
+                initial={reduced ? false : { scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: "-10% 0px" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
+              />
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+                Languages
+              </p>
+              <p className="mt-1 font-display font-bold leading-snug">
+                {site.languages.join(" · ")}
+              </p>
+            </motion.li>
+          </ul>
         </div>
       </div>
     </section>

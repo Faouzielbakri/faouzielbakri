@@ -5,9 +5,9 @@
  * of five layers that assembles as you scroll. Hovering a layer lifts it
  * and reveals what lives inside. Reduced motion → a clean list.
  */
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { LayerArt } from "@/components/sections/LayerArt";
 import { useReducedMotionSafe, useSectionSpy } from "@/lib/hooks";
 import { useUiStore } from "@/lib/store";
 
@@ -130,11 +130,16 @@ export function CapabilitiesSection() {
             {LAYERS.map((layer) => (
               <li
                 key={layer.id}
-                className="rounded-xl border border-line bg-surface p-4"
+                className="flex items-center gap-4 rounded-xl border border-line bg-surface p-4"
                 style={{ borderLeft: `3px solid ${layer.color}` }}
               >
-                <p className="font-display font-bold">{layer.title}</p>
-                <p className="mt-1 font-mono text-xs text-muted">{layer.items.join(" · ")}</p>
+                <div className="min-w-0 flex-1">
+                  <p className="font-display font-bold">{layer.title}</p>
+                  <p className="mt-1 font-mono text-xs text-muted">{layer.items.join(" · ")}</p>
+                </div>
+                <div className="h-14 w-24 shrink-0" aria-hidden>
+                  <LayerArt id={layer.id} color={layer.color} />
+                </div>
               </li>
             ))}
           </ul>
@@ -161,11 +166,16 @@ export function CapabilitiesSection() {
           {LAYERS.map((layer) => (
             <li
               key={layer.id}
-              className="rounded-xl border border-line bg-surface p-4"
+              className="flex items-center gap-4 rounded-xl border border-line bg-surface p-4"
               style={{ borderLeft: `3px solid ${layer.color}` }}
             >
-              <p className="font-display font-bold">{layer.title}</p>
-              <p className="mt-1 font-mono text-xs text-muted">{layer.items.join(" · ")}</p>
+              <div className="min-w-0 flex-1">
+                <p className="font-display font-bold">{layer.title}</p>
+                <p className="mt-1 font-mono text-xs text-muted">{layer.items.join(" · ")}</p>
+              </div>
+              <div className="h-14 w-24 shrink-0" aria-hidden>
+                <LayerArt id={layer.id} color={layer.color} />
+              </div>
             </li>
           ))}
         </ul>
@@ -210,22 +220,27 @@ function StackLayer({
         transition: "border-color 0.3s, box-shadow 0.3s",
       }}
     >
-      {/* Generated texture inside the glass */}
-      <Image
-        src={`/media/layer-${layer.id}.avif`}
-        alt=""
-        fill
-        sizes="304px"
-        className="object-cover transition-opacity duration-300"
-        style={{ opacity: active ? 0.9 : 0.45 }}
-      />
+      {/* What the layer actually is — a literal miniature, not a texture */}
       <span
         aria-hidden
         className="absolute inset-0 transition-opacity duration-300"
         style={{
-          background: active
-            ? `linear-gradient(135deg, ${layer.color}26, rgba(255,255,255,0.15))`
-            : "rgba(250,247,242,0.55)",
+          background: active ? "var(--color-surface)" : "var(--color-bg)",
+        }}
+      />
+      <span
+        aria-hidden
+        className="absolute inset-0 p-2 transition-opacity duration-300"
+        style={{ opacity: active ? 1 : 0.55 }}
+      >
+        <LayerArt id={layer.id} color={layer.color} />
+      </span>
+      <span
+        aria-hidden
+        className="absolute inset-0 transition-opacity duration-300"
+        style={{
+          background: `linear-gradient(135deg, ${layer.color}1f, transparent 60%)`,
+          opacity: active ? 1 : 0.4,
         }}
       />
       <span

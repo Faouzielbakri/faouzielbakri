@@ -126,7 +126,18 @@ const LOCAL_TARGETS: LocalTarget[] = [
     slug: "magic-hands-lms",
     dir: path.join(WORK_DIR, "Magic-Hands-Formation-feminine-"),
     cmd: ["node", "server/server.js"],
-    port: 3000,
+    // Off port 3000 — anything already squatting there (a stale next dev)
+    // would get captured instead of the LMS. SITE_ACTIVE flags override the
+    // unpaid-client suspension gates (server + Vite client) in its .env.
+    // Dummy Stripe key: with SITE_ACTIVE=true the server refuses to boot
+    // without one, and the homepage never actually calls Stripe.
+    port: 4321,
+    env: {
+      PORT: "4321",
+      SITE_ACTIVE: "true",
+      VITE_SITE_ACTIVE: "true",
+      STRIPE_SECRET_KEY: "sk_test_capture_dummy",
+    },
     pages: [{ name: "home", path: "/" }],
   },
   {
