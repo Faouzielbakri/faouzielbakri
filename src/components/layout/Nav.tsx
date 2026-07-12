@@ -7,6 +7,7 @@ import { useUiStore } from "@/lib/store";
 const links = [
   { id: "work", label: "Work", href: "/#work" },
   { id: "about", label: "About", href: "/#about" },
+  { id: "blog", label: "Blog", href: "/blog" },
   { id: "contact", label: "Contact", href: "/#contact" },
 ];
 

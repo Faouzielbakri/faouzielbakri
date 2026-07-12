@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# Faouzi El Bakri — Portfolio
 
-First, run the development server:
+**AI Engineer & Full-Stack Developer · Agadir, Morocco**
+
+An editorial-cinematic portfolio built as one connected paper-cream world:
+a hero film that assembles itself, case studies that scroll like stacked worlds,
+and an About section split between two lives.
+
+[Live site](https://faouzielbakri.vercel.app) · [LinkedIn](https://linkedin.com/in/faouzielbakri) · faouzielbakri@gmail.com
+
+<img src="docs/readme/hero.webp" alt="Hero — warm-cream drafting table where terracotta ink wireframes assemble into glowing product interfaces" width="100%" />
+
+</div>
+
+---
+
+## The experience
+
+- **Hero** — a terminal boots the page like a build: the name printed in ink over an ambient film (generated with Gemini Omni Flash by this repo's own asset pipeline), with a live build manifest riding along.
+- **Selected work** — six featured case studies as full-viewport worlds that scroll over each other, each with its own palette, story component, and real product captures.
+- **The index** — everything else that shipped: an editorial contact sheet on desktop, a sticky card deck that stacks on scroll on mobile.
+- **About** — "By day I teach / by night I build": two portraits split by a draggable seam; on mobile the seam sweeps with scroll until a finger takes the handle.
+- **Blog** — notes from production on LLM agents, RAG, and multi-agent pipelines, with `llms.txt` / `llms-full.txt` for AI search.
+- **Contact** — a letter you finish instead of a form you fill, delivered by Resend with a mailto fallback that can never break.
+
+## Featured work
+
+| FASL | Magical Hekaya | Belmo |
+| :--: | :--: | :--: |
+| <img src="docs/readme/fasl.webp" alt="FASL — Arabic-first legal AI" /> | <img src="docs/readme/hekaya.webp" alt="Magical Hekaya — AI-personalized kids' storybooks" /> | <img src="docs/readme/belmo.webp" alt="Belmo — K-beauty e-commerce for Morocco" /> |
+| Multi-agent legal drafting, RAG over Moroccan law — **58.4K search impressions / 28 days** | Kids star in their own printed storybooks — **real paying customers** | Arabic-first K-beauty store, COD + 24–48h delivery — **live at belmo.ma** |
+
+| Lakta | RESO Khdma | WebTrade |
+| :--: | :--: | :--: |
+| <img src="docs/readme/world-lakta.webp" alt="Lakta — Darija video ad generation" /> | <img src="docs/readme/world-reso.webp" alt="RESO Khdma — WhatsApp job-matching agent" /> | <img src="docs/readme/world-webtrade.webp" alt="WebTrade — trading platform" /> |
+| Brand kit in → finished Darija video ads out | WhatsApp AI agent matching workers to jobs, in Darija | Real-time trading UI with real money on the line |
+
+…plus ten more client projects, own products, and concept rebuilds in the index.
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack) · **React 19** · TypeScript
+- **Tailwind CSS v4** · **Motion 12** (scroll-linked worlds, springs, kinetic type)
+- **Zod 4** validation · **Zustand** UI state · **Resend** contact delivery
+- **Sharp** asset pipeline · **Gemini API** (`@google/genai`) for generated imagery & the hero film
+
+## The asset pipeline
+
+All AI-generated media (hero film, case-study art, portraits) is reproducible:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm assets:screens    # capture real product screenshots (Playwright)
+pnpm assets:generate   # generate media from assets/manifest.json via Gemini
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Prompts, reference-image recipes, and identity-locking rules live in
+[`docs/gemini-visuals-playbook.md`](docs/gemini-visuals-playbook.md).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Running locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm install
+pnpm dev          # http://localhost:3000
+```
 
-## Learn More
+| Env var (`.env.local`) | Needed for |
+| --- | --- |
+| `RESEND_API_KEY` | Contact form delivery (falls back to mailto without it) |
+| `GEMINI_API_KEY` | Regenerating AI media assets (optional) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL once the domain is live |
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Any Node host works. Current target: **Hetzner + Dokploy** — connect this repo,
+build with `pnpm build`, run `pnpm start`, set the env vars above.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<div align="center">
 
-## Deploy on Vercel
+<img src="docs/readme/workspace.webp" alt="The engineer at a drafting table, product interfaces floating as glowing blueprints" width="80%" />
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+*Shipped from Agadir.*
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</div>
