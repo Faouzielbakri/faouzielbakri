@@ -8,7 +8,7 @@ An editorial-cinematic portfolio built as one connected paper-cream world:
 a hero film that assembles itself, case studies that scroll like stacked worlds,
 and an About section split between two lives.
 
-[Live site](https://faouzielbakri.vercel.app) · [LinkedIn](https://linkedin.com/in/faouzielbakri) · faouzielbakri@gmail.com
+[faouzielbakri.com](https://faouzielbakri.com) · [LinkedIn](https://linkedin.com/in/faouzielbakri) · faouzielbakri@gmail.com
 
 <img src="docs/readme/hero.webp" alt="Hero — warm-cream drafting table where terracotta ink wireframes assemble into glowing product interfaces" width="100%" />
 
@@ -30,7 +30,7 @@ and an About section split between two lives.
 | FASL | Magical Hekaya | Belmo |
 | :--: | :--: | :--: |
 | <img src="docs/readme/fasl.webp" alt="FASL — Arabic-first legal AI" /> | <img src="docs/readme/hekaya.webp" alt="Magical Hekaya — AI-personalized kids' storybooks" /> | <img src="docs/readme/belmo.webp" alt="Belmo — K-beauty e-commerce for Morocco" /> |
-| Multi-agent legal drafting, RAG over Moroccan law — **58.4K search impressions / 28 days** | Kids star in their own printed storybooks — **real paying customers** | Arabic-first K-beauty store, COD + 24–48h delivery — **live at belmo.ma** |
+| Multi-agent legal drafting, RAG over Moroccan law — **58.4K search impressions / 28 days**, avg position 6.2 | Kids star in their own printed storybooks — **paying customers**, **44K search impressions / 3 months** | Arabic-first K-beauty store, COD + 24–48h delivery — **818 registered clients, 629 orders this year** |
 
 | Lakta | RESO Khdma | WebTrade |
 | :--: | :--: | :--: |

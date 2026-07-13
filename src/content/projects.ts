@@ -248,9 +248,14 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     ],
     metrics: [
       {
-        label: "Live store, orders fulfilled in Morocco",
-        value: "belmo.ma",
-        source: "Production",
+        label: "Registered clients — live store at belmo.ma",
+        value: "818",
+        source: "Production dashboard",
+      },
+      {
+        label: "Orders this year, fulfilled across Morocco",
+        value: "629",
+        source: "Production dashboard",
       },
       {
         label: "Search CTR in 28 days, and climbing",
@@ -267,7 +272,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
         "Self-hosted the whole stack on a Hetzner server with Dokploy — owning infra costs instead of renting them.",
       ],
       outcome: [
-        "Live store at belmo.ma taking real orders.",
+        "Live store at belmo.ma with 818 registered clients and 629 orders fulfilled this year.",
         "Early organic traction: 2.3K search impressions in the last 28 days at a 3% CTR (Google Search Console).",
         "One engineer owns everything: product, storefront, ops tooling, and the server it runs on.",
       ],
