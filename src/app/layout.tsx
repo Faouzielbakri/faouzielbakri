@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     template: "%s — Faouzi El Bakri",
   },
   description:
-    "AI-focused full-stack engineer building LLM-powered products end-to-end — multi-agent pipelines, RAG, Next.js, TypeScript, Postgres. Based in Agadir, Morocco, working worldwide.",
+    "AI engineer building LLM-powered products end-to-end — multi-agent pipelines, RAG, Next.js, TypeScript, Postgres. Based in Agadir, Morocco, working worldwide.",
   keywords: [
     "AI engineer",
     "full-stack developer",

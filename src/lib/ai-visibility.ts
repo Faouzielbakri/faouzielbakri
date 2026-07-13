@@ -85,24 +85,37 @@ type FetchResult = {
 };
 
 async function fetchText(url: string): Promise<FetchResult> {
+  // Redirects are followed manually so every hop re-passes the SSRF guard —
+  // a public domain must not be able to 302 us into private infrastructure.
+  let current = url;
   try {
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(8_000),
-      redirect: "follow",
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (compatible; AIVisibilityChecker/1.0; +https://faouzielbakri.com/tools/ai-visibility-checker)",
-        Accept: "text/html,application/xhtml+xml,text/plain,*/*",
-      },
-    });
-    // Cap read size — we only need the head-ish portion of any page.
-    const raw = await res.text();
-    return {
-      ok: res.ok,
-      status: res.status,
-      text: raw.slice(0, 600_000),
-      contentType: res.headers.get("content-type") ?? "",
-    };
+    for (let hop = 0; hop < 5; hop++) {
+      validateTargetUrl(current);
+      const res = await fetch(current, {
+        signal: AbortSignal.timeout(8_000),
+        redirect: "manual",
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (compatible; AIVisibilityChecker/1.0; +https://faouzielbakri.com/tools/ai-visibility-checker)",
+          Accept: "text/html,application/xhtml+xml,text/plain,*/*",
+        },
+      });
+      if ([301, 302, 303, 307, 308].includes(res.status)) {
+        const location = res.headers.get("location");
+        if (!location) return { ok: false, status: res.status, text: "", contentType: "" };
+        current = new URL(location, current).toString();
+        continue;
+      }
+      // Cap read size — we only need the head-ish portion of any page.
+      const raw = await res.text();
+      return {
+        ok: res.ok,
+        status: res.status,
+        text: raw.slice(0, 600_000),
+        contentType: res.headers.get("content-type") ?? "",
+      };
+    }
+    return { ok: false, status: 0, text: "", contentType: "" }; // redirect loop
   } catch {
     return { ok: false, status: 0, text: "", contentType: "" };
   }
