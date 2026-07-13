@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/layout/Nav";
-import { Footer } from "@/components/layout/Footer";
+import { Footer, type FooterTheme } from "@/components/layout/Footer";
 import { caseStudies, getProject } from "@/content/projects";
 import { mediaOrUndefined, withExistingMedia } from "@/lib/media";
 import { SITE_URL } from "@/lib/site-url";
@@ -100,6 +100,53 @@ export async function generateMetadata({
   };
 }
 
+
+/** Footer stays inside each project's world (palettes from worlds.tsx). */
+const FOOTER_THEMES: Record<string, FooterTheme> = {
+  fasl: {
+    bg: "linear-gradient(165deg, #0d4636, #072e23)",
+    fg: "#f5f0e2",
+    muted: "rgba(245,240,226,0.6)",
+    border: "rgba(245,240,226,0.14)",
+    accent: "#e5c65e",
+  },
+  "magical-hekaya": {
+    bg: "linear-gradient(170deg, #2b2153, #141030)",
+    fg: "#fbf3e4",
+    muted: "rgba(251,243,228,0.6)",
+    border: "rgba(251,243,228,0.14)",
+    accent: "#ffd68c",
+  },
+  "reso-khdma": {
+    bg: "linear-gradient(165deg, #2b2117, #1a2a20)",
+    fg: "#f2f8ee",
+    muted: "rgba(242,248,238,0.6)",
+    border: "rgba(242,248,238,0.14)",
+    accent: "#7ee2a8",
+  },
+  webtrade: {
+    bg: "linear-gradient(170deg, #10161d, #080b0f)",
+    fg: "#e8eef2",
+    muted: "rgba(232,238,242,0.55)",
+    border: "rgba(232,238,242,0.14)",
+    accent: "#7ee2b8",
+  },
+  belmo: {
+    bg: "linear-gradient(165deg, #fdf1f4, #f6dde4)",
+    fg: "#4a1d2b",
+    muted: "rgba(74,29,43,0.55)",
+    border: "rgba(74,29,43,0.15)",
+    accent: "#b74d68",
+  },
+  lakta: {
+    bg: "linear-gradient(170deg, #1c1210, #120b14)",
+    fg: "#fdeee2",
+    muted: "rgba(253,238,226,0.55)",
+    border: "rgba(253,238,226,0.14)",
+    accent: "#ffab70",
+  },
+};
+
 export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]">) {
   const { slug } = await params;
   const raw = getProject(slug);
@@ -185,7 +232,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           extras={videos ? { videos } : undefined}
         />
       </main>
-      <Footer />
+      <Footer theme={FOOTER_THEMES[project.slug]} />
     </>
   );
 }

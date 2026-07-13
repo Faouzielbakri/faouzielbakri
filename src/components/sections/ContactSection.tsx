@@ -5,9 +5,10 @@
  * sentence with inline blanks; the mailto fallback keeps it unbreakable.
  */
 import { useRef, useState } from "react";
+import { motion } from "motion/react";
 import { z } from "zod";
 import { Reveal } from "@/components/ui/Reveal";
-import { useSectionSpy } from "@/lib/hooks";
+import { useReducedMotionSafe, useSectionSpy } from "@/lib/hooks";
 import { useUiStore } from "@/lib/store";
 
 const ContactFormSchema = z.object({
@@ -26,6 +27,7 @@ function Blank({
   width,
   type = "text",
   error,
+  invite = false,
 }: {
   name: string;
   value: string;
@@ -34,20 +36,44 @@ function Blank({
   width: string;
   type?: string;
   error?: boolean;
+  /** Show a blinking ink caret inviting the visitor to start writing. */
+  invite?: boolean;
 }) {
+  const reduced = useReducedMotionSafe();
+  const [focused, setFocused] = useState(false);
+
   return (
-    <input
-      name={name}
-      type={type}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      placeholder={placeholder}
-      aria-label={placeholder}
-      className={`inline-block rounded-none border-0 border-b-2 bg-transparent px-1 text-center font-display font-bold text-accent outline-none transition-colors placeholder:font-normal placeholder:text-muted/50 focus:border-accent ${
-        error ? "border-accent-deep placeholder:text-accent-deep/60" : "border-line"
-      }`}
-      style={{ width, fontSize: "inherit", lineHeight: "inherit" }}
-    />
+    <span className="relative inline-block align-baseline" style={{ width }}>
+      <input
+        name={name}
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        placeholder={placeholder}
+        aria-label={placeholder}
+        className={`inline-block w-full rounded-md border-0 border-b-2 bg-transparent px-1 text-center font-display font-bold text-accent caret-accent outline-none transition-[background-color,box-shadow,border-color] duration-300 placeholder:font-normal placeholder:text-muted/50 ${
+          error ? "border-accent-deep placeholder:text-accent-deep/60" : "border-line"
+        } ${
+          focused
+            ? "border-accent bg-accent/[0.05] shadow-[0_6px_24px_-10px_rgba(232,89,12,0.35),0_0_0_4px_rgba(232,89,12,0.10)]"
+            : ""
+        }`}
+        style={{ fontSize: "inherit", lineHeight: "inherit" }}
+      />
+      {/* The letter awaits ink — blinking caret until the first keystroke. */}
+      {invite && !value && !focused && (
+        <motion.span
+          aria-hidden
+          className="pointer-events-none absolute left-2 top-1/2 h-[0.95em] w-[2.5px] -translate-y-1/2 rounded-full bg-accent"
+          animate={reduced ? { opacity: 1 } : { opacity: [1, 1, 0, 0] }}
+          transition={
+            reduced ? undefined : { duration: 1.1, times: [0, 0.55, 0.56, 1], repeat: Infinity }
+          }
+        />
+      )}
+    </span>
   );
 }
 
@@ -131,6 +157,7 @@ export function ContactSection({ email }: { email: string }) {
                 placeholder="your name"
                 width="9ch"
                 error={errors.name}
+                invite
               />{" "}
               from{" "}
               <Blank

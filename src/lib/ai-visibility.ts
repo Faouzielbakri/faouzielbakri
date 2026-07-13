@@ -18,12 +18,23 @@ export type Check = {
   fix?: string;
 };
 
+/** Unscored exhibit: the site as AI actually reads it (via curl.md). */
+export type AiView = {
+  markdown: string;
+  title?: string;
+  description?: string;
+  words: number;
+  headings: number;
+  truncated: boolean;
+};
+
 export type VisibilityReport = {
   url: string;
   domain: string;
   score: number;
   grade: "A+" | "A" | "B" | "C" | "D" | "F";
   checks: Check[];
+  aiView?: AiView;
 };
 
 export const AI_BOTS = [
@@ -143,17 +154,45 @@ function botIsBlocked(robots: ReturnType<typeof parseRobots>, bot: string): bool
   return section.disallow.some((d) => d === "/") && !section.allow.some((a) => a === "/");
 }
 
+/** What the site reads like when reduced to plain markdown (curl.md). */
+async function fetchAiView(host: string): Promise<AiView | undefined> {
+  const res = await fetchText(`https://curl.md/${host}`);
+  if (!res.ok || res.text.trim().length < 40) return undefined;
+
+  let body = res.text.trim();
+  let title: string | undefined;
+  let description: string | undefined;
+  const fm = body.match(/^---\n([\s\S]*?)\n---\n?/);
+  if (fm) {
+    title = fm[1].match(/^title:\s*(.+)$/m)?.[1]?.trim();
+    description = fm[1].match(/^description:\s*(.+)$/m)?.[1]?.trim();
+    body = body.slice(fm[0].length).trim();
+  }
+  const words = body.split(/\s+/).filter(Boolean).length;
+  const headings = body.split("\n").filter((l) => /^#{1,3}\s/.test(l)).length;
+  const LIMIT = 2_600;
+  return {
+    markdown: body.slice(0, LIMIT),
+    title,
+    description,
+    words,
+    headings,
+    truncated: body.length > LIMIT,
+  };
+}
+
 export async function runVisibilityChecks(target: string): Promise<VisibilityReport> {
   const url = validateTargetUrl(target);
   const origin = url.origin;
   const checks: Check[] = [];
 
-  const [home, robotsRes, llms, llmsFull, sitemapRes] = await Promise.all([
+  const [home, robotsRes, llms, llmsFull, sitemapRes, aiView] = await Promise.all([
     fetchText(origin + "/"),
     fetchText(`${origin}/robots.txt`),
     fetchText(`${origin}/llms.txt`),
     fetchText(`${origin}/llms-full.txt`),
     fetchText(`${origin}/sitemap.xml`),
+    fetchAiView(url.hostname).catch(() => undefined),
   ]);
 
   if (!home.ok) {
@@ -348,5 +387,5 @@ export async function runVisibilityChecks(target: string): Promise<VisibilityRep
   const grade =
     score >= 95 ? "A+" : score >= 85 ? "A" : score >= 70 ? "B" : score >= 55 ? "C" : score >= 40 ? "D" : "F";
 
-  return { url: origin, domain: url.hostname, score, grade, checks };
+  return { url: origin, domain: url.hostname, score, grade, checks, aiView };
 }

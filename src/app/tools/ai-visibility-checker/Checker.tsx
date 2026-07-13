@@ -27,12 +27,22 @@ type Check = {
   fix?: string;
 };
 
+type AiView = {
+  markdown: string;
+  title?: string;
+  description?: string;
+  words: number;
+  headings: number;
+  truncated: boolean;
+};
+
 type Report = {
   url: string;
   domain: string;
   score: number;
   grade: string;
   checks: Check[];
+  aiView?: AiView;
 };
 
 const ENGINES = ["ChatGPT", "Claude", "Perplexity", "Google AI"];
@@ -375,6 +385,69 @@ export function Checker() {
             variants={{ visible: { transition: { staggerChildren: 0.12, delayChildren: 0.5 } } }}
             className="max-w-3xl"
           >
+            {/* ── Through AI's eyes — the unscored exhibit ── */}
+            {report.aiView && (
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+                  },
+                }}
+                className="mt-10 overflow-hidden rounded-xl border border-line"
+              >
+                {/* Reader chrome */}
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-surface px-5 py-3">
+                  <p className="font-mono text-[11px] text-muted">
+                    <span className="text-accent">👁</span>&nbsp; through AI&apos;s eyes ·{" "}
+                    <span className="text-ink">curl.md/{report.domain}</span>
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] text-muted">
+                    <span className="rounded-full border border-line px-2.5 py-0.5">
+                      {report.aiView.words.toLocaleString()} words
+                    </span>
+                    <span className="rounded-full border border-line px-2.5 py-0.5">
+                      {report.aiView.headings} headings
+                    </span>
+                    <span className="rounded-full border border-line px-2.5 py-0.5 uppercase tracking-wide">
+                      exhibit · unscored
+                    </span>
+                  </div>
+                </div>
+                {/* The raw read */}
+                <div className="relative bg-bg">
+                  {(report.aiView.title || report.aiView.description) && (
+                    <div className="border-b border-dashed border-line px-6 pb-4 pt-5">
+                      {report.aiView.title && (
+                        <p className="font-display text-[15px] font-bold leading-snug">
+                          {report.aiView.title}
+                        </p>
+                      )}
+                      {report.aiView.description && (
+                        <p className="mt-1 text-[13px] leading-relaxed text-muted">
+                          {report.aiView.description}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                  <pre className="max-h-72 overflow-hidden whitespace-pre-wrap px-6 py-5 font-mono text-[12px] leading-[1.7] text-ink-soft">
+                    {report.aiView.markdown}
+                  </pre>
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-bg to-transparent"
+                  />
+                </div>
+                <p className="border-t border-line bg-surface px-5 py-3 text-[13px] leading-relaxed text-muted">
+                  No pixels, no styling, no vibes — this is the literal text AI
+                  systems read when they visit {report.domain}. Does it read like
+                  your pitch, or like soup?
+                </p>
+              </motion.div>
+            )}
+
             <ul className="mt-10 space-y-4">
               {report.checks.map((c) => {
                 const pct = Math.round((c.points / c.max) * 100);
