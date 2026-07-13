@@ -53,11 +53,11 @@ function Blank({
         onBlur={() => setFocused(false)}
         placeholder={placeholder}
         aria-label={placeholder}
-        className={`inline-block w-full rounded-md border-0 border-b-2 bg-transparent px-1 text-center font-display font-bold text-accent caret-accent outline-none transition-[background-color,box-shadow,border-color] duration-300 placeholder:font-normal placeholder:text-muted/50 ${
+        className={`inline-block w-full border-0 border-b-2 bg-transparent px-1 text-center font-display font-bold text-accent caret-accent outline-none transition-[box-shadow,border-color] duration-300 placeholder:font-normal placeholder:text-muted/50 ${
           error ? "border-accent-deep placeholder:text-accent-deep/60" : "border-line"
         } ${
           focused
-            ? "border-accent bg-accent/[0.05] shadow-[0_6px_24px_-10px_rgba(232,89,12,0.35),0_0_0_4px_rgba(232,89,12,0.10)]"
+            ? "border-accent shadow-[0_12px_16px_-14px_rgba(232,89,12,0.6)]"
             : ""
         }`}
         style={{ fontSize: "inherit", lineHeight: "inherit" }}
