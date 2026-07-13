@@ -27,6 +27,11 @@ export function Footer() {
             </a>
           </li>
           <li>
+            <a className="text-ink-soft hover:text-accent" href="/tools/ai-visibility-checker">
+              AI Visibility Checker
+            </a>
+          </li>
+          <li>
             <a className="text-ink-soft hover:text-accent" href={`mailto:${site.email}`}>
               {site.email}
             </a>
