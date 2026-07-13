@@ -211,13 +211,15 @@ export default function HirePage() {
                 key={p.slug}
                 href={`/work/${p.slug}`}
                 aria-label={`${p.name} case study`}
-                className="group relative min-w-0 flex-1 overflow-hidden transition-[flex-grow] duration-500 ease-out hover:flex-[2.6]"
+                className="group relative min-w-0 flex-1 overflow-hidden bg-ink transition-[flex-grow] duration-500 ease-out hover:flex-[2.6]"
               >
                 <Image
                   src={WORLD_ART[p.slug] ?? "/media/world-fasl.avif"}
                   alt=""
                   fill
-                  sizes="(min-width: 1024px) 18vw, 30vw"
+                  sizes="(min-width: 1024px) 45vw, 60vw"
+                  quality={90}
+                  loading="eager"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
@@ -299,13 +301,15 @@ export default function HirePage() {
                 <li className="h-full">
                   <Link
                     href={`/work/${p.slug}`}
-                    className="group relative block h-[24rem] overflow-hidden rounded-2xl border border-line"
+                    className="group relative block h-[24rem] overflow-hidden rounded-2xl border border-line bg-ink"
                   >
                     <Image
                       src={WORLD_ART[p.slug] ?? "/media/world-fasl.avif"}
                       alt=""
                       fill
-                      sizes="(min-width: 1024px) 30vw, 90vw"
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      quality={90}
+                      loading="eager"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/5" />
