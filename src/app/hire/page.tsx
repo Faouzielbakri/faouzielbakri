@@ -220,7 +220,7 @@ export default function HirePage() {
                   sizes="(min-width: 1024px) 45vw, 60vw"
                   quality={90}
                   loading="eager"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-[77%_50%] transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
                 <span className="absolute bottom-3 left-3 right-3 truncate font-display text-sm font-bold text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -310,7 +310,7 @@ export default function HirePage() {
                       sizes="(min-width: 1024px) 50vw, 100vw"
                       quality={90}
                       loading="eager"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                      className="object-cover object-[77%_50%] transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/5" />
                     <div className="absolute inset-x-0 bottom-0 p-7">
