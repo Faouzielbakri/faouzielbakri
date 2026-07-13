@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/readme/hero.webp" alt="A warm-cream drafting table where terracotta ink wireframes assemble themselves into glowing product interfaces" width="100%" />
+<img src="docs/readme/worlds-banner.webp" alt="Six product worlds side by side — FASL's legal chamber, Magical Hekaya's storybook, Belmo's silk, Lakta's editing studio, RESO's workshop, WebTrade's trading floor" width="100%" />
 
 # Salam, I'm Faouzi 👋
 
