@@ -12,7 +12,8 @@
     "start": "next start",
     "lint": "eslint",
     "assets:screens": "tsx scripts/capture-screenshots.ts",
-    "assets:generate": "tsx scripts/generate-assets.ts"
+    "assets:generate": "tsx scripts/generate-assets.ts",
+    "resume:pdf": "tsx scripts/export-resume.ts"
   },
   "dependencies": {
     "motion": "^12.42.2",

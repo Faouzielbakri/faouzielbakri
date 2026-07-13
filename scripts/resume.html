@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Faouzi El Bakri — AI & Full-Stack Engineer</title>
+<style>
+  :root {
+    --ink: #23253a;
+    --navy: #32406e;
+    --muted: #5c5f73;
+    --line: #d9dae3;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4; margin: 9mm 11mm; }
+  html { -webkit-print-color-adjust: exact; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 10.1px;
+    line-height: 1.42;
+    color: var(--ink);
+  }
+  a { color: var(--navy); text-decoration: none; }
+  strong { font-weight: 650; }
+
+  /* ── Header ─────────────────────────────── */
+  header { text-align: center; padding-bottom: 7px; border-bottom: 2px solid var(--ink); }
+  h1 { font-size: 23px; letter-spacing: -0.3px; }
+  .tagline { margin-top: 3px; font-size: 11.4px; font-weight: 650; color: var(--navy); }
+  .contact { margin-top: 4px; font-size: 9.4px; color: var(--muted); }
+  .contact b { color: var(--navy); font-weight: 550; }
+  .sep { color: var(--line); padding: 0 4px; }
+
+  /* ── Sections ───────────────────────────── */
+  h2 {
+    margin: 10px 0 5px;
+    font-size: 10.6px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 3px;
+  }
+  p.summary { text-align: justify; }
+
+  ul.dowhat { list-style: none; }
+  ul.dowhat li { padding-left: 12px; position: relative; margin-bottom: 2.5px; }
+  ul.dowhat li::before { content: "▹"; position: absolute; left: 0; color: var(--navy); }
+
+  table.skills { width: 100%; border-collapse: collapse; }
+  table.skills td { padding: 3px 0; vertical-align: top; border-bottom: 1px solid #eceef3; }
+  table.skills td:first-child { width: 92px; font-weight: 650; padding-right: 10px; }
+
+  /* ── Work entries ───────────────────────── */
+  .entry { margin-bottom: 7px; break-inside: avoid; }
+  .entry-head { font-size: 10.8px; font-weight: 700; }
+  .entry-head .role { color: var(--navy); font-weight: 650; }
+  .entry-stack { font-size: 8.9px; color: var(--muted); font-style: italic; margin: 1px 0 2px; }
+  .entry ul { list-style: none; }
+  .entry li { padding-left: 10px; position: relative; margin-bottom: 1.5px; }
+  .entry li::before { content: "·"; position: absolute; left: 2px; font-weight: 700; }
+
+  /* ── Two-column footer block ────────────── */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+  .cols h2 { margin-top: 10px; }
+  .cols .block { margin-bottom: 6px; }
+  .cols .block b { display: block; font-size: 10.3px; }
+  .cols .block .sub { color: var(--muted); font-size: 9.4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Faouzi El Bakri</h1>
+  <p class="tagline">AI Engineer &amp; Full-Stack Developer — Next.js · LLM Agents &amp; RAG · Postgres</p>
+  <p class="contact">
+    <b>faouzielbakri@gmail.com</b><span class="sep">|</span>+212 6 32 32 38 56<span class="sep">|</span>Agadir, Morocco — Remote, your timezone<br/>
+    <b>faouzielbakri.com</b><span class="sep">|</span><b>github.com/faouzielbakri</b><span class="sep">|</span><b>linkedin.com/in/faouzielbakri</b><span class="sep">|</span><b>fasl.ma</b><span class="sep">|</span><b>belmo.ma</b>
+  </p>
+</header>
+
+<h2>Summary</h2>
+<p class="summary">
+  AI-focused full-stack engineer with <strong>6+ years</strong> building and shipping production web products end-to-end.
+  I specialize in <strong>LLM-powered applications</strong> — multi-agent pipelines, RAG, and tool/function-calling agents —
+  built on a modern <strong>Next.js / React / TypeScript</strong> stack with <strong>PostgreSQL / Supabase</strong> data layers.
+  I've shipped real products people use: a legal-AI platform (FASL, <strong>58.4K search impressions / 28 days</strong>), a consumer AI product
+  with paying customers (Magical Hekaya), and a K-beauty e-commerce store (Belmo — <strong>818 clients in its first two months</strong>), plus freelance
+  deliveries — a WhatsApp AI job-matching agent, a real-time fintech trading platform, an LMS, and a B2B marketplace.
+  I own the whole lifecycle (architecture → build → deploy → iterate) and self-host comfortably (Docker, Hetzner, Dokploy) as well as ship on Vercel.
+</p>
+
+<h2>What I Do</h2>
+<ul class="dowhat">
+  <li><strong>LLM / AI app development</strong> — multi-agent systems, RAG pipelines, function/tool calling, Claude &amp; Gemini integrations, prompt &amp; context engineering, output evaluation</li>
+  <li><strong>Full-stack web apps</strong> — Next.js (App Router, Server Actions), React, TypeScript, Tailwind — end-to-end with auth, dashboards, and payments</li>
+  <li><strong>APIs &amp; data</strong> — Node.js REST APIs, WebSockets / real-time, PostgreSQL, Supabase, Prisma</li>
+  <li><strong>Deployment &amp; self-hosting</strong> — Vercel, Docker, Hetzner + Dokploy, Railway, n8n automations</li>
+</ul>
+
+<h2>Technical Skills</h2>
+<table class="skills">
+  <tr><td>AI / LLM</td><td>Multi-agent systems, RAG pipelines, tool/function calling, prompt &amp; context engineering, output evaluation, NLP · Anthropic Claude API · Google Gemini API · MCP</td></tr>
+  <tr><td>Frontend</td><td>Next.js (App Router, Server Actions), React, TypeScript, JavaScript (ES6+), React Native, Tailwind CSS, Zustand, Redux</td></tr>
+  <tr><td>Backend</td><td>Node.js, REST APIs, WebSockets, FastAPI / Python <em>(AI-assisted workflow)</em>, Prisma</td></tr>
+  <tr><td>Databases</td><td>PostgreSQL, Supabase, Prisma ORM, Redis</td></tr>
+  <tr><td>Infra / DevOps</td><td>Docker, Vercel, Hetzner + Dokploy (self-hosting), Railway, n8n, GitHub Actions (CI/CD)</td></tr>
+  <tr><td>Also</td><td>Data scraping &amp; analysis (Kafka, Elasticsearch — research), multilingual apps (Arabic / Darija / French)</td></tr>
+</table>
+
+<h2>Selected Work</h2>
+
+<div class="entry">
+  <p class="entry-head">FASL — LegalTech AI Platform <span class="role">· Co-founder &amp; Lead Engineer</span></p>
+  <p class="entry-stack">Next.js · Python · FastAPI · Anthropic Claude API · RAG · n8n · fasl.ma</p>
+  <ul>
+    <li>Built a <strong>multi-agent AI pipeline</strong> that drafts legal appeals end-to-end: case analysis → document retrieval → draft generation → polished legal memo, powered by Claude.</li>
+    <li>Engineered a <strong>RAG pipeline over Moroccan legal codes</strong> to ground every output and minimize hallucination in a domain where accuracy is non-negotiable.</li>
+    <li>Live product with strong organic traffic (<strong>58.4K search impressions / 28 days</strong>, avg position 6.2) and inbound interest from practicing lawyers; actively onboarding a pilot pipeline of firms.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <p class="entry-head">Magical Hekaya — Consumer AI Product <span class="role">· Founder</span></p>
+  <p class="entry-stack">Multi-LLM pipeline · Structured output contracts · Print-on-demand · magicalhekaya.com</p>
+  <ul>
+    <li>Founded and shipped a <strong>live consumer AI platform with real paying customers</strong> that generates personalized illustrated children's books — photo-based character generation, AI narration, print-on-demand fulfilment.</li>
+    <li>Solved long-horizon narrative consistency with <strong>structured output contracts</strong> between agents and systematic context engineering across a multi-LLM pipeline.</li>
+    <li>Owned the full product: multilingual SEO content (44K impressions / 3 months), user feedback loops, COPPA/GDPR considerations.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <p class="entry-head">Belmo — K-Beauty E-Commerce <span class="role">· Founding Engineer</span></p>
+  <p class="entry-stack">Next.js · TypeScript · Prisma · PostgreSQL · Hetzner + Dokploy (self-hosted) · belmo.ma</p>
+  <ul>
+    <li>Built and self-host an Arabic-first RTL storefront tuned for Morocco (cash on delivery, 24–48h delivery): <strong>818 registered clients and 629 orders in the first two months</strong>.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <p class="entry-head">RESO Khdma — WhatsApp AI Job-Matching <span class="role">· Freelance delivery</span></p>
+  <p class="entry-stack">Google Gemini SDK · WhatsApp Business API · Semantic search</p>
+  <ul>
+    <li>Built and delivered a <strong>conversational AI agent on WhatsApp</strong> matching job seekers to openings via <strong>semantic search</strong> and <strong>tool calling with JSON-schema contracts</strong> (DB queries, title matching, account creation).</li>
+    <li>Handled <strong>multilingual NLP</strong> — Arabic, Darija, and French in one conversational flow for a non-technical user base.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <p class="entry-head">WebTrade — Real-Time Trading Platform <span class="role">· Freelance (build + maintenance)</span></p>
+  <p class="entry-stack">React · Next.js · TypeScript · Supabase · WebSockets</p>
+  <ul>
+    <li>Built a <strong>real-time trading platform</strong> with <strong>WebSocket-driven live price streaming</strong> to candlestick charts at sub-100ms render latency.</li>
+    <li>Implemented <strong>secure transaction logic</strong> (funds locking, race-condition prevention) handling <strong>real money</strong> for real users — and maintain it in production today.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <p class="entry-head">Magic Hands — Learning Management System <span class="role">· Freelance delivery</span></p>
+  <p class="entry-stack">Next.js · Node.js · Payment integration</p>
+  <ul>
+    <li>Built a full LMS from scratch serving <strong>~500 students</strong>: modular courses (video, PDF, rich text, quizzes), anti-cheat detection (tab-switch / copy monitoring), attendance tracking, and integrated payments.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <p class="entry-head">Maroc Fournisseurs — B2B Marketplace <span class="role">· Freelance delivery</span></p>
+  <p class="entry-stack">Next.js · PostgreSQL · Prisma · Algolia · TypeScript</p>
+  <ul>
+    <li>Built a B2B marketplace connecting <strong>~500 service providers</strong> with sub-second <strong>Algolia</strong> search, real-time negotiation chat, and complex many-to-many data modeling.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <p class="entry-head">TAGi — NFC Networking App <span class="role">· Lead Developer</span></p>
+  <p class="entry-stack">React Native · Next.js admin dashboard</p>
+  <ul>
+    <li>Led development of a cross-platform <strong>React Native</strong> app with NFC-powered contact sharing, plus a Next.js admin dashboard with RBAC; defined the team's Git workflow and CI/CD.</li>
+  </ul>
+</div>
+
+<div class="cols">
+  <div>
+    <h2>Education</h2>
+    <div class="block">
+      <b>M.Sc. — Big Data &amp; Artificial Intelligence</b>
+      <span class="sub">Ibn Zohr University · 2023 – 2025</span>
+      <span class="sub">Thesis: Solar Panel Defect Detection (YOLO + PSO) — <strong>96.96% mAP50</strong>; submitted to AISDS'2025</span>
+    </div>
+    <div class="block">
+      <b>B.Sc. — Computer Science</b>
+      <span class="sub">Ibn Zohr University · 2018 – 2021</span>
+    </div>
+  </div>
+  <div>
+    <h2>Experience &amp; Languages</h2>
+    <div class="block">
+      <b>Computer Science Teacher</b>
+      <span class="sub">Ministry of National Education, Agadir · 2021 – Present</span>
+      <span class="sub">Teaching ~500 students a year (2,000+ so far); mentoring new developers.</span>
+    </div>
+    <div class="block">
+      <b>Languages</b>
+      <span class="sub"><strong>Arabic &amp; Darija</strong> Native · <strong>French</strong> Fluent · <strong>English</strong> Fluent</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
