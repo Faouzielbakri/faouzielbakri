@@ -51,7 +51,7 @@ text; the screenshot is the hero, the scenery is supporting cast.
 ### Belmo → `public/media/case-belmo.avif`
 > A soft K-beauty editorial 3D scene: the attached storefront screenshot rises from a sheet of blush-pink silk-textured paper like a product reveal, perfectly flat, sharp and unmodified — same layout, same colors, no invented text — with gentle studio lighting and a soft shadow. Around it: floating rose petals, one or two elegant unlabeled skincare bottles in soft focus, pearl and blush tones matching the attached silk reference. The attached phone screenshot leans beside it like a gift card. Bright, airy, luxurious. Light blush background (#fdf1f4) so it sits on a pink page. 4:3 aspect ratio.
 
-### Lakta → `public/media/case-lakta.avif`
+### Laqta → `public/media/case-laqta.avif`
 > A dark creative-studio 3D scene: the attached app screenshot bursts upward off a director's clapperboard-styled paper storyboard, perfectly flat, sharp and unmodified — same layout, same colors, no invented text. Behind it, a glowing editing-timeline hologram with colorful blank clip thumbnails arcs through the air; warm orange and magenta neon accents, soft studio bokeh, palette matched to the attached studio reference. Dark background (#140c10) so it sits on a dark page. 4:3 aspect ratio.
 
 ---
@@ -159,7 +159,7 @@ Attach your photo **and** (optionally) `public/media/hero-poster.avif` for palet
 | RESO case art | `public/media/case-reso-khdma.avif` | 4:3 | ✅ /work/reso-khdma |
 | WebTrade case art | `public/media/case-webtrade.avif` | 4:3 | ✅ /work/webtrade |
 | Belmo case art | `public/media/case-belmo.avif` | 4:3 | ✅ /work/belmo |
-| Lakta case art | `public/media/case-lakta.avif` | 4:3 | ✅ /work/lakta |
+| Laqta case art | `public/media/case-laqta.avif` | 4:3 | ✅ /work/laqta |
 | Hero film v2 | `public/media/hero-ambient.mp4` | 16:9 · 8s | ✅ hero (replaces current) |
 | Hero film v3 (§2b, with you) | `public/media/hero-ambient.mp4` | 16:9 · 8s | ✅ hero — refs in `docs/hero-refs/` |
 | Hero poster v2 | `public/media/hero-poster.avif` | 16:9 | ✅ hero LCP |

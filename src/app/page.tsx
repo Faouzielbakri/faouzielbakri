@@ -75,11 +75,11 @@ const homeJsonLd = {
 export default function Home() {
   const featured = caseStudies.map(withExistingMedia);
   const more = cards.map(withExistingMedia);
-  // Lakta's generated ad videos, pulled from its pipeline (present after extraction)
-  const laktaVideos = [1, 2, 3]
+  // Laqta's generated ad videos, pulled from its pipeline (present after extraction)
+  const laqtaVideos = [1, 2, 3]
     .map((n) => ({
-      src: `/projects/lakta/ad-${n}.mp4`,
-      poster: mediaOrUndefined(`/projects/lakta/ad-${n}-poster.avif`),
+      src: `/projects/laqta/ad-${n}.mp4`,
+      poster: mediaOrUndefined(`/projects/laqta/ad-${n}-poster.avif`),
     }))
     .filter((v) => mediaOrUndefined(v.src));
 
@@ -100,7 +100,7 @@ export default function Home() {
           posterSrc={mediaOrUndefined("/media/hero-poster.avif")}
         />
         <ProofStrip proof={site.proof} />
-        <SelectedWork projects={featured} extras={{ laktaVideos }} />
+        <SelectedWork projects={featured} extras={{ laqtaVideos }} />
         <WorkGrid projects={more} />
         <AboutSection
           site={site}

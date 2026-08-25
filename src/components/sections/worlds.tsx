@@ -171,8 +171,8 @@ WORLDS.belmo = {
   Accent: NoAccent,
 };
 
-WORLDS.lakta = {
-  image: "/media/world-lakta.avif",
+WORLDS.laqta = {
+  image: "/media/world-laqta.avif",
   fallbackBg: "linear-gradient(170deg, #1c1210, #120b14)",
   scrim:
     "linear-gradient(100deg, rgba(16,9,12,0.93) 0%, rgba(16,9,12,0.72) 40%, rgba(16,9,12,0.3) 65%, rgba(16,9,12,0.08) 100%)",

@@ -8,7 +8,7 @@ import { HekayaPanel } from "./panels/HekayaPanel";
 import { ResoPanel } from "./panels/ResoPanel";
 import { WebTradePanel } from "./panels/WebTradePanel";
 import { BelmoPanel } from "./panels/BelmoPanel";
-import { LaktaPanel } from "./panels/LaktaPanel";
+import { LaqtaPanel } from "./panels/LaqtaPanel";
 import {
   ChipRow,
   CtaRow,
@@ -23,7 +23,7 @@ const PANELS: Record<string, React.FC<PanelProps>> = {
   "reso-khdma": ResoPanel,
   webtrade: WebTradePanel,
   belmo: BelmoPanel,
-  lakta: LaktaPanel,
+  laqta: LaqtaPanel,
 };
 
 /** Generic fallback for any future featured project without a bespoke panel. */

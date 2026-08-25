@@ -11,7 +11,7 @@ import { HekayaStory } from "@/components/case-study/stories/HekayaStory";
 import { ResoStory } from "@/components/case-study/stories/ResoStory";
 import { WebTradeStory } from "@/components/case-study/stories/WebTradeStory";
 import { BelmoStory } from "@/components/case-study/stories/BelmoStory";
-import { LaktaStory } from "@/components/case-study/stories/LaktaStory";
+import { LaqtaStory } from "@/components/case-study/stories/LaqtaStory";
 import { DefaultStory } from "@/components/case-study/stories/DefaultStory";
 
 /** Each featured project tells its story in its own format. */
@@ -21,11 +21,11 @@ const STORIES: Record<string, React.FC<StoryProps>> = {
   "reso-khdma": ResoStory,
   webtrade: WebTradeStory,
   belmo: BelmoStory,
-  lakta: LaktaStory,
+  laqta: LaqtaStory,
 };
 
 /** Dark-world pages need the light nav treatment until scroll. */
-const DARK_STORIES = new Set(["fasl", "magical-hekaya", "reso-khdma", "webtrade", "lakta"]);
+const DARK_STORIES = new Set(["fasl", "magical-hekaya", "reso-khdma", "webtrade", "laqta"]);
 
 /**
  * Hand-tuned search metadata per case study — titles lead with what the
@@ -62,10 +62,10 @@ const SEO: Record<string, { title: string; description: string; keywords: string
       "A full RTL storefront tuned for how Moroccans buy — cash on delivery, 24–48h delivery — with admin merchandising and a self-hosted Hetzner stack, live at belmo.ma.",
     keywords: ["e-commerce Morocco", "RTL storefront", "cash on delivery", "K-beauty", "self-hosted Next.js"],
   },
-  lakta: {
-    title: "Lakta — AI-Generated Darija Video Ads (Case Study)",
+  laqta: {
+    title: "Laqta — AI-Generated Darija Video Ads (Case Study)",
     description:
-      "Feed Lakta a brand kit and it renders finished Darija video ads and Instagram carousels — Gemini scripts, FFmpeg-in-WASM rendering, Inngest pipelines, end to end.",
+      "Feed Laqta a brand kit and it renders finished Darija video ads and Instagram carousels — Gemini scripts, FFmpeg-in-WASM rendering, Inngest pipelines, end to end.",
     keywords: ["AI video ads", "Darija content", "FFmpeg wasm", "Gemini", "Inngest pipelines"],
   },
 };
@@ -138,7 +138,7 @@ const FOOTER_THEMES: Record<string, FooterTheme> = {
     border: "rgba(74,29,43,0.15)",
     accent: "#b74d68",
   },
-  lakta: {
+  laqta: {
     bg: "linear-gradient(170deg, #1c1210, #120b14)",
     fg: "#fdeee2",
     muted: "rgba(253,238,226,0.55)",
@@ -162,13 +162,13 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
   // story falls back to the framed capture until the render lands on disk.
   const art = mediaOrUndefined(`/media/case-${project.slug}.avif`);
 
-  // Lakta's ad videos, straight from its own pipeline.
+  // Laqta's ad videos, straight from its own pipeline.
   const videos =
-    project.slug === "lakta"
+    project.slug === "laqta"
       ? [1, 2, 3]
           .map((n) => ({
-            src: `/projects/lakta/ad-${n}.mp4`,
-            poster: mediaOrUndefined(`/projects/lakta/ad-${n}-poster.avif`),
+            src: `/projects/laqta/ad-${n}.mp4`,
+            poster: mediaOrUndefined(`/projects/laqta/ad-${n}-poster.avif`),
           }))
           .filter((v) => mediaOrUndefined(v.src))
       : undefined;

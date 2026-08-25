@@ -5,6 +5,13 @@ const nextConfig: NextConfig = {
     // Optimized images barely change — let browsers & Cloudflare hold them a month.
     minimumCacheTTL: 2_678_400,
   },
+  async redirects() {
+    return [
+      // The project shipped as "Lakta" before the brand settled on Laqta —
+      // keep the old case-study URL alive for anything already pointing at it.
+      { source: "/work/lakta", destination: "/work/laqta", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

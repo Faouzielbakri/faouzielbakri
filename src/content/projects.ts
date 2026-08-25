@@ -12,7 +12,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     name: "FASL",
     tagline: "Multi-agent AI that drafts Moroccan legal appeals end-to-end.",
     tier: "case-study",
-    role: "Co-founder & Lead Engineer",
+    role: "Co-founder — engineering & SEO",
     url: "https://fasl.ma",
     accent: "#0e7a5f",
     stack: [
@@ -80,7 +80,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     name: "Magical Hekaya",
     tagline: "Personalized AI storybooks kids star in — live, with paying customers.",
     tier: "case-study",
-    role: "Founder",
+    role: "Founder — engineering & SEO",
     url: "https://magicalhekaya.com",
     accent: "#d6336c",
     stack: [
@@ -292,7 +292,8 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
       "Multilingual, RTL-first site for a Casablanca law office — Arabic, French, English, Spanish.",
     tier: "card",
     role: "Freelance Engineer",
-    url: "https://annidlawoffice.com",
+    // No public URL on purpose: the client hasn't taken the site live yet, and
+    // the staging host answers with a 401 protection page.
     accent: "#8a6d3b",
     stack: ["Next.js 16", "next-intl", "Tailwind", "Prisma", "MDX"],
     screenshots: {
@@ -378,39 +379,50 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     alt: "Maroc Fournisseurs — B2B marketplace for Moroccan suppliers",
   },
   {
-    slug: "lakta",
-    name: "Lakta",
+    slug: "laqta",
+    name: "Laqta",
     tagline:
-      "Feed it a brand kit — it produces finished Darija video ads and Instagram carousels.",
+      "Upload a product, pick an avatar — it writes, voices, and renders a finished Darija video ad.",
     tier: "case-study",
-    role: "Founder / Builder",
+    role: "Founder — engineering & SEO",
+    url: "https://laqta.ma",
     accent: "#e8590c",
-    stack: ["Next.js 16", "Gemini", "FFmpeg (wasm)", "Inngest", "AWS S3", "PostgreSQL"],
+    stack: [
+      "Next.js 16",
+      "Gemini",
+      "Seven-agent pipeline",
+      "FFmpeg (wasm)",
+      "Inngest",
+      "AWS S3",
+      "PostgreSQL",
+      "next-intl (AR/FR/EN)",
+    ],
     metrics: [
       {
-        label: "From brand kit to rendered video ad",
+        label: "From product photos to a rendered Darija ad",
         value: "One pipeline",
-        source: "Gemini scripts → FFmpeg render",
+        source: "Seven agents: script → voice → render",
       },
     ],
     caseStudy: {
       problem:
         "Moroccan SMEs advertise where their customers are — Instagram and TikTok, in Darija — but producing a single decent video ad means agencies, studios, and budgets they don't have.",
       approach: [
-        "A brand kit (logo, colors, product shots) is all the input: Gemini writes the Darija script and scene plan.",
-        "FFmpeg running in WebAssembly renders the final video ad right in the pipeline — text overlays, cuts, and music timed to the script.",
-        "Inngest job pipelines keep long renders reliable, resumable, and observable.",
-        "Same pipeline emits Instagram carousels for the posts between video campaigns.",
+        "A few product photos and one line about the business are the whole input: seven agents take it from brief to finished ad, and the brand kit is learned once and reused on every later campaign.",
+        "Gemini writes the script in real Moroccan Darija — hook, cuts, and call to action built from the patterns that actually convert on Reels and TikTok, not generic 'AI content'.",
+        "The script is voiced in Darija and rendered against a chosen avatar; FFmpeg in WebAssembly cuts the vertical 9:16 master that Reels, TikTok, and Stories all take as-is.",
+        "Inngest job pipelines keep long renders reliable, resumable, and observable — and the same brand kit emits matching Instagram carousels for the posts between video campaigns.",
       ],
       outcome: [
-        "Finished, publishable Darija video ads generated end-to-end — the videos on this page came out of the pipeline itself.",
+        "Live at laqta.ma in Arabic, French, and English — the ads on this page came out of the pipeline itself, with no editor touching them.",
+        "Used on real Moroccan brands, including the Belmo store I built — its Darija ads were scripted, voiced, and rendered by Laqta.",
       ],
     },
     screenshots: {
-      desktop: ["/projects/lakta/home-desktop.avif"],
-      mobile: ["/projects/lakta/home-mobile.avif"],
+      desktop: ["/projects/laqta/home-desktop.avif"],
+      mobile: ["/projects/laqta/home-mobile.avif"],
     },
-    alt: "Lakta — AI generator for Darija video ads and social carousels",
+    alt: "Laqta — AI generator for Darija video ads and social carousels",
   },
   {
     slug: "universeo",
@@ -492,7 +504,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
 ]);
 
 /** Homepage featured order — deliberate, not file order. */
-const FEATURED_ORDER = ["fasl", "magical-hekaya", "belmo", "lakta", "reso-khdma", "webtrade"];
+const FEATURED_ORDER = ["fasl", "magical-hekaya", "belmo", "laqta", "reso-khdma", "webtrade"];
 const featuredRank = (slug: string) => {
   const i = FEATURED_ORDER.indexOf(slug);
   return i === -1 ? FEATURED_ORDER.length : i;

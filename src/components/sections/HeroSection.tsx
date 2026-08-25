@@ -153,9 +153,9 @@ function ConsoleDock({
             {typedCmd}
             <span className="ml-0.5 inline-block h-[1em] w-[6px] translate-y-[2px] animate-pulse bg-accent" />
           </p>
-          {lines.map((line) => (
+          {lines.map((line, i) => (
             <motion.p
-              key={line}
+              key={`${i}-${line}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.18 }}
@@ -223,7 +223,16 @@ export function HeroSection({
     timers.current = [];
   };
 
+  /* One build, one deploy line. The scroll handler below fires `skip()` on
+   * every scroll event, and `running` stays true for another 650ms after the
+   * build lands — without this latch each of those events appended another
+   * "hero deployed" line (and reset the 650ms timer, so a continuous scroll
+   * never stopped appending). */
+  const finished = useRef(false);
+
   const finish = useCallback((seconds?: string) => {
+    if (finished.current) return;
+    finished.current = true;
     clearTimers();
     if (seconds) setBuildSeconds(seconds);
     setLines((prev) =>
@@ -251,6 +260,7 @@ export function HeroSection({
 
   const run = useCallback(() => {
     clearTimers();
+    finished.current = false;
     setStage(0);
     setLines([]);
     setTypedCmd("");

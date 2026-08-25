@@ -10,8 +10,8 @@ export type PanelProps = {
   index: number;
   total: number;
   world: World;
-  /** Extra media resolved server-side (e.g. Lakta's generated ad videos) */
-  extras?: { laktaVideos?: { src: string; poster?: string }[] };
+  /** Extra media resolved server-side (e.g. Laqta's generated ad videos) */
+  extras?: { laqtaVideos?: { src: string; poster?: string }[] };
 };
 
 /** Article wrapper: backdrop + accent + centered rail. Panels own the inside. */

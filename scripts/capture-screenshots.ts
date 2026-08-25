@@ -54,6 +54,9 @@ const LIVE_TARGETS: LiveTarget[] = [
   // annid-law and magic-hands are captured from LOCAL dev servers (the live
   // deployments aren't ours to represent) — see LOCAL_TARGETS.
   { slug: "belmo", url: "https://belmo.ma", pages: [{ name: "home", path: "/" }] },
+  // Live since the rename from "Lakta" — capture the deployed site, not the
+  // local dev server (renders need its S3 assets and a booted worker).
+  { slug: "laqta", url: "https://laqta.ma", pages: [{ name: "home", path: "/" }] },
   // Live but unlinked on the portfolio — URL stays out of site data on purpose.
   {
     slug: "webtrade",
@@ -171,13 +174,6 @@ const LOCAL_TARGETS: LocalTarget[] = [
     dir: path.join(WORK_DIR, "bluenote"),
     cmd: ["pnpm", "dev", "--port", "4320"],
     port: 4320,
-    pages: [{ name: "home", path: "/" }],
-  },
-  {
-    slug: "lakta",
-    dir: path.join(WORK_DIR, "lakta"),
-    cmd: ["pnpm", "dev", "--port", "4312"],
-    port: 4312,
     pages: [{ name: "home", path: "/" }],
   },
   {

@@ -3,12 +3,12 @@ title: "LLM Agent Architecture: What Actually Ships in Production"
 description: The anatomy of LLM-powered autonomous agents — planning, tools, memory, and orchestration — and how single-agent, pipeline, and supervisor architectures compare, drawn from systems running in production.
 date: 2026-07-13
 keywords: llm agents architecture, llm powered autonomous agents, multi agents llm, llm agents framework, what are llm agents
-related: fasl, reso-khdma, lakta
+related: fasl, reso-khdma, laqta
 ---
 
 Most LLM agent architecture diagrams are drawn by people who haven't operated one. They show a tidy planner-executor-memory triangle and skip the questions that actually decide whether your system works: who owns the context window, where state lives, and what happens when step three of seven fails at 2 a.m.
 
-I run three LLM-powered systems in production — a multi-agent legal drafting pipeline ([FASL](/work/fasl)), a WhatsApp job-matching agent ([RESO Khdma](/work/reso-khdma)), and a video-ad generation pipeline ([Lakta](/work/lakta)). This is the architecture writeup from that side of the fence.
+I run three LLM-powered systems in production — a multi-agent legal drafting pipeline ([FASL](/work/fasl)), a WhatsApp job-matching agent ([RESO Khdma](/work/reso-khdma)), and a video-ad generation pipeline ([Laqta](/work/laqta)). This is the architecture writeup from that side of the fence.
 
 ## The anatomy of an LLM agent
 
@@ -49,7 +49,7 @@ Properties that make pipelines the workhorse of production multi-agent systems:
 - **Per-stage context discipline.** The drafter never sees the raw case file. Smaller, cleaner contexts consistently beat bigger models with messy ones.
 - **Resumability.** When stage three fails, you retry stage three. State lives at the boundaries, in typed artifacts you can persist.
 
-Lakta uses the same shape for a completely different domain — brand kit in, finished Darija video ads out — which is the tell that pipelines are a general pattern, not a legal-tech trick.
+Laqta uses the same shape for a completely different domain — brand kit in, finished Darija video ads out — which is the tell that pipelines are a general pattern, not a legal-tech trick.
 
 ## Supervisor/orchestrator: when the task graph is dynamic
 

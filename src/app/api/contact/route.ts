@@ -20,7 +20,15 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    // Not configured yet — the client falls back to a mailto link.
+    // Not configured yet — the client falls back to a mailto link. Log the
+    // message anyway: a lead that reaches the server should never be lost to
+    // a missing env var.
+    console.warn("[contact] RESEND_API_KEY missing — message not sent", {
+      name: payload.name,
+      email: payload.email,
+      intent: payload.intent ?? null,
+      message: payload.message,
+    });
     return NextResponse.json({ error: "Email not configured" }, { status: 503 });
   }
 
@@ -32,8 +40,13 @@ export async function POST(request: Request) {
         ? `Portfolio — project inquiry from ${payload.name}`
         : `Portfolio — message from ${payload.name}`;
 
+  // Sending domain, once faouzielbakri.com is verified in Resend. Until then
+  // the shared sandbox sender works, but only delivers to the address that
+  // owns the Resend account.
+  const from = process.env.CONTACT_FROM ?? "Portfolio <onboarding@resend.dev>";
+
   const { error } = await resend.emails.send({
-    from: "Portfolio <onboarding@resend.dev>",
+    from,
     to: site.email,
     replyTo: payload.email,
     subject,
@@ -41,6 +54,13 @@ export async function POST(request: Request) {
   });
 
   if (error) {
+    // Same reasoning as above: keep the message where it can be recovered.
+    console.error("[contact] send failed", error, {
+      name: payload.name,
+      email: payload.email,
+      intent: payload.intent ?? null,
+      message: payload.message,
+    });
     return NextResponse.json({ error: "Send failed" }, { status: 502 });
   }
   return NextResponse.json({ ok: true });

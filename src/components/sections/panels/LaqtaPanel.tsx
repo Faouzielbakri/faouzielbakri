@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Lakta — the work speaks: actual generated Darija ad videos playing in
+ * Laqta — the work speaks: actual generated Darija ad videos playing in
  * phone frames, straight out of the pipeline. Falls back to the app
  * screenshot when no pulled videos exist yet.
  */
@@ -53,9 +53,9 @@ function AdPhone({ src, poster, delay }: { src: string; poster?: string; delay: 
   );
 }
 
-export function LaktaPanel(props: PanelProps) {
+export function LaqtaPanel(props: PanelProps) {
   const { project, world, extras } = props;
-  const videos = extras?.laktaVideos ?? [];
+  const videos = extras?.laqtaVideos ?? [];
 
   return (
     <PanelShell world={world}>
@@ -66,7 +66,7 @@ export function LaktaPanel(props: PanelProps) {
             className="font-display mt-4 font-bold uppercase leading-none"
             style={{ fontSize: "clamp(3rem, 6vw, 5.5rem)", color: world.fg }}
           >
-            Lakta
+            Laqta
             <span style={{ color: world.link }}>.</span>
           </h3>
           <p
@@ -88,45 +88,50 @@ export function LaktaPanel(props: PanelProps) {
           <CtaRow project={project} world={world} className="mt-8" />
         </div>
 
-        {videos.length > 0 ? (
-          <div className="hidden items-center justify-center gap-4 lg:flex">
-            {videos.slice(0, 3).map((v, i) => (
-              <div
-                key={v.src}
-                className={`w-[30%] max-w-[200px] ${
-                  i === 1 ? "translate-y-8" : i === 2 ? "-translate-y-6" : "-translate-y-2"
-                }`}
-              >
-                <AdPhone src={v.src} poster={v.poster} delay={i * 400} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="hidden lg:block">
+        {/* The product and its output in one frame: laqta.ma itself, with the
+            ads it rendered stacked over the corner. */}
+        <div className="relative hidden lg:block">
+          <div className="pr-[26%]">
             <DeviceFrame
               src={project.screenshots.desktop[0]}
               alt={project.alt}
               accent={project.accent}
               kind="desktop"
               monogram="L"
+              sizes="(min-width: 1024px) 42vw, 90vw"
             />
           </div>
-        )}
+          {videos.length > 0 && (
+            <div className="absolute bottom-[-2.5rem] right-0 flex w-[46%] items-end justify-end gap-3">
+              {videos.slice(0, 3).map((v, i) => (
+                <div
+                  key={v.src}
+                  className={`w-1/3 ${
+                    i === 1 ? "translate-y-6" : i === 2 ? "-translate-y-4" : "translate-y-0"
+                  }`}
+                >
+                  <AdPhone src={v.src} poster={v.poster} delay={i * 400} />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
-        <div className="lg:hidden">
-          {videos.length > 0 ? (
-            <div className="mx-auto w-2/3 max-w-[240px]">
+        <div className="flex items-end gap-4 lg:hidden">
+          <div className="flex-1">
+            <DeviceFrame
+              src={project.screenshots.desktop[0]}
+              alt={project.alt}
+              accent={project.accent}
+              kind="desktop"
+              monogram="L"
+              sizes="60vw"
+            />
+          </div>
+          {videos.length > 0 && (
+            <div className="w-[34%] max-w-[140px]">
               <AdPhone src={videos[0].src} poster={videos[0].poster} delay={0} />
             </div>
-          ) : (
-            <DeviceFrame
-              src={project.screenshots.desktop[0]}
-              alt={project.alt}
-              accent={project.accent}
-              kind="desktop"
-              monogram="L"
-              sizes="90vw"
-            />
           )}
         </div>
       </div>

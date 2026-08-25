@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Lakta — the case study as an edit timeline. The product renders video ads,
+ * Laqta — the case study as an edit timeline. The product renders video ads,
  * so the page is cut like one: a dark studio hero with the generated ads
  * playing in phones, then the story laid out as clips on a timeline —
  * BRIEF → SCRIPT → RENDER → PUBLISH.
@@ -111,8 +111,8 @@ function Ruler() {
   );
 }
 
-export function LaktaStory({ project, prev, next, art, extras }: StoryProps) {
-  const world = WORLDS.lakta;
+export function LaqtaStory({ project, prev, next, art, extras }: StoryProps) {
+  const world = WORLDS.laqta;
   const study = project.caseStudy!;
   const videos = extras?.videos ?? [];
 
@@ -150,7 +150,7 @@ export function LaktaStory({ project, prev, next, art, extras }: StoryProps) {
                 className="font-display mt-4 font-bold uppercase leading-none"
                 style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)", color: world.fg }}
               >
-                Lakta<span style={{ color: world.link }}>.</span>
+                Laqta<span style={{ color: world.link }}>.</span>
               </h1>
               <p
                 className="mt-3 font-mono text-[11px] uppercase tracking-[0.3em]"
@@ -178,31 +178,40 @@ export function LaktaStory({ project, prev, next, art, extras }: StoryProps) {
               </div>
             </div>
 
-            {videos.length > 0 ? (
-              <div className="hidden items-center justify-center gap-4 lg:flex">
-                {videos.slice(0, 3).map((v, i) => (
-                  <div
-                    key={v.src}
-                    className={`w-[30%] max-w-[200px] ${
-                      i === 1 ? "translate-y-8" : i === 2 ? "-translate-y-6" : "-translate-y-2"
-                    }`}
-                  >
-                    <AdPhone src={v.src} poster={v.poster} delay={i * 400} />
-                  </div>
-                ))}
+            {/* laqta.ma itself, with three ads it rendered over the corner. */}
+            <div className="relative hidden lg:block">
+              <div className="pr-[26%]">
+                <HeroArt
+                  art={art}
+                  project={project}
+                  monogram="L"
+                  priority
+                  sizes="(min-width: 1024px) 42vw, 92vw"
+                />
               </div>
-            ) : (
-              <div className="hidden lg:block">
-                <HeroArt art={art} project={project} monogram="L" />
+              {videos.length > 0 && (
+                <div className="absolute bottom-[-2.5rem] right-0 flex w-[46%] items-end justify-end gap-3">
+                  {videos.slice(0, 3).map((v, i) => (
+                    <div
+                      key={v.src}
+                      className={`w-1/3 ${
+                        i === 1 ? "translate-y-6" : i === 2 ? "-translate-y-4" : "translate-y-0"
+                      }`}
+                    >
+                      <AdPhone src={v.src} poster={v.poster} delay={i * 400} />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="flex items-end gap-4 lg:hidden">
+              <div className="flex-1">
+                <HeroArt art={art} project={project} monogram="L" sizes="60vw" />
               </div>
-            )}
-            <div className="lg:hidden">
-              {videos.length > 0 ? (
-                <div className="mx-auto w-2/3 max-w-[240px]">
+              {videos.length > 0 && (
+                <div className="w-[34%] max-w-[140px]">
                   <AdPhone src={videos[0].src} poster={videos[0].poster} delay={0} />
                 </div>
-              ) : (
-                <HeroArt art={art} project={project} monogram="L" sizes="90vw" />
               )}
             </div>
           </div>
@@ -212,7 +221,7 @@ export function LaktaStory({ project, prev, next, art, extras }: StoryProps) {
       {/* ── The timeline ──────────────────────────────────────────────── */}
       <main id="timeline" className="rail py-20">
         <div className="mb-4 flex items-center justify-between font-mono text-xs uppercase tracking-[0.2em] text-white/50">
-          <span>lakta_case_study.prproj</span>
+          <span>laqta_case_study.prproj</span>
           <span>
             <span style={{ color: ORANGE }}>●</span> rec
           </span>

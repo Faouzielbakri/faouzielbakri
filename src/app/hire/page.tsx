@@ -40,7 +40,7 @@ const FAQ = [
   },
   {
     q: "Can I hire you to build an AI agent?",
-    a: "Yes — that's the core of what I do. I've built production agent systems: a multi-agent legal drafting pipeline (FASL), a WhatsApp job-matching agent that interviews workers in Darija (RESO Khdma), and an automated video-ad generation pipeline (Lakta).",
+    a: "Yes — that's the core of what I do. I've built production agent systems: a multi-agent legal drafting pipeline (FASL), a WhatsApp job-matching agent that interviews workers in Darija (RESO Khdma), and an automated video-ad generation pipeline (Laqta).",
   },
   {
     q: "Do you work with small businesses or only startups?",
@@ -99,7 +99,7 @@ const WORLD_ART: Record<string, string> = {
   fasl: "/media/world-fasl.avif",
   "magical-hekaya": "/media/world-hekaya.avif",
   belmo: "/media/world-belmo.avif",
-  lakta: "/media/world-lakta.avif",
+  laqta: "/media/world-laqta.avif",
   "reso-khdma": "/media/world-reso.avif",
   webtrade: "/media/world-webtrade.avif",
 };

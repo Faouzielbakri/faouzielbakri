@@ -17,7 +17,7 @@ export type StoryProps = {
   next: { slug: string; name: string };
   /** Generated "pops off the paper" hero art, present once generated */
   art?: string;
-  /** Extra media resolved server-side (e.g. Lakta's generated ad videos) */
+  /** Extra media resolved server-side (e.g. Laqta's generated ad videos) */
   extras?: { videos?: { src: string; poster?: string }[] };
 };
 

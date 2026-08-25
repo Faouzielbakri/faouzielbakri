@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/readme/worlds-banner.webp" alt="Six product worlds side by side — FASL's legal chamber, Magical Hekaya's storybook, Belmo's silk, Lakta's editing studio, RESO's workshop, WebTrade's trading floor" width="100%" />
+<img src="docs/readme/worlds-banner.webp" alt="Six product worlds side by side — FASL's legal chamber, Magical Hekaya's storybook, Belmo's silk, Laqta's editing studio, RESO's workshop, WebTrade's trading floor" width="100%" />
 
 # Salam, I'm Faouzi 👋
 
@@ -35,8 +35,8 @@ By night I build the products they'll study — 16 live in production, four of t
 
 | | | |
 | :--: | :--: | :--: |
-| <img src="docs/readme/world-lakta.webp" alt="Lakta — AI-generated Darija video ads" /> | <img src="docs/readme/world-reso.webp" alt="RESO Khdma — WhatsApp job-matching AI agent" /> | <img src="docs/readme/world-webtrade.webp" alt="WebTrade — real-time trading platform" /> |
-| **Lakta** — feed it a brand kit, it renders finished Darija video ads end-to-end | **RESO Khdma** — WhatsApp AI agent matching Moroccan workers to jobs, in Darija | **WebTrade** — real-time trading UI, WebSockets, real money on the line |
+| <img src="docs/readme/world-laqta.webp" alt="Laqta — AI-generated Darija video ads" /> | <img src="docs/readme/world-reso.webp" alt="RESO Khdma — WhatsApp job-matching AI agent" /> | <img src="docs/readme/world-webtrade.webp" alt="WebTrade — real-time trading platform" /> |
+| **Laqta** — feed it a brand kit, it renders finished Darija video ads end-to-end | **RESO Khdma** — WhatsApp AI agent matching Moroccan workers to jobs, in Darija | **WebTrade** — real-time trading UI, WebSockets, real money on the line |
 
 …plus ten more client projects, own products, and concept rebuilds — all in [the index](https://faouzielbakri.com/#more-work).
 
