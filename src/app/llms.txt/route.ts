@@ -43,6 +43,7 @@ export function GET() {
     "## Hire",
     "",
     `- [Hire an AI developer](${SITE_URL}/hire): freelance AI development & consulting — LLM agents, RAG, full-stack products, Arabic-first builds. Remote, worldwide.`,
+    `- [Open to relocation — Netherlands & Germany](${SITE_URL}/hire/europe): available for full-time AI / full-stack engineering roles in the EU. M.Sc in Big Data & AI (EU Blue Card and Dutch Highly Skilled Migrant eligible), fluent English and French, native Arabic and Darija, CET working hours, can start remotely while a permit is processed.`,
     "",
     "## Free tools",
     "",

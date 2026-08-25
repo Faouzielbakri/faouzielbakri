@@ -17,6 +17,7 @@ export type FooterTheme = {
 
 const LINKS = [
   { label: "Hire me", href: "/hire" },
+  { label: "Relocating to the EU", href: "/hire/europe" },
   { label: "Blog", href: "/blog" },
   { label: "AI Visibility Checker", href: "/tools/ai-visibility-checker" },
   { label: site.email, href: `mailto:${site.email}` },

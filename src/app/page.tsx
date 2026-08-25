@@ -33,6 +33,16 @@ const homeJsonLd = {
       address: { "@type": "PostalAddress", addressLocality: "Agadir", addressCountry: "MA" },
       alumniOf: site.education.map((e) => ({ "@type": "CollegeOrUniversity", name: e.school })),
       knowsLanguage: ["ar", "fr", "en"],
+      // Open to a full-time role in the EU as well as project work — the
+      // /hire/europe page is the human-readable half of this claim.
+      seeks: {
+        "@type": "Demand",
+        name: "Full-time AI / full-stack engineering role with relocation to the Netherlands or Germany",
+        availableAtOrFrom: [
+          { "@type": "Country", name: "Netherlands" },
+          { "@type": "Country", name: "Germany" },
+        ],
+      },
       knowsAbout: [
         "AI Engineering",
         "LLM agents",

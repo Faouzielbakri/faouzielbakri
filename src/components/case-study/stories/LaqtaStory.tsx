@@ -167,11 +167,22 @@ export function LaqtaStory({ project, prev, next, art, extras }: StoryProps) {
                   human editor touched them.
                 </p>
               )}
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-6">
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full px-7 py-3 text-sm font-medium transition-transform duration-200 hover:scale-[1.04]"
+                    style={{ background: world.cta.bg, color: world.cta.fg }}
+                  >
+                    Visit laqta.ma ↗
+                  </a>
+                )}
                 <a
                   href="#timeline"
-                  className="rounded-full px-7 py-3 text-sm font-medium transition-transform duration-200 hover:scale-[1.04]"
-                  style={{ background: world.cta.bg, color: world.cta.fg }}
+                  className="font-mono text-xs uppercase tracking-[0.2em] underline-offset-4 hover:underline"
+                  style={{ color: world.link }}
                 >
                   Scrub the timeline ↓
                 </a>
