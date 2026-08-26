@@ -9,6 +9,7 @@ import { motion } from "motion/react";
 import { z } from "zod";
 import { Reveal } from "@/components/ui/Reveal";
 import { useReducedMotionSafe, useSectionSpy } from "@/lib/hooks";
+import { readAttribution } from "@/lib/attribution";
 import { useUiStore } from "@/lib/store";
 
 const ContactFormSchema = z.object({
@@ -112,6 +113,8 @@ export function ContactSection({ email }: { email: string }) {
           ...parsed.data,
           message: `${message}${from ? `\n\n— from ${from}` : ""}`,
           intent,
+          // Which channel brought them here, captured on their first page.
+          attribution: readAttribution(),
         }),
       });
       if (!res.ok) throw new Error(`status ${res.status}`);

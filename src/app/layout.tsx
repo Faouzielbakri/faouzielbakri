@@ -8,6 +8,7 @@ import {
   Space_Grotesk,
   Tajawal,
 } from "next/font/google";
+import { Attribution } from "@/components/layout/Attribution";
 import { SITE_URL } from "@/lib/site-url";
 import "./globals.css";
 
@@ -106,7 +107,10 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${geistSans.variable} ${geistMono.variable} ${amiri.variable} ${fraunces.variable} ${playfair.variable} ${tajawal.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Attribution />
+        {children}
+      </body>
     </html>
   );
 }
