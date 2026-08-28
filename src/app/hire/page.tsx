@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Hire an AI Developer · Faouzi El Bakri",
     description:
-      "LLM agents, RAG pipelines, and full-stack AI products that ship — 16 products in production, 58.4K search impressions in 28 days on the flagship.",
+      "LLM agents, RAG pipelines, and full-stack AI products that ship — 16 products in production, 217K search impressions in 28 days on the flagship.",
     url: "/hire",
     images: [{ url: "/og/default.png" }],
   },
@@ -245,7 +245,7 @@ export default function HirePage() {
           <Reveal group as="div" className="grid grid-cols-2 gap-x-10 gap-y-10 border-y border-line py-10 lg:grid-cols-4">
             {[
               { v: "16", l: "products live in production — four of them my own" },
-              { v: "58.4K", l: "search impressions in 28 days — FASL, zero ad spend" },
+              { v: "217K", l: "search impressions in 28 days — FASL, zero ad spend" },
               { v: "818", l: "clients registered in Belmo's first two months" },
               { v: "6+", l: "years shipping software with real users and real money" },
             ].map((s) => (

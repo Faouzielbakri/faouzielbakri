@@ -28,12 +28,12 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     metrics: [
       {
         label: "Search impressions in 28 days",
-        value: "58.4K",
+        value: "217K",
         source: "Google Search Console",
       },
       {
-        label: "Search impressions in 3 months · avg position 6.2",
-        value: "95.3K",
+        label: "Search impressions in 3 months · avg position 5.7",
+        value: "473K",
         source: "Google Search Console",
       },
     ],
@@ -48,7 +48,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
       ],
       outcome: [
         "Live in production at fasl.ma with lawyers reaching out inbound.",
-        "58.4K organic search impressions and 1.45K clicks in the last 28 days — 95.3K impressions over 3 months at average position 6.2 (Google Search Console), zero ad spend.",
+        "217K organic search impressions and 8.8K clicks in the last 28 days — 473K impressions over 3 months at average position 5.7 (Google Search Console), zero ad spend.",
       ],
       architecture: [
         {
@@ -95,13 +95,13 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
     ],
     metrics: [
       {
-        label: "Paying customers",
-        value: "Real revenue",
+        label: "Revenue in first 2 months",
+        value: "$300",
         source: "Live product sales",
       },
       {
         label: "Search impressions in 3 months",
-        value: "44K",
+        value: "63.2K",
         source: "Google Search Console",
       },
     ],
@@ -115,8 +115,8 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
         "Print-on-demand fulfilment closes the loop from a photo upload to a physical book at the door.",
       ],
       outcome: [
-        "Live consumer product at magicalhekaya.com with real paying customers.",
-        "44K organic search impressions in 3 months — 16.9K in the last 28 days (Google Search Console).",
+        "Live consumer product at magicalhekaya.com — $300 in revenue from real paying customers in its first 2 months.",
+        "63.2K organic search impressions in 3 months — 26.4K in the last 28 days (Google Search Console).",
         "Full pipeline owned end-to-end: generation, payments, rendering, fulfilment.",
       ],
     },
@@ -403,6 +403,11 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
         value: "One pipeline",
         source: "Seven agents: script → voice → render",
       },
+      {
+        label: "Signed up — 28 of them active in the same week",
+        value: "32",
+        source: "Platform analytics",
+      },
     ],
     caseStudy: {
       problem:
@@ -416,6 +421,7 @@ export const projects: Project[] = z.array(ProjectSchema).parse([
       outcome: [
         "Live at laqta.ma in Arabic, French, and English — the ads on this page came out of the pipeline itself, with no editor touching them.",
         "Used on real Moroccan brands, including the Belmo store I built — its Darija ads were scripted, voiced, and rendered by Laqta.",
+        "Early traction: 32 signed-up users, 28 of whom came back and used it in the same week (platform analytics).",
       ],
     },
     screenshots: {

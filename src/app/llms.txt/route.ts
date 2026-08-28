@@ -21,7 +21,7 @@ export function GET() {
     `Contact: ${site.email} · GitHub: ${site.links.github} · LinkedIn: ${site.links.linkedin}`,
     "",
     "Key facts: 6+ years shipping production software; 16 products live in production (four his own);",
-    "FASL reached 58.4K organic search impressions in 28 days (95.3K over 3 months, avg position 6.2);",
+    "FASL reached 217K organic search impressions in 28 days (473K over 3 months, avg position 5.7);",
     "teaches computer science for Morocco's Ministry of National Education (2,000+ students since 2021).",
     "",
     "## Case studies",

@@ -163,7 +163,7 @@ export default function AiVisibilityCheckerPage() {
           <Link href="/work/fasl" className="text-accent underline decoration-accent/40 underline-offset-4">
             FASL
           </Link>{" "}
-          (58.4K search impressions in 28 days, zero ad spend). This site
+          (217K search impressions in 28 days, zero ad spend). This site
           scores an A+ on its own audit — that&apos;s the point.
         </p>
       </main>

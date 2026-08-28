@@ -107,7 +107,7 @@ const EVIDENCE = [
   {
     title: "Organic growth as an engineering discipline",
     detail:
-      "SEO treated as part of the build: schema, crawl paths, content architecture. 58.4K search impressions in 28 days on FASL with zero ad spend.",
+      "SEO treated as part of the build: schema, crawl paths, content architecture. 217K search impressions in 28 days on FASL with zero ad spend.",
     receipt: "Google Search Console",
     href: "/work/fasl",
   },

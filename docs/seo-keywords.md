@@ -33,7 +33,7 @@ backlinks (GitHub profile, LinkedIn featured, dev.to canonical reposts).
 |---|---|---|---|---|
 | how much does it cost to build an app | 590 | 8 | $16 | "What an app actually costs in 2026 — from someone who builds them" (needs Faouzi's real price ranges) |
 | build an mvp | 480 | 9 | $41 | "How to build an MVP that ships in weeks, not months" (Belmo/Hekaya zero-to-launch receipts) |
-| how to get more clients for my business | 170 | 12 | $68 | "Get clients with systems, not hustle" (FASL 58.4K SEO + WhatsApp agent receipts) |
+| how to get more clients for my business | 170 | 12 | $68 | "Get clients with systems, not hustle" (FASL 217K SEO + WhatsApp agent receipts) |
 | how much does it cost to build an mvp | 40 | 0 | — | FAQ section inside the MVP post |
 | how to use ai for my business | 40 | 36 | $26 | later — cluster with "ai consultant for small business" |
 

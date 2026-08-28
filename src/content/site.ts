@@ -35,12 +35,12 @@ export const site: Site = SiteSchema.parse({
     },
     {
       label: "Search impressions / 28 days — FASL",
-      value: "58.4K",
+      value: "217K",
       source: "Google Search Console",
     },
     {
-      label: "Magical Hekaya",
-      value: "Paying customers",
+      label: "Magical Hekaya revenue — first 2 months",
+      value: "$300",
       source: "Live product sales",
     },
     {
@@ -103,7 +103,7 @@ export const site: Site = SiteSchema.parse({
       points: [
         "RTL-first interfaces — FASL, RESO Khdma, and Annid Law all run in Arabic",
         "i18n architecture with next-intl across four languages",
-        "SEO that performs: 58.4K impressions/28 days on FASL with zero ad spend",
+        "SEO that performs: 217K impressions/28 days on FASL with zero ad spend",
         "Zero-to-launch experience: payments, fulfilment, analytics, real customers",
       ],
       visual: "/media/pillar-multilingual.avif",

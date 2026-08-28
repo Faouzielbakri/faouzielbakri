@@ -35,7 +35,7 @@ const SEO: Record<string, { title: string; description: string; keywords: string
   fasl: {
     title: "FASL — Multi-Agent AI for Moroccan Legal Appeals (Case Study)",
     description:
-      "How FASL drafts Moroccan appeal memos end-to-end with a multi-agent pipeline and RAG over legal codes — Arabic-first, human-in-the-loop, 58.4K search impressions in 28 days.",
+      "How FASL drafts Moroccan appeal memos end-to-end with a multi-agent pipeline and RAG over legal codes — Arabic-first, human-in-the-loop, 217K search impressions in 28 days.",
     keywords: ["legal AI Morocco", "multi-agent pipeline", "RAG legal codes", "Arabic legal tech", "AI appeal drafting"],
   },
   "magical-hekaya": {

@@ -37,7 +37,7 @@ const SCRIPT: { text: string; stage: number; pause: number }[] = [
   { text: "▸ boot workspace — agadir · online ✓", stage: 1, pause: 520 },
   { text: "▸ printing name…", stage: 2, pause: 950 },
   { text: "▸ rendering film — gemini omni ✓ (2.0 MB)", stage: 3, pause: 780 },
-  { text: "▸ hydrating proof — fasl.ma 58.4K impressions ✓", stage: 4, pause: 620 },
+  { text: "▸ hydrating proof — fasl.ma 217K impressions ✓", stage: 4, pause: 620 },
 ];
 
 const BOOT_CMD = "$ agent run build-hero";
@@ -472,7 +472,7 @@ export function HeroSection({
           <ManifestRow label="cv" value="6+ yrs" show={stage >= 1} instant={instant} />
           <ManifestRow label="name" value="printed" show={stage >= 2} instant={instant} />
           <ManifestRow label="film" value="gemini omni" show={stage >= 3} instant={instant} />
-          <ManifestRow label="proof" value="58.4K reach" show={stage >= 4} instant={instant} />
+          <ManifestRow label="proof" value="217K reach" show={stage >= 4} instant={instant} />
           <Staged show={deployed} instant={instant} className="flex items-baseline gap-2">
             <span className="text-muted">status</span>
             <span aria-hidden className="flex-1 border-b border-dotted border-ink/20" />
