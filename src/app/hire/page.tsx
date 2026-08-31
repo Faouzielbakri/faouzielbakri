@@ -9,7 +9,7 @@ import { site } from "@/content/site";
 import { SITE_URL } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Hire an AI Developer — LLM Agents, RAG & Full-Stack | Faouzi El Bakri",
+  title: "Hire an AI Developer — AI Consulting Services & LLM Agents",
   description:
     "Hire an AI developer who ships to production: LLM agents, RAG pipelines, and full-stack products with real users. Freelance AI developer & consultant — remote from Agadir, Morocco.",
   keywords: [
@@ -393,6 +393,23 @@ export default function HirePage() {
                   homepage
                 </Link>{" "}
                 takes about forty seconds.
+              </p>
+              <p className="mt-4 max-w-sm leading-relaxed text-muted">
+                Looking for something more specific? There&apos;s a page for{" "}
+                <Link
+                  href="/hire/full-stack-developer"
+                  className="text-accent underline decoration-accent/40 underline-offset-4"
+                >
+                  full-stack contract work
+                </Link>{" "}
+                and one for{" "}
+                <Link
+                  href="/hire/small-business"
+                  className="text-accent underline decoration-accent/40 underline-offset-4"
+                >
+                  a small business&apos;s first AI build
+                </Link>
+                .
               </p>
             </Reveal>
             <Reveal>

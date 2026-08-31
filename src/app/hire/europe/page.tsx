@@ -19,8 +19,7 @@ import { SITE_URL } from "@/lib/site-url";
  */
 
 export const metadata: Metadata = {
-  title:
-    "AI Engineer Open to Relocation — Netherlands & Germany | Faouzi El Bakri",
+  title: "AI Engineer Open to Relocation — Netherlands & Germany",
   description:
     "AI engineer with 6+ years of production work — LLM agents, RAG, Next.js/TypeScript — open to relocating to the Netherlands or Germany. M.Sc in Big Data & AI, EU Blue Card and Highly Skilled Migrant eligible, English/French/Arabic, CET working hours.",
   keywords: [
