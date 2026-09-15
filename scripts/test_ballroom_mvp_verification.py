@@ -194,5 +194,83 @@ assert "navigator.share" in html
 assert "copyToClipboard" in html
 assert "navigator.clipboard.writeText" in html
 
+print("11. Checking reading progress, voice note, ROI simulator, action deck, quick jump & print isolation...")
+# 1. Reading progress
+assert soup.find("div", id="reading-progress") is not None
+assert "handleReadingProgress" in html or "reading-progress" in html
+
+# 2. Reading time in meta
+for lang in ["en", "fr"]:
+    sh = soup.find("div", f"sheet lang-{lang}")
+    meta_text = sh.find("div", class_="meta").text
+    assert "7 min" in meta_text and "17 sections" in meta_text
+
+# 3. Section 0: Chat replay and voice note
+assert soup.find("button", id="btn-replay-en") is not None
+assert soup.find("button", id="btn-replay-fr") is not None
+vn_en = soup.find("div", class_="sheet lang-en").find("div", class_="voice-note-mockup")
+vn_fr = soup.find("div", class_="sheet lang-fr").find("div", class_="voice-note-mockup")
+assert vn_en is not None and vn_fr is not None
+assert vn_en.find("button", class_="btn-voice-play") is not None
+assert vn_en.find("div", class_="voice-waveform") is not None
+
+# 4. Section 10: ROI simulator
+sim_en = soup.find("div", id="roi-sim-en")
+sim_fr = soup.find("div", id="roi-sim-fr")
+assert sim_en is not None and sim_fr is not None
+assert sim_en.find("input", id="sim-riads-en") is not None
+assert sim_en.find("input", id="sim-scans-en") is not None
+assert sim_en.find("input", id="sim-margin-en") is not None
+assert sim_fr.find("input", id="sim-riads-fr") is not None
+assert sim_fr.find("input", id="sim-scans-fr") is not None
+assert sim_fr.find("input", id="sim-margin-fr") is not None
+assert "setupRoiSimulator" in html
+
+# 5. Bottom Action Deck
+deck_en = soup.find("div", id="action-deck-en")
+deck_fr = soup.find("div", id="action-deck-fr")
+assert deck_en is not None and deck_fr is not None
+wa_en = deck_en.find("a", class_="btn-deck-primary")
+wa_fr = deck_fr.find("a", class_="btn-deck-primary")
+assert wa_en is not None and "wa.me/212632323856" in wa_en["href"]
+assert wa_fr is not None and "wa.me/212632323856" in wa_fr["href"]
+assert "Ballroom" in wa_en["href"] and "Ballroom" in wa_fr["href"]
+mail_en = deck_en.find("a", class_="btn-deck-secondary")
+mail_fr = deck_fr.find("a", class_="btn-deck-secondary")
+assert "mailto:faouzielbakri@gmail.com" in mail_en["href"]
+assert "mailto:faouzielbakri@gmail.com" in mail_fr["href"]
+
+# 6. Quick Jump Navigator
+assert soup.find("button", id="btn-jump") is not None
+assert soup.find("div", id="jump-dropdown") is not None
+jump_items = soup.find_all("a", class_="jump-item")
+assert len(jump_items) >= 8
+
+# 7. Desktop Keyboard Shortcuts in JS
+assert "keydown" in html
+assert 'key === "p"' in html
+assert 'key === "l"' in html
+assert 'key === "s"' in html
+assert 'key === "t"' in html
+assert 'key === "j"' in html
+
+# 8. Currency hints
+cur_spans = soup.find_all("span", class_="has-cur")
+assert len(cur_spans) >= 8
+for span in cur_spans[:4]:
+    assert span.get("data-cur-mad") is not None
+
+# 9. Strict Print Isolation: All interactive elements MUST be hidden in print
+print_block = html[html.find("@media print"):]
+assert "#reading-progress" in print_block
+assert ".chat-replay-bar" in print_block
+assert ".voice-note-mockup" in print_block
+assert ".roi-simulator" in print_block
+assert ".action-deck" in print_block
+assert ".jump-dropdown" in print_block
+assert ".has-cur::after" in print_block
+assert "display: none !important" in print_block
+
 print("\nALL VERIFICATIONS PASSED SUCCESSFULLY!")
+
 
