@@ -37,6 +37,10 @@ signoff_new = '<a href="https://faouzielbakri.com" target="_blank" rel="noopener
 en_sheet_inner = en_sheet_inner.replace(contact_old, contact_new).replace(signoff_old, signoff_new)
 fr_sheet_inner = fr_sheet_inner.replace(contact_old, contact_new).replace(signoff_old, signoff_new)
 
+# Terminology: Next.js backend architecture instead of generic Node.js
+en_sheet_inner = en_sheet_inner.replace("<td>Node.js (TypeScript), REST API and webhooks</td>", "<td>Next.js (TypeScript), REST API and webhooks</td>")
+fr_sheet_inner = fr_sheet_inner.replace("<td>Node.js (TypeScript), API REST et webhooks</td>", "<td>Next.js (TypeScript), API REST et webhooks</td>")
+
 # --- FEATURE 1: Reading Time in Cover Meta ---
 en_sheet_inner = en_sheet_inner.replace(
     "<div><span>Valid for</span><b>30 days</b></div>",
@@ -944,6 +948,7 @@ html, body {
   border: 1px solid var(--rule);
   border-radius: 999px;
   padding: 3px;
+  gap: 2px;
   box-shadow: 0 4px 16px rgba(16, 30, 46, 0.08);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -956,7 +961,9 @@ html, body {
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 600;
-  padding: 5px 13px;
+  padding: 6px 16px;
+  min-width: 44px;
+  text-align: center;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -1158,7 +1165,8 @@ html[data-lang="fr"] .action-dock.lang-en {
     gap: 4px;
   }
   .lang-switch {
-    padding: 2px;
+    padding: 3px;
+    gap: 3px;
   }
   .jump-label-full,
   .share-label-full,
@@ -1173,8 +1181,11 @@ html[data-lang="fr"] .action-dock.lang-en {
     font-weight: 600;
   }
   .lang-btn {
-    padding: 4px 7px;
-    font-size: 11.5px;
+    padding: 6px 15px;
+    font-size: 12.5px;
+    font-weight: 700;
+    min-width: 42px;
+    text-align: center;
   }
   .brandline {
     padding-right: 0;

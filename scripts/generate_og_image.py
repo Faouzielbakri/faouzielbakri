@@ -77,7 +77,7 @@ draw.line([420, 432, 420, 488], fill="#E2DFD8", width=1)
 
 # Col 2: Architecture
 draw.text((450, 434), "ARCHITECTURE", fill="#94A3B8", font=font_meta_label)
-draw.text((450, 458), "Custom Node.js + Postgres", fill="#101E2E", font=font_meta_val)
+draw.text((450, 458), "Next.js Backend + Postgres", fill="#101E2E", font=font_meta_val)
 
 # Divider 2
 draw.line([810, 432, 810, 488], fill="#E2DFD8", width=1)

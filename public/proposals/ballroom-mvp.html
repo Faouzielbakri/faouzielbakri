@@ -809,6 +809,7 @@ html, body {
   border: 1px solid var(--rule);
   border-radius: 999px;
   padding: 3px;
+  gap: 2px;
   box-shadow: 0 4px 16px rgba(16, 30, 46, 0.08);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -821,7 +822,9 @@ html, body {
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 600;
-  padding: 5px 13px;
+  padding: 6px 16px;
+  min-width: 44px;
+  text-align: center;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -1023,7 +1026,8 @@ html[data-lang="fr"] .action-dock.lang-en {
     gap: 4px;
   }
   .lang-switch {
-    padding: 2px;
+    padding: 3px;
+    gap: 3px;
   }
   .jump-label-full,
   .share-label-full,
@@ -1038,8 +1042,11 @@ html[data-lang="fr"] .action-dock.lang-en {
     font-weight: 600;
   }
   .lang-btn {
-    padding: 4px 7px;
-    font-size: 11.5px;
+    padding: 6px 15px;
+    font-size: 12.5px;
+    font-weight: 700;
+    min-width: 42px;
+    text-align: center;
   }
   .brandline {
     padding-right: 0;
@@ -1432,7 +1439,7 @@ html[data-lang="fr"] .action-dock.lang-en {
       <thead><tr><th style="width:23%">Layer</th><th style="width:30%">Choice</th><th>Why</th></tr></thead>
       <tbody>
         <tr><td><b>WhatsApp channel</b></td><td>360dialog, official Meta Business Solution Provider, on the Cloud API — two numbers</td><td>A flat monthly fee per number with no markup on Meta's message fees, fast onboarding and verification support, and the plain Cloud API underneath — so the code is not tied to 360dialog and the numbers stay portable. Accounts and numbers in your name.</td></tr>
-        <tr><td><b>Backend</b></td><td>Node.js (TypeScript), REST API and webhooks</td><td>One service that receives messages, orchestrates the AI, runs the request state machine and serves the back-office. Channel-agnostic by design.</td></tr>
+        <tr><td><b>Backend</b></td><td>Next.js (TypeScript), REST API and webhooks</td><td>One service that receives messages, orchestrates the AI, runs the request state machine and serves the back-office. Channel-agnostic by design.</td></tr>
         <tr><td><b>AI engine</b></td><td>Provider abstraction over Google, Anthropic, OpenAI and OpenRouter</td><td>All four expose the same primitives — conversation, structured extraction, tool calling. The active provider and model are set in the back-office and can be changed without a redeploy. OpenRouter also opens access to lower-cost models such as DeepSeek or Qwen if you want to test the cost-quality trade-off during the pilot.</td></tr>
         <tr><td><b>Database</b></td><td>PostgreSQL</td><td>A structured relational model, straightforward exports, automated backups, and the shape needed for automatic supplier ranking in phase 2.</td></tr>
         <tr><td><b>Back-office</b></td><td>Next.js web application, responsive</td><td>Fast to build, usable on laptop and tablet, multiple operator accounts from the start.</td></tr>
@@ -2105,7 +2112,7 @@ html[data-lang="fr"] .action-dock.lang-en {
       <thead><tr><th style="width:22%">Couche</th><th style="width:38%">Choix</th><th>Pourquoi</th></tr></thead>
       <tbody>
         <tr><td><b>Canal WhatsApp</b></td><td>360dialog, Business Solution Provider officiel Meta, sur la Cloud API — deux numéros</td><td>Un forfait mensuel fixe par numéro sans aucune surtaxe sur les frais de message de Meta, un onboarding et un support de vérification rapides, et la Cloud API standard en dessous — afin que le code ne soit pas lié à 360dialog et que les numéros restent portables. Comptes et numéros à votre nom.</td></tr>
-        <tr><td><b>Backend</b></td><td>Node.js (TypeScript), API REST et webhooks</td><td>Un service unique qui reçoit les messages, orchestre l'IA, exécute la machine à états des demandes et alimente le back-office. Agnostique du canal par conception.</td></tr>
+        <tr><td><b>Backend</b></td><td>Next.js (TypeScript), API REST et webhooks</td><td>Un service unique qui reçoit les messages, orchestre l'IA, exécute la machine à états des demandes et alimente le back-office. Agnostique du canal par conception.</td></tr>
         <tr><td><b>Moteur IA</b></td><td>Couche d'abstraction de fournisseurs sur Google, Anthropic, OpenAI et OpenRouter</td><td>Les quatre exposent les mêmes primitives — conversation, extraction structurée, tool calling. Le fournisseur et le modèle actifs sont définis dans le back-office et peuvent être modifiés sans redéploiement. OpenRouter ouvre également l'accès à des modèles à moindre coût tels que DeepSeek ou Qwen si vous souhaitez tester l'arbitrage coût-qualité pendant le pilote.</td></tr>
         <tr><td><b>Base de données</b></td><td>PostgreSQL</td><td>Un modèle relationnel structuré, des exports directs, des sauvegardes automatisées et la forme requise pour le classement automatique des prestataires en phase 2.</td></tr>
         <tr><td><b>Back-office</b></td><td>Application web Next.js, responsive</td><td>Rapide à construire, utilisable sur ordinateur portable et tablette, comptes opérateurs multiples dès le départ.</td></tr>
