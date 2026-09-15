@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       // The project shipped as "Lakta" before the brand settled on Laqta —
       // keep the old case-study URL alive for anything already pointing at it.
       { source: "/work/lakta", destination: "/work/laqta", permanent: true },
+      { source: "/proposals/ballroom-mvp.html", destination: "/proposals/ballroom-mvp", permanent: true },
     ];
   },
   async headers() {

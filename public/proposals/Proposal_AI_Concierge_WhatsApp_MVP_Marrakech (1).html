@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Concierge on WhatsApp — Technical &amp; Financial Proposal · Marrakech Pilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101E2E;
+  --text:#253647;
+  --muted:#6A7B8C;
+  --paper:#FDFDFC;
+  --band:#EDF1F0;
+  --rule:#D7DEE1;
+  --rule-soft:#E7ECEE;
+  --indigo:#2B47C8;
+  --green:#0F7A57;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--text);font-family:var(--serif);
+  font-size:17.5px;line-height:1.62;font-variant-numeric:tabular-nums;
+}
+.sheet{max-width:1080px;margin:0 auto;padding:0 40px 120px}
+.col{max-width:700px}
+h1,h2,h3,h4{font-family:var(--sans);color:var(--ink);font-weight:600;letter-spacing:-.012em;margin:0}
+h2{font-size:27px;line-height:1.2}
+h3{font-size:19px;line-height:1.3;margin-bottom:8px}
+h4{font-size:15.5px;margin-bottom:4px}
+p{margin:0 0 16px}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid rgba(43,71,200,.28)}
+strong{font-weight:500;color:var(--ink)}
+.lead{font-size:20px;line-height:1.55}
+.muted{color:var(--muted)}
+.small{font-family:var(--sans);font-size:14px;line-height:1.5}
+.cover{padding:78px 0 56px;border-bottom:1px solid var(--rule)}
+.brandline{font-family:var(--sans);font-size:14px;color:var(--muted);margin-bottom:54px}
+.cover h1{font-size:52px;line-height:1.04;letter-spacing:-.028em;max-width:15ch}
+.cover .sub{font-size:22px;line-height:1.45;margin-top:20px;max-width:46ch}
+.meta{display:flex;flex-wrap:wrap;gap:38px 56px;margin-top:48px;font-family:var(--sans);font-size:14.5px}
+.meta div span{display:block;color:var(--muted);font-size:13px;margin-bottom:3px}
+.meta div b{font-weight:500;color:var(--ink)}
+.confidential{margin-top:40px;font-family:var(--sans);font-size:13px;color:var(--muted);max-width:62ch;padding-left:14px;border-left:2px solid var(--rule)}
+section{padding-top:56px}
+.sec-head{display:grid;grid-template-columns:52px 1fr;align-items:baseline;margin-bottom:22px}
+.sec-num{font-family:var(--sans);font-size:14px;color:var(--indigo);font-weight:500;padding-top:6px}
+.sec-head .col{max-width:760px}
+.sec-body{padding-left:52px;max-width:752px}
+@media (max-width:760px){
+  .sec-head{grid-template-columns:1fr}
+  .sec-num{padding-top:0;margin-bottom:6px}
+  .sec-body{padding-left:0}
+}
+.thread{margin:8px 0;padding-left:52px}
+.turn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,260px);gap:28px;align-items:start;margin-bottom:14px}
+.bubble{font-size:16px;line-height:1.5;padding:12px 16px;border-radius:14px;max-width:440px;background:var(--band)}
+.bubble .who{font-family:var(--sans);font-size:12.5px;color:var(--muted);display:block;margin-bottom:3px}
+.bubble.out{background:#E4F3EC;margin-left:auto;border-bottom-right-radius:4px}
+.bubble.in{border-bottom-left-radius:4px}
+.bubble.supplier{background:#fff;border:1px solid var(--rule);border-bottom-left-radius:4px}
+.bubble.supplier .who{color:var(--green)}
+.note{font-family:var(--sans);font-size:13px;line-height:1.45;color:var(--muted);padding-top:10px;border-top:1px solid var(--rule-soft)}
+.note b{color:var(--ink);font-weight:500}
+@media (max-width:860px){
+  .thread{padding-left:0}
+  .turn{grid-template-columns:1fr;gap:8px}
+  .bubble{max-width:100%}
+  .note{padding-top:6px}
+}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:14.5px;line-height:1.5;margin:6px 0 24px}
+th{text-align:left;font-weight:500;color:var(--ink);font-size:13.5px;padding:0 16px 9px 0;border-bottom:1.5px solid var(--ink);vertical-align:bottom}
+td{padding:11px 16px 11px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+tr:last-child td{border-bottom:1px solid var(--rule)}
+td:last-child,th:last-child{padding-right:0}
+.num{text-align:right;white-space:nowrap}
+tr.total td{border-top:1.5px solid var(--ink);border-bottom:none;font-weight:600;color:var(--ink);padding-top:12px}
+td b{font-weight:500;color:var(--ink)}
+ul.plain{list-style:none;padding:0;margin:0 0 22px}
+ul.plain li{padding:0 0 10px 20px;position:relative}
+ul.plain li:before{content:"";position:absolute;left:2px;top:12px;width:6px;height:1.5px;background:var(--indigo)}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0 0 24px}
+ol.steps li{counter-increment:s;padding:0 0 16px 38px;position:relative}
+ol.steps li:before{content:counter(s);position:absolute;left:0;top:2px;font-family:var(--sans);font-size:13px;color:var(--indigo);border:1px solid var(--rule);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.callout{background:var(--band);padding:20px 24px;margin:6px 0 24px;border-radius:2px}
+.callout p:last-child{margin-bottom:0}
+.rec{border-left:2px solid var(--indigo);padding:2px 0 2px 18px;margin:4px 0 24px}
+.rec p:last-child{margin-bottom:0}
+.states{font-family:var(--sans);font-size:14px;line-height:2.2;color:var(--ink);background:var(--band);padding:16px 20px;border-radius:2px;margin-bottom:18px}
+.states i{color:var(--muted);font-style:normal;padding:0 4px}
+.price-line{display:flex;justify-content:space-between;gap:24px;font-family:var(--sans);font-size:15px;padding:12px 0;border-bottom:1px solid var(--rule-soft)}
+.price-line b{font-weight:500;color:var(--ink)}
+.bignum{font-family:var(--sans);font-size:44px;line-height:1.05;font-weight:600;color:var(--ink);letter-spacing:-.03em}
+.bignum + p{margin-top:8px}
+.bigpair{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;margin:30px 0 8px;padding:24px 0;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule)}
+.bigpair .n{font-family:var(--sans);font-size:38px;line-height:1.05;font-weight:600;color:var(--ink);letter-spacing:-.03em}
+.bigpair .c{font-family:var(--sans);font-size:14px;line-height:1.45;color:var(--muted);margin-top:8px}
+@media (max-width:640px){.bigpair{grid-template-columns:1fr;gap:24px}}
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:2px 48px;margin:38px 0 0;padding-left:52px;font-family:var(--sans);font-size:14.5px}
+.toc a{display:grid;grid-template-columns:26px 1fr;padding:7px 0;border-bottom:1px solid var(--rule-soft);color:var(--text);border-top:0;text-decoration:none}
+.toc a span{color:var(--indigo)}
+@media (max-width:760px){.toc{grid-template-columns:1fr;padding-left:0}}
+.signoff{margin-top:64px;padding-top:28px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:15px}
+.signoff b{display:block;font-size:17px;color:var(--ink);font-weight:600;margin-bottom:2px}
+@media print{
+  @page{size:A4;margin:16mm 14mm}
+  body{font-size:10.5pt;background:#fff}
+  .sheet{max-width:none;padding:0}
+  .cover{padding-top:0;page-break-after:always}
+  .cover h1{font-size:34pt}
+  section{padding-top:22px}
+  h2,h3{page-break-after:avoid}
+  table,.turn,.callout,.rec,.states{page-break-inside:avoid}
+  a{color:var(--ink);border:0}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header class="cover">
+  <div class="brandline">Technical and financial proposal · Response to the MVP specification, version 4</div>
+  <h1>An AI concierge that runs on WhatsApp.</h1>
+  <p class="sub">A complete, working pilot in Marrakech: travellers ask in plain language, verified suppliers answer on WhatsApp, and your operators see and control everything in between.</p>
+  <div class="meta">
+    <div><span>Prepared for</span><b>Fred Valezy — Ballroom Prod</b></div>
+    <div><span>Prepared by</span><b>Faouzi El Bakri — AI Engineer &amp; Full-Stack Developer</b></div>
+    <div><span>Contact</span><b>faouzielbakri.com · +212 6 32 32 38 56</b></div>
+    <div><span>Date</span><b>16 September 2026</b></div>
+    <div><span>Valid for</span><b>30 days</b></div>
+  </div>
+  <p class="confidential">Confidential both ways. Prepared under the non-disclosure agreement signed on 13 September 2026 and covering the project described in the version 4 specification — and the technical content of this document, the architecture, the data model and the attribution design are my own work, shared with you for the purpose of evaluating this proposal and not for use, reproduction or transmission to a third party. Neither of us should find their material in someone else's hands.</p>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <a href="#thread"><span>0</span>What the pilot looks like</a>
+  <a href="#summary"><span>1</span>Summary</a>
+  <a href="#whoami"><span>2</span>Who you're hiring</a>
+  <a href="#understanding"><span>3</span>How I read the project</a>
+  <a href="#architecture"><span>4</span>Recommended architecture</a>
+  <a href="#code-vs-nocode"><span>5</span>Why code, not an automation tool</a>
+  <a href="#data"><span>6</span>Data model</a>
+  <a href="#scope"><span>7</span>What V1 contains, lot by lot</a>
+  <a href="#planning"><span>8</span>Schedule</a>
+  <a href="#budget"><span>9</span>Budget</a>
+  <a href="#roi"><span>10</span>What the pilot has to sell to pay for itself</a>
+  <a href="#running"><span>11</span>What it costs to run</a>
+  <a href="#risks"><span>12</span>Risks, and what happens to each</a>
+  <a href="#privacy"><span>13</span>Personal data</a>
+  <a href="#deliverables"><span>14</span>Deliverables</a>
+  <a href="#assumptions"><span>15</span>Assumptions and conditions</a>
+  <a href="#seo"><span>16</span>An option for later: organic acquisition</a>
+</nav>
+
+<section id="thread">
+  <div class="sec-head">
+    <div class="sec-num">0</div>
+    <div class="col">
+      <h2>What the pilot looks like, end to end</h2>
+      <p class="lead" style="margin-top:12px">One request, from the QR code at a riad to a confirmed booking. The left column is what people see on WhatsApp. The right column is what the system does.</p>
+    </div>
+  </div>
+  <div class="thread">
+    <div class="turn">
+      <div class="bubble in"><span class="who">Traveller · scanned the QR at Riad El Fenn</span>Hi! We're 4, looking for a rooftop dinner tonight around 8. Good food, not touristy. Maybe 300 dh a head?</div>
+      <div class="note"><b>Attribution saved at the scan.</b> The QR code points at our own link, which records the partner and the moment before sending the guest on to WhatsApp — so the source is captured whether or not the guest edits the first message.</div>
+    </div>
+    <div class="turn">
+      <div class="bubble out"><span class="who">Concierge · AI</span>Got it — rooftop table for 4 tonight at 8pm, around 300 dh per person. Medina or Hivernage?</div>
+      <div class="note"><b>Request created, #1042.</b> Category, date, time, party size, budget and preferences extracted; one targeted question for the only field that was missing.</div>
+    </div>
+    <div class="turn">
+      <div class="bubble supplier"><span class="who">Supplier · replying in French, on the supplier number</span>Dispo à 20h15, table terrasse, 280 dh/pers hors boissons.</div>
+      <div class="note"><b>Three suppliers matched and asked.</b> The shortlist is a database query on category, zone, standing, price band and capacity — not a guess by the model. Reply captured at 4 minutes: available, 280 MAD, 20:15.</div>
+    </div>
+    <div class="turn">
+      <div class="bubble out"><span class="who">Concierge · options approved by the operator</span>Two rooftops can take you: one at 8:15pm at 280 dh per person, one at 8:30pm at 310 dh with a set menu. Which one shall I book?</div>
+      <div class="note"><b>Only recorded data is quoted.</b> Prices, times and availability come from supplier replies stored in the database. The AI never invents one.</div>
+    </div>
+    <div class="turn">
+      <div class="bubble in"><span class="who">Traveller</span>The first one please 🙏</div>
+      <div class="note"><b>Status: booked.</b> Transaction recorded with customer price, supplier amount, platform margin and the partner's share. Response times logged for the pilot dashboard.</div>
+    </div>
+  </div>
+</section>
+
+<section id="summary">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div class="col"><h2>Summary</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>You are looking for an MVP that is simple, robust and extensible, to test a WhatsApp concierge service in Marrakech with real travellers. A guest scans a partner's QR code, describes what they want in their own words, the AI structures the request, the system asks the relevant suppliers on WhatsApp, an operator supervises, and the guest gets one or more options through to a booking. Around that loop: a light back-office, human takeover at any moment, partner attribution, and numbers you can actually read.</p>
+    <p>This document answers the version 4 specification point by point — recommended architecture, why this is written as code rather than assembled in an automation tool, the data model, what goes in V1 and what waits for phase 2, an eight-week schedule to a live pilot, a price per lot, what the pilot has to sell to pay for itself, and the monthly running cost.</p>
+    <h3 style="margin-top:32px">Four recommendations</h3>
+    <ol class="steps">
+      <li><b>Build it as one product, not two halves.</b> The pieces depend on each other — a request is worthless without a supplier to ask, supplier replies are worthless without a back-office to read them, and none of it means anything without attribution and measurement. V1 is the complete loop, errands included, each part in its simplest robust form. Phase 2 holds only what the pilot's own data should decide.</li>
+      <li><b>Two WhatsApp numbers, not one.</b> One for guests, one for suppliers. It separates the two audiences at the level that matters: quality rating, sending limits, display name and template sets are independent, so a supplier who blocks or reports the supplier number can never affect the number your guests write to.</li>
+      <li><b>Make the AI engine swappable from day one.</b> Google, Anthropic, OpenAI and OpenRouter are all supported in V1, with the active model chosen in the back-office. No lock-in, and you can compare quality, latency and cost on your own conversations during the pilot.</li>
+      <li><b>Measure the pilot inside the product.</b> The KPI dashboard moves into V1. A pilot exists to produce a decision, and that decision needs conversion, response times and attribution visible on a screen your team opens every morning — not extracted from a database by a developer.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="whoami">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div class="col"><h2>Who you're hiring</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>You asked what my exact role on RESO Khdma was and what I chose technically for WhatsApp and the AI. The short answer to the first part: all of it. It was a freelance delivery I designed, built and shipped alone — the WhatsApp Business API integration, the conversational agent, the semantic matching, the database and the operator side.</p>
+    <p>The choices behind it are the ones that shaped this proposal:</p>
+    <ul class="plain">
+      <li><b>Tool calling with strict JSON contracts rather than free-form answers.</b> The agent could query the database, match a profile, create an account — each through a defined function with a defined schema. That is the same mechanism proposed here in lot C, and it is why the AI in your system can look up suppliers but cannot invent one.</li>
+      <li><b>Semantic search over keyword matching.</b> A worker describes what they do in their own words and the system finds openings whose wording does not match at all. Your version of that problem is a guest asking for "somewhere quiet with good tagine, not touristy" against a catalogue written in categories.</li>
+      <li><b>Darija, Arabic and French in a single conversational flow,</b> for users who are not technical and do not adjust their language for a machine. Your suppliers will write the same way.</li>
+    </ul>
+    <p>RESO Khdma is not the only WhatsApp system I have in production. Belmo, an Arabic-first K-beauty storefront I built and self-host, runs a simpler WhatsApp agent alongside it handling customer questions and orders — 818 registered clients and 629 orders in its first two months. Simpler than RESO, still a real system with real customers on the other end.</p>
+    <p>Three other things are directly relevant to what you are asking for:</p>
+    <ul class="plain">
+      <li><b>FASL</b> (fasl.ma), where I am co-founder and lead engineer: a multi-agent pipeline that drafts Moroccan legal appeals, grounded by a RAG layer over the legal codes. Built in a domain where an invented citation is a catastrophe — which is exactly the discipline behind "the concierge quotes only recorded supplier replies" in section 4.3.</li>
+      <li><b>Magical Hekaya</b> (magicalhekaya.com), my own consumer AI product with paying customers: a multi-model pipeline with structured output contracts between stages. The provider-switching layer I am proposing in lot C is not a diagram — I have built and operated one.</li>
+      <li><b>Self-hosting.</b> Belmo runs on Hetzner with Docker and Dokploy, the same infrastructure proposed here. I am not learning your stack on your budget.</li>
+    </ul>
+    <p>Background: M.Sc. in Big Data and Artificial Intelligence from Ibn Zohr University, with a thesis on defect detection reaching 96.96% mAP50, after a B.Sc. in Computer Science; six years shipping production software; sixteen products live, four of them my own. Arabic and Darija native, French and English fluent.</p>
+    <div class="rec">
+      <p><b>And what I would do differently.</b> On RESO Khdma the free-text interpretation was tuned to one model's behaviour, which made it expensive to re-tune when the model changed. That is why this proposal puts four providers behind one switch, and why an ambiguous supplier reply is flagged to your operator instead of being resolved by a confident guess. The mistakes are already paid for.</p>
+    </div>
+  </div>
+</section>
+
+<section id="understanding">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div class="col"><h2>How I read the project</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>The product is a conversational intermediary between three populations: travellers, service suppliers (restaurants, transport, activities, wellness) and referring partners (riads, hotels, shops) identified by QR code. The value of the pilot is not the chatbot. It is the complete loop — request, solicitation, replies, offer, booking — with trustworthy data at every step.</p>
+    <p>Three principles run through the whole proposal, following your specification:</p>
+    <ul class="plain">
+      <li>The AI never decides a commercial fact. Availability, prices and supplier characteristics come only from the catalogue and from recorded supplier replies.</li>
+      <li>A human stays in the loop: supervision, takeover on the same number, and the final choice left to the operator whenever they want it.</li>
+      <li>The backend is independent of the channel. WhatsApp is the first channel; a web app or a mobile app can be plugged into the same engine later without a rewrite.</li>
+    </ul>
+    <p>One local detail worth stating: your suppliers in Marrakech will answer in French, in Darija, sometimes in a mix, and often in a single line with no punctuation. Free-text replies are interpreted by the AI and flagged to the operator when they are ambiguous, rather than silently guessed at.</p>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div class="col"><h2>Recommended architecture</h2></div>
+  </div>
+  <div class="sec-body">
+    <h3>4.1 The stack, and why</h3>
+    <table>
+      <thead><tr><th style="width:23%">Layer</th><th style="width:30%">Choice</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><b>WhatsApp channel</b></td><td>360dialog, official Meta Business Solution Provider, on the Cloud API — two numbers</td><td>A flat monthly fee per number with no markup on Meta's message fees, fast onboarding and verification support, and the plain Cloud API underneath — so the code is not tied to 360dialog and the numbers stay portable. Accounts and numbers in your name.</td></tr>
+        <tr><td><b>Backend</b></td><td>Node.js (TypeScript), REST API and webhooks</td><td>One service that receives messages, orchestrates the AI, runs the request state machine and serves the back-office. Channel-agnostic by design.</td></tr>
+        <tr><td><b>AI engine</b></td><td>Provider abstraction over Google, Anthropic, OpenAI and OpenRouter</td><td>All four expose the same primitives — conversation, structured extraction, tool calling. The active provider and model are set in the back-office and can be changed without a redeploy. OpenRouter also opens access to lower-cost models such as DeepSeek or Qwen if you want to test the cost-quality trade-off during the pilot.</td></tr>
+        <tr><td><b>Database</b></td><td>PostgreSQL</td><td>A structured relational model, straightforward exports, automated backups, and the shape needed for automatic supplier ranking in phase 2.</td></tr>
+        <tr><td><b>Back-office</b></td><td>Next.js web application, responsive</td><td>Fast to build, usable on laptop and tablet, multiple operator accounts from the start.</td></tr>
+        <tr><td><b>Hosting</b></td><td>Hetzner server (Germany) with Docker images, deployed through Dokploy</td><td>Low monthly cost, reproducible images, one-click deploys, and a setup any other developer can take over. Accounts in your name.</td></tr>
+        <tr><td><b>Backups</b></td><td>Daily database snapshots to object storage</td><td>Restore procedure documented and tested before go-live, not after an incident.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:34px">4.2 Why a provider rather than going direct to Meta</h3>
+    <p>Meta's Cloud API can be used directly, and it is slightly cheaper on paper. In practice the friction sits in business verification, number registration, template approvals and quality-rating incidents — and that is exactly where a pilot loses two weeks. 360dialog handles that layer for a fixed fee per number and passes Meta's message fees through at cost. Because it is the same Cloud API underneath, the integration is a base URL and a token: moving to Meta direct, or to another provider, later is a configuration change rather than a rebuild.</p>
+
+    <h3 style="margin-top:34px">4.3 The journey of one request</h3>
+    <p>Taking the example above: <em>a rooftop table for four tonight, around 300 dh per person.</em></p>
+    <ol class="steps">
+      <li>The guest scans the partner's QR code. It points at a short link on your own domain, which records the scan and then redirects to WhatsApp — see 4.5 below. By the time the guest types anything, the partner has already been credited.</li>
+      <li>The AI extracts category, date, time, party size, budget, zone and preferences, and asks one targeted question when something essential is missing.</li>
+      <li>Through tool calling, the AI creates the request and queries the catalogue. The system filters active suppliers in the category by zone, standing, price band and capacity. This step is a database query, not a judgement call by the model.</li>
+      <li>The system sends the shortlisted suppliers a structured WhatsApp message from the supplier number — an approved template with the request and reply buttons. The request moves to <em>sent</em>, then <em>waiting</em>. The operator sees the request and the suppliers contacted, and can add, remove or call anyone directly.</li>
+      <li>Supplier replies are captured: buttons for available or unavailable, free text interpreted by the AI and confirmed by the operator when ambiguous. Every reply is timestamped.</li>
+      <li>The operator, or the system depending on the rule you choose, selects the options to present. The AI writes them to the guest using recorded data only.</li>
+      <li>The guest chooses. The request moves to <em>booked</em> or <em>cancelled</em>, and the transaction is recorded with amounts and commissions for information. Payment happens directly with the supplier.</li>
+    </ol>
+
+    <h3 style="margin-top:34px">4.4 Two numbers: what it buys and what it costs</h3>
+    <p>Your specification leaves this open. Both work technically — the routing code is the same either way, since a supplier is recognised by the number stored in the catalogue. The difference is isolation.</p>
+    <table>
+      <thead><tr><th style="width:26%">Option</th><th>In favour</th><th>Against</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Two numbers</b><br><span class="muted">recommended</span></td>
+          <td>Independent quality ratings and sending limits, so supplier traffic can never degrade the number your guests use. A distinct display name for suppliers. Separate template sets, separate webhooks, and cleaner metrics per audience. Nothing to migrate later if supplier volume grows.</td>
+          <td>Two verifications instead of one, a second monthly subscription, and a few extra days of work in lot B.</td>
+        </tr>
+        <tr>
+          <td><b>One number</b><br><span class="muted">guests and suppliers together</span></td>
+          <td>One verification, one set of templates, one subscription. Marginally faster and cheaper to launch.</td>
+          <td>Guests and suppliers share a quality rating. High-frequency outbound traffic to suppliers is exactly the pattern that attracts rate limiting, and if it does, it lands on your guest-facing number.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="rec">
+      <p><b>Recommendation: two numbers from the start.</b> The cost difference is small and it is the one architectural choice here that is genuinely painful to reverse once real guests are talking to a number. Both are registered in week 1 so the verifications run in parallel.</p>
+    </div>
+
+    <h3 style="margin-top:34px">4.5 How a scan is actually attributed</h3>
+    <p>The obvious way to track a QR code is to point it straight at a WhatsApp link carrying a pre-filled message with the partner's code in it. It is also fragile: the guest can clear that text before sending, and when they do, the lead arrives with no source at all. On a pilot whose entire purpose is to prove which partners produce business, losing attribution is losing the result.</p>
+    <p>So the QR codes point at a short link on your own domain instead — <em>go.yourdomain.com/elfenn</em> — and that link does three things in a few milliseconds:</p>
+    <ol class="steps">
+      <li><b>Records the scan server-side</b> before anything else: partner, timestamp, device and language, plus a dedupe window so the same phone scanning twice in a minute counts once. You get scan counts per partner from day one, whether or not the guest ever opens a conversation. A direct WhatsApp link can never give you that number.</li>
+      <li><b>Redirects to WhatsApp</b> with a temporary redirect, not a permanent one, so every future scan keeps reaching your server and the destination can be changed later — a second number, a landing page, a web chat — without reprinting a single QR code.</li>
+      <li><b>Ties the conversation back to the scan.</b> The pre-filled message carries a short code, which handles the normal case. When a guest clears it, the first message from an unknown number is matched to the most recent unclaimed scan inside a short window, which resolves nearly all of the rest. If two scans from different partners collide in that window, the request is flagged in the back-office as attribution to confirm and an operator decides. The system never invents an attribution silently — a wrong partner credit is worse than a missing one.</li>
+    </ol>
+    <p>The same mechanism is what makes a second acquisition channel free to add later: any link, from anywhere, gets its own code and lands in the same dashboard next to the partner riads.</p>
+  </div>
+</section>
+
+<section id="code-vs-nocode">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div class="col"><h2>Why this is written as code, and not assembled in n8n</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>You will get quotes that propose building this in an automation tool — n8n, Make, Zapier, or a chatbot builder with a WhatsApp connector. Those quotes will be cheaper and faster on paper. The comparison is worth making explicitly, because the difference does not show up in week 3. It shows up in month 4, when you want to change something.</p>
+    <p>Automation tools are genuinely good at one job: connecting systems that already exist. Send a row to a sheet, post a notification, sync two apps. This project is not that job. It is a product with its own state, its own database and its own operators.</p>
+    <table>
+      <thead><tr><th style="width:27%">What the pilot needs</th><th style="width:36%">In an automation tool</th><th>Written as code</th></tr></thead>
+      <tbody>
+        <tr><td><b>Conversation state across hundreds of parallel chats</b></td><td>Each message is an isolated run. Memory has to be bolted on with external storage, and simultaneous messages from the same guest produce duplicated or crossed answers.</td><td>One conversation record, one state, guaranteed ordering. The problem simply does not arise.</td></tr>
+        <tr><td><b>The request state machine</b></td><td>Statuses become fields updated by whichever branch ran last. Invalid transitions are possible, and timestamps drift.</td><td>Transitions are enforced in one place and every one is timestamped, which is where your response-time metrics come from.</td></tr>
+        <tr><td><b>Three suppliers answering at the same time</b></td><td>Concurrent runs writing to the same record. Race conditions are the classic failure, and they are very hard to reproduce.</td><td>Database transactions. Deterministic under load.</td></tr>
+        <tr><td><b>The operator back-office</b></td><td>Not buildable. You still need a real web application, so you end up with two systems and the logic split between them.</td><td>Back-office and engine share one data model and one codebase.</td></tr>
+        <tr><td><b>Supplier matching</b></td><td>Filtering by zone, standing, price band and capacity means a database query anyway — written inside a node, unversioned and untestable.</td><td>A tested query, reviewable, with the ranking logic ready for phase 2.</td></tr>
+        <tr><td><b>Changing it later</b></td><td>A canvas of eighty nodes is not reviewable, not diffable and not testable. Handing it to another developer is the hardest kind of handover.</td><td>Version control, code review, tests, rollback. Section 17 of your specification asks precisely for this.</td></tr>
+        <tr><td><b>Running cost</b></td><td>Billed per execution. Every inbound message, every supplier reply and every retry is a run, so the bill grows with conversation volume on top of Meta's fees.</td><td>A fixed server. Volume changes the LLM and Meta lines only.</td></tr>
+        <tr><td><b>Licensing</b></td><td>n8n is distributed under a sustainable-use licence that restricts commercial redistribution — a real question once this becomes a product you sell or license.</td><td>Permissive open-source components only, listed with their licences at delivery.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <p><strong>Where an automation tool does belong.</strong> Not in the product, but around it — importing the initial supplier catalogue from a spreadsheet, pushing a daily summary into Slack or email, connecting the pilot to a tool your team already uses. That is glue work, it is cheap, and I will set it up if you want it. The distinction is simple: the automation tool can be replaced on a Tuesday afternoon without anyone noticing, and the engine cannot.</p>
+    </div>
+    <p>Put plainly: a no-code build of this pilot would cost perhaps thirty per cent less to stand up and considerably more to change, and every change during a pilot is the whole point of running one.</p>
+  </div>
+</section>
+
+<section id="data">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div class="col"><h2>Data model</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>The model below covers sections 6, 7, 9, 10, 12 and 14 of your specification, and is shaped so that automatic ranking and the phase 2 analytics can be added without a painful migration.</p>
+    <table>
+      <thead><tr><th style="width:21%">Entity</th><th style="width:47%">Main fields</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><b>Partner</b></td><td>Name, type (riad, hotel, shop), unique code, URL and QR, contact, active</td><td>Origin of customers and attribution.</td></tr>
+        <tr><td><b>Customer</b></td><td>WhatsApp number, first name if given, detected language, originating partner, first contact date</td><td>Customer record and history.</td></tr>
+        <tr><td><b>Conversation</b></td><td>Customer, mode (AI or human), assigned operator, "needs attention" flag, timestamps</td><td>Dialogue management and human takeover.</td></tr>
+        <tr><td><b>Message</b></td><td>Conversation, direction, content, author (customer, AI, operator, system), timestamp</td><td>Full history and traceability.</td></tr>
+        <tr><td><b>Category</b></td><td>Name, display order, active</td><td>Dining, transport, activities, wellness, errands.</td></tr>
+        <tr><td><b>Supplier</b></td><td>Name, categories, zone, standing, price band, capacity, opening hours, closing days, WhatsApp contact, languages, target response time, negotiated price or commission, cancellation terms, payment method, internal notes, reliability, active</td><td>The verified catalogue — every field listed in section 6.</td></tr>
+        <tr><td><b>Service</b></td><td>Supplier, label, description, indicative price, conditions</td><td>Several services per supplier.</td></tr>
+        <tr><td><b>Request</b></td><td>Customer, conversation, category, structured criteria (date, time, party size, budget, zone, preferences), referring partner, status, operator, one timestamp per status</td><td>The heart of the system. State machine below.</td></tr>
+        <tr><td><b>Solicitation</b></td><td>Request, supplier, sent at, answer (available, unavailable, partial), price, delay, conditions, received at, source (button, text, operator)</td><td>One row per supplier asked. The basis for response-time and refusal-rate metrics.</td></tr>
+        <tr><td><b>Offer</b></td><td>Request, selected solicitations, sent to customer at, customer's choice</td><td>What was proposed and what was picked.</td></tr>
+        <tr><td><b>Transaction</b></td><td>Request, supplier, customer price, supplier amount, platform margin, partner commission, mode (referral or booking), status, outcome</td><td>Financial tracking for information, with no online payment.</td></tr>
+        <tr><td><b>Cash advance</b></td><td>Errand request, courier, amount advanced, receipt (photo or link), delivery fee, amount due by the customer, reimbursed yes or no, timestamps</td><td>The delivery and errand use case, section 12.</td></tr>
+        <tr><td><b>Operator</b></td><td>Name, email, role (admin or operator), active</td><td>Multiple accounts, trivially extended.</td></tr>
+        <tr><td><b>AI configuration</b></td><td>Active provider, model, prompts (greeting, extraction, offer presentation, follow-up), languages, version, modified by</td><td>Prompts editable and versioned from the back-office.</td></tr>
+        <tr><td><b>Event log</b></td><td>Event type, entity, payload, timestamp</td><td>Feeds the dashboard and the exports.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:34px">6.2 The request state machine</h3>
+    <p>A request is in exactly one state, and only the permitted transitions can happen. Each transition is timestamped, which gives you response and handling times for free.</p>
+    <div class="states">to handle <i>→</i> sent <i>→</i> waiting <i>→</i> available / unavailable <i>→</i> offer sent <i>→</i> booked / cancelled <i>→</i> completed</div>
+    <ul class="plain">
+      <li><em>Unavailable</em> returns to <em>waiting</em> if other suppliers are still being asked, or moves to <em>cancelled</em> if no option exists.</li>
+      <li><em>Cancelled</em> is reachable from any active state, with a reason attached (customer, supplier, operator).</li>
+      <li><em>Completed</em> is reached after the service is confirmed, or after a configurable delay with no feedback.</li>
+    </ul>
+    <p>A conversation follows the same logic with two states, AI and human. In human mode the AI never replies. Returning to AI mode is an explicit operator action, and the AI receives a summary of what happened while it was out.</p>
+  </div>
+</section>
+
+<section id="scope">
+  <div class="sec-head">
+    <div class="sec-num">7</div>
+    <div class="col"><h2>What V1 contains, lot by lot</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>One point of principle before the table. The pieces of this product are not independent modules that can be shipped in convenient halves: a request has no value without a supplier to ask, supplier replies have no value without a back-office to read them, and none of it has value without attribution and measurement to tell you whether it worked. So V1 is the whole working loop, including the delivery and errand use case of section 12. What is left for phase 2 is only what is genuinely detachable — the intelligence that can only be built once the pilot has produced real data.</p>
+    <table>
+      <thead><tr><th style="width:27%">Lot</th><th>Included in V1</th></tr></thead>
+      <tbody>
+        <tr><td><b>A. Setup and infrastructure</b></td><td>Hetzner server, Docker, Dokploy, domain, certificates, staging and production environments, automated backups, basic monitoring. Accounts created in your name.</td></tr>
+        <tr><td><b>B. WhatsApp integration, two numbers</b></td><td>360dialog onboarding and registration of both numbers, guest and supplier webhooks, outbound sending, two template sets (greeting, supplier request, follow-up), role-based routing, complete message history.</td></tr>
+        <tr><td><b>C. AI engine and orchestration</b></td><td>Provider layer over Google, Anthropic, OpenAI and OpenRouter, switchable from the back-office; structured extraction in French and English; targeted follow-up questions; tool calling (search suppliers, create request, read replies, change status, escalate); offers written from recorded data only; editable and versioned prompts.</td></tr>
+        <tr><td><b>D. Backend and data model</b></td><td>PostgreSQL, API, state machine, semi-automatic supplier solicitation, reply capture (buttons plus free-text interpretation), event log.</td></tr>
+        <tr><td><b>E. Operator back-office</b></td><td>Login, multiple accounts, live conversations with a clear AI-or-human indicator, takeover and controlled return to AI, a "needs attention" queue, requests by status, customer record, supplier replies per request, option selection, supplier and service management, status changes, AI configuration.</td></tr>
+        <tr><td><b>F. QR tracking and attribution</b></td><td>Unique code per partner, distinct short links and printable QR codes on your own domain, scans recorded server-side before the redirect to WhatsApp (section 4.5), matching of conversations to scans with an operator-confirmed fallback, originating partner kept separate from the referrer of a given transaction, scan and conversation counts per partner.</td></tr>
+        <tr><td><b>G. Delivery and errands</b></td><td>Courier category, one errand request sent to several couriers at once, their delays and prices compared side by side, selection by the operator, and cash advances recorded with amount, receipt, amount due by the guest and reimbursement status. The financial rules stay manual during the pilot, as your specification requires.</td></tr>
+        <tr><td><b>H. KPI dashboard, exports, documentation and handover</b></td><td>A dashboard screen in the back-office showing the pilot metrics live: scans and conversations per partner, requests by category, conversion from scan to conversation to request to offer to booking, drop-off points, average supplier response time and refusal rate, human interventions, average basket, revenue and commissions by partner — filterable by date range. One-click CSV export on every list. Deployment documentation, third-party service and cost list, open-source licence list, backup and restore procedure, live handover session.</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted" style="margin-top:-8px">All thirteen acceptance tests in section 19 of your specification, including the three covering errands and cash advances, are part of V1 sign-off.</p>
+
+    <h3 style="margin-top:34px">7.1 Phase 2, after the pilot</h3>
+    <p>Four features deliberately left out of V1, because each one is a decision the pilot data should make rather than an assumption I build in now:</p>
+    <ul class="plain">
+      <li><b>Automatic supplier ranking and pre-selection</b> — ordering suppliers on price, response time, reliability and acceptance rate, and contacting the best ones without operator input. Every field it needs is already recorded in V1; what is missing is the evidence for how to weight them, which is exactly what the pilot produces.</li>
+      <li><b>Automatic follow-ups</b> — chasing a supplier who has not replied, a guest who has not chosen, and notifying operators. The right delay before a chase is a question the pilot answers.</li>
+      <li><b>Additional languages</b> — Arabic, Spanish, German, added to the extraction and the replies. V1 launches in French and English; the pilot tells you which language you are actually losing guests in.</li>
+      <li><b>Automated commission rules</b> — calculating and tracking what each partner is owed, instead of recording the amounts for manual settlement.</li>
+    </ul>
+    <p>Anything not listed in this document — mobile app, online payment, full CRM, advanced scoring, brand identity — is out of scope, in line with section 18 of your specification.</p>
+  </div>
+</section>
+
+<section id="planning">
+  <div class="sec-head">
+    <div class="sec-num">8</div>
+    <div class="col"><h2>Schedule</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>Eight weeks from signature to the pilot going live with real guests. A thirty-minute weekly call, and permanent access to the staging environment so you can watch it take shape rather than wait for a demo.</p>
+    <table>
+      <thead><tr><th style="width:12%">Week</th><th style="width:52%">Work</th><th>Milestone</th></tr></thead>
+      <tbody>
+        <tr><td><b>1</b></td><td>Infrastructure, database, data model, state machine; 360dialog onboarding and Meta verification started for both numbers in parallel (needs your documents)</td><td>Staging environment online</td></tr>
+        <tr><td><b>2</b></td><td>Guest-side WhatsApp integration, multi-provider AI engine, extraction and request creation</td><td>First guest conversation turning into a structured request, on a test number</td></tr>
+        <tr><td><b>3</b></td><td>Supplier number and solicitation (templates, buttons, reply capture), offers back to the guest</td><td>Complete loop live on the test numbers, open for you to use yourself — <em>payment milestone 2</em></td></tr>
+        <tr><td><b>4</b></td><td>Back-office: conversations, human takeover, requests, suppliers, AI configuration</td><td>Your operators working in the back-office</td></tr>
+        <tr><td><b>5</b></td><td>QR attribution, delivery and errands with cash advances</td><td>Errand requests running across several couriers</td></tr>
+        <tr><td><b>6</b></td><td>KPI dashboard, exports, backups and restore test</td><td>Acceptance tests from section 19 passed</td></tr>
+        <tr><td><b>7</b></td><td>Internal testing under real conditions, prompt tuning, fixes, loading the supplier and partner catalogue, documentation and handover session</td><td>System accepted and documented</td></tr>
+        <tr><td><b>8</b></td><td>Production release, first real guests, close monitoring of the first conversations</td><td>Pilot live — <em>payment milestone 3</em></td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <p><strong>The one thing outside my control.</strong> Meta business verification and template approval can take a few days or a few weeks. Both numbers are submitted in week 1 and the process depends on your company documents. Development continues in parallel on test numbers, so this delays go-live only in the worst case — but it is the single item worth starting the day we sign. Milestones move day for day with any delay on documents, catalogue or approvals from your side.</p>
+    </div>
+  </div>
+</section>
+
+<section id="budget">
+  <div class="sec-head">
+    <div class="sec-num">9</div>
+    <div class="col"><h2>Budget</h2></div>
+  </div>
+  <div class="sec-body">
+    <h3>9.1 V1 — the complete pilot</h3>
+    <p>All amounts in US dollars, excluding VAT. VAT is added on the invoice at the rate in force.</p>
+    <table>
+      <thead><tr><th style="width:52%">Lot</th><th style="width:22%">Timing</th><th class="num">Amount, ex. VAT</th></tr></thead>
+      <tbody>
+        <tr><td>A. Setup and infrastructure</td><td>Week 1</td><td class="num">$350</td></tr>
+        <tr><td>B. WhatsApp integration, two numbers</td><td>Weeks 2 – 3</td><td class="num">$950</td></tr>
+        <tr><td>C. AI engine and orchestration</td><td>Weeks 2 – 3</td><td class="num">$1,050</td></tr>
+        <tr><td>D. Backend and data model</td><td>Weeks 1 – 3</td><td class="num">$1,000</td></tr>
+        <tr><td>E. Operator back-office</td><td>Week 4</td><td class="num">$950</td></tr>
+        <tr><td>F. QR tracking and attribution</td><td>Week 5</td><td class="num">$250</td></tr>
+        <tr><td>G. Delivery and errands</td><td>Week 5</td><td class="num">$350</td></tr>
+        <tr><td>H. KPI dashboard, exports, documentation and handover</td><td>Weeks 6 – 7</td><td class="num">$700</td></tr>
+        <tr class="total"><td>Total V1, live in week 8</td><td>8 weeks</td><td class="num">$5,600</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:34px">9.2 Phase 2</h3>
+    <p>The four features in section 7.1 are priced at <strong>$400</strong> when they are committed together with V1, and delivered during the pilot's first month once there is data to tune them against. Commissioned separately after the pilot, they are <strong>$600</strong>: the work is the same, but re-opening a finished project means re-mobilising, re-testing and re-deploying it.</p>
+    <table>
+      <thead><tr><th style="width:74%">Two ways to take it</th><th class="num">Total, ex. VAT</th></tr></thead>
+      <tbody>
+        <tr><td>V1 now, decide on phase 2 after the pilot</td><td class="num">$5,600 <span class="muted">then $600</span></td></tr>
+        <tr><td><b>V1 and phase 2 together</b> — everything committed at signature</td><td class="num"><b>$6,000</b></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:34px">9.3 Maintenance and support</h3>
+    <p>The first month after go-live is included, at no cost — that month belongs to the launch, not to a contract. From month two, maintenance runs at $300 per month excluding VAT, with a minimum of three months, renewed in three-month blocks. Three months paid in advance is $800 instead of $900. Either of us can decline a renewal at the end of a block, with the system, the documentation and the accounts staying in your hands.</p>
+    <table>
+      <thead><tr><th style="width:34%">What is covered</th><th>How fast</th></tr></thead>
+      <tbody>
+        <tr><td><b>Something is broken</b><br><span class="muted">messages not arriving, the AI not answering, the back-office down, data not saving</span></td><td>Answered within 3 hours and, once the cause is identified, fixed and deployed within 5 hours. Reports taken between 08:00 and 22:00 Morocco time, any day of the week; anything later is picked up the following morning. Where the fault sits with Meta, 360dialog or a model provider, you get the diagnosis and a workaround inside the same window.</td></tr>
+        <tr><td><b>Monitoring and upkeep</b></td><td>Continuous: server and backup monitoring, security updates, restore tests, and tuning of the prompts and AI behaviour as the pilot teaches us what guests actually ask for.</td></tr>
+        <tr><td><b>Small changes</b><br><span class="muted">wording and prompts, a new field, a new dashboard column or export, a new template, a new category or operator account, a filter or threshold</span></td><td>Included in the retainer and scheduled rather than rushed — typically within a few working days of the request. These do not run on the incident clock, because a same-hour response to a wording change helps neither of us.</td></tr>
+        <tr><td><b>New features</b><br><span class="muted">a new screen, a new integration, a new service or channel</span></td><td>Sized on what the feature actually is, with a date and a price agreed in writing before any work starts. There is no hour counter and no surprise invoice.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:34px">9.4 Payment terms</h3>
+    <div class="price-line"><span>On signature</span><b>40%</b></div>
+    <div class="price-line"><span>When the test version is live on the test numbers and you can run the complete loop yourself, end of week 3</span><b>40%</b></div>
+    <div class="price-line"><span>On pilot go-live in production, against handover of the deliverables</span><b>20%</b></div>
+    <p>Work starts as soon as the first payment is received — I have capacity now and no queue in front of you — and the eight-week schedule runs from that date.</p>
+    <p class="small muted" style="margin-top:16px">Invoiced by a company, in dirhams at the exchange rate on the invoice date. Prices exclude VAT and exclude the third-party services in section 11, which you contract and pay directly. A milestone is treated as accepted five working days after delivery unless you raise something in writing.</p>
+  </div>
+</section>
+
+<section id="roi">
+  <div class="sec-head">
+    <div class="sec-num">10</div>
+    <div class="col"><h2>What the pilot has to sell to pay for itself</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>The build is a one-off $5,600. Running the service afterwards costs $175 to $260 a month in third-party services — servers, WhatsApp access, message fees, model usage — detailed in section 11. Maintenance, if you keep it, adds $300. So the service has to cover somewhere between $215 and $515 a month depending on whether I stay on the retainer.</p>
+    <p>Three assumptions turn that into a number, and all three are yours to replace once the catalogue is negotiated: an average booking of <strong>600 MAD</strong> (about $63), a platform margin of <strong>15%</strong>, so roughly <strong>$9.50 per booking</strong>, and a funnel where 100 scans produce about 70 conversations, 45 requests and 18 bookings.</p>
+
+    <div class="bignum">$170 per 100 scans</div>
+    <p>About $1.70 of margin for every guest who scans a QR code, whether or not they book. That is the unit that matters, because scans are the only thing your partners control.</p>
+
+    <div class="bigpair">
+      <div>
+        <div class="n">54 bookings a month</div>
+        <div class="c">Under two a day. That is the point where the service covers everything it costs to run, retainer included.</div>
+      </div>
+      <div>
+        <div class="n">10 scans a day</div>
+        <div class="c">The same threshold seen from the partner's desk: 300 scans a month. Without the retainer, 4 a day is enough.</div>
+      </div>
+    </div>
+    <p>Across ten partner riads, 10 scans a day is one guest per riad every other day.</p>
+    <p>For scale: Morocco recorded 19.8 million arrivals in 2025 according to the Ministry of Tourism, and Marrakech alone accounts for close to 40% of the country's tourist visits. The pilot does not need a share of that market. It needs ten people a day to scan a card on a reception desk.</p>
+
+    <table style="margin-top:30px">
+      <thead><tr><th style="width:22%">Scenario</th><th class="num">Scans / month</th><th class="num">Bookings</th><th class="num">Margin</th><th class="num">Running cost</th><th class="num">Net</th><th class="num">Build repaid</th></tr></thead>
+      <tbody>
+        <tr><td><b>Quiet</b><br><span class="muted">few partners actually pushing the card</span></td><td class="num">220 · 7/day</td><td class="num">40</td><td class="num">$380</td><td class="num">$515</td><td class="num">−$135</td><td class="num">not yet</td></tr>
+        <tr><td><b>Pilot target</b><br><span class="muted">the case to plan on</span></td><td class="num">660 · 22/day</td><td class="num">120</td><td class="num">$1,140</td><td class="num">$515</td><td class="num">$625</td><td class="num">~9 months</td></tr>
+        <tr><td><b>Strong</b><br><span class="muted">catalogue working, partners engaged</span></td><td class="num">1,300 · 43/day</td><td class="num">237</td><td class="num">$2,250</td><td class="num">$560</td><td class="num">$1,690</td><td class="num">~3 months</td></tr>
+        <tr><td><b>At scale</b><br><span class="muted">25 partners, the card handed out as routine</span></td><td class="num">3,000 · 100/day</td><td class="num">545</td><td class="num">$5,180</td><td class="num">$700</td><td class="num">$4,480</td><td class="num">~6 weeks</td></tr>
+      </tbody>
+    </table>
+
+    <p>The last line is not a fantasy, and it is the one worth aiming at. A hundred scans a day across twenty-five partner riads is four guests per partner per day — in a city where hotels and riads turn over thousands of guests every night. At that volume the build is repaid inside the first six weeks of the pilot and the service clears more each month than it cost to create, on a cost base that has barely moved: the servers are the same, the numbers are the same, and only message fees and model usage grow with the traffic. That gap between flat costs and growing revenue is the whole argument for building the machine properly once.</p>
+
+    <p>Two levers move these numbers more than anything technical. The first is margin: at 20% instead of 15%, the pilot-target case repays the build in about six months rather than nine. The second is the mix — a 1,200 MAD private transfer or a day trip costs the same to process as a 300 MAD dinner and carries four times the margin, which argues for loading the catalogue with high-value categories early rather than proving the concept on restaurant tables alone.</p>
+
+    <div class="callout">
+      <p><strong>The second city is where the economics change.</strong> Everything above pays for building the machine once. Opening Agadir, Casablanca or Essaouira afterwards is a new partner list and a new supplier catalogue loaded through the back-office — no new development, no second server, no second WhatsApp number. The marginal cost of a request in city two is the same five to twelve cents of model usage plus Meta's message fee. That is the real reason to spend eight weeks building this properly rather than eight weeks assembling something that only works in Marrakech.</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>And if the quiet scenario happens.</strong> That is not a failure, it is an answer — bought for roughly the cost of two months of a junior salary, and the dashboard will tell you precisely where the loop broke: partners not handing out the card, guests not converting, or suppliers not answering. Each of those has a different fix, and all three are cheaper than building the product twice.</p>
+    </div>
+  </div>
+</section>
+
+<section id="running">
+  <div class="sec-head">
+    <div class="sec-num">11</div>
+    <div class="col"><h2>What it costs to run</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>Figures below are for the pilot's expected volume — around 300 requests a month, an average of three suppliers asked per request, so roughly 900 outbound template messages. Every account is opened in your name and billed to you directly. Maintenance is not in this table: it is a separate choice, priced in section 9.3.</p>
+    <table>
+      <thead><tr><th style="width:30%">Service</th><th style="width:42%">Used for</th><th class="num">Monthly estimate</th></tr></thead>
+      <tbody>
+        <tr><td><b>Hetzner</b></td><td>Server and backup storage: backend, database, back-office and dashboard</td><td class="num">$15 – 35</td></tr>
+        <tr><td><b>360dialog</b></td><td>WhatsApp Business API access, two numbers, flat fee with no markup on Meta's fees</td><td class="num">$118</td></tr>
+        <tr><td><b>Meta messaging fees</b></td><td>Template messages to suppliers. Replies inside the 24-hour window a guest opens are <strong>free</strong>, and each number carries a monthly allowance of 1,000 <strong>free</strong> service messages</td><td class="num">$25 – 60</td></tr>
+        <tr><td><b>LLM APIs</b></td><td>Extraction, dialogue, interpretation of supplier replies — scales with conversations, see below</td><td class="num">$15 – 35</td></tr>
+        <tr><td><b>Monitoring and transactional email</b></td><td>Alerts, password resets</td><td class="num">$0 – 10</td></tr>
+        <tr class="total"><td>Estimated total at pilot volume</td><td></td><td class="num">$175 – 260</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted" style="margin-top:-8px">One-time and not included above: the domain name, bought from the registrar of your choice at their price and renewed yearly.</p>
+
+    <h3 style="margin-top:30px">11.1 How the AI cost moves with usage</h3>
+    <p>The only line that grows meaningfully with success is model usage. A complete request — greeting, extraction, one or two follow-up questions, interpretation of three supplier replies, and the offer written back to the guest — costs roughly $0.05 to $0.12 with a mid-tier model, and about a third of that with the cheaper models reachable through OpenRouter.</p>
+    <table>
+      <thead><tr><th style="width:38%">Requests per month</th><th style="width:30%" class="num">Mid-tier models</th><th class="num">Low-cost models</th></tr></thead>
+      <tbody>
+        <tr><td>100 — a slow start</td><td class="num">$5 – 12</td><td class="num">$2 – 4</td></tr>
+        <tr><td>300 — pilot target</td><td class="num">$15 – 35</td><td class="num">$5 – 12</td></tr>
+        <tr><td>600 — a busy month</td><td class="num">$30 – 70</td><td class="num">$10 – 25</td></tr>
+        <tr><td>1,000 — beyond the pilot</td><td class="num">$50 – 115</td><td class="num">$18 – 40</td></tr>
+      </tbody>
+    </table>
+    <p>This is the practical reason for the switchable engine: run the pilot on the best model available, then move the routine steps to a cheaper one once you know which conversations actually need the quality, and watch the effect on the same dashboard. At every volume in that table, the model bill stays smaller than what two bookings a month bring in.</p>
+    <div class="callout">
+      <p><strong>A Meta pricing change lands on 1 October 2026, before your pilot goes live.</strong> Meta starts charging for service messages and for utility templates sent inside the customer window, with an allowance of 1,000 free service messages per number per month, and Morocco moves onto its own rate card with higher utility rates. At pilot volume the allowance absorbs most of it, and the estimate above already assumes the new model. Two design choices keep the line small: guest conversations stay inside the free window wherever possible, and each supplier request is one structured template rather than a back-and-forth. Exact figures are confirmed against Meta's published rates at launch.</p>
+    </div>
+  </div>
+</section>
+
+<section id="risks">
+  <div class="sec-head">
+    <div class="sec-num">12</div>
+    <div class="col"><h2>Risks, and what happens to each</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>Every one of these is real. None of them is a reason not to run the pilot; all of them are cheaper to name now than to discover in week six.</p>
+    <table>
+      <thead><tr><th style="width:30%">Risk</th><th>What absorbs it</th></tr></thead>
+      <tbody>
+        <tr><td><b>Meta verification or template approval drags</b></td><td>Both numbers submitted in week 1, development continues on test numbers, and milestones move day for day rather than compressing the work. This is the likeliest cause of a late launch and the one we start first.</td></tr>
+        <tr><td><b>Suppliers do not answer on WhatsApp</b></td><td>Replies are one tap on a button, not a typed message. The operator can call anyone directly and record the answer by hand. And from the first week you have response time, refusal rate and silence rate per supplier — so a supplier who never answers is a data point you act on, not a mystery.</td></tr>
+        <tr><td><b>A reply in Darija is misread</b></td><td>Anything ambiguous is flagged for the operator rather than guessed. Prompts are tuned weekly through the first month, which is included.</td></tr>
+        <tr><td><b>A model provider fails, changes its prices or degrades</b></td><td>Four providers behind one switch, changed from the back-office without a redeploy or a code change.</td></tr>
+        <tr><td><b>Guests do not scan, or scan and do not convert</b></td><td>Scans are counted before the conversation exists, so the dashboard separates a partner problem from a product problem in the first fortnight. Two different problems, two different and much cheaper fixes.</td></tr>
+        <tr><td><b>The legal or payment model changes mid-build</b></td><td>V1 never moves money: payment happens with the supplier and the system records amounts. If your counsel lands somewhere else, that is a new scope item on a stable base, not a rewrite.</td></tr>
+        <tr><td><b>I am one person</b></td><td>The fair question, so: your repository from week 1, a mainstream stack any Next.js developer can read, no account or service held in my name, documentation and a live handover session in week 7 — before the final payment. At any point from week 1 onwards you could hand this to another developer and they would not start from zero. That is the same guarantee your specification asks for in section 17, and I would rather you have it than trust me.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="sec-head">
+    <div class="sec-num">13</div>
+    <div class="col"><h2>Personal data</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>The system holds guests' phone numbers and conversations, and a large share of your guests will be European. This is a short section because the pilot is designed to hold as little as possible, but it is not a section to skip.</p>
+    <ul class="plain">
+      <li><b>What is stored:</b> WhatsApp number, first name if the guest gives one, conversation history, requests, supplier replies and transaction amounts. No card numbers, no identity documents, no payment data — the pilot never handles a payment.</li>
+      <li><b>Where:</b> a server in Germany, inside the EU, with encrypted transport, daily backups and access limited to named operator accounts, each action attributable to a person.</li>
+      <li><b>For how long:</b> a configurable retention period, set at delivery. Twelve months for conversations is a sensible pilot default, with a documented procedure to delete an individual guest's data on request — a European guest can ask, and you will need to be able to do it.</li>
+      <li><b>Who else touches it:</b> Meta and 360dialog carry the messages, and the active model provider receives conversation text to generate a reply. Under the standard business terms of the providers proposed here, that content is not used to train their models. All of them are listed as subprocessors in the delivery documentation.</li>
+      <li><b>Moroccan law:</b> processing personal data requires a declaration to the CNDP under law 09-08. That filing is yours to make as the data controller; I provide the technical description it needs — data categories, purpose, retention, hosting location and the subprocessor list — as part of the documentation.</li>
+      <li><b>Suppliers:</b> their consent to receive WhatsApp business messages is collected when they join the catalogue, and recorded against their record.</li>
+    </ul>
+    <p class="small muted">This describes how the system is built, not legal advice. Your counsel should confirm the filing and the retention period before the pilot opens to real guests.</p>
+  </div>
+</section>
+
+<section id="deliverables">
+  <div class="sec-head">
+    <div class="sec-num">14</div>
+    <div class="col"><h2>Deliverables</h2></div>
+  </div>
+  <div class="sec-body">
+    <ul class="plain">
+      <li>Complete source code, transferred to a Git repository owned by you, with the Docker images and deployment files.</li>
+      <li>Staging and production environments running on your own infrastructure and accounts.</li>
+      <li>Installation, deployment, configuration and operations documentation — environment variables, accounts, procedures, and what to do when something breaks.</li>
+      <li>Documentation of the data model, the state machine and the prompts.</li>
+      <li>The list of third-party services with their monthly cost, and the list of open-source components with their licences — every framework and library the system is built on, named with its licence, so your counsel can confirm nothing in the stack restricts you from selling or licensing the product later.</li>
+      <li>A backup and restore procedure that has been tested, not just written.</li>
+      <li>CSV export on every list in the back-office — suppliers, customers, requests, offers, bookings, transactions, partners — so your team gets its data from a button rather than from the database.</li>
+      <li>A live handover session with you and the developer who will take the system on, walking through the architecture, the deployment and the operational procedures, with time for their questions. Held in week 7, and repeated if you bring someone new onto the project during the maintenance period.</li>
+    </ul>
+    <div class="callout">
+      <p><strong>When ownership transfers.</strong> The deliverables above — repository ownership, documentation and the handover session — are transferred on receipt of the final payment at go-live. Until then the system runs on your infrastructure and you can use and test it freely; what changes hands at the end is ownership of the code and everything needed to take it elsewhere. The project-specific code becomes yours in full; the generic components I bring with me, including the multi-provider AI layer, stay mine and come with a perpetual licence to use, modify and extend them within this project.</p>
+    </div>
+  </div>
+</section>
+
+<section id="assumptions">
+  <div class="sec-head">
+    <div class="sec-num">15</div>
+    <div class="col"><h2>Assumptions and conditions</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>These are the points the quote and the schedule rest on. Worth reading once now rather than discovering later.</p>
+    <ul class="plain">
+      <li>You provide a Meta Business account, or create it with my help, along with two dedicated phone numbers, and start business verification in week 1.</li>
+      <li>You provide the initial supplier and partner catalogue as a spreadsheet, and obtain supplier consent to receive WhatsApp messages from the system.</li>
+      <li>The operating rules for errands — advance limits, who authorises them, what happens on a refusal or a missing receipt — are defined by you before that service is switched on with real guests.</li>
+      <li>Hetzner, 360dialog, Meta, domain and LLM accounts are opened in your name and paid directly by you.</li>
+      <li>The pilot runs with around two operators, not around the clock. The system supports multiple operator accounts from V1.</li>
+      <li>Milestones move day for day with delays on your side — documents, catalogue, approvals or feedback.</li>
+      <li>Anything outside the scope described here is agreed in writing and quoted before the work starts.</li>
+      <li>Once the service is publicly launched, I may reference the project and your name as a client, subject to confidentiality being maintained until then.</li>
+      <li>This proposal is valid for 30 days.</li>
+    </ul>
+    <div class="callout">
+      <p><strong>One practical recommendation for the accounts.</strong> Create a single Google account for the project — something like operations@ your domain — and use it to open every third-party account: Meta Business, 360dialog, Hetzner, the domain registrar, the model providers. Share its access with me for the duration of the build. Everything is then registered to you from day one, verification emails and recovery codes all land in one inbox, I can set up and debug without asking you to forward a code at eleven at night, and handing the project to another developer later is one password change rather than a dozen account migrations. Two-factor authentication stays enabled on that account throughout, and I hand back access at the end of the engagement.</p>
+    </div>
+    <p>I am available for any question before our call on Thursday 17 September.</p>
+  </div>
+</section>
+
+<section id="seo">
+  <div class="sec-head">
+    <div class="sec-num">16</div>
+    <div class="col"><h2>An option for later: being found instead of being handed out</h2></div>
+  </div>
+  <div class="sec-body">
+    <p>The pilot's acquisition is partner QR codes. That is the right first channel — it costs nothing, it puts the service in a guest's hand at the moment they need something, and it is measurable. It is also capped by how many partners hand out how many cards.</p>
+    <p>The second channel is search, and this product is unusually well placed for it. Travellers plan Marrakech before they land: the rooftop, the airport transfer, the day trip to the Atlas, what to do with three days. Meanwhile your supplier catalogue is already structured content — categories, zones, price bands, services — which is exactly what search engines reward when it is published properly. Each of those pages ends at the same WhatsApp link with its own tracking code, so organic visitors arrive in the same funnel, the same back-office and the same dashboard as a guest who scanned a card at a riad. Nothing new to build in the product; the attribution mechanism in section 4.5 already handles it.</p>
+    <p>I have deliberately not put a price on this. Scoping it honestly needs the domain, a look at what competitors already rank for, and above all the pilot's own data on which categories actually convert — none of which exists yet. Quoting it now would be a number pulled out of the air, and you would be right not to trust it. It is worth discussing once the pilot has run a month.</p>
+    <div class="rec">
+      <p>For what it is worth, this proposal exists because of that work. You did not find me through an agency, an ad or an introduction — you found my portfolio in a search result, read the case study on the WhatsApp and AI project, and wrote to me. That is the whole mechanism, applied to my own site.</p>
+    </div>
+    <div class="signoff">
+      <b>Faouzi El Bakri</b>
+      AI Engineer &amp; Full-Stack Developer<br>
+      <a href="https://faouzielbakri.com">faouzielbakri.com</a> · +212 6 32 32 38 56
+    </div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

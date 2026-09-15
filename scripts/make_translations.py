@@ -1,0 +1,66 @@
+import json
+
+T = {}
+
+# COVER (9)
+T["cover_0"] = "Proposition technique et financière · Réponse au cahier des charges MVP, version 4"
+T["cover_1"] = "Un concierge IA qui tourne sur WhatsApp."
+T["cover_2"] = "Un pilote complet et opérationnel à Marrakech : les voyageurs s'expriment en langage naturel, les prestataires vérifiés répondent sur WhatsApp, et vos opérateurs voient et contrôlent tout entre les deux."
+T["cover_3"] = "<span>Préparé pour</span><b>Fred Valezy — Ballroom Prod</b>"
+T["cover_4"] = "<span>Préparé par</span><b>Faouzi El Bakri — AI Engineer &amp; Full-Stack Developer</b>"
+T["cover_5"] = "<span>Contact</span><b>faouzielbakri.com · +212 6 32 32 38 56</b>"
+T["cover_6"] = "<span>Date</span><b>16 septembre 2026</b>"
+T["cover_7"] = "<span>Validité</span><b>30 jours</b>"
+T["cover_8"] = "Confidentialité réciproque. Préparé dans le cadre de l'accord de confidentialité signé le 13 septembre 2026 et couvrant le projet décrit dans le cahier des charges version 4 — et le contenu technique de ce document, l'architecture, le modèle de données et la conception de l'attribution sont mon propre travail, partagé avec vous dans le seul but d'évaluer cette proposition et non pour utilisation, reproduction ou transmission à un tiers. Aucun de nous ne devrait retrouver ses éléments entre les mains d'un tiers."
+
+# THREAD (12)
+T["thread_0"] = "Ce à quoi ressemble le pilote, de bout en bout"
+T["thread_1"] = "Une demande, du code QR dans un riad jusqu'à une réservation confirmée. La colonne de gauche montre ce que le voyageur, l'IA et le prestataire disent sur WhatsApp ; la colonne de droite montre ce que le système fait derrière chaque échange."
+T["thread_2"] = "<span class=\"who\">Voyageur · a scanné le QR au Riad El Fenn</span>Bonjour ! On cherche un bon rooftop pour 4 ce soir, bonne cuisine, pas trop bruyant, environ 300-350 dh par personne. Que nous recommandez-vous ?"
+T["thread_3"] = "<b>Attribution enregistrée dès le scan.</b> Le code QR pointe vers notre propre lien, qui enregistre le scan et le partenaire avant de rediriger vers WhatsApp. L'attribution est déjà créditée avant même que le voyageur ne tape un mot."
+T["thread_4"] = "<span class=\"who\">Concierge · IA</span>Bien reçu — une table en rooftop pour 4 ce soir, bonne cuisine, autour de 300-350 dh. Je vérifie ce qui est ouvert avec des tables disponibles dès maintenant et je vous envoie les deux meilleures options dans deux minutes."
+T["thread_5"] = "<b>Demande créée, #1042.</b> Catégorie, date, heure, nombre de personnes, budget et zone extraits dans des champs structurés. L'opérateur la voit apparaître sur son tableau de bord."
+T["thread_6"] = "<span class=\"who\">Prestataire · répondant en français, sur le numéro prestataire</span>Dispo à 20h15, table terrasse, 280 dh/pers hors boissons."
+T["thread_7"] = "<b>Trois prestataires ciblés et sollicités.</b> La sélection est une requête en base de données sur la catégorie, la zone, le standing, la fourchette de prix et la capacité — pas une supposition du modèle. Réponse capturée à 4 minutes : disponible, 280 MAD, 20h15."
+T["thread_8"] = "<span class=\"who\">Concierge · options validées par l'opérateur</span>Deux rooftops peuvent vous accueillir : un à 20h15 à 280 dh par personne, un à 20h30 à 310 dh avec un menu fixe. Lequel souhaitez-vous que je réserve ?"
+T["thread_9"] = "<b>Seules les données enregistrées sont citées.</b> Les prix, horaires et disponibilités proviennent des réponses des prestataires stockées dans la base de données. L'IA n'en invente jamais."
+T["thread_10"] = "<span class=\"who\">Voyageur</span>Le premier s'il vous plaît 🙏"
+T["thread_11"] = "<b>Statut : réservé.</b> Transaction enregistrée avec le prix client, le montant prestataire, la marge plateforme et la part du partenaire. Temps de réponse consignés pour le tableau de bord du pilote."
+
+# SUMMARY (8)
+T["summary_0"] = "Synthèse"
+T["summary_1"] = "Vous recherchez un MVP simple, robuste et évolutif pour tester un service de conciergerie sur WhatsApp à Marrakech avec de vrais voyageurs. Un client scanne le code QR d'un partenaire, décrit ce qu'il souhaite avec ses propres mots, l'IA structure la demande, le système interroge les prestataires pertinents sur WhatsApp, un opérateur supervise, et le client reçoit une ou plusieurs options jusqu'à la réservation. Autour de cette boucle : un back-office léger, une reprise humaine à tout instant, une attribution par partenaire et des chiffres que vous pouvez réellement lire."
+T["summary_2"] = "Ce document répond point par point au cahier des charges version 4 — l'architecture recommandée, pourquoi cela est écrit en code plutôt qu'assemblé dans un outil d'automatisation, le modèle de données, ce qui va dans la V1 et ce qui attend la phase 2, un planning de huit semaines jusqu'au pilote en production, un prix par lot, ce que le pilote doit générer pour s'amortir, et le coût d'exploitation mensuel."
+T["summary_3"] = "Quatre recommandations"
+T["summary_4"] = "<b>Bâtir le produit comme un seul ensemble, pas en deux moitiés.</b> Les pièces dépendent les unes des autres — une demande ne sert à rien sans prestataire à interroger, les réponses des prestataires ne servent à rien sans back-office pour les lire, et rien de tout cela n'a de sens sans attribution et mesure. La V1 est la boucle complète, courses comprises, chaque partie dans sa forme robuste la plus simple. La phase 2 ne retient que ce que les données réelles du pilote doivent décider."
+T["summary_5"] = "<b>Deux numéros WhatsApp, pas un seul.</b> Un pour les voyageurs, un pour les prestataires. Cela sépare les deux publics au niveau qui compte : la note de qualité, les limites d'envoi, le nom d'affichage et les ensembles de templates sont indépendants, de sorte qu'un prestataire qui bloque ou signale le numéro prestataire ne peut jamais affecter le numéro sur lequel vos voyageurs écrivent."
+T["summary_6"] = "<b>Rendre le moteur IA commutable dès le premier jour.</b> Google, Anthropic, OpenAI et OpenRouter sont tous supportés dans la V1, le modèle actif étant choisi dans le back-office. Aucun verrouillage fournisseur, et vous pouvez comparer la qualité, la latence et le coût sur vos propres conversations pendant le pilote."
+T["summary_7"] = "<b>Mesurer le pilote au cœur même du produit.</b> Le tableau de bord KPI passe dans la V1. Un pilote existe pour déboucher sur une décision, et cette décision nécessite que la conversion, les temps de réponse et l'attribution soient visibles sur un écran que votre équipe ouvre chaque matin — pas extraits d'une base de données par un développeur."
+
+# WHOAMI (13)
+T["whoami_0"] = "Qui vous recrutez"
+T["whoami_1"] = "Vous m'avez demandé quel était mon rôle exact sur RESO Khdma et ce que j'avais choisi techniquement pour WhatsApp et l'IA. La réponse courte à la première partie : l'intégralité. C'était une livraison en freelance que j'ai conçue, développée et déployée seul — l'intégration de l'API WhatsApp Business, l'agent conversationnel, le matching sémantique, la base de données et la partie opérateur."
+T["whoami_2"] = "Les choix qui la sous-tendent sont ceux qui ont façonné cette proposition :"
+T["whoami_3"] = "<b>Tool calling avec des contrats JSON stricts plutôt que des réponses libres.</b> L'agent pouvait interroger la base de données, faire correspondre un profil, créer un compte — chacun via une fonction définie avec un schéma défini. C'est le même mécanisme proposé ici dans le lot C, et c'est pourquoi l'IA dans votre système peut rechercher des prestataires mais ne peut pas en inventer un."
+T["whoami_4"] = "<b>Recherche sémantique plutôt que correspondance par mots-clés.</b> Un travailleur décrit ce qu'il fait avec ses propres mots et le système trouve des offres dont la formulation ne correspond pas du tout. Votre version de ce problème est un voyageur demandant « un endroit calme avec un bon tajine, pas touristique » face à un catalogue rédigé en catégories."
+T["whoami_5"] = "<b>Darija, arabe et français dans un flux conversationnel unique,</b> pour des utilisateurs qui ne sont pas techniques et n'adaptent pas leur langage pour une machine. Vos prestataires écriront de la même façon."
+T["whoami_6"] = "RESO Khdma n'est pas le seul système WhatsApp que j'ai en production. Belmo, une boutique en ligne K-beauty axée sur l'arabe que j'ai construite et que j'auto-héberge, fait tourner un agent WhatsApp plus simple à ses côtés, gérant les questions clients et les commandes — 818 clients enregistrés et 629 commandes au cours de ses deux premiers mois. Plus simple que RESO, mais un vrai système avec de vrais clients à l'autre bout."
+T["whoami_7"] = "Trois autres éléments sont directement pertinents par rapport à ce que vous demandez :"
+T["whoami_8"] = "<b>FASL</b> (fasl.ma), dont je suis co-fondateur et ingénieur en chef : un pipeline multi-agents qui rédige des recours juridiques marocains, appuyé par une couche RAG sur les codes juridiques. Construit dans un domaine où une citation inventée est une catastrophe — ce qui est exactement la discipline derrière « le concierge ne cite que les réponses enregistrées des prestataires » dans la section 4.3."
+T["whoami_9"] = "<b>Magical Hekaya</b> (magicalhekaya.com), mon propre produit d'IA grand public avec des clients payants : un pipeline multi-modèles avec des contrats de sortie structurés entre les étapes. La couche de changement de fournisseur que je propose dans le lot C n'est pas un diagramme — j'en ai construit et opéré une."
+T["whoami_10"] = "<b>Auto-hébergement.</b> Belmo tourne sur Hetzner avec Docker et Dokploy, la même infrastructure proposée ici. Je n'apprends pas votre stack sur votre budget."
+T["whoami_11"] = "Formation : Master en Big Data et Intelligence Artificielle de l'Université Ibn Zohr, avec un mémoire sur la détection de défauts atteignant 96,96 % de mAP50, après une Licence en Informatique ; six ans de livraison de logiciels en production ; seize produits en ligne, dont quatre sont les miens. Arabe et Darija natifs, français et anglais courants."
+T["whoami_12"] = "<b>Et ce que je ferais différemment.</b> Sur RESO Khdma, l'interprétation du texte libre était ajustée au comportement d'un seul modèle, ce qui s'est avéré coûteux à réajuster lorsque le modèle a changé. C'est pourquoi cette proposition place quatre fournisseurs derrière un commutateur unique, et pourquoi une réponse de prestataire ambiguë est signalée à votre opérateur plutôt que résolue par une supposition confiante. Les erreurs sont déjà payées."
+
+# UNDERSTANDING (7)
+T["understanding_0"] = "Comment je lis le projet"
+T["understanding_1"] = "Le produit est un intermédiaire conversationnel entre trois populations : les voyageurs, les prestataires de services (restaurants, transport, activités, bien-être) et les partenaires prescripteurs (riads, hôtels, boutiques) identifiés par code QR. La valeur du pilote n'est pas le chatbot. C'est la boucle complète — demande, sollicitation, réponses, offre, réservation — avec des données fiables à chaque étape."
+T["understanding_2"] = "Trois principes traversent l'ensemble de la proposition, conformément à votre cahier des charges :"
+T["understanding_3"] = "L'IA ne décide jamais d'un fait commercial. La disponibilité, les prix et les caractéristiques des prestataires proviennent uniquement du catalogue et des réponses enregistrées des prestataires."
+T["understanding_4"] = "Un humain reste dans la boucle : supervision, prise de contrôle sur le même numéro, et le choix final laissé à l'opérateur dès qu'il le souhaite."
+T["understanding_5"] = "Le backend est indépendant du canal. WhatsApp est le premier canal ; une application web ou une application mobile peut être branchée sur le même moteur plus tard sans réécriture."
+T["understanding_6"] = "Un détail local mérite d'être souligné : vos prestataires à Marrakech répondront en français, en darija, parfois dans un mélange des deux, et souvent en une seule ligne sans ponctuation. Les réponses en texte libre sont interprétées par l'IA et signalées à l'opérateur lorsqu'elles sont ambiguës, plutôt que devinées en silence."
+
+print(f"Part 1 done: {len(T)} items.")
+with open("scripts/i18n_data/part1.json", "w", encoding="utf-8") as f:
+    json.dump(T, f, ensure_ascii=False, indent=2)
