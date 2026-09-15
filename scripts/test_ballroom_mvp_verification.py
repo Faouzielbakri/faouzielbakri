@@ -205,14 +205,11 @@ for lang in ["en", "fr"]:
     meta_text = sh.find("div", class_="meta").text
     assert "7 min" in meta_text and "17 sections" in meta_text
 
-# 3. Section 0: Chat replay and voice note
+# 3. Section 0: Chat replay toolbar and voice note removal
 assert soup.find("button", id="btn-replay-en") is not None
 assert soup.find("button", id="btn-replay-fr") is not None
-vn_en = soup.find("div", class_="sheet lang-en").find("div", class_="voice-note-mockup")
-vn_fr = soup.find("div", class_="sheet lang-fr").find("div", class_="voice-note-mockup")
-assert vn_en is not None and vn_fr is not None
-assert vn_en.find("button", class_="btn-voice-play") is not None
-assert vn_en.find("div", class_="voice-waveform") is not None
+assert soup.find("div", class_="replay-info") is not None
+assert soup.find("div", class_="voice-note-mockup") is None  # Audio note player removed as requested
 
 # 4. Section 10: ROI simulator
 sim_en = soup.find("div", id="roi-sim-en")
@@ -264,7 +261,7 @@ for span in cur_spans[:4]:
 print_block = html[html.find("@media print"):]
 assert "#reading-progress" in print_block
 assert ".chat-replay-bar" in print_block
-assert ".voice-note-mockup" in print_block
+assert ".action-dock" in print_block
 assert ".roi-simulator" in print_block
 assert ".action-deck" in print_block
 assert ".jump-dropdown" in print_block

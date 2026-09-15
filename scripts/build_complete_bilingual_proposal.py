@@ -47,74 +47,51 @@ fr_sheet_inner = fr_sheet_inner.replace(
     "<div><span>Validité</span><b>30 jours</b></div>\n    <div><span>Temps de lecture</span><b>⏱️ ~7 min · 17 sections</b></div>"
 )
 
-# --- FEATURE 2: Section 0 Chat Replay Toolbar & Voice Note Mockup ---
-replay_bar_en = """<div class="chat-replay-bar" role="toolbar" aria-label="Conversation simulation controls">
-  <button type="button" class="btn-replay" id="btn-replay-en" aria-label="Replay simulated conversation">
-    <svg class="play-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-    <span>Replay Chat Flow</span>
+# --- FEATURE 2: Section 0 Chat Replay Toolbar ---
+replay_bar_en = """<div class="chat-replay-bar" role="toolbar" aria-label="Conversation simulation">
+  <div class="replay-info">
+    <span class="replay-badge">Interactive Demo</span>
+    <span class="replay-desc">Simulate the 5-step pilot flow: guest WhatsApp request → AI structured extraction → real-time supplier query → confirmed booking.</span>
+  </div>
+  <button type="button" class="btn-replay" id="btn-replay-en" aria-label="Simulate Live Exchange">
+    <svg class="play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+    <span>Simulate Live Exchange</span>
   </button>
-  <span class="replay-hint">Live simulated guest &amp; supplier interaction · 5 steps</span>
 </div>
 <div class="thread">"""
 
-replay_bar_fr = """<div class="chat-replay-bar" role="toolbar" aria-label="Contrôles de la simulation">
-  <button type="button" class="btn-replay" id="btn-replay-fr" aria-label="Rejouer la conversation">
-    <svg class="play-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-    <span>Rejouer l'échange</span>
+replay_bar_fr = """<div class="chat-replay-bar" role="toolbar" aria-label="Simulation de l'échange">
+  <div class="replay-info">
+    <span class="replay-badge">Démonstration interactive</span>
+    <span class="replay-desc">Simulez le flux pilote en 5 étapes : demande voyageur → extraction IA → consultation prestataires → confirmation.</span>
+  </div>
+  <button type="button" class="btn-replay" id="btn-replay-fr" aria-label="Simuler l'échange en direct">
+    <svg class="play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+    <span>Simuler l'échange en direct</span>
   </button>
-  <span class="replay-hint">Simulation temps réel voyageur &amp; prestataire · 5 étapes</span>
 </div>
 <div class="thread">"""
-
-voice_note_en = """<div class="voice-note-mockup" role="region" aria-label="WhatsApp voice note preview">
-  <button type="button" class="btn-voice-play" aria-label="Play sample voice note">
-    <svg class="v-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
-    <svg class="v-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-  </button>
-  <div class="voice-waveform" aria-hidden="true">
-    <span style="height:35%"></span><span style="height:60%"></span><span style="height:90%"></span><span style="height:45%"></span><span style="height:80%"></span><span style="height:55%"></span><span style="height:100%"></span><span style="height:70%"></span><span style="height:40%"></span><span style="height:85%"></span><span style="height:65%"></span><span style="height:95%"></span><span style="height:50%"></span><span style="height:75%"></span><span style="height:40%"></span><span style="height:60%"></span><span style="height:30%"></span><span style="height:70%"></span><span style="height:50%"></span><span style="height:40%"></span>
-  </div>
-  <span class="voice-timer">0:14</span>
-  <span class="voice-badge">Audio WhatsApp · Whisper</span>
-</div>"""
-
-voice_note_fr = """<div class="voice-note-mockup" role="region" aria-label="Note vocale WhatsApp">
-  <button type="button" class="btn-voice-play" aria-label="Écouter l'extrait vocal">
-    <svg class="v-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
-    <svg class="v-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-  </button>
-  <div class="voice-waveform" aria-hidden="true">
-    <span style="height:35%"></span><span style="height:60%"></span><span style="height:90%"></span><span style="height:45%"></span><span style="height:80%"></span><span style="height:55%"></span><span style="height:100%"></span><span style="height:70%"></span><span style="height:40%"></span><span style="height:85%"></span><span style="height:65%"></span><span style="height:95%"></span><span style="height:50%"></span><span style="height:75%"></span><span style="height:40%"></span><span style="height:60%"></span><span style="height:30%"></span><span style="height:70%"></span><span style="height:50%"></span><span style="height:40%"></span>
-  </div>
-  <span class="voice-timer">0:14</span>
-  <span class="voice-badge">Audio WhatsApp · Whisper</span>
-</div>"""
 
 en_sheet_inner = en_sheet_inner.replace('<div class="thread">', replay_bar_en, 1)
 fr_sheet_inner = fr_sheet_inner.replace('<div class="thread">', replay_bar_fr, 1)
 
-en_first_bubble_target = "Maybe 300 dh a head?</div>"
-en_first_bubble_replace = f"Maybe 300 dh a head?{voice_note_en}</div>"
-en_sheet_inner = en_sheet_inner.replace(en_first_bubble_target, en_first_bubble_replace, 1)
-
-fr_first_bubble_target = "Que nous recommandez-vous ?</div>"
-fr_first_bubble_replace = f"Que nous recommandez-vous ?{voice_note_fr}</div>"
-fr_sheet_inner = fr_sheet_inner.replace(fr_first_bubble_target, fr_first_bubble_replace, 1)
-
 # --- FEATURE 3: Section 10 Interactive Payback & ROI Simulator ---
-sim_html_en = """<div class="roi-simulator" id="roi-sim-en" role="region" aria-label="Interactive ROI Simulator">
+sim_html_en = """<div class="roi-simulator" id="roi-sim-en" role="region" aria-label="Interactive Revenue & Payback Simulator">
   <div class="sim-head">
+    <div class="sim-badge-wrap">
+      <span class="sim-badge">Live ROI Model</span>
+    </div>
     <div class="sim-title">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-      <span>Interactive Break-Even &amp; Revenue Simulator</span>
+      <span>Interactive Revenue &amp; Payback Simulator</span>
     </div>
-    <span class="sim-badge">Test Your Pilot Metrics</span>
+    <p class="sim-sub">Model your pilot unit economics: partner riads, daily scan volume, commission per booking, and months to recover the $5,600 development investment.</p>
   </div>
   <div class="sim-grid">
     <div class="sim-inputs">
       <div class="sim-row">
         <div class="sim-row-head">
-          <label for="sim-riads-en">Partner Riads / Hotels</label>
+          <label for="sim-riads-en">Partner Riads</label>
           <span class="sim-num" id="val-riads-en">10 riads</span>
         </div>
         <input type="range" class="sim-slider" id="sim-riads-en" min="3" max="30" value="10" step="1">
@@ -122,7 +99,7 @@ sim_html_en = """<div class="roi-simulator" id="roi-sim-en" role="region" aria-l
       </div>
       <div class="sim-row">
         <div class="sim-row-head">
-          <label for="sim-scans-en">Daily Scans per Partner</label>
+          <label for="sim-scans-en">Daily Scans / Riad</label>
           <span class="sim-num" id="val-scans-en">3 scans/day</span>
         </div>
         <input type="range" class="sim-slider" id="sim-scans-en" min="1" max="10" value="3" step="0.5">
@@ -130,7 +107,7 @@ sim_html_en = """<div class="roi-simulator" id="roi-sim-en" role="region" aria-l
       </div>
       <div class="sim-row">
         <div class="sim-row-head">
-          <label for="sim-margin-en">Avg. Commission / Booking</label>
+          <label for="sim-margin-en">Commission / Booking</label>
           <span class="sim-num" id="val-margin-en">$9.50 (~100 MAD)</span>
         </div>
         <input type="range" class="sim-slider" id="sim-margin-en" min="5" max="25" value="9.5" step="0.5">
@@ -149,9 +126,9 @@ sim_html_en = """<div class="roi-simulator" id="roi-sim-en" role="region" aria-l
         <span class="kpi-sub" id="kpi-gross-mad-en">~16,200 MAD / mo</span>
       </div>
       <div class="sim-kpi">
-        <span class="kpi-label">Net Profit after Operations</span>
+        <span class="kpi-label">Net Monthly Profit</span>
         <b class="kpi-val positive" id="kpi-net-en">+$1,024 / mo</b>
-        <span class="kpi-sub">Deducting -$515/mo running costs</span>
+        <span class="kpi-sub">After -$515/mo running costs</span>
       </div>
       <div class="sim-kpi payoff-kpi">
         <span class="kpi-label">Development Amortization</span>
@@ -162,19 +139,22 @@ sim_html_en = """<div class="roi-simulator" id="roi-sim-en" role="region" aria-l
   </div>
 </div>"""
 
-sim_html_fr = """<div class="roi-simulator" id="roi-sim-fr" role="region" aria-label="Simulateur de rentabilité">
+sim_html_fr = """<div class="roi-simulator" id="roi-sim-fr" role="region" aria-label="Simulateur d'Amortissement & Rentabilité du Pilote">
   <div class="sim-head">
+    <div class="sim-badge-wrap">
+      <span class="sim-badge">Modèle Financier Direct</span>
+    </div>
     <div class="sim-title">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-      <span>Simulateur d'Amortissement &amp; Rentabilité en Direct</span>
+      <span>Simulateur d'Amortissement &amp; Rentabilité du Pilote</span>
     </div>
-    <span class="sim-badge">Testez vos chiffres réels</span>
+    <p class="sim-sub">Modélisez la rentabilité du pilote : riads partenaires, scans quotidiens, commission par réservation et délai de retour sur investissement des 5 600 $.</p>
   </div>
   <div class="sim-grid">
     <div class="sim-inputs">
       <div class="sim-row">
         <div class="sim-row-head">
-          <label for="sim-riads-fr">Riads / Hôtels partenaires</label>
+          <label for="sim-riads-fr">Riads partenaires</label>
           <span class="sim-num" id="val-riads-fr">10 riads</span>
         </div>
         <input type="range" class="sim-slider" id="sim-riads-fr" min="3" max="30" value="10" step="1">
@@ -182,7 +162,7 @@ sim_html_fr = """<div class="roi-simulator" id="roi-sim-fr" role="region" aria-l
       </div>
       <div class="sim-row">
         <div class="sim-row-head">
-          <label for="sim-scans-fr">Scans / riad / jour</label>
+          <label for="sim-scans-fr">Scans / jour / riad</label>
           <span class="sim-num" id="val-scans-fr">3 scans/jour</span>
         </div>
         <input type="range" class="sim-slider" id="sim-scans-fr" min="1" max="10" value="3" step="0.5">
@@ -190,7 +170,7 @@ sim_html_fr = """<div class="roi-simulator" id="roi-sim-fr" role="region" aria-l
       </div>
       <div class="sim-row">
         <div class="sim-row-head">
-          <label for="sim-margin-fr">Marge moy. / réservation</label>
+          <label for="sim-margin-fr">Commission / réservation</label>
           <span class="sim-num" id="val-margin-fr">9,50 $ (~100 MAD)</span>
         </div>
         <input type="range" class="sim-slider" id="sim-margin-fr" min="5" max="25" value="9.5" step="0.5">
@@ -201,7 +181,7 @@ sim_html_fr = """<div class="roi-simulator" id="roi-sim-fr" role="region" aria-l
       <div class="sim-kpi">
         <span class="kpi-label">Volume Mensuel</span>
         <b class="kpi-val" id="kpi-vol-fr">900 scans · 162 résas</b>
-        <span class="kpi-sub">Taux de conversion ~18%</span>
+        <span class="kpi-sub">Conversion scan-résa ~18%</span>
       </div>
       <div class="sim-kpi">
         <span class="kpi-label">Marge Brute Mensuelle</span>
@@ -209,14 +189,14 @@ sim_html_fr = """<div class="roi-simulator" id="roi-sim-fr" role="region" aria-l
         <span class="kpi-sub" id="kpi-gross-mad-fr">~16 200 MAD / mois</span>
       </div>
       <div class="sim-kpi">
-        <span class="kpi-label">Bénéfice Net après Exploitation</span>
+        <span class="kpi-label">Bénéfice Net Mensuel</span>
         <b class="kpi-val positive" id="kpi-net-fr">+1 024 $/mois</b>
-        <span class="kpi-sub">Après déduction de 515 $/mois d'exploitation</span>
+        <span class="kpi-sub">Après déduction des 515 $/mois d'exploitation</span>
       </div>
       <div class="sim-kpi payoff-kpi">
         <span class="kpi-label">Amortissement du Développement</span>
         <b class="kpi-val payoff" id="kpi-payoff-fr">~5,5 mois</b>
-        <span class="kpi-sub" id="kpi-payoff-sub-fr">Remboursement intégral des 5 600 $ de dev.</span>
+        <span class="kpi-sub" id="kpi-payoff-sub-fr">Remboursement des 5 600 $ de dev.</span>
       </div>
     </div>
   </div>
@@ -226,63 +206,52 @@ roi_table_target = '<div class="table-wrap">\n<table style="margin-top:30px">'
 en_sheet_inner = en_sheet_inner.replace(roi_table_target, f"{sim_html_en}\n{roi_table_target}", 1)
 fr_sheet_inner = fr_sheet_inner.replace(roi_table_target, f"{sim_html_fr}\n{roi_table_target}", 1)
 
-# --- FEATURE 4: One-Click Kickoff Action Deck ---
-action_deck_en = """<div class="action-deck" id="action-deck-en" role="region" aria-label="Proposal acceptance and kickoff">
-  <div class="action-deck-inner">
-    <div class="action-deck-header">
-      <span class="deck-tag">Marrakech Pilot · Q4 2026</span>
-      <h3>Ready to Deploy Your AI Concierge?</h3>
-      <p class="deck-sub">The 8-week timeline begins immediately upon signature and receipt of the initial milestone. I have immediate availability.</p>
+# --- FEATURE 4: Floating Kickoff Action Dock ---
+action_dock_en = """<div class="action-dock action-deck lang-en" id="action-deck-en" role="region" aria-label="Kickoff">
+  <div class="dock-inner">
+    <div class="dock-info">
+      <div class="dock-title-row">
+        <span class="dock-badge">Marrakech Pilot</span>
+        <h3 class="dock-title">Ready to launch?</h3>
+      </div>
+      <p class="dock-sub">8-week delivery upon kickoff · Immediate availability</p>
     </div>
-    <div class="action-deck-buttons">
+    <div class="dock-actions">
       <a href="https://wa.me/212632323856?text=Hi%20Faouzi%2C%20we%20approve%20the%20Ballroom%20MVP%20proposal.%20Let%27s%20schedule%20the%20kickoff%20call." target="_blank" rel="noopener" class="btn-deck-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"></path></svg>
-        <span>Approve &amp; Schedule Kickoff (WhatsApp)</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"></path></svg>
+        <span>Approve on WhatsApp</span>
       </a>
       <a href="mailto:faouzielbakri@gmail.com?subject=Approval%20-%20Ballroom%20MVP%20Proposal&amp;body=Hi%20Faouzi%2C%0A%0AWe%20would%20like%20to%20approve%20the%20Ballroom%20MVP%20proposal%20and%20schedule%20the%20kickoff." class="btn-deck-secondary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        <span>Ask a Question / Approve via Email</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>Questions? Email</span>
       </a>
-    </div>
-    <div class="action-deck-footer">
-      <span>Valid for 30 days</span>
-      <span class="dot">·</span>
-      <span>8-Week Delivery Guarantee</span>
-      <span class="dot">·</span>
-      <span>100% Code &amp; IP Ownership</span>
     </div>
   </div>
 </div>"""
 
-action_deck_fr = """<div class="action-deck" id="action-deck-fr" role="region" aria-label="Validation de la proposition et lancement">
-  <div class="action-deck-inner">
-    <div class="action-deck-header">
-      <span class="deck-tag">Pilote Marrakech · T4 2026</span>
-      <h3>Prêt à déployer votre concierge IA ?</h3>
-      <p class="deck-sub">Le délai de 8 semaines démarre dès réception de l'acompte initial. J'ai de la disponibilité immédiate.</p>
+action_dock_fr = """<div class="action-dock action-deck lang-fr" id="action-deck-fr" role="region" aria-label="Lancement">
+  <div class="dock-inner">
+    <div class="dock-info">
+      <div class="dock-title-row">
+        <span class="dock-badge">Pilote Marrakech</span>
+        <h3 class="dock-title">Prêt à démarrer ?</h3>
+      </div>
+      <p class="dock-sub">Livraison en 8 semaines · Disponibilité immédiate</p>
     </div>
-    <div class="action-deck-buttons">
+    <div class="dock-actions">
       <a href="https://wa.me/212632323856?text=Bonjour%20Faouzi%2C%20nous%20validons%20la%20proposition%20technique%20%26%20financi%C3%A8re%20Ballroom%20MVP.%20Planifions%20le%20kickoff." target="_blank" rel="noopener" class="btn-deck-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"></path></svg>
-        <span>Valider &amp; Planifier le Kickoff (WhatsApp)</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"></path></svg>
+        <span>Valider sur WhatsApp</span>
       </a>
       <a href="mailto:faouzielbakri@gmail.com?subject=Validation%20Proposition%20Ballroom%20MVP&amp;body=Bonjour%20Faouzi%2C%0A%0ANous%20souhaitons%20valider%20la%20proposition%20Ballroom%20MVP%20et%20planifier%20le%20kickoff." class="btn-deck-secondary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        <span>Poser une question / Valider par Email</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>Une question ? Email</span>
       </a>
-    </div>
-    <div class="action-deck-footer">
-      <span>Validité : 30 jours</span>
-      <span class="dot">·</span>
-      <span>Livraison garantie sous 8 semaines</span>
-      <span class="dot">·</span>
-      <span>Transfert 100% de propriété</span>
     </div>
   </div>
 </div>"""
 
-en_sheet_inner = en_sheet_inner + "\n" + action_deck_en
-fr_sheet_inner = fr_sheet_inner + "\n" + action_deck_fr
+action_docks_html = f"{action_dock_en}\n{action_dock_fr}"
 
 # --- FEATURE 5: Currency Conversion Tooltips ---
 en_cur_maps = [
@@ -408,104 +377,64 @@ html, body {
   border-radius: 3px;
 }
 
-/* Section 0: Chat Replay Toolbar & Voice Note Mockup */
+/* Section 0: Chat Replay Toolbar */
 .chat-replay-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(43, 71, 200, 0.04);
-  border: 1px solid rgba(43, 71, 200, 0.15);
-  border-radius: 8px;
-  padding: 8px 14px;
-  margin: 18px 0 16px;
+  gap: 16px;
+  background: linear-gradient(135deg, rgba(43, 71, 200, 0.04) 0%, rgba(99, 102, 241, 0.07) 100%);
+  border: 1px solid rgba(43, 71, 200, 0.18);
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin: 20px 0 18px;
   font-family: var(--sans);
+}
+.replay-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.replay-badge {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--indigo);
+}
+.replay-desc {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.4;
 }
 .btn-replay {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--ink);
   color: #fff;
   border: none;
-  border-radius: 6px;
-  padding: 5px 12px;
+  border-radius: 8px;
+  padding: 10px 18px;
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(16, 30, 46, 0.15);
+  transition: all 0.18s ease;
 }
 .btn-replay:hover {
   background: var(--indigo);
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(43, 71, 200, 0.28);
 }
-.replay-hint {
-  font-size: 12px;
-  color: var(--muted);
-}
-.voice-note-mockup {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(16, 30, 46, 0.12);
-  border-radius: 8px;
-  padding: 8px 12px;
-  margin-top: 10px;
-}
-.btn-voice-play {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--indigo);
-  color: #fff;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: transform 0.15s ease;
-}
-.btn-voice-play:hover {
-  transform: scale(1.08);
-}
-.voice-waveform {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  height: 20px;
-  flex: 1;
-}
-.voice-waveform span {
-  display: inline-block;
-  width: 3px;
-  background: rgba(43, 71, 200, 0.45);
-  border-radius: 2px;
-  transition: height 0.15s ease, background 0.15s ease;
-}
-.voice-waveform.playing span {
-  background: var(--indigo);
-  animation: wavePulse 0.8s infinite ease-in-out alternate;
-}
-@keyframes wavePulse {
-  0% { height: 25%; }
-  100% { height: 95%; }
-}
-.voice-timer {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  flex-shrink: 0;
-}
-.voice-badge {
-  font-size: 10.5px;
-  font-weight: 600;
-  color: var(--indigo);
-  background: rgba(43, 71, 200, 0.08);
-  padding: 2px 7px;
-  border-radius: 4px;
-  white-space: nowrap;
+.btn-replay:active {
+  transform: scale(0.98);
 }
 
 /* Section 10: Interactive ROI Simulator */
@@ -513,38 +442,60 @@ html, body {
   background: rgba(253, 253, 252, 0.94);
   border: 1px solid var(--rule);
   border-radius: 12px;
-  padding: 22px 24px;
+  padding: 24px 26px;
   margin: 28px 0 28px;
   box-shadow: 0 8px 32px rgba(16, 30, 46, 0.06);
 }
 .sim-head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--rule);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+}
+.sim-badge-wrap {
+  display: flex;
+  align-items: center;
+}
+.sim-badge {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  background: rgba(43, 71, 200, 0.08);
+  color: var(--indigo);
+  border: 1px solid rgba(43, 71, 200, 0.16);
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 .sim-title {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-family: var(--sans);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--ink);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  margin: 0;
+  width: 100%;
 }
 .sim-title svg {
   color: var(--indigo);
+  flex-shrink: 0;
 }
-.sim-badge {
+.sim-sub {
   font-family: var(--sans);
-  font-size: 11.5px;
-  font-weight: 600;
-  background: rgba(43, 71, 200, 0.09);
-  color: var(--indigo);
-  padding: 3px 9px;
-  border-radius: 999px;
+  font-size: 13.5px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.55;
+  width: 100%;
 }
 .sim-grid {
   display: grid;
@@ -656,94 +607,160 @@ html, body {
   padding: 8px 12px;
 }
 
-/* Action Deck at Bottom */
-.action-deck {
-  margin-top: 52px;
-  background: #101E2E;
-  color: #FFFFFF;
-  border-radius: 12px;
-  padding: 38px 32px;
-  box-shadow: 0 20px 48px rgba(16, 30, 46, 0.22);
+/* Floating Bottom Kickoff Action Pill Dock */
+.action-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  width: calc(100% - 48px);
+  max-width: 980px;
+  background: rgba(253, 253, 252, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  box-shadow: 0 16px 40px rgba(16, 30, 46, 0.12), 0 2px 8px rgba(16, 30, 46, 0.04);
+  padding: 10px 22px;
+  box-sizing: border-box;
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, box-shadow 0.3s ease;
 }
-.action-deck-header h3 {
-  color: #FFFFFF;
-  font-size: 25px;
-  line-height: 1.25;
-  margin: 6px 0 10px;
+
+.action-dock.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
-.deck-tag {
+
+@keyframes dockPulse {
+  0% { box-shadow: 0 16px 40px rgba(16, 30, 46, 0.12); }
+  50% { box-shadow: 0 18px 48px rgba(43, 71, 200, 0.30), 0 0 0 2px var(--indigo); transform: translateX(-50%) scale(1.012); }
+  100% { box-shadow: 0 16px 40px rgba(16, 30, 46, 0.12); transform: translateX(-50%) scale(1); }
+}
+.action-dock.pulse-highlight {
+  animation: dockPulse 0.8s ease;
+}
+
+.dock-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.dock-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dock-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dock-badge {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #60A5FA;
+  letter-spacing: 0.06em;
+  color: var(--indigo);
+  background: rgba(43, 71, 200, 0.08);
+  border: 1px solid rgba(43, 71, 200, 0.16);
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
-.deck-sub {
-  color: #94A3B8;
-  font-size: 15px;
-  line-height: 1.5;
-  margin: 0 0 24px;
-  max-width: 680px;
+
+.dock-title {
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15.5px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.25;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
 }
-.action-deck-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-bottom: 22px;
+
+.dock-sub {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  margin: 0;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+.dock-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
 .btn-deck-primary {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  background: #22C55E;
-  color: #064E3B;
+  gap: 8px;
+  background: var(--ink);
+  color: #FFFFFF;
+  border: 1px solid transparent;
   font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 12px 22px;
-  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
-  transition: all 0.15s ease;
+  box-shadow: 0 2px 10px rgba(16, 30, 46, 0.16);
+  white-space: nowrap;
+  transition: all 0.18s ease;
 }
+
+.btn-deck-primary svg {
+  color: #25D366;
+  flex-shrink: 0;
+}
+
 .btn-deck-primary:hover {
-  background: #16A34A;
+  background: var(--indigo);
   color: #FFFFFF;
   transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(43, 71, 200, 0.32);
 }
+
 .btn-deck-secondary {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #F8FAFC;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  gap: 7px;
+  background: rgba(253, 253, 252, 0.7);
+  color: var(--ink);
+  border: 1px solid var(--rule);
   font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px 20px;
-  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: 999px;
   text-decoration: none;
-  transition: all 0.15s ease;
+  white-space: nowrap;
+  transition: all 0.18s ease;
 }
+
 .btn-deck-secondary:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-.action-deck-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--sans);
-  font-size: 12px;
-  color: #64748B;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 16px;
-}
-.action-deck-footer .dot {
-  color: #475569;
+  background: #FFFFFF;
+  border-color: rgba(16, 30, 46, 0.38);
+  color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 30, 46, 0.08);
 }
 
 /* Top-Right Header Controls Cluster */
@@ -832,8 +849,13 @@ html, body {
 .jump-dropdown {
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
-  width: 250px;
+  left: 0;
+  right: auto;
+  width: 260px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  box-sizing: border-box;
   background: rgba(253, 253, 252, 0.98);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -845,8 +867,9 @@ html, body {
   flex-direction: column;
   gap: 2px;
   z-index: 10002;
-  transform-origin: top right;
+  transform-origin: top left;
   animation: jumpDropIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  scrollbar-width: thin;
 }
 .jump-dropdown.open {
   display: flex;
@@ -1002,11 +1025,18 @@ html, body {
 }
 
 /* Visibility rules based on data-lang attribute */
-html[data-lang="en"] .sheet.lang-fr {
+html[data-lang="en"] .sheet.lang-fr,
+html[data-lang="en"] .action-dock.lang-fr {
   display: none !important;
 }
-html[data-lang="fr"] .sheet.lang-en {
+html[data-lang="fr"] .sheet.lang-en,
+html[data-lang="fr"] .action-dock.lang-en {
   display: none !important;
+}
+
+/* Extra sheet padding at bottom for hovering action dock */
+.sheet {
+  padding-bottom: 140px;
 }
 
 /* Mobile Responsiveness (< 640px) */
@@ -1016,7 +1046,7 @@ html[data-lang="fr"] .sheet.lang-en {
     line-height: 1.6;
   }
   .sheet {
-    padding: 0 18px 80px;
+    padding: 0 18px 140px;
     max-width: 100%;
     overflow: hidden;
   }
@@ -1149,6 +1179,37 @@ html[data-lang="fr"] .sheet.lang-en {
   .brandline {
     padding-right: 0;
   }
+  .bubble {
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .chat-replay-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+  .btn-replay {
+    width: 100%;
+    justify-content: center;
+  }
+  .roi-simulator {
+    padding: 18px 16px;
+  }
+  .sim-head {
+    gap: 7px;
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+  }
+  .sim-title {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+  .sim-sub {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
   .sim-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1156,22 +1217,52 @@ html[data-lang="fr"] .sheet.lang-en {
   .sim-outputs {
     grid-template-columns: 1fr;
   }
-  .action-deck {
-    padding: 26px 20px;
+  .action-dock {
+    bottom: 12px;
+    width: calc(100% - 20px);
+    border-radius: 18px;
+    padding: 12px 14px;
+    background: rgba(253, 253, 252, 0.98);
   }
-  .action-deck-buttons {
+  .dock-inner {
     flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .dock-info {
+    text-align: left;
+  }
+  .dock-title {
+    font-size: 14.5px;
+  }
+  .dock-sub {
+    font-size: 12px;
+  }
+  .dock-actions {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 8px;
+    width: 100%;
   }
   .btn-deck-primary,
   .btn-deck-secondary {
-    width: 100%;
+    padding: 8px 10px;
+    font-size: 12px;
     justify-content: center;
+    border-radius: 999px;
+    width: 100%;
+    box-sizing: border-box;
     text-align: center;
   }
   .jump-dropdown {
-    right: -10px;
-    width: calc(100vw - 28px);
-    max-width: 300px;
+    position: fixed;
+    top: 48px;
+    right: 12px;
+    left: auto;
+    width: 270px;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 65px);
+    transform-origin: top right;
   }
 }
 
@@ -1194,9 +1285,11 @@ html[data-lang="fr"] .sheet.lang-en {
   .lang-switch-wrap,
   .share-toast,
   .chat-replay-bar,
-  .voice-note-mockup,
   .roi-simulator,
-  .action-deck {
+  .action-dock,
+  .action-deck,
+  #action-deck-en,
+  #action-deck-fr {
     display: none !important;
   }
   .has-cur {
@@ -1365,6 +1458,9 @@ __EN_SHEET_INNER__
 __FR_SHEET_INNER__
 </div>
 
+<!-- FLOATING KICKOFF ACTION DOCK -->
+__ACTION_DOCKS__
+
 <script>
 (function() {
   var headerControls = document.getElementById("header-controls");
@@ -1385,6 +1481,11 @@ __FR_SHEET_INNER__
       var pct = docHeight > 0 ? (scrollDist / docHeight) * 100 : 0;
       progressBar.style.width = Math.min(100, Math.max(0, pct)) + "%";
     }
+    var isPastIntro = window.scrollY > 400;
+    document.querySelectorAll(".action-dock").forEach(function(dock) {
+      if (isPastIntro) dock.classList.add("visible");
+      else dock.classList.remove("visible");
+    });
   }
   window.addEventListener("scroll", handleScroll, { passive: true });
   handleScroll();
@@ -1425,8 +1526,26 @@ __FR_SHEET_INNER__
   });
 
   document.querySelectorAll(".jump-item").forEach(function(a) {
-    a.addEventListener("click", function() {
+    a.addEventListener("click", function(e) {
       closeJumpMenu();
+      var sec = a.getAttribute("data-jump-sec");
+      if (sec === "action-deck") {
+        e.preventDefault();
+        var curLang = document.documentElement.getAttribute("data-lang") || "en";
+        var dock = document.getElementById("action-deck-" + curLang);
+        if (dock) {
+          dock.classList.add("visible");
+          dock.classList.remove("pulse-highlight");
+          void dock.offsetWidth;
+          dock.classList.add("pulse-highlight");
+        }
+        var signoff = document.querySelector(".sheet.lang-" + curLang + " .signoff");
+        if (signoff) {
+          signoff.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+        }
+      }
     });
   });
 
@@ -1733,47 +1852,6 @@ __FR_SHEET_INNER__
   setupRoiSimulator("en");
   setupRoiSimulator("fr");
 
-  // Voice note mockup audio simulation
-  document.querySelectorAll(".btn-voice-play").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      var mockup = btn.closest(".voice-note-mockup");
-      if (!mockup) return;
-      var waveform = mockup.querySelector(".voice-waveform");
-      var playIcon = btn.querySelector(".v-play");
-      var pauseIcon = btn.querySelector(".v-pause");
-      var timer = mockup.querySelector(".voice-timer");
-      var isPlaying = mockup.getAttribute("data-playing") === "true";
-
-      if (isPlaying) {
-        mockup.setAttribute("data-playing", "false");
-        if (waveform) waveform.classList.remove("playing");
-        if (playIcon) playIcon.style.display = "";
-        if (pauseIcon) pauseIcon.style.display = "none";
-        if (mockup._interval) clearInterval(mockup._interval);
-        if (timer) timer.textContent = "0:14";
-      } else {
-        mockup.setAttribute("data-playing", "true");
-        if (waveform) waveform.classList.add("playing");
-        if (playIcon) playIcon.style.display = "none";
-        if (pauseIcon) pauseIcon.style.display = "";
-        var sec = 14;
-        if (mockup._interval) clearInterval(mockup._interval);
-        mockup._interval = setInterval(function() {
-          sec--;
-          if (timer) timer.textContent = "0:" + (sec < 10 ? "0" + sec : sec);
-          if (sec <= 0) {
-            clearInterval(mockup._interval);
-            mockup.setAttribute("data-playing", "false");
-            if (waveform) waveform.classList.remove("playing");
-            if (playIcon) playIcon.style.display = "";
-            if (pauseIcon) pauseIcon.style.display = "none";
-            if (timer) timer.textContent = "0:14";
-          }
-        }, 1000);
-      }
-    });
-  });
-
   // Replay conversation simulation
   function setupChatReplay(lang) {
     var btn = document.getElementById("btn-replay-" + lang);
@@ -1834,6 +1912,7 @@ __FR_SHEET_INNER__
 final_html = template.replace("__COMBINED_CSS__", combined_css)
 final_html = final_html.replace("__EN_SHEET_INNER__", en_sheet_inner)
 final_html = final_html.replace("__FR_SHEET_INNER__", fr_sheet_inner)
+final_html = final_html.replace("__ACTION_DOCKS__", action_docks_html)
 
 dest_file = "public/proposals/ballroom-mvp.html"
 with open(dest_file, "w", encoding="utf-8") as f:
