@@ -265,8 +265,53 @@ assert ".action-dock" in print_block
 assert ".roi-simulator" in print_block
 assert ".action-deck" in print_block
 assert ".jump-dropdown" in print_block
+assert ".audio-brief-card" in print_block
 assert ".has-cur::after" in print_block
 assert "display: none !important" in print_block
+
+# 10. Executive Audio Briefing Player
+print("12. Checking Executive Audio Briefing Player in EN and FR...")
+card_en = soup.find("div", id="audio-card-en")
+card_fr = soup.find("div", id="audio-card-fr")
+assert card_en is not None, "Missing audio-card-en"
+assert card_fr is not None, "Missing audio-card-fr"
+
+# Check within respective sheets
+assert en_sheet.find("div", id="audio-card-en") is not None
+assert fr_sheet.find("div", id="audio-card-fr") is not None
+
+# Audio elements & sources
+audio_en = card_en.find("audio", id="audio-player-en")
+audio_fr = card_fr.find("audio", id="audio-player-fr")
+assert audio_en is not None and audio_fr is not None
+assert "Marrakech_WhatsApp_AI_Concierge_Technical_Blueprint.m4a" in audio_en["src"]
+assert "Concierge_IA_WhatsApp_pour_riads_de_Marrakech.m4a" in audio_fr["src"]
+
+# Controls
+assert card_en.find("button", id="audio-play-btn-en") is not None
+assert card_fr.find("button", id="audio-play-btn-fr") is not None
+assert card_en.find("button", id="audio-speed-btn-en") is not None
+assert card_fr.find("button", id="audio-speed-btn-fr") is not None
+assert card_en.find("div", id="audio-waveform-en") is not None
+assert card_fr.find("div", id="audio-waveform-fr") is not None
+assert card_en.find("path", class_="wave-unplayed") is not None
+assert card_en.find("path", class_="wave-played") is not None
+assert card_en.find("div", id="wave-dot-en") is not None
+assert card_fr.find("div", id="wave-dot-fr") is not None
+
+# Chapters
+chaps_en = card_en.find_all("button", class_="chapter-jump-btn")
+chaps_fr = card_fr.find_all("button", class_="chapter-jump-btn")
+assert len(chaps_en) == 5, f"Expected 5 chapters in EN, got {len(chaps_en)}"
+assert len(chaps_fr) == 5, f"Expected 5 chapters in FR, got {len(chaps_fr)}"
+
+for b in chaps_en:
+    assert b.get("data-seek") is not None
+for b in chaps_fr:
+    assert b.get("data-seek") is not None
+
+# Script initialization
+assert "setupAudioPlayer" in html
 
 print("\nALL VERIFICATIONS PASSED SUCCESSFULLY!")
 

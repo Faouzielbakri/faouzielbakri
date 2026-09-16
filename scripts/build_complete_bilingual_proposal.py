@@ -51,6 +51,182 @@ fr_sheet_inner = fr_sheet_inner.replace(
     "<div><span>Validité</span><b>30 jours</b></div>\n    <div><span>Temps de lecture</span><b>⏱️ ~7 min · 17 sections</b></div>"
 )
 
+# --- FEATURE 1B: Executive Audio Briefing Player ---
+audio_card_en = """<div class="audio-brief-card" id="audio-card-en" role="region" aria-label="Executive Audio Walkthrough">
+  <div class="audio-card-inner">
+    <div class="audio-top-bar">
+      <div class="audio-badge-group">
+        <span class="audio-pill">
+          <svg class="audio-badge-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+          Executive Audio Briefing
+        </span>
+        <span class="audio-duration-tag">⏱️ 19:50 · Complete Audio Walkthrough</span>
+      </div>
+      <div class="audio-chapters-pill">5 Chapters · Architecture, Financials &amp; Handover</div>
+    </div>
+
+    <div class="audio-caption">Listen on your commute · Full Proposal Walkthrough</div>
+
+    <div class="audio-controls-row">
+      <button type="button" class="audio-play-btn" id="audio-play-btn-en" aria-label="Play executive audio briefing" title="Play / Pause">
+        <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+        <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+      </button>
+
+      <div class="audio-waveform-wrap" id="audio-waveform-en" role="slider" aria-label="Audio progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+        <svg class="audio-waveform-svg" viewBox="0 0 300 32" preserveAspectRatio="none">
+          <defs>
+            <clipPath id="wave-clip-en">
+              <rect id="wave-clip-rect-en" x="0" y="0" width="0" height="32"></rect>
+            </clipPath>
+          </defs>
+          <path class="wave-unplayed" d="M3,12.5 L3,19.5 M9,10.5 L9,21.5 M15,8.0 L15,24.0 M21,6.0 L21,26.0 M27,9.5 L27,22.5 M33,12.0 L33,20.0 M39,13.0 L39,19.0 M45,10.0 L45,22.0 M51,6.5 L51,25.5 M57,4.0 L57,28.0 M63,6.0 L63,26.0 M69,9.0 L69,23.0 M75,11.0 L75,21.0 M81,13.0 L81,19.0 M87,13.5 L87,18.5 M93,11.0 L93,21.0 M99,7.0 L99,25.0 M105,4.5 L105,27.5 M111,6.5 L111,25.5 M117,9.5 L117,22.5 M123,11.5 L123,20.5 M129,13.0 L129,19.0 M135,10.5 L135,21.5 M141,6.0 L141,26.0 M147,4.5 L147,27.5 M153,7.5 L153,24.5 M159,10.5 L159,21.5 M165,12.5 L165,19.5 M171,13.5 L171,18.5 M177,11.0 L177,21.0 M183,8.0 L183,24.0 M189,6.0 L189,26.0 M195,8.0 L195,24.0 M201,10.5 L201,21.5 M207,12.5 L207,19.5 M213,9.5 L213,22.5 M219,5.0 L219,27.0 M225,4.0 L225,28.0 M231,7.0 L231,25.0 M237,10.0 L237,22.0 M243,12.5 L243,19.5 M249,13.5 L249,18.5 M255,12.0 L255,20.0 M261,7.5 L261,24.5 M267,4.5 L267,27.5 M273,6.0 L273,26.0 M279,9.0 L279,23.0 M285,11.0 L285,21.0 M291,13.0 L291,19.0 M297,12.0 L297,20.0" fill="none"></path>
+          <path class="wave-played" d="M3,12.5 L3,19.5 M9,10.5 L9,21.5 M15,8.0 L15,24.0 M21,6.0 L21,26.0 M27,9.5 L27,22.5 M33,12.0 L33,20.0 M39,13.0 L39,19.0 M45,10.0 L45,22.0 M51,6.5 L51,25.5 M57,4.0 L57,28.0 M63,6.0 L63,26.0 M69,9.0 L69,23.0 M75,11.0 L75,21.0 M81,13.0 L81,19.0 M87,13.5 L87,18.5 M93,11.0 L93,21.0 M99,7.0 L99,25.0 M105,4.5 L105,27.5 M111,6.5 L111,25.5 M117,9.5 L117,22.5 M123,11.5 L123,20.5 M129,13.0 L129,19.0 M135,10.5 L135,21.5 M141,6.0 L141,26.0 M147,4.5 L147,27.5 M153,7.5 L153,24.5 M159,10.5 L159,21.5 M165,12.5 L165,19.5 M171,13.5 L171,18.5 M177,11.0 L177,21.0 M183,8.0 L183,24.0 M189,6.0 L189,26.0 M195,8.0 L195,24.0 M201,10.5 L201,21.5 M207,12.5 L207,19.5 M213,9.5 L213,22.5 M219,5.0 L219,27.0 M225,4.0 L225,28.0 M231,7.0 L231,25.0 M237,10.0 L237,22.0 M243,12.5 L243,19.5 M249,13.5 L249,18.5 M255,12.0 L255,20.0 M261,7.5 L261,24.5 M267,4.5 L267,27.5 M273,6.0 L273,26.0 M279,9.0 L279,23.0 M285,11.0 L285,21.0 M291,13.0 L291,19.0 M297,12.0 L297,20.0" fill="none" clip-path="url(#wave-clip-en)"></path>
+        </svg>
+        <div class="audio-waveform-dot" id="wave-dot-en" style="left: 0%;"></div>
+      </div>
+
+      <button type="button" class="audio-speed-btn" id="audio-speed-btn-en" aria-label="Playback speed" title="Cycle playback speed">1.0x</button>
+    </div>
+
+    <div class="audio-sub-row">
+      <span class="audio-time" id="audio-time-en">0:00 / 19:50</span>
+    </div>
+
+    <details class="audio-chapters-dropdown" id="audio-chapters-en">
+      <summary class="audio-chapters-toggle">
+        <span class="chapters-summary-text">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          Jump to Chapter (5 Chapters)
+        </span>
+        <svg class="chevron-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="audio-chapters-grid">
+        <button type="button" class="chapter-jump-btn" data-seek="0">
+          <span class="chap-badge">0:00</span>
+          <span class="chap-label">Ch. 1: Live Guest Experience &amp; WhatsApp Flow</span>
+        </button>
+        <button type="button" class="chapter-jump-btn" data-seek="250">
+          <span class="chap-badge">4:10</span>
+          <span class="chap-label">Ch. 2: Technical Architecture &amp; The n8n Trap</span>
+        </button>
+        <button type="button" class="chapter-jump-btn" data-seek="580">
+          <span class="chap-badge">9:40</span>
+          <span class="chap-label">Ch. 3: 8-Week Roadmap &amp; Deliverables</span>
+        </button>
+        <button type="button" class="chapter-jump-btn" data-seek="855">
+          <span class="chap-badge">14:15</span>
+          <span class="chap-label">Ch. 4: Financial Model, Unit Economics &amp; Break-Even</span>
+        </button>
+        <button type="button" class="chapter-jump-btn" data-seek="1055">
+          <span class="chap-badge">17:35</span>
+          <span class="chap-label">Ch. 5: Risk Matrix, IP Transfer &amp; Handover</span>
+        </button>
+      </div>
+    </details>
+
+    <audio id="audio-player-en" preload="metadata" src="../audio/Marrakech_WhatsApp_AI_Concierge_Technical_Blueprint.m4a">
+      <source src="../audio/Marrakech_WhatsApp_AI_Concierge_Technical_Blueprint.m4a" type="audio/mp4">
+      <source src="/audio/Marrakech_WhatsApp_AI_Concierge_Technical_Blueprint.m4a" type="audio/mp4">
+      <source src="../audio/Marrakech_WhatsApp_AI_Concierge_Technical_Blueprint.m4a" type="audio/x-m4a">
+      <source src="/audio/Marrakech_WhatsApp_AI_Concierge_Technical_Blueprint.m4a" type="audio/x-m4a">
+    </audio>
+  </div>
+</div>"""
+
+audio_card_fr = """<div class="audio-brief-card" id="audio-card-fr" role="region" aria-label="Briefing Audio Exécutif">
+  <div class="audio-card-inner">
+    <div class="audio-top-bar">
+      <div class="audio-badge-group">
+        <span class="audio-pill">
+          <svg class="audio-badge-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+          Briefing Audio Exécutif
+        </span>
+        <span class="audio-duration-tag">⏱️ 11:32 · Synthèse audio complète</span>
+      </div>
+      <div class="audio-chapters-pill">5 Chapitres · Architecture, Chiffres &amp; Garanties</div>
+    </div>
+
+    <div class="audio-caption">À écouter sur votre trajet · Synthèse complète de la proposition</div>
+
+    <div class="audio-controls-row">
+      <button type="button" class="audio-play-btn" id="audio-play-btn-fr" aria-label="Écouter le briefing audio exécutif" title="Lecture / Pause">
+        <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+        <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+      </button>
+
+      <div class="audio-waveform-wrap" id="audio-waveform-fr" role="slider" aria-label="Progression audio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+        <svg class="audio-waveform-svg" viewBox="0 0 300 32" preserveAspectRatio="none">
+          <defs>
+            <clipPath id="wave-clip-fr">
+              <rect id="wave-clip-rect-fr" x="0" y="0" width="0" height="32"></rect>
+            </clipPath>
+          </defs>
+          <path class="wave-unplayed" d="M3,12.5 L3,19.5 M9,10.5 L9,21.5 M15,8.0 L15,24.0 M21,6.0 L21,26.0 M27,9.5 L27,22.5 M33,12.0 L33,20.0 M39,13.0 L39,19.0 M45,10.0 L45,22.0 M51,6.5 L51,25.5 M57,4.0 L57,28.0 M63,6.0 L63,26.0 M69,9.0 L69,23.0 M75,11.0 L75,21.0 M81,13.0 L81,19.0 M87,13.5 L87,18.5 M93,11.0 L93,21.0 M99,7.0 L99,25.0 M105,4.5 L105,27.5 M111,6.5 L111,25.5 M117,9.5 L117,22.5 M123,11.5 L123,20.5 M129,13.0 L129,19.0 M135,10.5 L135,21.5 M141,6.0 L141,26.0 M147,4.5 L147,27.5 M153,7.5 L153,24.5 M159,10.5 L159,21.5 M165,12.5 L165,19.5 M171,13.5 L171,18.5 M177,11.0 L177,21.0 M183,8.0 L183,24.0 M189,6.0 L189,26.0 M195,8.0 L195,24.0 M201,10.5 L201,21.5 M207,12.5 L207,19.5 M213,9.5 L213,22.5 M219,5.0 L219,27.0 M225,4.0 L225,28.0 M231,7.0 L231,25.0 M237,10.0 L237,22.0 M243,12.5 L243,19.5 M249,13.5 L249,18.5 M255,12.0 L255,20.0 M261,7.5 L261,24.5 M267,4.5 L267,27.5 M273,6.0 L273,26.0 M279,9.0 L279,23.0 M285,11.0 L285,21.0 M291,13.0 L291,19.0 M297,12.0 L297,20.0" fill="none"></path>
+          <path class="wave-played" d="M3,12.5 L3,19.5 M9,10.5 L9,21.5 M15,8.0 L15,24.0 M21,6.0 L21,26.0 M27,9.5 L27,22.5 M33,12.0 L33,20.0 M39,13.0 L39,19.0 M45,10.0 L45,22.0 M51,6.5 L51,25.5 M57,4.0 L57,28.0 M63,6.0 L63,26.0 M69,9.0 L69,23.0 M75,11.0 L75,21.0 M81,13.0 L81,19.0 M87,13.5 L87,18.5 M93,11.0 L93,21.0 M99,7.0 L99,25.0 M105,4.5 L105,27.5 M111,6.5 L111,25.5 M117,9.5 L117,22.5 M123,11.5 L123,20.5 M129,13.0 L129,19.0 M135,10.5 L135,21.5 M141,6.0 L141,26.0 M147,4.5 L147,27.5 M153,7.5 L153,24.5 M159,10.5 L159,21.5 M165,12.5 L165,19.5 M171,13.5 L171,18.5 M177,11.0 L177,21.0 M183,8.0 L183,24.0 M189,6.0 L189,26.0 M195,8.0 L195,24.0 M201,10.5 L201,21.5 M207,12.5 L207,19.5 M213,9.5 L213,22.5 M219,5.0 L219,27.0 M225,4.0 L225,28.0 M231,7.0 L231,25.0 M237,10.0 L237,22.0 M243,12.5 L243,19.5 M249,13.5 L249,18.5 M255,12.0 L255,20.0 M261,7.5 L261,24.5 M267,4.5 L267,27.5 M273,6.0 L273,26.0 M279,9.0 L279,23.0 M285,11.0 L285,21.0 M291,13.0 L291,19.0 M297,12.0 L297,20.0" fill="none" clip-path="url(#wave-clip-fr)"></path>
+        </svg>
+        <div class="audio-waveform-dot" id="wave-dot-fr" style="left: 0%;"></div>
+      </div>
+
+      <button type="button" class="audio-speed-btn" id="audio-speed-btn-fr" aria-label="Vitesse de lecture" title="Changer la vitesse">1.0x</button>
+    </div>
+
+    <div class="audio-sub-row">
+      <span class="audio-time" id="audio-time-fr">0:00 / 11:32</span>
+    </div>
+
+    <details class="audio-chapters-dropdown" id="audio-chapters-fr">
+      <summary class="audio-chapters-toggle">
+        <span class="chapters-summary-text">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          Accéder aux chapitres (5 Chapitres)
+        </span>
+        <svg class="chevron-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="audio-chapters-grid">
+        <button type="button" class="chapter-jump-btn" data-seek="0">
+          <span class="chap-badge">0:00</span>
+          <span class="chap-label">Ch. 1 : Parcours voyageur &amp; Pilote WhatsApp</span>
+        </button>
+        <button type="button" class="chapter-jump-btn" data-seek="140">
+          <span class="chap-badge">2:20</span>
+          <span class="chap-label">Ch. 2 : Architecture technique &amp; Le piège n8n</span>
+        </button>
+        <button type="button" class="chapter-jump-btn" data-seek="340">
+          <span class="chap-badge">5:40</span>
+          <span class="chap-label">Ch. 3 : Planning 8 semaines &amp; Livrables</span>
+        </button>
+        <button type="button" class="chapter-jump-btn" data-seek="500">
+          <span class="chap-badge">8:20</span>
+          <span class="chap-label">Ch. 4 : Modèle financier, Rentabilité &amp; Seuil</span>
+        </button>
+        <button type="button" class="chapter-jump-btn" data-seek="615">
+          <span class="chap-badge">10:15</span>
+          <span class="chap-label">Ch. 5 : Risques, Transfert IP &amp; Transmission</span>
+        </button>
+      </div>
+    </details>
+
+    <audio id="audio-player-fr" preload="metadata" src="../audio/Concierge_IA_WhatsApp_pour_riads_de_Marrakech.m4a">
+      <source src="../audio/Concierge_IA_WhatsApp_pour_riads_de_Marrakech.m4a" type="audio/mp4">
+      <source src="/audio/Concierge_IA_WhatsApp_pour_riads_de_Marrakech.m4a" type="audio/mp4">
+      <source src="../audio/Concierge_IA_WhatsApp_pour_riads_de_Marrakech.m4a" type="audio/x-m4a">
+      <source src="/audio/Concierge_IA_WhatsApp_pour_riads_de_Marrakech.m4a" type="audio/x-m4a">
+    </audio>
+  </div>
+</div>"""
+
+en_sheet_inner = en_sheet_inner.replace(
+    '  </div>\n  <p class="confidential">',
+    '  </div>\n\n' + audio_card_en + '\n\n  <p class="confidential">',
+    1
+)
+fr_sheet_inner = fr_sheet_inner.replace(
+    '  </div>\n  <p class="confidential">',
+    '  </div>\n\n' + audio_card_fr + '\n\n  <p class="confidential">',
+    1
+)
+
 # --- FEATURE 2: Section 0 Chat Replay Toolbar ---
 replay_bar_en = """<div class="chat-replay-bar" role="toolbar" aria-label="Conversation simulation">
   <div class="replay-info">
@@ -379,6 +555,278 @@ html, body {
 .table-wrap::-webkit-scrollbar-thumb {
   background: var(--rule);
   border-radius: 3px;
+}
+
+/* Executive Audio Briefing Player Card */
+.audio-brief-card {
+  margin: 24px 0 28px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  border: 1px solid rgba(43, 71, 200, 0.16);
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 20px rgba(16, 30, 46, 0.05), 0 1px 3px rgba(16, 30, 46, 0.03);
+  font-family: var(--sans);
+  position: relative;
+  box-sizing: border-box;
+}
+.audio-brief-card:hover {
+  border-color: rgba(43, 71, 200, 0.28);
+}
+.audio-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.audio-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.audio-badge-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.audio-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(43, 71, 200, 0.08);
+  color: var(--indigo);
+  border: 1px solid rgba(43, 71, 200, 0.16);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.audio-duration-tag {
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 500;
+}
+.audio-chapters-pill {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;
+  background: #F1F5F9;
+  border-radius: 6px;
+  padding: 3px 9px;
+}
+.audio-caption {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.audio-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.audio-play-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  box-shadow: 0 4px 12px rgba(16, 30, 46, 0.18);
+  flex-shrink: 0;
+}
+.audio-play-btn:hover {
+  background: var(--indigo);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(43, 71, 200, 0.32);
+}
+.audio-play-btn:active {
+  transform: scale(0.95);
+}
+.audio-play-btn svg {
+  display: block;
+}
+.audio-play-btn .icon-play {
+  margin-left: 2px;
+}
+/* WhatsApp Voice Note Waveform Scrubber (Clean uncolored monochrome) */
+.audio-waveform-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+.audio-waveform-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.wave-unplayed {
+  stroke: #CBD5E1;
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.15s ease;
+}
+.audio-waveform-wrap:hover .wave-unplayed {
+  stroke: #94A3B8;
+}
+.wave-played {
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.audio-waveform-dot {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  background: var(--ink);
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1px 4px rgba(16, 30, 46, 0.35);
+  pointer-events: none;
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+.audio-waveform-wrap:hover .audio-waveform-dot,
+.audio-waveform-wrap:focus-visible .audio-waveform-dot {
+  transform: translate(-50%, -50%) scale(1.25);
+  background: var(--indigo);
+}
+.audio-speed-btn {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  background: #F1F5F9;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 0 10px;
+  height: 32px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-width: 44px;
+  text-align: center;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.audio-speed-btn:hover {
+  background: #E2E8F0;
+  border-color: #CBD5E1;
+  color: var(--indigo);
+}
+.audio-sub-row {
+  display: flex;
+  align-items: center;
+  padding-left: 56px;
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+.audio-time {
+  font-size: 11.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+  color: #64748B;
+  white-space: nowrap;
+}
+.audio-chapters-dropdown {
+  border-top: 1px solid rgba(229, 233, 238, 0.85);
+  padding-top: 10px;
+  margin-top: 2px;
+}
+.audio-chapters-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  user-select: none;
+  list-style: none;
+}
+.audio-chapters-toggle::-webkit-details-marker {
+  display: none;
+}
+.audio-chapters-toggle:hover {
+  color: var(--indigo);
+}
+.chapters-summary-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.chevron-arrow {
+  transition: transform 0.2s ease;
+}
+details[open] .chevron-arrow {
+  transform: rotate(180deg);
+}
+.audio-chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+}
+.chapter-jump-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F8FAFC;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 6px;
+  padding: 7px 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--sans);
+}
+.chapter-jump-btn:hover {
+  background: #EFF6FF;
+  border-color: rgba(43, 71, 200, 0.35);
+  transform: translateY(-1px);
+}
+.chapter-jump-btn.active {
+  background: rgba(43, 71, 200, 0.08);
+  border-color: var(--indigo);
+}
+.chap-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--indigo);
+  background: #FFFFFF;
+  border: 1px solid rgba(43, 71, 200, 0.2);
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+.chap-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.35;
+  white-space: normal;
 }
 
 /* Section 0: Chat Replay Toolbar */
@@ -1195,6 +1643,44 @@ html[data-lang="fr"] .action-dock.lang-en {
     word-break: break-word;
     overflow-wrap: break-word;
   }
+  .audio-brief-card {
+    padding: 14px 14px;
+    margin: 20px 0 24px;
+  }
+  .audio-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .audio-caption {
+    font-size: 12.5px;
+    margin-bottom: 8px;
+  }
+  .audio-controls-row {
+    gap: 10px;
+  }
+  .audio-play-btn {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+  .audio-speed-btn {
+    font-size: 11px;
+    height: 28px;
+    min-width: 38px;
+    padding: 0 8px;
+  }
+  .audio-sub-row {
+    padding-left: 48px;
+    margin-top: 2px;
+    margin-bottom: 4px;
+  }
+  .audio-time {
+    font-size: 11px;
+  }
+  .audio-chapters-grid {
+    grid-template-columns: 1fr;
+  }
   .chat-replay-bar {
     flex-direction: column;
     align-items: stretch;
@@ -1300,7 +1786,8 @@ html[data-lang="fr"] .action-dock.lang-en {
   .action-dock,
   .action-deck,
   #action-deck-en,
-  #action-deck-fr {
+  #action-deck-fr,
+  .audio-brief-card {
     display: none !important;
   }
   .has-cur {
@@ -1644,8 +2131,12 @@ __ACTION_DOCKS__
     updateSwitcherUI(lang);
     if (lang === "fr") {
       document.title = "Concierge IA sur WhatsApp — Proposition Technique & Financière · Pilote Marrakech";
+      var audioEn = document.getElementById("audio-player-en");
+      if (audioEn && !audioEn.paused) audioEn.pause();
     } else {
       document.title = "AI Concierge on WhatsApp — Technical & Financial Proposal · Marrakech Pilot";
+      var audioFr = document.getElementById("audio-player-fr");
+      if (audioFr && !audioFr.paused) audioFr.pause();
     }
     try {
       localStorage.setItem("ballroom_proposal_lang", lang);
@@ -1900,6 +2391,186 @@ __ACTION_DOCKS__
   }
   setupChatReplay("en");
   setupChatReplay("fr");
+
+  // Executive Audio Briefing Players
+  function setupAudioPlayer(lang, defaultDuration) {
+    var audio = document.getElementById("audio-player-" + lang);
+    var playBtn = document.getElementById("audio-play-btn-" + lang);
+    var timeDisplay = document.getElementById("audio-time-" + lang);
+    var waveformWrap = document.getElementById("audio-waveform-" + lang);
+    var clipRect = document.getElementById("wave-clip-rect-" + lang);
+    var dot = document.getElementById("wave-dot-" + lang);
+    var speedBtn = document.getElementById("audio-speed-btn-" + lang);
+    var chapterBtns = document.querySelectorAll("#audio-card-" + lang + " .chapter-jump-btn");
+
+    if (!audio || !playBtn) return;
+
+    var speeds = [1.0, 1.25, 1.5, 1.75, 2.0];
+    var speedLabels = { 1.0: "1.0x", 1.25: "1.25x", 1.5: "1.5x", 1.75: "1.75x", 2.0: "2.0x" };
+    var currentSpeedIndex = 0;
+    var isDragging = false;
+
+    function formatTime(sec) {
+      if (isNaN(sec) || !isFinite(sec)) return "0:00";
+      var m = Math.floor(sec / 60);
+      var s = Math.floor(sec % 60);
+      return m + ":" + (s < 10 ? "0" : "") + s;
+    }
+
+    function getDuration() {
+      return (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) ? audio.duration : defaultDuration;
+    }
+
+    function updatePlayButtonUI(isPlaying) {
+      var iconPlay = playBtn.querySelector(".icon-play");
+      var iconPause = playBtn.querySelector(".icon-pause");
+      if (iconPlay && iconPause) {
+        iconPlay.style.display = isPlaying ? "none" : "block";
+        iconPause.style.display = isPlaying ? "block" : "none";
+      }
+      playBtn.setAttribute("aria-label", isPlaying ? (lang === "fr" ? "Pause du briefing audio" : "Pause audio briefing") : (lang === "fr" ? "Lecture du briefing audio" : "Play audio briefing"));
+    }
+
+    function updateProgressUI() {
+      var dur = getDuration();
+      var cur = audio.currentTime || 0;
+      var pct = dur > 0 ? (cur / dur) * 100 : 0;
+      if (pct > 100) pct = 100;
+      if (clipRect) clipRect.setAttribute("width", (pct / 100) * 300);
+      if (dot) dot.style.left = pct + "%";
+      if (waveformWrap) waveformWrap.setAttribute("aria-valuenow", Math.round(pct));
+      if (timeDisplay) timeDisplay.textContent = formatTime(cur) + " / " + formatTime(dur);
+
+      if (chapterBtns.length > 0) {
+        var activeBtn = null;
+        for (var i = 0; i < chapterBtns.length; i++) {
+          var seekVal = parseFloat(chapterBtns[i].getAttribute("data-seek")) || 0;
+          if (cur >= seekVal) {
+            activeBtn = chapterBtns[i];
+          }
+        }
+        chapterBtns.forEach(function(b) { b.classList.remove("active"); });
+        if (activeBtn) activeBtn.classList.add("active");
+      }
+    }
+
+    function togglePlay() {
+      var otherLang = lang === "fr" ? "en" : "fr";
+      var otherAudio = document.getElementById("audio-player-" + otherLang);
+      if (otherAudio && !otherAudio.paused) {
+        otherAudio.pause();
+      }
+
+      if (audio.paused) {
+        audio.play().then(function() {
+          updatePlayButtonUI(true);
+        }).catch(function() {
+          updatePlayButtonUI(false);
+        });
+      } else {
+        audio.pause();
+        updatePlayButtonUI(false);
+      }
+    }
+
+    playBtn.addEventListener("click", togglePlay);
+
+    audio.addEventListener("play", function() { updatePlayButtonUI(true); });
+    audio.addEventListener("pause", function() { updatePlayButtonUI(false); });
+    audio.addEventListener("ended", function() {
+      updatePlayButtonUI(false);
+      audio.currentTime = 0;
+      updateProgressUI();
+    });
+    audio.addEventListener("timeupdate", updateProgressUI);
+    audio.addEventListener("loadedmetadata", updateProgressUI);
+
+    audio.addEventListener("error", function() {
+      var curSrc = audio.currentSrc || audio.src;
+      if (curSrc && curSrc.indexOf("../audio/") !== -1) {
+        audio.src = curSrc.replace("../audio/", "/audio/");
+        audio.load();
+      }
+    });
+
+    function seekFromEvent(e) {
+      if (!waveformWrap) return;
+      var rect = waveformWrap.getBoundingClientRect();
+      var clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+      var pos = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      var dur = getDuration();
+      audio.currentTime = pos * dur;
+      updateProgressUI();
+    }
+
+    if (waveformWrap) {
+      waveformWrap.addEventListener("click", seekFromEvent);
+
+      waveformWrap.addEventListener("mousedown", function(e) {
+        isDragging = true;
+        seekFromEvent(e);
+      });
+      document.addEventListener("mousemove", function(e) {
+        if (isDragging) seekFromEvent(e);
+      });
+      document.addEventListener("mouseup", function() {
+        isDragging = false;
+      });
+
+      waveformWrap.addEventListener("touchstart", function(e) {
+        isDragging = true;
+        seekFromEvent(e);
+      }, { passive: true });
+      document.addEventListener("touchmove", function(e) {
+        if (isDragging) seekFromEvent(e);
+      }, { passive: true });
+      document.addEventListener("touchend", function() {
+        isDragging = false;
+      });
+
+      waveformWrap.addEventListener("keydown", function(e) {
+        var dur = getDuration();
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          audio.currentTime = Math.min(dur, audio.currentTime + 5);
+          updateProgressUI();
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          audio.currentTime = Math.max(0, audio.currentTime - 5);
+          updateProgressUI();
+        } else if (e.key === " " || e.key === "Enter") {
+          e.preventDefault();
+          togglePlay();
+        }
+      });
+    }
+
+    if (speedBtn) {
+      speedBtn.addEventListener("click", function() {
+        currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
+        var newSpeed = speeds[currentSpeedIndex];
+        audio.playbackRate = newSpeed;
+        speedBtn.textContent = speedLabels[newSpeed] || (newSpeed + "x");
+      });
+    }
+
+    chapterBtns.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        var seekTime = parseFloat(btn.getAttribute("data-seek")) || 0;
+        audio.currentTime = seekTime;
+        updateProgressUI();
+        if (audio.paused) {
+          audio.play().then(function() {
+            updatePlayButtonUI(true);
+          }).catch(function() {});
+        }
+      });
+    });
+
+    updateProgressUI();
+  }
+  setupAudioPlayer("en", 1190.8);
+  setupAudioPlayer("fr", 691.8);
 
   function handleHash() {
     var hash = window.location.hash;
