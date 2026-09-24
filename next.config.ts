@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       // keep the old case-study URL alive for anything already pointing at it.
       { source: "/work/lakta", destination: "/work/laqta", permanent: true },
       { source: "/proposals/ballroom-mvp.html", destination: "/proposals/ballroom-mvp", permanent: true },
+      { source: "/proposals/ballroom-email-chatgpt.html", destination: "/proposals/ballroom-email-chatgpt", permanent: true },
     ];
   },
   async headers() {
