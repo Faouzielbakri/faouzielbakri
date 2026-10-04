@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -31,6 +31,15 @@ export function HeroSwitch({ hero, videoSrc, posterSrc, ...props }: HeroSwitchPr
     `/?hero=${HERO_KEYS[(index + step + HERO_KEYS.length) % HERO_KEYS.length]}`;
   const next = at(1);
   const previous = at(-1);
+
+  // Stepping to another hero keeps the path at "/", so the page-view tracker
+  // does not see it. Count that view here, skipping the first render.
+  const seen = useRef(hero);
+  useEffect(() => {
+    if (seen.current === hero) return;
+    seen.current = hero;
+    track("pageview");
+  }, [hero]);
 
   // [ and ] step through the heroes; handy when comparing them.
   useEffect(() => {
