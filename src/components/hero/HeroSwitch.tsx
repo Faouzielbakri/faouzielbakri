@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -22,6 +22,9 @@ const HEROES: Record<HeroKey, React.ComponentType<HeroProps>> = {
   brief: dynamic(() => import("./HeroBrief").then((m) => m.HeroBrief)),
 };
 
+/** Which hero was showing last, and when it went away. */
+const handover: { hero: string | null; leftAt: number } = { hero: null, leftAt: 0 };
+
 type HeroSwitchProps = HeroProps & { hero: HeroRoute; videoSrc?: string; posterSrc?: string };
 
 export function HeroSwitch({ hero, videoSrc, posterSrc, ...props }: HeroSwitchProps) {
@@ -33,12 +36,15 @@ export function HeroSwitch({ hero, videoSrc, posterSrc, ...props }: HeroSwitchPr
   const previous = at(-1);
 
   // Stepping to another hero keeps the path at "/", so the page-view tracker
-  // does not see it. Count that view here, skipping the first render.
-  const seen = useRef(hero);
+  // does not see it. The hero remounts on that step, so the handover is read
+  // from module state: a different hero mounting right after one unmounted.
   useEffect(() => {
-    if (seen.current === hero) return;
-    seen.current = hero;
-    track("pageview");
+    const now = performance.now();
+    if (handover.hero && handover.hero !== hero && now - handover.leftAt < 3000) track("pageview");
+    handover.hero = hero;
+    return () => {
+      handover.leftAt = performance.now();
+    };
   }, [hero]);
 
   // [ and ] step through the heroes; handy when comparing them.
