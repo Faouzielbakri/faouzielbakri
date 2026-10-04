@@ -2,8 +2,6 @@
 
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { track } from "@/lib/track";
 import type { HeroProps } from "./shared";
@@ -22,30 +20,14 @@ const HEROES: Record<HeroKey, React.ComponentType<HeroProps>> = {
   brief: dynamic(() => import("./HeroBrief").then((m) => m.HeroBrief)),
 };
 
-/** Which hero was showing last, and when it went away. */
-const handover: { hero: string | null; leftAt: number } = { hero: null, leftAt: 0 };
-
 type HeroSwitchProps = HeroProps & { hero: HeroRoute; videoSrc?: string; posterSrc?: string };
 
 export function HeroSwitch({ hero, videoSrc, posterSrc, ...props }: HeroSwitchProps) {
-  const router = useRouter();
   const index = hero === LEGACY_HERO ? -1 : HERO_KEYS.indexOf(hero);
   const at = (step: number) =>
     `/?hero=${HERO_KEYS[(index + step + HERO_KEYS.length) % HERO_KEYS.length]}`;
   const next = at(1);
   const previous = at(-1);
-
-  // Stepping to another hero keeps the path at "/", so the page-view tracker
-  // does not see it. The hero remounts on that step, so the handover is read
-  // from module state: a different hero mounting right after one unmounted.
-  useEffect(() => {
-    const now = performance.now();
-    if (handover.hero && handover.hero !== hero && now - handover.leftAt < 3000) track("pageview");
-    handover.hero = hero;
-    return () => {
-      handover.leftAt = performance.now();
-    };
-  }, [hero]);
 
   // [ and ] step through the heroes; handy when comparing them.
   useEffect(() => {
@@ -53,12 +35,12 @@ export function HeroSwitch({ hero, videoSrc, posterSrc, ...props }: HeroSwitchPr
       const el = e.target as HTMLElement | null;
       if (el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable)) return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
-      if (e.key === "]") router.push(next, { scroll: false });
-      else if (e.key === "[") router.push(previous, { scroll: false });
+      if (e.key === "]") window.location.assign(next);
+      else if (e.key === "[") window.location.assign(previous);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [router, next, previous]);
+  }, [next, previous]);
 
   if (hero === LEGACY_HERO) {
     return (
@@ -72,10 +54,11 @@ export function HeroSwitch({ hero, videoSrc, posterSrc, ...props }: HeroSwitchPr
   return (
     <div className="relative" data-hero={hero}>
       <Hero {...props} />
-      <Link
+      {/* A plain link on purpose. The heroes share the URL path, and a client-side
+          navigation between them is answered from the router's copy of "/", so
+          the hero would not change. A real page load always gets the right one. */}
+      <a
         href={next}
-        scroll={false}
-        prefetch={false}
         onClick={() => track("hero_next", { from: hero })}
         title="This site has five openings. See the next one."
         className="group absolute right-2 top-1/2 z-30 flex -translate-y-1/2 items-center gap-2 rounded-full border border-white/25 bg-ink/90 px-2 py-3 font-mono text-[10px] uppercase tracking-[0.22em] text-bg shadow-[0_10px_30px_-12px_rgba(20,18,16,0.7)] backdrop-blur-sm transition-colors duration-200 hover:bg-accent sm:right-3"
@@ -89,7 +72,7 @@ export function HeroSwitch({ hero, videoSrc, posterSrc, ...props }: HeroSwitchPr
         <span aria-hidden className="transition-transform duration-200 group-hover:translate-y-0.5">
           →
         </span>
-      </Link>
+      </a>
     </div>
   );
 }
