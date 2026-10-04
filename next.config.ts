@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Self-contained server for the Docker image (see Dockerfile).
+  output: "standalone",
   images: {
     // Optimized images barely change — let browsers & Cloudflare hold them a month.
     minimumCacheTTL: 2_678_400,
