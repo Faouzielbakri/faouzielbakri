@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
-import { ADMIN_COOKIE, tokenIsValid } from "@/lib/admin-auth";
+import { ADMIN_COOKIE, OWNER_COOKIE, tokenIsValid } from "@/lib/admin-auth";
 import { db } from "@/lib/db";
 
 /**
@@ -8,7 +8,7 @@ import { db } from "@/lib/db";
  *
  * Cookieless: the visitor id is a hash of address + browser + date + a salt,
  * so it is stable for a day and cannot be reversed or joined across days. The
- * address itself is never stored. Bots and the signed-in owner are not counted.
+ * address itself is never stored. Bots and the owner's browsers are not counted.
  */
 const EVENT_NAMES = [
   "pageview",
@@ -66,7 +66,8 @@ export async function POST(request: Request) {
 
   const cookie = request.headers.get("cookie") ?? "";
   const session = cookie.match(new RegExp(`${ADMIN_COOKIE}=([a-f0-9]+)`))?.[1];
-  if (tokenIsValid(session)) return done;
+  // The owner: signed in right now, or on a browser marked at an earlier sign-in.
+  if (tokenIsValid(session) || new RegExp(`(?:^|;\\s*)${OWNER_COOKIE}=1`).test(cookie)) return done;
 
   let parsed;
   try {

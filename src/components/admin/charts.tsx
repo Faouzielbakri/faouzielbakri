@@ -20,7 +20,7 @@ const trafficConfig = {
 
 export function TrafficChart({ data }: { data: { label: string; visitors: number; pageviews: number }[] }) {
   return (
-    <ChartContainer config={trafficConfig} className="aspect-auto h-[250px] w-full">
+    <ChartContainer config={trafficConfig} className="aspect-auto h-[215px] w-full">
       <AreaChart data={data} margin={{ left: 0, right: 8, top: 8, bottom: 0 }}>
         <defs>
           {(["visitors", "pageviews"] as const).map((key) => (
@@ -62,15 +62,15 @@ export function DeviceDonut({ data }: { data: { label: string; visitors: number 
     data.map((d) => [d.label, { label: d.label, color: DEVICE_COLORS[d.label] ?? OTHER_COLOR }]),
   ) satisfies ChartConfig;
   return (
-    <ChartContainer config={config} className="mx-auto aspect-square h-[190px]">
+    <ChartContainer config={config} className="aspect-square h-[150px]">
       <PieChart>
         <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel nameKey="label" />} />
         <Pie
           data={data}
           dataKey="visitors"
           nameKey="label"
-          innerRadius={58}
-          outerRadius={84}
+          innerRadius={46}
+          outerRadius={68}
           paddingAngle={data.length > 1 ? 3 : 0}
           cornerRadius={5}
           strokeWidth={0}
@@ -83,7 +83,7 @@ export function DeviceDonut({ data }: { data: { label: string; visitors: number 
               if (!viewBox || !("cx" in viewBox)) return null;
               return (
                 <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle" dominantBaseline="middle">
-                  <tspan x={viewBox.cx} y={(viewBox.cy ?? 0) - 4} className="fill-ink font-display text-3xl font-bold">
+                  <tspan x={viewBox.cx} y={(viewBox.cy ?? 0) - 4} className="fill-ink font-display text-2xl font-bold">
                     {total}
                   </tspan>
                   <tspan x={viewBox.cx} y={(viewBox.cy ?? 0) + 18} className="fill-muted text-[11px]">

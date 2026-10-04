@@ -7,6 +7,12 @@ import { cookies } from "next/headers";
  * signs everyone out. With no password set, the dashboard stays closed.
  */
 export const ADMIN_COOKIE = "feb_admin";
+/**
+ * Marks a browser as the owner's, for a year, so the analytics never count it:
+ * set at sign-in and deliberately left in place at sign-out. It grants nothing,
+ * so anyone faking it only removes themselves from the numbers.
+ */
+export const OWNER_COOKIE = "feb_owner";
 
 function expectedToken(): string | null {
   const password = process.env.ADMIN_PASSWORD;

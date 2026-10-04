@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { ADMIN_COOKIE, checkPassword, sessionToken } from "@/lib/admin-auth";
+import { ADMIN_COOKIE, OWNER_COOKIE, checkPassword, sessionToken } from "@/lib/admin-auth";
 
 export async function signIn(formData: FormData) {
   const password = String(formData.get("password") ?? "");
@@ -11,13 +11,15 @@ export async function signIn(formData: FormData) {
     await new Promise((resolve) => setTimeout(resolve, 700));
     redirect("/admin?wrong=1");
   }
-  (await cookies()).set(ADMIN_COOKIE, sessionToken()!, {
+  const jar = await cookies();
+  const base = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "lax" as const,
     path: "/",
-    maxAge: 60 * 60 * 24 * 30,
-  });
+  };
+  jar.set(ADMIN_COOKIE, sessionToken()!, { ...base, maxAge: 60 * 60 * 24 * 30 });
+  jar.set(OWNER_COOKIE, "1", { ...base, maxAge: 60 * 60 * 24 * 365 });
   redirect("/admin");
 }
 
