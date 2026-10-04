@@ -51,6 +51,7 @@ export async function loadProposals() {
       .filter((r) => r.path === `/proposals/${proposal.slug}`)
       .map((r) => ({
         id: r.visitor + r.first.toISOString(),
+        visitor: r.visitor,
         first: new Date(r.first).getTime(),
         last: new Date(r.last).getTime(),
         country: r.country,

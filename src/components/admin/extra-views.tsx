@@ -13,7 +13,9 @@ import {
   Send,
   Share2,
   ThumbsUp,
+  X,
 } from "lucide-react";
+import { removeProposalRead } from "@/app/admin/actions";
 import type { EmailReport, ProposalReport } from "@/lib/dashboard-extras";
 import { DeviceIcon, Eyebrow, Flag, Tile, ago, countryName, fmt } from "./bits";
 
@@ -121,6 +123,18 @@ export function ProposalsView({ report, now }: { report: ProposalReport; now: nu
                         {r.depth}% · {r.sections} sections
                       </span>
                       <span className="ml-auto whitespace-nowrap text-[12px] text-muted">{ago(r.last, now)}</span>
+                      <form action={removeProposalRead}>
+                        <input type="hidden" name="slug" value={p.slug} />
+                        <input type="hidden" name="visitor" value={r.visitor} />
+                        <button
+                          type="submit"
+                          title="Remove this read (a test, or your own device)"
+                          className="flex size-6 items-center justify-center rounded-full text-muted transition-colors hover:bg-bg hover:text-accent-deep"
+                        >
+                          <X className="size-3.5" aria-hidden />
+                          <span className="sr-only">Remove this read</span>
+                        </button>
+                      </form>
                     </li>
                   ))}
                 </ul>
