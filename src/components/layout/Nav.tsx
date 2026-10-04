@@ -24,7 +24,8 @@ export function Nav({ tone = "light" }: { tone?: "light" | "dark" }) {
 
   // Over a dark world page the un-scrolled nav sits on dark artwork; once
   // scrolled the light backdrop returns and the default ink palette applies.
-  const dark = tone === "dark" && !scrolled;
+  const heroTone = useUiStore((s) => s.heroTone);
+  const dark = (tone === "dark" || heroTone === "dark") && !scrolled;
 
   return (
     <header

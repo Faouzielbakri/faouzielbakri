@@ -11,6 +11,10 @@ type UiState = {
   /** Section currently in view, drives nav scroll-spy */
   activeSection: string;
   setActiveSection: (id: string) => void;
+
+  /** Set by a hero that paints a dark ground, so the nav can switch palette */
+  heroTone: "light" | "dark";
+  setHeroTone: (tone: "light" | "dark") => void;
 };
 
 export const useUiStore = create<UiState>()((set) => ({
@@ -18,6 +22,8 @@ export const useUiStore = create<UiState>()((set) => ({
   setAudienceIntent: (audienceIntent) => set({ audienceIntent }),
   activeSection: "hero",
   setActiveSection: (activeSection) => set({ activeSection }),
+  heroTone: "light",
+  setHeroTone: (heroTone) => set({ heroTone }),
 }));
 
 type MotionPrefs = {
