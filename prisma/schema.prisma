@@ -1,0 +1,35 @@
+// Portfolio analytics. Client generated to src/generated/prisma (Prisma 7
+// `prisma-client` generator); the connection goes through a pg driver adapter.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// One thing a visitor did. No cookie and no address is stored: `visitor` is a
+/// hash that changes every day, so a person cannot be followed across days.
+model Event {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  /// pageview | section | scroll | cta | lead | hero_next | hero_play | outbound
+  name      String
+  path      String
+  /// Which homepage hero the visitor was on, when the event happened there.
+  hero      String?
+  visitor   String
+  /// utm_source, or the referring site's host, or null for direct visits.
+  source    String?
+  country   String?
+  /// desktop | mobile | tablet
+  device    String?
+  props     Json?
+
+  @@index([createdAt])
+  @@index([name, createdAt])
+  @@index([visitor, createdAt])
+}

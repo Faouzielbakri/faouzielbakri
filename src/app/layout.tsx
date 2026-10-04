@@ -9,6 +9,7 @@ import {
   Tajawal,
 } from "next/font/google";
 import { Attribution } from "@/components/layout/Attribution";
+import { Tracker } from "@/components/analytics/Tracker";
 import { SITE_URL } from "@/lib/site-url";
 import "./globals.css";
 
@@ -109,6 +110,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Attribution />
+        <Tracker />
         {children}
       </body>
     </html>

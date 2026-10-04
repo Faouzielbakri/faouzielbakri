@@ -8,3 +8,4 @@ scripts
 assets
 *.tsbuildinfo
 .DS_Store
+src/generated

@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       // /mock pages exist only for screenshot capture — keep them out of the index
-      { userAgent: "*", allow: "/", disallow: "/mock/" },
+      { userAgent: "*", allow: "/", disallow: ["/mock/", "/admin", "/h/"] },
       // AI crawlers, explicitly welcome — being read (and cited) by AI search
       // engines is a distribution channel, same as Google.
       ...[

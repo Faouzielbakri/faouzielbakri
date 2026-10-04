@@ -4,6 +4,7 @@
  * Contact — a letter you finish, not a form you fill. One giant editorial
  * sentence with inline blanks; the mailto fallback keeps it unbreakable.
  */
+import { track } from "@/lib/track";
 import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import { z } from "zod";
@@ -119,6 +120,7 @@ export function ContactSection({ email }: { email: string }) {
       });
       if (!res.ok) throw new Error(`status ${res.status}`);
       setStatus("sent");
+      track("lead");
     } catch {
       setStatus("failed");
     }

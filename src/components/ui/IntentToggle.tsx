@@ -1,6 +1,7 @@
 "use client";
 
 import { useUiStore, type AudienceIntent } from "@/lib/store";
+import { track } from "@/lib/track";
 
 const options: { value: Exclude<AudienceIntent, null>; label: string; hint: string }[] = [
   { value: "hire", label: "Hire me", hint: "for a team" },
@@ -30,6 +31,7 @@ export function IntentToggle() {
             aria-pressed={active}
             onClick={() => {
               setIntent(opt.value);
+              track("cta", { kind: opt.value });
               document
                 .getElementById("contact")
                 ?.scrollIntoView({ behavior: "smooth", block: "start" });
