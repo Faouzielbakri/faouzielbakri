@@ -364,7 +364,7 @@ export default function HireSmallBusinessPage() {
                     <p className="mt-3 text-[15px] leading-relaxed text-muted">
                       {r.detail}
                     </p>
-                    {project ? (
+                    {project?.tier === "case-study" ? (
                       <Link
                         href={`/work/${r.slug}`}
                         className="mt-4 inline-block font-mono text-xs text-muted underline decoration-line underline-offset-4 transition-colors hover:text-ink"

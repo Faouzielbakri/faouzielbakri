@@ -117,4 +117,4 @@ Pick one question worth answering. Write the sentence, including a number that c
 
 The goal was never a small product. It was the shortest honest path to finding out whether you're building the right thing at all.
 
-If you're scoping a first version and want a second opinion on what to cut, I build MVPs end-to-end — [what that looks like for a small business](/hire/small-business), or [the freelance page](/hire) for larger builds.
+If you're scoping a first version and want a second opinion on what to cut, I build MVPs end-to-end — [MVP development services](/hire/mvp) has the scope and process, [this page](/hire/small-business) covers a small business's first build, and [the freelance page](/hire) is for larger ones.

@@ -73,4 +73,4 @@ Whichever shape you pick, these cut across all of them:
 
 None of the systems above use an agent framework. The Anthropic SDK's tool runner covers the inner loop; the pipeline orchestration is a few hundred lines of TypeScript with typed contracts — code I can read, test, and debug like any other code. Frameworks earn their place when you need their specific machinery (durable execution, distributed workers), not as a default starting point. Start with the four concerns, own them in plain code, and add machinery when a concrete problem demands it.
 
-If you're designing one of these systems and want a second opinion on the architecture, [my inbox is open](/#contact).
+If you're designing one of these systems and want a second opinion on the architecture, [my inbox is open](/#contact). If you want one of these built rather than reviewed, see [AI agents for business](/hire/ai-agents).

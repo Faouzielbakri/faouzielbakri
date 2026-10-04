@@ -7,6 +7,53 @@ winnable quickly by a page with real expertise + links).
 - **Pass 4** — Google Ads search volume + Labs bulk difficulty, August 2026. ≈ $0.19.
   Two locales: **Morocco / fr (2504)** and **US / en (2840)**.
 
+- **Pass 5** — Labs keyword suggestions (14 owner-phrased seeds) + keyword overview,
+  **US / en (2840)** and **France / fr (2250)**, plus AI-assistant search volume,
+  October 2026. ≈ $0.25. Results below under "Pass 5".
+
+## Pass 5 — how owners ask (October 2026)
+
+Seeds were phrased the way a business owner types, not the way a developer does
+("build an app for my business", "ai agent for business", "automate my business").
+
+### Built from this pass
+
+| Page | Cluster (US/en, vol/mo · difficulty · CPC) |
+|---|---|
+| `/hire/ai-agents` — **LIVE** | ai agent for business 3,600 · 14 · $87.72; ai chatbot for business 2,900 · 23 · $43; ai agent development company 720 · 9; ai agent development services 480 · 0; custom ai agents 390 · 30; chatbot development services 320 · 0 · $86.66; ai agents for small business 210 · 0; custom ai agent development 110 · 17 · $162 |
+| `/hire/ai-automation` — **LIVE** | ai automation agency 4,400 · 19; ai workflow automation 1,000 · 28; ai automation services 720 · 3; ai integration services 720 · 1; ai automation consultant 590 · 0 · $49; custom ai solutions 590 · 0; n8n automation agency 110 · 4 |
+| `/hire/mvp` — **LIVE** | mvp development services 590 · 0 · $49; mvp development company 480 · 0; startup mvp development 210 · 25; mvp development agency 170 · 0; mvp development cost 140 · 0; saas mvp development 70 · 2 · $152 |
+| `/fr/consultant-ia` — **LIVE** | France/fr: agence ia 1,900 · 7; consultant ia 720 · 0; automatisation ia 720 · 2; agence automatisation 480 · 0; agence automatisation ia 390 · 0; agence n8n 320 · 0; chatbot entreprise 110 · 0 · €37 |
+
+`/hire` already carries "AI Consulting Services" in its title (2,400 · 8 · now $106 a click).
+
+### Not built yet, in order of value
+
+| Keyword | Vol/mo | Diff | CPC | Idea |
+|---|---|---|---|---|
+| hire app developer (+ 8 variants) | 1,900 | 13 | $82.53 | `/hire/app-developer` — web apps + React Native (TAGi as the receipt) |
+| web app development services | 1,000 | 13 | $35.67 | same page |
+| fractional cto | 1,600 | 10 | $25.34 | `/hire/fractional-cto` — only if he wants that kind of engagement |
+| claude ai for small business | 1,000 | 18 | $6.83 | blog post — what Claude can do for a small business, with real builds |
+| how to build an app for my business | 390 | 16 | $31.01 | blog post, funnels to /hire/mvp |
+| hire someone to build a website | 210 | 15 | $49.39 | blog post — how to hire, what to ask, what it costs |
+| ai receptionist for small business | 2,900 | 32 | $60.46 | product-seeking; a page only once a receptionist/concierge build is live |
+| France/fr: développeur web freelance 1,000 · 4; logiciel sur mesure 590 · 7; développeur application 480 · 10 · €39; développement application web 210 · 0 · €28 | | | | second French page — `/fr/developpeur-freelance` |
+
+### What people ask AI assistants (AI search volume, US)
+
+ai agent developer 377 · freelance web developer 151 · mvp developer 150 · hire web
+developer 126 · ai workflow automation 104 · claude developer 102 · ai automation
+agency 52. Everything else measured under 30. "AI agent developer" is the phrase to
+own in llms.txt and on /hire/ai-agents.
+
+### Rejected in this pass
+
+- "ai agency" (49,500) — navigational, people looking for a specific agency.
+- "claude developer" (2,900, diff 59) — informational, owned by Anthropic's docs.
+- "whatsapp automation for business" (10), "hire mvp developer" (20), "hire n8n developer" (40) — too small alone; covered as secondary phrases.
+- France/fr "créer un mvp", "développeur react freelance", "développeur ia freelance" — 10–20/mo.
+
 ## The funnel
 
 1. **Developers & AI-search citations** (informational) → blog posts
@@ -42,18 +89,10 @@ costs on Google Ads — the honest proxy for how much a lead is worth.
 | freelance ai developer | 110 | 26 | $68.70 | /hire | LIVE |
 | hire ai agent developer | 90 | 0 | — | /hire | LIVE |
 
-Next levers, in order:
-
-1. **`/hire/ai-automation`** — the single biggest untapped cluster:
-   ai automation agency (4,400) + ai automation services (590) + ai integration
-   services (590) + custom ai solutions (480) + chatbot development services
-   (320) ≈ **6,400/mo**, most of it at difficulty 0–1. Receipts: RESO Khdma,
-   Laqta, FASL.
-2. **`/hire/mvp`** — mvp development services (590, diff 0, $44) pairs with the
-   already-published MVP post, which funnels into it.
-3. **Strengthen `/hire`** for "ai consulting services" (2,400, diff 8, $76.83) —
-   currently ranked at only by accident; the phrase isn't in the title or H1.
-4. Backlinks across all of them (GitHub profile, LinkedIn featured, dev.to canonical reposts).
+Next levers: superseded by "Pass 5" above — `/hire/ai-automation`, `/hire/mvp`
+and `/hire/ai-agents` are live. What remains is backlinks (GitHub profile,
+LinkedIn featured, dev.to canonical reposts, launching the AI Visibility Checker)
+and the "not built yet" table.
 
 ## Tier 2 — founder / business-owner intent (posts)
 

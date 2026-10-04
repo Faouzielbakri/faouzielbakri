@@ -409,6 +409,34 @@ export default function HirePage() {
                 >
                   a small business&apos;s first AI build
                 </Link>
+                . Or go straight to{" "}
+                <Link
+                  href="/hire/ai-agents"
+                  className="text-accent underline decoration-accent/40 underline-offset-4"
+                >
+                  AI agents for business
+                </Link>
+                ,{" "}
+                <Link
+                  href="/hire/ai-automation"
+                  className="text-accent underline decoration-accent/40 underline-offset-4"
+                >
+                  AI automation services
+                </Link>
+                ,{" "}
+                <Link
+                  href="/hire/mvp"
+                  className="text-accent underline decoration-accent/40 underline-offset-4"
+                >
+                  MVP development
+                </Link>{" "}
+                or the{" "}
+                <Link
+                  href="/fr/consultant-ia"
+                  className="text-accent underline decoration-accent/40 underline-offset-4"
+                >
+                  page en français
+                </Link>
                 .
               </p>
             </Reveal>

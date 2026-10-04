@@ -102,4 +102,4 @@ The unglamorous list that makes the system production-grade:
 
 Build the 30-line agent above with one tool from your own domain. Run it on ten real inputs — not demos — and watch where it fails. Those failures will tell you which of the lessons above you need first. In my experience it's almost always context discipline (lesson 1) and grounding (lesson 3) before anything else.
 
-If you're building something in this space — especially Arabic-first or for the MENA market — [I've probably hit your problem already](/#contact).
+If you're building something in this space — especially Arabic-first or for the MENA market — [I've probably hit your problem already](/#contact). If you'd rather have the agent built for you, [AI agents for business](/hire/ai-agents) is how that works.
