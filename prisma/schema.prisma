@@ -25,8 +25,12 @@ model Event {
   /// utm_source, or the referring site's host, or null for direct visits.
   source    String?
   country   String?
+  /// Present only when Cloudflare sends visitor-location headers.
+  city      String?
   /// desktop | mobile | tablet
   device    String?
+  browser   String?
+  os        String?
   props     Json?
 
   @@index([createdAt])

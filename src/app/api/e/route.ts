@@ -37,6 +37,25 @@ function deviceOf(agent: string) {
   return "desktop";
 }
 
+function browserOf(agent: string) {
+  if (/edg\//i.test(agent)) return "Edge";
+  if (/opr\/|opera/i.test(agent)) return "Opera";
+  if (/samsungbrowser/i.test(agent)) return "Samsung Internet";
+  if (/firefox|fxios/i.test(agent)) return "Firefox";
+  if (/chrome|crios/i.test(agent)) return "Chrome";
+  if (/safari/i.test(agent)) return "Safari";
+  return "Other";
+}
+
+function osOf(agent: string) {
+  if (/iphone|ipad|ipod/i.test(agent)) return "iOS";
+  if (/android/i.test(agent)) return "Android";
+  if (/windows/i.test(agent)) return "Windows";
+  if (/mac os x|macintosh/i.test(agent)) return "macOS";
+  if (/linux|x11/i.test(agent)) return "Linux";
+  return "Other";
+}
+
 export async function POST(request: Request) {
   const done = new Response(null, { status: 204 });
   const prisma = db();
@@ -76,7 +95,10 @@ export async function POST(request: Request) {
         visitor,
         source: event.source,
         country: request.headers.get("cf-ipcountry") ?? undefined,
+        city: request.headers.get("cf-ipcity") ?? undefined,
         device: deviceOf(agent),
+        browser: browserOf(agent),
+        os: osOf(agent),
         props: event.props,
       },
     });
