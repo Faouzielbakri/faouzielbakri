@@ -19,6 +19,10 @@ const EVENT_NAMES = [
   "hero_next",
   "hero_play",
   "outbound",
+  // sent by the reader script on proposal pages (src/lib/proposal-html.ts)
+  "proposal_open",
+  "proposal_time",
+  "proposal_action",
 ] as const;
 
 const Body = z.object({
