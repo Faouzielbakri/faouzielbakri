@@ -141,6 +141,16 @@ const WORLD_ART: Record<string, string> = {
   webtrade: "/media/world-webtrade.avif",
 };
 
+/** Open source built on a brand-new platform feature, in a day. */
+const OPEN_SOURCE = {
+  name: "what-would-it-cost",
+  kind: "Claude Code mod · TypeScript · MIT",
+  repo: "https://github.com/Faouzielbakri/what-would-it-cost",
+  summary:
+    "A live bar inside Claude Code that prices every request at Anthropic's API rates — per model, per billing cycle, against the subscription it replaces. It reads the transcripts already on disk at install, so it opens with history instead of zero.",
+  shipped: "Built, tested and published in a single day, right after Anthropic released Claude Code mods.",
+};
+
 const STACK = [
   "TypeScript",
   "Next.js (App Router)",
@@ -188,6 +198,16 @@ export default function HireEuropePage() {
         name: "AI Engineer Open to Relocation — Netherlands & Germany",
         about: { "@id": personId },
         isPartOf: { "@id": `${SITE_URL}/#website` },
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": `${SITE_URL}/hire/europe#${OPEN_SOURCE.name}`,
+        name: OPEN_SOURCE.name,
+        description: OPEN_SOURCE.summary,
+        codeRepository: OPEN_SOURCE.repo,
+        programmingLanguage: "TypeScript",
+        license: "https://opensource.org/licenses/MIT",
+        author: { "@id": personId },
       },
       {
         "@type": "FAQPage",
@@ -439,6 +459,62 @@ export default function HireEuropePage() {
                 </li>
               </RevealItem>
             ))}
+          </Reveal>
+        </section>
+
+        {/* ── Open source ──────────────────────────────────────── */}
+        <section className="rail mt-24">
+          <Reveal>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+              Shipped this month
+            </p>
+            <h2
+              className="font-display mt-3 max-w-2xl font-bold leading-tight"
+              style={{ fontSize: "var(--text-title)" }}
+            >
+              A new platform, a shipped tool, one day
+              <span className="text-accent">.</span>
+            </h2>
+          </Reveal>
+          <Reveal>
+            <a
+              href={OPEN_SOURCE.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-10 block overflow-hidden rounded-2xl border border-line bg-[#16181d] transition-colors duration-300 hover:border-accent"
+            >
+              {/* The real bar, as it sits above the Claude Code prompt; scrolls sideways on phones. */}
+              <div className="overflow-x-auto px-5 py-6 sm:px-8">
+                <Image
+                  src="/projects/what-would-it-cost/band.jpg"
+                  alt="The what-would-it-cost bar: session, today, 7-day and billing-cycle cost at API prices, 2.2x the Max plan"
+                  width={1730}
+                  height={50}
+                  sizes="(min-width: 1024px) 70rem, 56rem"
+                  quality={90}
+                  className="h-auto w-full min-w-[56rem]"
+                />
+              </div>
+              <div className="grid items-end gap-5 border-t border-white/10 px-5 py-7 sm:grid-cols-[1fr_auto] sm:px-8">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/60">
+                    {OPEN_SOURCE.kind}
+                  </p>
+                  <p className="font-display mt-1.5 text-2xl font-bold text-white">
+                    {OPEN_SOURCE.name}
+                  </p>
+                  <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-white/70">
+                    {OPEN_SOURCE.summary}
+                  </p>
+                  <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-white/50">
+                    {OPEN_SOURCE.shipped}
+                  </p>
+                </div>
+                <p className="font-mono text-xs text-white/70 transition-colors group-hover:text-white">
+                  View on GitHub →
+                </p>
+              </div>
+            </a>
           </Reveal>
         </section>
 
