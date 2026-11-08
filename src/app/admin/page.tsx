@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { Activity, Eye, FileText, LayoutDashboard, LogOut, Mail, ShieldCheck, Users } from "lucide-react";
+import { Activity, ClipboardList, Eye, FileText, LayoutDashboard, LogOut, Mail, ShieldCheck, Users } from "lucide-react";
 import { Eyebrow, HeroGlyph } from "@/components/admin/bits";
 import { EmailsView, ProposalsView } from "@/components/admin/extra-views";
+import { FormsView } from "@/components/admin/forms-view";
 import { ActivityView, AudienceView, OpeningsView, OverviewView } from "@/components/admin/views";
 import { OWNER_COOKIE, adminConfigured, isAdmin } from "@/lib/admin-auth";
 import { loadDashboard, RANGES, type RangeKey } from "@/lib/analytics-queries";
-import { loadEmails, loadProposals } from "@/lib/dashboard-extras";
+import { loadEmails, loadForms, loadProposals } from "@/lib/dashboard-extras";
 import { signIn, signOut } from "./actions";
 
 /**
@@ -15,7 +16,7 @@ import { signIn, signOut } from "./actions";
  * met, what they did, and where they left. Private (password, noindex) and
  * read straight from the site's own Event table. A sidebar switches between
  * views, each sized to one desktop screen: four about traffic, then who read
- * which proposal, and the mail sent from and received at the domain.
+ * which proposal, what clients answered on a form, and the mail sent from and received at the domain.
  */
 export const metadata: Metadata = { title: "Dashboard", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
@@ -26,6 +27,7 @@ const VIEWS = {
   openings: { label: "Openings", blurb: "How each of the five heroes is doing.", Icon: Eye, View: OpeningsView },
   activity: { label: "Activity", blurb: "What gets read, and what people just did.", Icon: Activity, View: ActivityView },
   proposals: { label: "Proposals", blurb: "Did they open it, how long did they read, what did they press.", Icon: FileText, View: null },
+  forms: { label: "Forms", blurb: "What clients answered on the briefs you sent them.", Icon: ClipboardList, View: null },
   emails: { label: "Emails", blurb: "What left from your domain, and what arrived.", Icon: Mail, View: null },
 } as const;
 type ViewKey = keyof typeof VIEWS;
@@ -79,6 +81,7 @@ export default async function AdminPage({ searchParams }: PageProps<"/admin">) {
   const traffic = View !== null;
   const proposals = view === "proposals" ? await loadProposals() : null;
   const emails = view === "emails" ? await loadEmails() : null;
+  const forms = view === "forms" ? await loadForms() : null;
   const now = data?.now ?? new Date().getTime();
 
   return (
@@ -190,6 +193,8 @@ export default async function AdminPage({ searchParams }: PageProps<"/admin">) {
         <div className="mt-5">
           {proposals ? (
             <ProposalsView report={proposals} now={now} />
+          ) : forms ? (
+            <FormsView report={forms} now={now} />
           ) : emails ? (
             <EmailsView report={emails} now={now} />
           ) : data && View ? (

@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 import { ADMIN_COOKIE, OWNER_COOKIE, tokenIsValid } from "@/lib/admin-auth";
 import { db } from "@/lib/db";
+import { browserOf, deviceOf, osOf } from "@/lib/user-agent";
 
 /**
  * Event intake for the site's own analytics.
@@ -34,31 +35,6 @@ const Body = z.object({
 });
 
 const BOT = /bot|crawl|spider|slurp|headless|lighthouse|preview|monitor|curl|wget|python|scrapy|httpclient/i;
-
-function deviceOf(agent: string) {
-  if (/ipad|tablet/i.test(agent)) return "tablet";
-  if (/mobi|iphone|android/i.test(agent)) return "mobile";
-  return "desktop";
-}
-
-function browserOf(agent: string) {
-  if (/edg\//i.test(agent)) return "Edge";
-  if (/opr\/|opera/i.test(agent)) return "Opera";
-  if (/samsungbrowser/i.test(agent)) return "Samsung Internet";
-  if (/firefox|fxios/i.test(agent)) return "Firefox";
-  if (/chrome|crios/i.test(agent)) return "Chrome";
-  if (/safari/i.test(agent)) return "Safari";
-  return "Other";
-}
-
-function osOf(agent: string) {
-  if (/iphone|ipad|ipod/i.test(agent)) return "iOS";
-  if (/android/i.test(agent)) return "Android";
-  if (/windows/i.test(agent)) return "Windows";
-  if (/mac os x|macintosh/i.test(agent)) return "macOS";
-  if (/linux|x11/i.test(agent)) return "Linux";
-  return "Other";
-}
 
 export async function POST(request: Request) {
   const done = new Response(null, { status: 204 });

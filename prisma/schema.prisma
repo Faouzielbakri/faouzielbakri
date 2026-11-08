@@ -37,3 +37,31 @@ model Event {
   @@index([name, createdAt])
   @@index([visitor, createdAt])
 }
+
+/// One person's answers to a form served under /forms/<slug>, one row per
+/// browser. The page autosaves a draft while they type; pressing send stamps
+/// `sentAt`. Later edits or sends update the same row.
+model FormResponse {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  slug       String
+  /// Random id kept in the respondent's browser; not tied to who they are.
+  respondent String
+  /// [{ q, a }] in the order the form asks them (jsonb would reorder an object).
+  answers    Json
+  /// The plain-text copy the form built, when it built one.
+  summary    String?
+  /// When they last pressed send; null while it is only an autosaved draft.
+  sentAt     DateTime?
+  /// How many times this browser pressed send.
+  sends      Int      @default(0)
+  country    String?
+  city       String?
+  device     String?
+  browser    String?
+  os         String?
+
+  @@unique([slug, respondent])
+  @@index([slug, updatedAt])
+}

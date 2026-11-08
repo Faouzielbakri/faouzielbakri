@@ -41,3 +41,11 @@ export async function removeProposalRead(formData: FormData) {
   }
   redirect("/admin?view=proposals");
 }
+
+/** Removes one form response: usually a test of mine. */
+export async function removeFormResponse(formData: FormData) {
+  if (!(await isAdmin())) redirect("/admin");
+  const id = Number(formData.get("id"));
+  if (Number.isInteger(id) && id > 0) await db()?.formResponse.deleteMany({ where: { id } });
+  redirect("/admin?view=forms");
+}

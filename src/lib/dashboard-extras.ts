@@ -1,3 +1,4 @@
+import { FORMS } from "@/content/forms";
 import { PROPOSALS } from "@/content/proposals";
 import { db } from "@/lib/db";
 
@@ -164,4 +165,40 @@ async function loadReceived(): Promise<{ emails: ReceivedEmail[]; error: string 
 export async function loadEmails() {
   const [sent, received] = await Promise.all([loadSent(), loadReceived()]);
   return { sent, received, domain: DOMAIN };
+}
+
+/* ── Forms ──────────────────────────────────────────────────────────────── */
+
+export type FormAnswer = { q: string; a: string | string[] };
+export type FormsReport = Awaited<ReturnType<typeof loadForms>>;
+
+/** Every form in src/content/forms.ts with its responses, newest first. All time. */
+export async function loadForms() {
+  const prisma = db();
+  const rows = prisma
+    ? await prisma.formResponse.findMany({ orderBy: { updatedAt: "desc" }, take: 500 })
+    : [];
+  return FORMS.map((form) => ({
+    ...form,
+    responses: rows
+      .filter((row) => row.slug === form.slug)
+      .map((row) => {
+        const answers = (Array.isArray(row.answers) ? row.answers : []) as FormAnswer[];
+        return {
+          id: row.id,
+          first: row.createdAt.getTime(),
+          last: row.updatedAt.getTime(),
+          sends: row.sends,
+          sentAt: row.sentAt?.getTime() ?? null,
+          answers,
+          filled: answers.filter(({ a }) => (Array.isArray(a) ? a.length : String(a).trim())).length,
+          summary: row.summary,
+          country: row.country,
+          city: row.city,
+          device: row.device,
+          browser: row.browser,
+          os: row.os,
+        };
+      }),
+  }));
 }
