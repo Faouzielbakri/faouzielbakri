@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Truck Detention App: Proposal · Faouzi El Bakri</title>
+<meta name="description" content="What you get: the iPhone and Android apps, the admin dashboard and the landing page, with OCR and AI built in.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Fraunces:ital,wght@1,500&display=swap">
+<style>
+:root{
+  --bg:#faf7f2;--surface:#fff;--ink:#141210;--ink-soft:#2b2823;--muted:#6e6a63;--line:#e7e1d8;
+  --accent:#e8590c;--accent-deep:#b83d05;--saffron:#e8a30c;--ok:#0b7d5e;--ok-soft:#e3f4ee;
+  --display:"Space Grotesk",system-ui,sans-serif;--sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,monospace;--serif:"Fraunces",Georgia,serif;
+  --gutter:clamp(16px,4vw,48px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.rail{max-width:1040px;margin-inline:auto;padding-inline:var(--gutter)}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;margin:0;line-height:1.08}
+em.acc{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--accent);letter-spacing:-.01em}
+.dot{color:var(--accent)}
+.eyebrow{display:flex;align-items:center;gap:12px;font:500 12px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0}
+.eyebrow::before{content:"";width:40px;height:1px;background:var(--accent);flex:none}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+/* Top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(250,247,242,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .rail{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{font:700 18px var(--display);letter-spacing:-.03em;text-decoration:none}
+.tools{display:flex;gap:8px}
+.tbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);border-radius:999px;padding:8px 14px;font:500 13px var(--sans);cursor:pointer;text-decoration:none;transition:border-color .2s}
+.tbtn:hover{border-color:var(--ink)}
+.tbtn.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tbtn.dark:hover{background:var(--accent);border-color:var(--accent)}
+.tbtn svg{width:15px;height:15px}
+@media (max-width:520px){.tbtn .lbl{display:none}.tbtn{padding:9px}.tbtn.dark .lbl{display:inline}.tbtn.dark{padding:8px 14px}}
+
+/* Cover */
+.cover{padding-block:clamp(48px,9vw,104px) clamp(36px,6vw,64px)}
+.cover h1{font-size:clamp(40px,7.5vw,80px);font-weight:700;margin-top:22px;text-wrap:balance}
+.cover .lead{font-size:clamp(17px,1.8vw,21px);color:var(--ink-soft);max-width:660px;margin:24px 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:36px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:16px 18px}
+.fact b{display:block;font:700 26px/1.1 var(--display);letter-spacing:-.03em}
+.fact span{display:block;margin-top:6px;font-size:13px;color:var(--muted);line-height:1.35}
+.fact.hl{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.fact.hl span{color:rgba(250,247,242,.65)}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:14px 28px;font:500 15px var(--sans);text-decoration:none;cursor:pointer;border:0;transition:background-color .2s,color .2s}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.primary:hover{background:var(--accent)}
+.btn.accent{background:var(--accent);color:#fff}
+.btn.accent:hover{background:var(--accent-deep)}
+.link{font-size:14px;color:var(--muted);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
+.link:hover{color:var(--ink)}
+
+/* Sections */
+section{padding-block:clamp(48px,7vw,88px);border-top:1px solid var(--line);scroll-margin-top:60px}
+section h2{font-size:clamp(30px,4.6vw,48px);font-weight:700;margin-top:16px;text-wrap:balance}
+section .intro{font-size:18px;color:var(--ink-soft);max-width:680px;margin:18px 0 0}
+.grid{display:grid;gap:14px;margin-top:32px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:clamp(20px,3vw,30px)}
+.card h3{font-size:22px;font-weight:700}
+.card p{margin:10px 0 0;color:var(--ink-soft)}
+.card.ink{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.card.ink p,.card.ink li{color:rgba(250,247,242,.78)}
+.tag{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.tag.acc{background:#fde8dc;color:var(--accent-deep)}
+.tag.dim{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.card.ink .tag.acc{background:rgba(232,89,12,.22);color:#ffb38a}
+ul.clean{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:9px}
+ul.clean li{position:relative;padding-left:24px;color:var(--ink-soft);font-size:15px}
+ul.clean li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ok);font-weight:600}
+.card.ink ul.clean li::before{color:#5cd6a6}
+.card-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.share{font:700 30px/1 var(--display);letter-spacing:-.03em;color:var(--accent)}
+.card.ink .share{color:var(--saffron)}
+.share small{display:block;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px;text-align:right}
+.card.ink .share small{color:rgba(250,247,242,.55)}
+
+/* Flow */
+.flow{display:grid;gap:10px;margin-top:32px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));counter-reset:f}
+.flow div{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:18px}
+.flow div::before{counter-increment:f;content:"0" counter(f);display:block;font:500 12px var(--mono);color:var(--accent-deep);letter-spacing:.06em}
+.flow h3{font-size:19px;margin-top:8px}
+.flow p{margin:6px 0 0;font-size:14.5px;color:var(--ink-soft)}
+.flow .tech{display:block;margin-top:10px;font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.typed{margin-top:14px;display:grid;gap:14px;grid-template-columns:1fr;align-items:center;background:var(--ink);color:var(--bg);border-radius:24px;padding:clamp(20px,3vw,28px)}
+@media (min-width:760px){.typed{grid-template-columns:1fr 1.1fr}}
+.typed p{margin:8px 0 0;color:rgba(250,247,242,.75);font-size:15px}
+.bubble{background:rgba(250,247,242,.08);border:1px solid rgba(250,247,242,.15);border-radius:18px;padding:14px 16px;font-size:15px}
+.bubble.you{border-radius:18px 18px 4px 18px;margin-left:auto;max-width:90%;background:var(--accent);border-color:var(--accent);color:#fff}
+.bubble.ai{margin-top:8px;max-width:95%;border-radius:18px 18px 18px 4px;font:400 13.5px/1.55 var(--mono);color:rgba(250,247,242,.85)}
+.bubble.ai b{color:#5cd6a6;font-weight:500}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.stack span{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font:500 12.5px var(--sans);color:var(--ink-soft)}
+
+/* Investment split */
+.bar{display:flex;height:56px;border-radius:18px;overflow:hidden;margin-top:32px;gap:3px}
+.bar i{display:flex;align-items:center;padding-inline:14px;font:600 14px var(--display);font-style:normal;color:#fff;white-space:nowrap;overflow:hidden}
+.bar .b1{flex:70;background:var(--ink)}
+.bar .b2{flex:20;background:var(--accent)}
+.bar .b3{flex:10;background:var(--saffron);color:var(--ink);justify-content:center;padding-inline:4px}
+.bar-l{display:grid;gap:10px;margin-top:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.bar-l div{font-size:14px;color:var(--ink-soft);padding-left:18px;position:relative}
+.bar-l div::before{content:"";position:absolute;left:0;top:.45em;width:10px;height:10px;border-radius:3px}
+.bar-l .l1::before{background:var(--ink)}.bar-l .l2::before{background:var(--accent)}.bar-l .l3::before{background:var(--saffron)}
+.bar-l b{display:block;color:var(--ink);font-family:var(--display);font-size:16px}
+.pay{display:grid;gap:10px;margin-top:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.pay div{border:1px solid var(--line);border-radius:20px;padding:16px 18px;background:var(--surface)}
+.pay b{display:block;font:700 30px/1 var(--display);letter-spacing:-.03em;color:var(--accent)}
+.pay span{display:block;margin-top:8px;font-size:14px;color:var(--ink-soft)}
+.anchor{margin-top:14px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.anchor div{border:1px dashed var(--line);border-radius:18px;padding:14px 16px;font-size:14px;color:var(--muted)}
+.anchor b{display:block;color:var(--ink);font:600 18px var(--display);margin-top:2px}
+.anchor .you{border:1px solid var(--accent);background:#fff6f0}
+.anchor .you b{color:var(--accent-deep)}
+
+/* Care plan */
+.care{display:grid;gap:14px;margin-top:32px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.price{font:700 clamp(44px,6vw,60px)/1 var(--display);letter-spacing:-.04em;margin-top:14px}
+.price small{font:500 16px var(--sans);letter-spacing:0;opacity:.7}
+.free{display:inline-block;margin-top:12px;background:var(--accent);color:#fff;border-radius:999px;padding:4px 12px;font:600 13px var(--sans)}
+.steps3{display:grid;gap:10px;margin-top:6px}
+.steps3 div{display:grid;grid-template-columns:110px 1fr;gap:12px;border-top:1px solid var(--line);padding-top:12px;font-size:15px;color:var(--ink-soft)}
+.steps3 div:first-child{border-top:0;padding-top:0}
+.steps3 b{font:600 13px var(--mono);color:var(--accent-deep);letter-spacing:.04em;padding-top:2px}
+
+/* Return */
+.table-wrap{margin-top:24px;overflow-x:auto;border:1px solid var(--line);border-radius:22px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:480px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right;white-space:nowrap}
+tr.total td{font-weight:600;background:var(--bg)}
+tr.big td{font-weight:700;color:var(--ok)}
+.note{border-left:2px solid var(--accent);background:var(--surface);border-radius:0 18px 18px 0;padding:14px 18px;margin-top:20px;font-size:15px;color:var(--ink-soft)}
+
+/* Timeline */
+.timeline{margin-top:32px;display:grid;gap:10px}
+.step{display:grid;grid-template-columns:96px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:16px 20px}
+.step .wk{font:500 12px var(--mono);color:var(--accent-deep);letter-spacing:.06em;padding-top:3px}
+.step h3{font-size:18px}
+.step p{margin:4px 0 0;color:var(--ink-soft);font-size:15px}
+.step.milestone{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.step.milestone p{color:rgba(250,247,242,.72)}
+.step.milestone .wk{color:var(--saffron)}
+.later{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.later span{border:1px dashed var(--line);border-radius:999px;padding:6px 12px;font-size:13.5px;color:var(--muted)}
+
+/* Decide */
+#decide{background:var(--ink);color:var(--bg);border-top:0}
+#decide .eyebrow{color:rgba(250,247,242,.6)}
+#decide .intro{color:rgba(250,247,242,.75)}
+.next{margin-top:32px;display:grid;gap:12px;padding:0;counter-reset:n}
+.next li{list-style:none;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;color:rgba(250,247,242,.82)}
+.next li::before{counter-increment:n;content:counter(n);display:grid;place-items:center;width:28px;height:28px;border-radius:999px;background:rgba(250,247,242,.1);font:600 13px var(--mono);color:var(--bg)}
+.valid{margin-top:28px;font-size:13px;color:rgba(250,247,242,.55)}
+footer{padding-block:32px;font-size:13px;color:var(--muted)}
+footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media print{
+  .top,.cta-row,#decide .btn,.toast{display:none!important}
+  body{background:#fff;font-size:12pt}
+  section{padding-block:28px}
+  .card,.step,.flow div,.pay div{break-inside:avoid}
+  #decide{background:#fff;color:var(--ink)}
+  #decide .intro,#decide .eyebrow,.next li{color:var(--ink-soft)!important}
+  .card.ink,.step.milestone,.fact.hl,.typed{background:#fff!important;color:var(--ink)!important;border:2px solid var(--ink)!important}
+  .card.ink *,.step.milestone *,.fact.hl *,.typed *{color:var(--ink)!important}
+  .bar i{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="rail">
+    <a class="logo" href="https://faouzielbakri.com" target="_blank" rel="noopener">FEB<span class="dot">.</span></a>
+    <div class="tools">
+      <button type="button" class="tbtn" id="btn-share" aria-label="Share this proposal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+        <span class="lbl">Share</span>
+      </button>
+      <button type="button" class="tbtn" id="btn-print" aria-label="Print or save as PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span class="lbl">PDF</span>
+      </button>
+      <a class="tbtn dark" href="#action-deck"><span class="lbl">Let's start</span></a>
+    </div>
+  </div>
+</div>
+
+<header class="cover rail" id="summary">
+  <p class="eyebrow">Proposal · Truck detention app · November 2026</p>
+  <h1>Exactly what you asked for, plus what it takes to <em class="acc">sell</em> it<span class="dot">.</span></h1>
+  <p class="lead">Not just an app. A complete product: the driver app on iPhone and Android, the admin dashboard you run the business from, and the landing page that brings drivers in. OCR and AI do the paperwork, so drivers get paid for their waiting time without writing a single email.</p>
+
+  <div class="facts">
+    <div class="fact hl"><b>4 products</b><span>iPhone app, Android app, admin dashboard, landing page</span></div>
+    <div class="fact"><b>2 weeks</b><span>First working version on your phone</span></div>
+    <div class="fact"><b>~9 weeks</b><span>Live on the App Store and Google Play</span></div>
+    <div class="fact"><b>1 month</b><span>Of care plan free after launch</span></div>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn primary" href="#what">See what you get →</a>
+    <a class="link" href="#return">or jump to what it earns</a>
+  </div>
+</header>
+
+<section id="what">
+  <div class="rail">
+    <p class="eyebrow">01 · What you get</p>
+    <h2>One build, four <em class="acc">products</em><span class="dot">.</span></h2>
+    <p class="intro">Everything from your brief is in version 1. The share next to each product is how the work is split: most of it goes where your drivers spend their time.</p>
+
+    <div class="grid g2">
+      <div class="card ink" style="grid-column:1/-1">
+        <div class="card-h">
+          <div>
+            <span class="tag acc">iOS &amp; Android · native</span>
+            <h3 style="margin-top:12px;font-size:26px">The driver app</h3>
+          </div>
+          <div class="share">70%<small>of the build</small></div>
+        </div>
+        <div class="grid g2" style="margin-top:6px;gap:0 28px">
+          <ul class="clean">
+            <li>Automatic arrival and departure by GPS geofencing, in the background, battery-friendly</li>
+            <li>Live detention clock: free time, then billed by the hour, per load</li>
+            <li>BOL and rate-confirmation scanning with OCR (optical character recognition)</li>
+            <li>AI extracts the broker, email, load number and address from the scan</li>
+            <li>Or just type it: the AI understands a plain sentence and fills the trip</li>
+            <li>Multi-stop trips: pickup plus one or more deliveries</li>
+          </ul>
+          <ul class="clean">
+            <li>Claim letter written by AI on your lawyer's template, with a PDF proof report</li>
+            <li>Sent automatically from your domain, replies go straight to the driver</li>
+            <li>Follow-up reminders, paid / disputed status, total money recovered</li>
+            <li>Saved brokers, full trip and claim history</li>
+            <li>Subscriptions in the App Store and Google Play: monthly, yearly, first claim free</li>
+            <li>English and Spanish, fleet accounts for dispatchers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h">
+          <div>
+            <span class="tag dim">Web · private</span>
+            <h3 style="margin-top:12px">The admin dashboard</h3>
+          </div>
+          <div class="share">20%<small>of the build</small></div>
+        </div>
+        <ul class="clean">
+          <li>Drivers, fleets, subscriptions and revenue in one place</li>
+          <li>Every claim and its status, money recovered across the app</li>
+          <li>Brokers that pay and brokers that don't</li>
+          <li>Support: find any driver, see their trips, help them fast</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-h">
+          <div>
+            <span class="tag dim">Web · public</span>
+            <h3 style="margin-top:12px">The landing page</h3>
+          </div>
+          <div class="share">10%<small>of the build</small></div>
+        </div>
+        <ul class="clean">
+          <li>Explains the app in 10 seconds, with App Store and Google Play buttons</li>
+          <li>Live before the app, collecting a waitlist of drivers</li>
+          <li>Fast, mobile-first, built for search engines from day one</li>
+          <li>Ready for your Facebook and TikTok trucker groups and ads</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="rail">
+    <p class="eyebrow">02 · How it works</p>
+    <h2>The driver does <em class="acc">nothing</em>. The app does the rest<span class="dot">.</span></h2>
+
+    <div class="flow">
+      <div><h3>Arrive</h3><p>The phone sees the truck enter the warehouse area. The clock starts on its own.</p><span class="tech">GPS geofencing</span></div>
+      <div><h3>Scan</h3><p>One photo of the BOL. Broker, email, load number and address are read in seconds.</p><span class="tech">OCR + AI extraction</span></div>
+      <div><h3>Wait</h3><p>Free time runs out, billing starts. The driver sees the amount grow live.</p><span class="tech">Detention engine</span></div>
+      <div><h3>Claim</h3><p>On leaving, the claim and PDF proof go to the broker, automatically.</p><span class="tech">AI letter + email</span></div>
+      <div><h3>Get paid</h3><p>Reminders go out until it is paid. The driver sees what the app earned them.</p><span class="tech">Follow-ups + tracking</span></div>
+    </div>
+
+    <div class="typed">
+      <div>
+        <h3 style="font-size:22px">No scan? Just type it.</h3>
+        <p>Drivers are on the road, not at a desk. They write one sentence, the AI turns it into a complete trip ready to claim.</p>
+      </div>
+      <div>
+        <div class="bubble you">Waited 4h at the Walmart DC in Dallas, load 88213, broker is TQL</div>
+        <div class="bubble ai">Trip created · <b>Walmart DC, Dallas TX</b><br>Load <b>88213</b> · Broker <b>TQL</b><br>Detention <b>2 h billable · $50</b> · claim ready</div>
+      </div>
+    </div>
+
+    <div class="stack" aria-label="Technology">
+      <span>Flutter, native on iOS and Android</span>
+      <span>OCR + AI document reading</span>
+      <span>Background geofencing</span>
+      <span>Supabase · PostgreSQL</span>
+      <span>RevenueCat subscriptions</span>
+      <span>Email from your domain (SPF, DKIM, DMARC)</span>
+      <span>Next.js dashboard and landing page</span>
+      <span>Everything in your name</span>
+    </div>
+  </div>
+</section>
+
+<section id="return">
+  <div class="rail">
+    <p class="eyebrow">03 · What it earns</p>
+    <h2>About 35 drivers pay for <em class="acc">everything</em> each month<span class="dot">.</span></h2>
+    <p class="intro">At your price of $12 a month, after the store's 15% and the AI and email usage, each driver leaves you about $9.75 a month. The care plan and the fixed accounts cost about $330.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Paying drivers</th><th class="r">Your profit / month</th><th class="r">Per year</th></tr></thead>
+        <tbody>
+          <tr class="total"><td>35 drivers<br><span class="muted" style="font-weight:400;font-size:13px">covers every monthly cost</span></td><td class="r num">≈ $0</td><td class="r">Costs covered</td></tr>
+          <tr><td>100 drivers</td><td class="r num">$645</td><td class="r num">$7,740</td></tr>
+          <tr><td>500 drivers</td><td class="r num">$4,545</td><td class="r num">$54,540</td></tr>
+          <tr class="big"><td>1,000 drivers</td><td class="r num">$9,420</td><td class="r num">$113,040</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">You expect 1,000+ drivers in the first month. Even at a tenth of that, the app pays its own way. And for the driver, one 4-hour wait already recovers $50: four months of the subscription.</p>
+  </div>
+</section>
+
+<section id="investment">
+  <div class="rail">
+    <p class="eyebrow">04 · Investment</p>
+    <h2>Where your money <em class="acc">goes</em><span class="dot">.</span></h2>
+    <p class="intro">One fixed price for all four products, no hourly billing, no surprises. It is paid in three steps, each tied to something you can hold in your hand.</p>
+
+    <div class="bar" role="img" aria-label="Driver app 70%, admin dashboard 20%, landing page 10%">
+      <i class="b1">Driver app · 70%</i><i class="b2">Admin · 20%</i><i class="b3">10%</i>
+    </div>
+    <div class="bar-l">
+      <div class="l1"><b>Driver app, iOS &amp; Android</b>OCR, AI, geofencing, claims, subscriptions</div>
+      <div class="l2"><b>Admin dashboard</b>Users, revenue, claims, support</div>
+      <div class="l3"><b>Landing page</b>Waitlist, store links, search-ready</div>
+    </div>
+
+    <div class="pay">
+      <div><b>40%</b><span>To start. Design, accounts and the first build on your phone in 2 weeks.</span></div>
+      <div><b>40%</b><span>When the iPhone app is live on the App Store.</span></div>
+      <div><b>20%</b><span>When the Android app is live on Google Play.</span></div>
+    </div>
+
+    <div class="anchor">
+      <div>Same scope at a Moroccan agency<b>90,000 to 150,000 MAD</b></div>
+      <div>Same scope at a US studio<b>$40,000 and up</b></div>
+      <div class="you">With me<b>A fraction of that, one person accountable</b></div>
+    </div>
+    <p class="note">Your exact figure comes with the agreement, the same day you say go. Apple, Google, AI usage and email are paid on your own accounts, at cost, so you always own them.</p>
+  </div>
+</section>
+
+<section id="care">
+  <div class="rail">
+    <p class="eyebrow">05 · After launch</p>
+    <h2>A care plan that grows <em class="acc">with</em> you<span class="dot">.</span></h2>
+    <div class="care">
+      <div class="card ink">
+        <span class="tag acc">Care plan</span>
+        <div class="price num">$300 <small>/ month</small></div>
+        <span class="free">First month free</span>
+        <ul class="clean">
+          <li>Servers and hosting included, nothing else to pay for them</li>
+          <li>Same-day fixes when something breaks</li>
+          <li>iOS and Android updates, so the app never falls behind</li>
+          <li>Monitoring, daily backups, security updates</li>
+          <li>Store compliance: new Apple and Google rules handled</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Flat until it pays for itself many times over</h3>
+        <p style="margin-bottom:20px">You pay one flat fee while the app grows. We only talk again once it is clearly making money.</p>
+        <div class="steps3">
+          <div><b>MONTH 1</b><span>Free. We watch the first real drivers and fix fast.</span></div>
+          <div><b>UP TO 500</b><span>$300 a month, flat. At 500 drivers that is about 5% of your revenue.</span></div>
+          <div><b>500+</b><span>We review the plan together, with bigger servers and room for new features.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="rail">
+    <p class="eyebrow">06 · Timeline</p>
+    <h2>On your phone in <em class="acc">2</em> weeks<span class="dot">.</span></h2>
+    <div class="timeline">
+      <div class="step milestone"><span class="wk">WEEK 2</span><div><h3>First version on your iPhone</h3><p>Sign-up, trips, geofence clock, OCR scanning.</p></div></div>
+      <div class="step"><span class="wk">WEEK 3</span><div><h3>Landing page live</h3><p>Drivers start joining the waitlist while the app is being finished.</p></div></div>
+      <div class="step"><span class="wk">WEEKS 3–5</span><div><h3>Claims, AI and money</h3><p>AI letters, PDF proof, automatic emails, subscriptions, admin dashboard.</p></div></div>
+      <div class="step milestone"><span class="wk">WEEK 6–7</span><div><h3>Pilot, then App Store</h3><p>Your test drivers use it on real loads, then it goes live on iPhone.</p></div></div>
+      <div class="step milestone"><span class="wk">WEEK 9</span><div><h3>Google Play, Spanish, fleets</h3><p>Every driver, every phone.</p></div></div>
+    </div>
+    <div class="later" aria-label="Next">
+      <span>Next: SEO growth plan</span>
+      <span>Content for trucker searches</span>
+      <span>Broker payment scoring</span>
+      <span>Canada &amp; Mexico</span>
+    </div>
+  </div>
+</section>
+
+<section id="decide">
+  <div class="rail" id="action-deck">
+    <p class="eyebrow">07 · Let's start</p>
+    <h2>Your drivers are losing money <em class="acc">this</em> week<span class="dot">.</span></h2>
+    <p class="intro">Every week without the app is detention nobody claims. Say go on WhatsApp and I send the agreement with your figure the same day.</p>
+    <div class="cta-row">
+      <a class="btn accent" href="https://wa.me/212632323856?text=Hi%20Faouzi%2C%20I%20read%20the%20proposal%20for%20the%20detention%20app.%20Let%27s%20start%2C%20send%20me%20the%20agreement." target="_blank" rel="noopener">Let's start, on WhatsApp</a>
+    </div>
+    <ol class="next">
+      <li>You say go. I send the agreement the same day.</li>
+      <li>First payment, and you request the free D-U-N-S number for the Apple account (it takes 1 to 2 weeks, so it starts now).</li>
+      <li>You send 3 to 5 real BOLs, names blurred, to train the OCR on.</li>
+      <li>Two weeks later, the app is on your phone.</li>
+    </ol>
+    <p class="valid">Valid until 23 November 2026. Questions? <a href="https://wa.me/212632323856" target="_blank" rel="noopener" style="color:inherit">WhatsApp</a> or <a href="mailto:faouzielbakri@gmail.com?subject=Detention%20app%20proposal" style="color:inherit">faouzielbakri@gmail.com</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="rail">
+    <span>Prepared by Faouzi El Bakri · faouzielbakri.com</span>
+    <span>Confidential, for the recipient only</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var toast = document.getElementById("toast"), timer;
+  function say(text) {
+    toast.textContent = text; toast.classList.add("on");
+    clearTimeout(timer); timer = setTimeout(function () { toast.classList.remove("on"); }, 2200);
+  }
+  document.getElementById("btn-share").addEventListener("click", function () {
+    var data = { title: document.title, url: location.href.split("#")[0] };
+    if (navigator.share) { navigator.share(data).catch(function () {}); return; }
+    if (navigator.clipboard) navigator.clipboard.writeText(data.url).then(function () { say("Link copied"); }, function () { say(data.url); });
+    else say(data.url);
+  });
+  document.getElementById("btn-print").addEventListener("click", function () { window.print(); });
+})();
+</script>
+</body>
+</html>

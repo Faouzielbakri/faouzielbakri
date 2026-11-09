@@ -2,4 +2,5 @@
 export const PROPOSALS = [
   { slug: "ballroom-email-chatgpt", title: "Email ↔ ChatGPT connector", client: "Ballroom Prod" },
   { slug: "ballroom-mvp", title: "WhatsApp AI concierge MVP", client: "Ballroom Prod" },
+  { slug: "detention-app", title: "Truck detention app", client: "Detention app (friend)" },
 ] as const;
