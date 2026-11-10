@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
 
 /**
  * Redesigned Universeo hero, built purely to be screenshotted for the
  * portfolio (the client's live landing doesn't do the product justice, and we
  * don't touch client code). Not linked anywhere, not indexed.
  */
-const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata: Metadata = {
   title: "Universeo — Briefs, grounded in the SERP",
@@ -80,7 +77,7 @@ function BriefCard() {
         </div>
 
         {/* Card body */}
-        <div className={`${inter.className} space-y-4 p-5`}>
+        <div className={`ff-inter space-y-4 p-5`}>
           {/* Outline */}
           <div>
             <p className="mb-2 text-[10px] font-bold uppercase tracking-wider" style={{ color: VIOLET }}>
@@ -188,7 +185,7 @@ export default function UniverseoMockPage() {
   return (
     <div
       lang="en"
-      className={`${grotesk.className} relative min-h-screen overflow-hidden`}
+      className={`ff-space-grotesk relative min-h-screen overflow-hidden`}
       style={{
         background: "linear-gradient(170deg, #ffffff 0%, #f6f3ff 60%, #efe9ff 100%)",
         color: INK,
@@ -223,7 +220,7 @@ export default function UniverseoMockPage() {
           </span>
           <p className="text-lg font-bold tracking-tight">Universeo</p>
         </div>
-        <nav className={`${inter.className} hidden items-center gap-8 text-sm font-medium opacity-70 md:flex`}>
+        <nav className={`ff-inter hidden items-center gap-8 text-sm font-medium opacity-70 md:flex`}>
           <span>How it works</span>
           <span>Features</span>
           <span>Pricing</span>
@@ -262,11 +259,11 @@ export default function UniverseoMockPage() {
               actually execute.
             </span>
           </h1>
-          <p className={`${inter.className} mt-6 max-w-lg text-lg leading-relaxed opacity-70`}>
+          <p className={`ff-inter mt-6 max-w-lg text-lg leading-relaxed opacity-70`}>
             Universeo reads the live search results for your keyword, then builds a brief with the
             outline, questions, and topics you need to outrank the page one that&apos;s already there.
           </p>
-          <div className={`${inter.className} mt-8 flex flex-wrap items-center gap-4`}>
+          <div className={`ff-inter mt-8 flex flex-wrap items-center gap-4`}>
             <span
               className="flex items-center gap-2.5 rounded-full px-7 py-3.5 text-base font-semibold text-white shadow-lg"
               style={{ background: VIOLET, boxShadow: "0 14px 30px -12px rgba(95,61,196,0.7)" }}
@@ -280,7 +277,7 @@ export default function UniverseoMockPage() {
               See a sample
             </span>
           </div>
-          <div className={`${inter.className} mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm`}>
+          <div className={`ff-inter mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm`}>
             {["Live SERP analysis", "Real competitor gaps", "Export to Docs & CMS"].map((f) => (
               <span key={f} className="flex items-center gap-2 font-medium opacity-70">
                 <CheckIcon className="size-4" style={{ color: VIOLET }} />
@@ -304,7 +301,7 @@ export default function UniverseoMockPage() {
       </main>
 
       {/* How it works strip */}
-      <section className={`${inter.className} relative mx-auto max-w-6xl px-6 pb-14`}>
+      <section className={`ff-inter relative mx-auto max-w-6xl px-6 pb-14`}>
         <div className="grid gap-6 border-t pt-8 sm:grid-cols-3" style={{ borderColor: "rgba(26,21,35,0.1)" }}>
           {[
             ["01", "Drop a keyword", "Universeo pulls the live page-one results for it"],
@@ -312,7 +309,7 @@ export default function UniverseoMockPage() {
             ["03", "Your brief is ready", "Structured, scored for coverage, exportable to Docs & CMS"],
           ].map(([n, title, sub]) => (
             <div key={n} className="flex gap-4">
-              <span className={`${grotesk.className} text-2xl font-bold`} style={{ color: VIOLET }}>
+              <span className={`ff-space-grotesk text-2xl font-bold`} style={{ color: VIOLET }}>
                 {n}
               </span>
               <div>

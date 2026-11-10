@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Tajawal } from "next/font/google";
 
 /**
  * Redesigned RESO Khdma hero, built purely to be screenshotted for the
  * portfolio (the client's live landing doesn't do the product justice, and
  * we don't touch client code). Not linked anywhere, not indexed.
  */
-const tajawal = Tajawal({ subsets: ["arabic"], weight: ["400", "500", "700", "800"] });
 
 export const metadata: Metadata = {
   title: "RESO خدمة — الخدمة كتلقاك فالواتساب",
@@ -149,7 +147,7 @@ export default function ResoMockPage() {
     <div
       dir="rtl"
       lang="ar"
-      className={`${tajawal.className} relative min-h-screen overflow-hidden`}
+      className={`ff-tajawal relative min-h-screen overflow-hidden`}
       style={{
         background: "linear-gradient(165deg, #06231a 0%, #0b3d2c 58%, #0e4a35 100%)",
         color: CREAM,

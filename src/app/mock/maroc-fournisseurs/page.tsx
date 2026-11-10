@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 
 /**
  * Redesigned Maroc Fournisseurs hero, built purely to be screenshotted for the
  * portfolio (the client's live landing doesn't do the product justice, and we
  * don't touch client code). Not linked anywhere, not indexed.
  */
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
 export const metadata: Metadata = {
   title: "Maroc Fournisseurs — Trouvez le bon fournisseur marocain",
@@ -210,7 +208,7 @@ export default function MarocFournisseursMockPage() {
   return (
     <div
       lang="fr"
-      className={`${jakarta.className} relative min-h-screen overflow-hidden`}
+      className={`ff-jakarta relative min-h-screen overflow-hidden`}
       style={{
         background: "linear-gradient(165deg, #fdf8f3 0%, #fbeee6 55%, #f7e3d8 100%)",
         color: INK,

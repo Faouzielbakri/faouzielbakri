@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Sora } from "next/font/google";
 
 /**
  * Redesigned TAGi hero, built purely to be screenshotted for the portfolio
  * (the client's live landing doesn't do the product justice, and we don't
  * touch client code). Not linked anywhere, not indexed.
  */
-const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
 export const metadata: Metadata = {
   title: "TAGi — One tap. Every detail.",
@@ -210,7 +208,7 @@ export default function TagiMockPage() {
   return (
     <div
       lang="en"
-      className={`${sora.className} relative min-h-screen overflow-hidden`}
+      className={`ff-sora relative min-h-screen overflow-hidden`}
       style={{
         background: "radial-gradient(120% 90% at 80% 0%, #14141c 0%, #0a0a0f 55%, #060608 100%)",
         color: "#ffffff",

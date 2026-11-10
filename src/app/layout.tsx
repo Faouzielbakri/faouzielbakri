@@ -1,60 +1,11 @@
 import type { Metadata } from "next";
-import {
-  Amiri,
-  Fraunces,
-  Geist,
-  Geist_Mono,
-  Playfair_Display,
-  Space_Grotesk,
-  Tajawal,
-} from "next/font/google";
 import { Attribution } from "@/components/layout/Attribution";
 import { Tracker } from "@/components/analytics/Tracker";
 import { SITE_URL } from "@/lib/site-url";
+import { FONT_PRELOADS } from "./font-preloads";
+// The fonts ship with the site (scripts/fetch-google-fonts.mjs): a build never waits on Google Fonts.
+import "./fonts.css";
 import "./globals.css";
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-/* World fonts — each featured project speaks its own typography */
-const amiri = Amiri({
-  variable: "--font-amiri",
-  subsets: ["arabic"],
-  weight: ["400", "700"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "600", "900"],
-  style: ["normal", "italic"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["500", "700", "900"],
-  style: ["normal", "italic"],
-});
-
-const tajawal = Tajawal({
-  variable: "--font-tajawal",
-  subsets: ["arabic"],
-  weight: ["400", "700", "800"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -106,8 +57,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${geistSans.variable} ${geistMono.variable} ${amiri.variable} ${fraunces.variable} ${playfair.variable} ${tajawal.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
+      <head>
+        {FONT_PRELOADS.map((href) => (
+          <link key={href} rel="preload" href={href} as="font" type="font/woff2" crossOrigin="" />
+        ))}
+      </head>
       <body className="min-h-full flex flex-col">
         <Attribution />
         <Tracker />

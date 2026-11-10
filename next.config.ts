@@ -30,6 +30,11 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Self-hosted fonts: Google's file names change with every font version.
+        source: "/fonts/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
         // Project screenshots are recaptured in place too.
         source: "/projects/:path*",
         headers: [
