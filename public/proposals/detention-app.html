@@ -90,9 +90,16 @@ ul.clean li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ok)
 .card.ink .share small{color:rgba(250,247,242,.55)}
 
 /* Flow */
-.flow{display:grid;gap:10px;margin-top:32px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));counter-reset:f}
+.flow{display:grid;gap:12px;margin-top:32px;grid-template-columns:1fr;counter-reset:f}
+@media (min-width:560px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:860px){.flow{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .flow div{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:18px}
-.flow div::before{counter-increment:f;content:"0" counter(f);display:block;font:500 12px var(--mono);color:var(--accent-deep);letter-spacing:.06em}
+.flow div{position:relative}
+.flow div::before{counter-increment:f;content:"0" counter(f);position:absolute;top:20px;right:20px;font:500 12px var(--mono);color:var(--muted);letter-spacing:.06em}
+.flow .ic{display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+.flow .ic svg{width:28px;height:28px}
+.flow div.you .ic{background:var(--accent);color:#fff;border-color:var(--accent)}
+.flow h3{margin-top:16px!important}
 .flow h3{font-size:19px;margin-top:8px}
 .flow p{margin:6px 0 0;font-size:14.5px;color:var(--ink-soft)}
 .flow .tech{display:block;margin-top:10px;font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -249,12 +256,12 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <p class="intro">You asked for it as simple as possible. No forms, no licence photos, no emails to write.</p>
 
     <div class="flow">
-      <div class="you"><h3>Set the destination</h3><p>The warehouse address. The app draws the exact arrival zone around the dock.</p><span class="tech">Driver · tap 1</span></div>
-      <div><h3>Arrive</h3><p>The truck enters the zone and the clock starts on its own, even with the phone in a pocket.</p><span class="tech">GPS geofencing</span></div>
-      <div><h3>2 hours free</h3><p>The free time runs. After that, every minute is billable and the driver watches the amount grow.</p><span class="tech">Detention engine</span></div>
-      <div class="you"><h3>Scan the BOL</h3><p>On the way out. OCR and AI read the exit time, company, load number and contacts.</p><span class="tech">Driver · tap 2</span></div>
-      <div><h3>Invoice sent</h3><p>A detention invoice in the carrier's name, with GPS times and the BOL as proof.</p><span class="tech">AI invoice + PDF</span></div>
-      <div><h3>Paid</h3><p>The broker pays, your fee is taken, the rest lands in the driver's bank.</p><span class="tech">Stripe Connect</span></div>
+      <div class="you"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span><h3>Set the destination</h3><p>The warehouse address. The app draws the exact arrival zone around the dock.</p><span class="tech">Driver · tap 1</span></div>
+      <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" stroke-dasharray="2.6 3"/><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21"/></svg></span><h3>Arrive</h3><p>The truck enters the zone and the clock starts on its own, even with the phone in a pocket.</p><span class="tech">GPS geofencing</span></div>
+      <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12"/><path d="M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9"/><path d="M9.5 18.5h5" /></svg></span><h3>2 hours free</h3><p>The free time runs. After that, every minute is billable and the driver watches the amount grow.</p><span class="tech">Detention engine</span></div>
+      <div class="you"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M8 9h8M8 12h8M8 15h5"/></svg></span><h3>Scan the BOL</h3><p>On the way out. OCR and AI read the exit time, company, load number and contacts.</p><span class="tech">Driver · tap 2</span></div>
+      <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2.5 10.5 13.5"/><path d="M21.5 2.5 14.5 21.5l-4-8-8-4z"/></svg></span><h3>Invoice sent</h3><p>A detention invoice in the carrier's name, with GPS times and the BOL as proof.</p><span class="tech">AI invoice + PDF</span></div>
+      <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.4c0-1.3-1.3-2.4-3-2.4s-3 1-3 2.3c0 3.1 6 1.8 6 5 0 1.4-1.3 2.6-3 2.6s-3-1.1-3-2.5M12 5.5V7M12 17v1.5"/></svg></span><h3>Paid</h3><p>The broker pays, your fee is taken, the rest lands in the driver's bank.</p><span class="tech">Stripe Connect</span></div>
     </div>
 
     <div class="typed">
