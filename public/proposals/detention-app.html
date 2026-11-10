@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <title>Truck Detention App: Proposal · Faouzi El Bakri</title>
-<meta name="description" content="What you get: the iPhone and Android apps, the admin dashboard and the landing page, with OCR and AI built in.">
+<meta name="description" content="How it works, what you get, how the money flows, and what it earns: the truck detention app.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Fraunces:ital,wght@1,500&display=swap">
@@ -185,6 +185,11 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   .card.ink *,.step.milestone *,.fact.hl *,.typed *{color:var(--ink)!important}
   .bar i{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+.flow div.you{border:2px solid var(--accent);background:#fff6f0}
+.flow div.you .tech{color:var(--accent-deep)}
+.bar .b4{flex:20;background:var(--accent-deep)}
+.bar .b2{flex:15}
+.bar-l .l4::before{background:var(--accent-deep)}
 </style>
 </head>
 <body>
@@ -208,27 +213,55 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 
 <header class="cover rail" id="summary">
   <p class="eyebrow">Proposal · Truck detention app · November 2026</p>
-  <h1>Exactly what you asked for, plus what it takes to <em class="acc">sell</em> it<span class="dot">.</span></h1>
-  <p class="lead">Not just an app. A complete product: the driver app on iPhone and Android, the admin dashboard you run the business from, and the landing page that brings drivers in. OCR and AI do the paperwork, so drivers get paid for their waiting time without writing a single email.</p>
+  <h1>Drivers wait. The app makes sure they get <em class="acc">paid</em> for it<span class="dot">.</span></h1>
+  <p class="lead">A complete product, not just an app. The driver sets the destination and scans the BOL on the way out. Everything else is automatic: the clock, the invoice, the reminders, and the money landing in the driver's bank, with your fee taken on the way.</p>
 
   <div class="facts">
-    <div class="fact hl"><b>4 products</b><span>iPhone app, Android app, admin dashboard, landing page</span></div>
+    <div class="fact hl"><b>2 taps</b><span>All the driver does: set the destination, scan the BOL</span></div>
+    <div class="fact"><b>4 products</b><span>Driver app, payments, admin dashboard, landing page</span></div>
     <div class="fact"><b>2 weeks</b><span>First working version on your phone</span></div>
-    <div class="fact"><b>~9 weeks</b><span>Live on the App Store and Google Play</span></div>
-    <div class="fact"><b>1 month</b><span>Of care plan free after launch</span></div>
+    <div class="fact"><b>~10 weeks</b><span>Live on the App Store and Google Play</span></div>
   </div>
 
   <div class="cta-row">
-    <a class="btn primary" href="#what">See what you get →</a>
+    <a class="btn primary" href="#how">See how it works →</a>
     <a class="link" href="#return">or jump to what it earns</a>
   </div>
 </header>
 
+<section id="how">
+  <div class="rail">
+    <p class="eyebrow">01 · How it works</p>
+    <h2>The driver does <em class="acc">two</em> things. The app does the rest<span class="dot">.</span></h2>
+    <p class="intro">You asked for it as simple as possible. No forms, no licence photos, no emails to write.</p>
+
+    <div class="flow">
+      <div class="you"><h3>Set the destination</h3><p>The warehouse address. The app draws the exact arrival zone around the dock.</p><span class="tech">Driver · tap 1</span></div>
+      <div><h3>Arrive</h3><p>The truck enters the zone and the clock starts on its own, even with the phone in a pocket.</p><span class="tech">GPS geofencing</span></div>
+      <div><h3>2 hours free</h3><p>The free time runs. After that, every minute is billable and the driver watches the amount grow.</p><span class="tech">Detention engine</span></div>
+      <div class="you"><h3>Scan the BOL</h3><p>On the way out. OCR and AI read the exit time, company, load number and contacts.</p><span class="tech">Driver · tap 2</span></div>
+      <div><h3>Invoice sent</h3><p>A detention invoice in the carrier's name, with GPS times and the BOL as proof.</p><span class="tech">AI invoice + PDF</span></div>
+      <div><h3>Paid</h3><p>The broker pays, your fee is taken, the rest lands in the driver's bank.</p><span class="tech">Stripe Connect</span></div>
+    </div>
+
+    <div class="typed">
+      <div>
+        <h3 style="font-size:22px">No scan? Just type it.</h3>
+        <p>Drivers are on the road, not at a desk. One sentence, and the AI fills in everything the BOL would have.</p>
+      </div>
+      <div>
+        <div class="bubble you">Out at 4:10pm from the Walmart DC in Dallas, load 88213, broker is TQL</div>
+        <div class="bubble ai">Exit <b>4:10 PM</b> · <b>Walmart DC, Dallas TX</b><br>Load <b>88213</b> · Broker <b>TQL</b><br>In zone <b>4 h</b> · billable <b>2 h · $50</b> · invoice ready</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="what">
   <div class="rail">
-    <p class="eyebrow">01 · What you get</p>
+    <p class="eyebrow">02 · What you get</p>
     <h2>One build, four <em class="acc">products</em><span class="dot">.</span></h2>
-    <p class="intro">Everything from your brief is in version 1. The share next to each product is how the work is split: most of it goes where your drivers spend their time.</p>
+    <p class="intro">Everything from your brief and our call is in version 1. The share next to each product is how the work is split: most of it goes where your drivers spend their time.</p>
 
     <div class="grid g2">
       <div class="card ink" style="grid-column:1/-1">
@@ -237,24 +270,46 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
             <span class="tag acc">iOS &amp; Android · native</span>
             <h3 style="margin-top:12px;font-size:26px">The driver app</h3>
           </div>
-          <div class="share">70%<small>of the build</small></div>
+          <div class="share">55%<small>of the build</small></div>
         </div>
         <div class="grid g2" style="margin-top:6px;gap:0 28px">
           <ul class="clean">
-            <li>Automatic arrival and departure by GPS geofencing, in the background, battery-friendly</li>
-            <li>Live detention clock: free time, then billed by the hour, per load</li>
-            <li>BOL and rate-confirmation scanning with OCR (optical character recognition)</li>
-            <li>AI extracts the broker, email, load number and address from the scan</li>
-            <li>Or just type it: the AI understands a plain sentence and fills the trip</li>
-            <li>Multi-stop trips: pickup plus one or more deliveries</li>
+            <li>Destination search with the exact arrival zone drawn around the dock</li>
+            <li>Automatic arrival by GPS geofencing, in the background, battery-friendly</li>
+            <li>Live clock: 2 hours free, then billed by the minute at your rate</li>
+            <li>BOL scanning with OCR (optical character recognition) at exit</li>
+            <li>AI reads exit time, company, load number, emails and addresses</li>
+            <li>Or just type it: the AI understands a plain sentence</li>
           </ul>
           <ul class="clean">
-            <li>Claim letter written by AI on your lawyer's template, with a PDF proof report</li>
-            <li>Sent automatically from your domain, replies go straight to the driver</li>
-            <li>Follow-up reminders, paid / disputed status, total money recovered</li>
-            <li>Saved brokers, full trip and claim history</li>
-            <li>Subscriptions in the App Store and Google Play: monthly, yearly, first claim free</li>
+            <li>Detention invoice and PDF proof, written by AI in the carrier's name</li>
+            <li>Automatic notice to the broker when free time ends</li>
+            <li>Invoice status: sent, viewed, paid, disputed</li>
+            <li>Trip history, saved brokers, total detention paid</li>
             <li>English and Spanish, fleet accounts for dispatchers</li>
+            <li>Sign-up in 30 seconds, carrier check by MC / DOT number</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column:1/-1;border:2px solid var(--accent)">
+        <div class="card-h">
+          <div>
+            <span class="tag acc">New from our call</span>
+            <h3 style="margin-top:12px;font-size:24px">Get paid: payments built in</h3>
+          </div>
+          <div class="share">20%<small>of the build</small></div>
+        </div>
+        <div class="grid g2" style="margin-top:6px;gap:0 28px">
+          <ul class="clean">
+            <li>Driver links their bank once, in 2 minutes, on a secure Stripe screen</li>
+            <li>Each broker gets its own account number on the invoice: they pay the way they pay every carrier</li>
+            <li>“Pay online” button too: bank debit or card</li>
+          </ul>
+          <ul class="clean">
+            <li>Your fee is taken automatically on every paid invoice</li>
+            <li>The rest goes to the driver's bank, usually in 2 business days</li>
+            <li>Polite automatic reminders, factoring companies handled, tax forms by Stripe</li>
           </ul>
         </div>
       </div>
@@ -265,12 +320,12 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
             <span class="tag dim">Web · private</span>
             <h3 style="margin-top:12px">The admin dashboard</h3>
           </div>
-          <div class="share">20%<small>of the build</small></div>
+          <div class="share">15%<small>of the build</small></div>
         </div>
         <ul class="clean">
           <li>Drivers, fleets, subscriptions and revenue in one place</li>
-          <li>Every claim and its status, money recovered across the app</li>
-          <li>Brokers that pay and brokers that don't</li>
+          <li>Every invoice, every payment, your fees, live</li>
+          <li>Brokers that pay fast, brokers that don't</li>
           <li>Support: find any driver, see their trips, help them fast</li>
         </ul>
       </div>
@@ -287,34 +342,8 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
           <li>Explains the app in 10 seconds, with App Store and Google Play buttons</li>
           <li>Live before the app, collecting a waitlist of drivers</li>
           <li>Fast, mobile-first, built for search engines from day one</li>
-          <li>Ready for your Facebook and TikTok trucker groups and ads</li>
+          <li>Ready for trucker groups on Facebook and TikTok, and for ads</li>
         </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="rail">
-    <p class="eyebrow">02 · How it works</p>
-    <h2>The driver does <em class="acc">nothing</em>. The app does the rest<span class="dot">.</span></h2>
-
-    <div class="flow">
-      <div><h3>Arrive</h3><p>The phone sees the truck enter the warehouse area. The clock starts on its own.</p><span class="tech">GPS geofencing</span></div>
-      <div><h3>Scan</h3><p>One photo of the BOL. Broker, email, load number and address are read in seconds.</p><span class="tech">OCR + AI extraction</span></div>
-      <div><h3>Wait</h3><p>Free time runs out, billing starts. The driver sees the amount grow live.</p><span class="tech">Detention engine</span></div>
-      <div><h3>Claim</h3><p>On leaving, the claim and PDF proof go to the broker, automatically.</p><span class="tech">AI letter + email</span></div>
-      <div><h3>Get paid</h3><p>Reminders go out until it is paid. The driver sees what the app earned them.</p><span class="tech">Follow-ups + tracking</span></div>
-    </div>
-
-    <div class="typed">
-      <div>
-        <h3 style="font-size:22px">No scan? Just type it.</h3>
-        <p>Drivers are on the road, not at a desk. They write one sentence, the AI turns it into a complete trip ready to claim.</p>
-      </div>
-      <div>
-        <div class="bubble you">Waited 4h at the Walmart DC in Dallas, load 88213, broker is TQL</div>
-        <div class="bubble ai">Trip created · <b>Walmart DC, Dallas TX</b><br>Load <b>88213</b> · Broker <b>TQL</b><br>Detention <b>2 h billable · $50</b> · claim ready</div>
       </div>
     </div>
 
@@ -322,8 +351,9 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <span>Flutter, native on iOS and Android</span>
       <span>OCR + AI document reading</span>
       <span>Background geofencing</span>
+      <span>Stripe Connect payments</span>
       <span>Supabase · PostgreSQL</span>
-      <span>RevenueCat subscriptions</span>
+      <span>FMCSA carrier check</span>
       <span>Email from your domain (SPF, DKIM, DMARC)</span>
       <span>Next.js dashboard and landing page</span>
       <span>Everything in your name</span>
@@ -331,38 +361,75 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   </div>
 </section>
 
+<section id="money">
+  <div class="rail">
+    <p class="eyebrow">03 · The money</p>
+    <h2>The invoice is the carrier's. The money goes straight to the <em class="acc">driver</em><span class="dot">.</span></h2>
+    <p class="intro">Detention is owed to the carrier on the rate confirmation. So every invoice goes out in the carrier's name, and the money goes into the carrier's own Stripe account. We never own the claim and never hold anyone's money. That keeps the app simple to run, and simple to approve for Stripe and the app stores.</p>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3>Where the money goes</h3>
+        <div class="steps3" style="margin-top:18px">
+          <div><b>BROKER</b><span>Pays the invoice by bank transfer to its own account number, or online.</span></div>
+          <div><b>STRIPE</b><span>Matches the payment to the invoice and tells the app in real time.</span></div>
+          <div><b>YOU</b><span>Your fee is taken automatically, per paid invoice.</span></div>
+          <div><b>DRIVER</b><span>The rest lands in their bank, usually within 2 business days.</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Verification without friction</h3>
+        <p>No licence photos. Two checks we need anyway do the job:</p>
+        <ul class="clean">
+          <li>The MC / DOT number is checked against the federal carrier database at sign-up. One field.</li>
+          <li>Stripe verifies identity and bank before the first payout. Fake accounts can't get paid.</li>
+          <li>Carriers that use a factoring company are asked once; invoices then follow the factor's rules.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px;margin-top:40px">How you earn</h3>
+    <div class="pay">
+      <div><b>Subscription</b><span>A monthly or yearly plan, through the App Store and Google Play.</span></div>
+      <div><b>Fee per invoice</b><span>A percentage of every detention invoice paid, taken by Stripe automatically.</span></div>
+      <div><b>Or both</b><span>The app supports either model, so you can test what drivers prefer. No pay, no fee sells itself.</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="return">
   <div class="rail">
-    <p class="eyebrow">03 · What it earns</p>
-    <h2>About 35 drivers pay for <em class="acc">everything</em> each month<span class="dot">.</span></h2>
-    <p class="intro">At your price of $12 a month, after the store's 15% and the AI and email usage, each driver leaves you about $9.75 a month. The care plan and the fixed accounts cost about $330.</p>
+    <p class="eyebrow">04 · What it earns</p>
+    <h2>13 drivers pay for <em class="acc">everything</em> each month<span class="dot">.</span></h2>
+    <p class="intro">With your $12 subscription and a 15% fee per paid invoice, and only 2 paid detention invoices per driver a month at $75 each. After store, Stripe and AI costs, each driver leaves you about $27 a month. The care plan and fixed accounts cost about $330.</p>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Paying drivers</th><th class="r">Your profit / month</th><th class="r">Per year</th></tr></thead>
+        <thead><tr><th>Active drivers</th><th class="r">Your profit / month</th><th class="r">Per year</th></tr></thead>
         <tbody>
-          <tr class="total"><td>35 drivers<br><span class="muted" style="font-weight:400;font-size:13px">covers every monthly cost</span></td><td class="r num">≈ $0</td><td class="r">Costs covered</td></tr>
-          <tr><td>100 drivers</td><td class="r num">$645</td><td class="r num">$7,740</td></tr>
-          <tr><td>500 drivers</td><td class="r num">$4,545</td><td class="r num">$54,540</td></tr>
-          <tr class="big"><td>1,000 drivers</td><td class="r num">$9,420</td><td class="r num">$113,040</td></tr>
+          <tr class="total"><td>13 drivers<br><span class="muted" style="font-weight:400;font-size:13px">covers every monthly cost</span></td><td class="r num">≈ $0</td><td class="r">Costs covered</td></tr>
+          <tr><td>100 drivers</td><td class="r num">$2,390</td><td class="r num">$28,660</td></tr>
+          <tr><td>500 drivers</td><td class="r num">$13,260</td><td class="r num">$159,120</td></tr>
+          <tr class="big"><td>1,000 drivers</td><td class="r num">$26,850</td><td class="r num">$322,200</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="note">You expect 1,000+ drivers in the first month. Even at a tenth of that, the app pays its own way. And for the driver, one 4-hour wait already recovers $50: four months of the subscription.</p>
+    <p class="note">You expect 1,000+ drivers in the first month. Even at a tenth of that, the app pays its own way. For the driver, one 4-hour wait already brings back $50, which is four months of the subscription.</p>
   </div>
 </section>
 
 <section id="investment">
   <div class="rail">
-    <p class="eyebrow">04 · Investment</p>
+    <p class="eyebrow">05 · Investment</p>
     <h2>Where your money <em class="acc">goes</em><span class="dot">.</span></h2>
     <p class="intro">One fixed price for all four products, no hourly billing, no surprises. It is paid in three steps, each tied to something you can hold in your hand.</p>
 
-    <div class="bar" role="img" aria-label="Driver app 70%, admin dashboard 20%, landing page 10%">
-      <i class="b1">Driver app · 70%</i><i class="b2">Admin · 20%</i><i class="b3">10%</i>
+    <div class="bar" role="img" aria-label="Driver app 55%, payments 20%, admin dashboard 15%, landing page 10%">
+      <i class="b1">Driver app · 55%</i><i class="b4">Payments · 20%</i><i class="b2">Admin</i><i class="b3">10%</i>
     </div>
     <div class="bar-l">
-      <div class="l1"><b>Driver app, iOS &amp; Android</b>OCR, AI, geofencing, claims, subscriptions</div>
-      <div class="l2"><b>Admin dashboard</b>Users, revenue, claims, support</div>
+      <div class="l1"><b>Driver app, iOS &amp; Android</b>Geofencing, OCR, AI, invoices</div>
+      <div class="l4"><b>Get paid</b>Stripe Connect, payouts, your fee</div>
+      <div class="l2"><b>Admin dashboard</b>Users, revenue, invoices, support</div>
       <div class="l3"><b>Landing page</b>Waitlist, store links, search-ready</div>
     </div>
 
@@ -377,13 +444,13 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <div>Same scope at a US studio<b>$40,000 and up</b></div>
       <div class="you">With me<b>A fraction of that, one person accountable</b></div>
     </div>
-    <p class="note">Your exact figure comes with the agreement, the same day you say go. Apple, Google, AI usage and email are paid on your own accounts, at cost, so you always own them.</p>
+    <p class="note">Your exact figure comes with the agreement, the same day you say go. Apple, Google, Stripe, AI usage and email run on your own accounts, at cost, so you always own them.</p>
   </div>
 </section>
 
 <section id="care">
   <div class="rail">
-    <p class="eyebrow">05 · After launch</p>
+    <p class="eyebrow">06 · After launch</p>
     <h2>A care plan that grows <em class="acc">with</em> you<span class="dot">.</span></h2>
     <div class="care">
       <div class="card ink">
@@ -394,16 +461,16 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
           <li>Servers and hosting included, nothing else to pay for them</li>
           <li>Same-day fixes when something breaks</li>
           <li>iOS and Android updates, so the app never falls behind</li>
-          <li>Monitoring, daily backups, security updates</li>
-          <li>Store compliance: new Apple and Google rules handled</li>
+          <li>Payments watched daily: every invoice and payout accounted for</li>
+          <li>Monitoring, daily backups, security updates, new store rules handled</li>
         </ul>
       </div>
       <div class="card">
         <h3>Flat until it pays for itself many times over</h3>
-        <p style="margin-bottom:20px">You pay one flat fee while the app grows. We only talk again once it is clearly making money.</p>
+        <p style="margin-bottom:20px">One flat fee while the app grows. We only talk again once it is clearly making money.</p>
         <div class="steps3">
           <div><b>MONTH 1</b><span>Free. We watch the first real drivers and fix fast.</span></div>
-          <div><b>UP TO 500</b><span>$300 a month, flat. At 500 drivers that is about 5% of your revenue.</span></div>
+          <div><b>UP TO 500</b><span>$300 a month, flat. At 500 drivers that is about 2% of what the app earns you.</span></div>
           <div><b>500+</b><span>We review the plan together, with bigger servers and room for new features.</span></div>
         </div>
       </div>
@@ -413,39 +480,64 @@ footer .rail{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 
 <section id="timeline">
   <div class="rail">
-    <p class="eyebrow">06 · Timeline</p>
+    <p class="eyebrow">07 · Timeline</p>
     <h2>On your phone in <em class="acc">2</em> weeks<span class="dot">.</span></h2>
     <div class="timeline">
-      <div class="step milestone"><span class="wk">WEEK 2</span><div><h3>First version on your iPhone</h3><p>Sign-up, trips, geofence clock, OCR scanning.</p></div></div>
+      <div class="step milestone"><span class="wk">WEEK 2</span><div><h3>First version on your iPhone</h3><p>Sign-up, destination, arrival zone, live clock, BOL scanning.</p></div></div>
       <div class="step"><span class="wk">WEEK 3</span><div><h3>Landing page live</h3><p>Drivers start joining the waitlist while the app is being finished.</p></div></div>
-      <div class="step"><span class="wk">WEEKS 3–5</span><div><h3>Claims, AI and money</h3><p>AI letters, PDF proof, automatic emails, subscriptions, admin dashboard.</p></div></div>
-      <div class="step milestone"><span class="wk">WEEK 6–7</span><div><h3>Pilot, then App Store</h3><p>Your test drivers use it on real loads, then it goes live on iPhone.</p></div></div>
-      <div class="step milestone"><span class="wk">WEEK 9</span><div><h3>Google Play, Spanish, fleets</h3><p>Every driver, every phone.</p></div></div>
+      <div class="step"><span class="wk">WEEKS 3–6</span><div><h3>Invoices, AI and payments</h3><p>AI invoices, PDF proof, broker notices, Stripe payouts, admin dashboard.</p></div></div>
+      <div class="step milestone"><span class="wk">WEEKS 7–8</span><div><h3>Pilot, then App Store</h3><p>Your test drivers use it on real loads and real payments, then it goes live on iPhone.</p></div></div>
+      <div class="step milestone"><span class="wk">WEEK 10</span><div><h3>Google Play, Spanish, fleets</h3><p>Every driver, every phone.</p></div></div>
     </div>
     <div class="later" aria-label="Next">
       <span>Next: SEO growth plan</span>
       <span>Content for trucker searches</span>
-      <span>Broker payment scoring</span>
+      <span>Broker payment scores</span>
       <span>Canada &amp; Mexico</span>
+    </div>
+  </div>
+</section>
+
+<section id="setup">
+  <div class="rail">
+    <p class="eyebrow">08 · What you set up</p>
+    <h2>Ten things, most of them <em class="acc">free</em><span class="dot">.</span></h2>
+    <p class="intro">In this order: the app's accounts have to be in the new company's name. Start the first four this week and everything is ready before I need it.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>What</th><th>Time</th><th class="r">Cost</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><b>A new LLC for the app</b><br><span class="muted">Keeps your trucks and trucking income separate from the app</span></td><td>1–5 days</td><td class="r">~$100–300</td></tr>
+          <tr><td>2</td><td>EIN, the LLC's tax number (irs.gov)</td><td>Same day</td><td class="r">Free</td></tr>
+          <tr><td>3</td><td>US business bank account for the LLC</td><td>1–3 days</td><td class="r">Free</td></tr>
+          <tr><td>4</td><td>D-U-N-S number for the LLC (Apple and Google need it)</td><td>1–2 weeks</td><td class="r">Free</td></tr>
+          <tr><td>5</td><td>Apple Developer account in the LLC's name</td><td>2–5 days</td><td class="r">$99 / year</td></tr>
+          <tr><td>6</td><td>Google Play developer account</td><td>1–3 days</td><td class="r">$25 once</td></tr>
+          <tr><td>7</td><td>Stripe account, and Stripe's written OK for the model (I write the message)</td><td>1–2 weeks</td><td class="r">Free</td></tr>
+          <tr><td>8</td><td>The domain and business email</td><td>Same day</td><td class="r">~$15 / year</td></tr>
+          <tr><td>9</td><td>A lawyer: terms, driver billing authorization, privacy policy, invoice wording</td><td>1–2 weeks</td><td class="r">Your choice</td></tr>
+          <tr><td>10</td><td>3 to 5 real BOLs (names blurred), and 3 to 5 test drivers</td><td>Week 1</td><td class="r">Free</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
 <section id="decide">
   <div class="rail" id="action-deck">
-    <p class="eyebrow">07 · Let's start</p>
-    <h2>Your drivers are losing money <em class="acc">this</em> week<span class="dot">.</span></h2>
-    <p class="intro">Every week without the app is detention nobody claims. Say go on WhatsApp and I send the agreement with your figure the same day.</p>
+    <p class="eyebrow">09 · Let's start</p>
+    <h2>Your drivers are waiting <em class="acc">unpaid</em> this week<span class="dot">.</span></h2>
+    <p class="intro">Every week without the app is detention nobody bills. Say go on WhatsApp and I send the agreement with your figure the same day.</p>
     <div class="cta-row">
       <a class="btn accent" href="https://wa.me/212632323856?text=Hi%20Faouzi%2C%20I%20read%20the%20proposal%20for%20the%20detention%20app.%20Let%27s%20start%2C%20send%20me%20the%20agreement." target="_blank" rel="noopener">Let's start, on WhatsApp</a>
     </div>
     <ol class="next">
       <li>You say go. I send the agreement the same day.</li>
-      <li>First payment, and you request the free D-U-N-S number for the Apple account (it takes 1 to 2 weeks, so it starts now).</li>
-      <li>You send 3 to 5 real BOLs, names blurred, to train the OCR on.</li>
+      <li>First payment. You open the LLC and request the D-U-N-S number, the slowest step.</li>
+      <li>You send 3 to 5 real BOLs, names blurred, so the OCR is tuned on real documents.</li>
       <li>Two weeks later, the app is on your phone.</li>
     </ol>
-    <p class="valid">Valid until 23 November 2026. Questions? <a href="https://wa.me/212632323856" target="_blank" rel="noopener" style="color:inherit">WhatsApp</a> or <a href="mailto:faouzielbakri@gmail.com?subject=Detention%20app%20proposal" style="color:inherit">faouzielbakri@gmail.com</a>.</p>
+    <p class="valid">Valid until 24 November 2026. Questions? <a href="https://wa.me/212632323856" target="_blank" rel="noopener" style="color:inherit">WhatsApp</a> or <a href="mailto:faouzielbakri@gmail.com?subject=Detention%20app%20proposal" style="color:inherit">faouzielbakri@gmail.com</a>.</p>
   </div>
 </section>
 
